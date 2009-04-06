@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.sirika.gisgraphy</groupId>
+	<artifactId>gisgraphy-java-client-parent</artifactId>
+	<packaging>pom</packaging>
+	<name>Gisgraphy Java Client Parent</name>
+	<version>0.1-SNAPSHOT</version>
+	<url>http://opensource.sirika.com/gisgraphy</url>
+	<inceptionYear>2009</inceptionYear>
+	<prerequisites>
+		<maven>2.1.0-M1</maven>
+	</prerequisites>
+	
+	<properties>	
+		<springframework.version>2.5.6</springframework.version>
+		<slf4j.version>1.5.2</slf4j.version>
+	</properties>
+	
+	<scm>
+		<connection>
+			scm:svn:http://www.sirika.com/svn/funala/gisgraphy-java-client
+		</connection>
+		<developerConnection>
+			scm:svn:http://www.sirika.com/svn/funala/gisgraphy-java-client
+		</developerConnection>
+		<url>http://www.sirika.com/svn/funala/gisgraphy-java-client</url>
+	</scm>
+
+	<licenses>
+		<license>
+			<name>LGPLv3</name>
+			<url>http://www.gnu.org/copyleft/lesser.html</url>
+		</license>
+	</licenses>
+
+	<issueManagement>
+		<system/>
+		<url/>
+	</issueManagement>
+
+	<ciManagement>
+		<system>continuum</system>
+		<notifiers>
+			<notifier>
+				<type>mail</type>
+				<configuration>
+					<address>skoobi@free.fr</address>
+				</configuration>
+			</notifier>
+		</notifiers>
+	</ciManagement>
+
+	<developers>
+		<developer>
+			<id>samokk</id>
+			<name>Sami Dalouche</name>
+			<email>sami.dalouche@gmail.com</email>
+			<roles>
+				<role>Developer</role>
+			</roles>
+			<timezone>-5</timezone>
+		</developer>
+	</developers>
+	<modules>
+		<module>client</module>
+		<!-- integration-tests only available with integration profile -->
+	</modules>
+
+	<profiles>
+		<profile>
+			<id>dev</id>
+			<activation>
+				<activeByDefault>false</activeByDefault>
+			</activation>
+		</profile>
+		<profile>
+			<id>integration</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<modules>
+				<module>integration-tests</module>
+            </modules>
+		</profile>
+		<profile>
+                        <id>release</id>
+                </profile>
+	</profiles>
+
+	<build>
+		<defaultGoal>package</defaultGoal>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<configuration>
+					<excludes>
+						<exclude>**/*TestHelper.java</exclude>
+					</excludes>
+				</configuration>
+			</plugin>
+			<plugin>
+				<artifactId>maven-eclipse-plugin</artifactId>
+				<configuration>
+					<downloadSources>false</downloadSources>
+					<downloadJavadocs>false</downloadJavadocs>
+				</configuration>
+			</plugin>
+			<plugin>
+				<artifactId>maven-idea-plugin</artifactId>
+				<configuration>
+					<downloadSources>true</downloadSources>
+					<downloadJavadocs>true</downloadJavadocs>
+					<dependenciesAsLibraries>true</dependenciesAsLibraries>
+					<useFullNames>false</useFullNames>
+				</configuration>
+			</plugin>
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>1.6</source>
+					<target>1.6</target>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-source-plugin</artifactId>
+				<executions>
+				    <execution>
+				        <id>attach-source</id>
+				        <goals>
+				            <goal>jar</goal>
+				        </goals>
+				    </execution>
+				</executions>
+            		</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<!-- <version>2.2</version>  -->
+				<executions>
+					<execution>
+						<goals>
+							<goal>test-jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			 <plugin>
+		            <groupId>com.google.code.maven-license-plugin</groupId>
+		            <artifactId>maven-license-plugin</artifactId>
+			    <version>1.4.0</version>
+		            <configuration>
+		                <header>src/etc/header.txt</header>
+		            </configuration>
+		        </plugin>
+		</plugins>
+	</build>
+	<reporting>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<configuration>
+				   <encoding>UTF-8</encoding>
+				  <aggregate>false</aggregate>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>jxr-maven-plugin</artifactId>
+			</plugin>
+			<plugin>
+                		<artifactId>maven-pmd-plugin</artifactId>
+            		</plugin>		
+		</plugins>
+	</reporting>
+
+	<repositories>
+		<!--  Our own repository 
+		<repository>
+			<id>sirika.com-maven2</id>
+			<name>Sirika Repository</name>
+			<url>http://www.sirika.com/maven2</url>
+			<snapshots>
+				<enabled>true</enabled>
+				<updatePolicy>daily</updatePolicy>
+			</snapshots>
+		</repository>-->
+		
+		
+		
+	</repositories>
+
+	<pluginRepositories/>
+
+	<dependencies>
+	</dependencies>
+  
+</project>

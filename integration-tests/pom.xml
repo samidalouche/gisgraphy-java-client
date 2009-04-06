@@ -1,0 +1,65 @@
+<?xml version="1.0"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+  <parent>
+    <artifactId>gisgraphy-java-client-parent</artifactId>
+    <groupId>com.sirika.gisgraphy</groupId>
+    <version>0.1-SNAPSHOT</version>
+  </parent>
+
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.sirika.gisgraphy</groupId>
+  <artifactId>gisgraphy-integration-tests</artifactId>
+  <name>Gisgraphy Integration Tests</name>
+  <version>0.1-SNAPSHOT</version>
+  <dependencies>
+  
+  	<!-- Internal Dependencies that we test in integration -->
+	<dependency>
+		<groupId>com.sirika.gisgraphy</groupId>
+		<artifactId>gisgraphy-java-client</artifactId>
+		<version>${project.version}</version>
+		<scope>compile</scope>
+	</dependency>
+	<dependency>
+		<groupId>com.sirika.gisgraphy</groupId>
+		<artifactId>gisgraphy-java-client</artifactId>
+		<version>${project.version}</version>
+		<classifier>tests</classifier>
+		<scope>test</scope>
+	</dependency>
+	
+	<!-- Optional Logging dependencies -->
+	<dependency>
+		<groupId>log4j</groupId>
+		<artifactId>log4j</artifactId>
+		<version>1.2.13</version>
+		<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+			<version>${slf4j.version}</version>
+		</dependency> 
+		
+	<dependency>
+		<groupId>junit</groupId>
+		<artifactId>junit</artifactId>
+		<version>4.4</version>
+		<scope>test</scope>
+	</dependency>
+	<dependency>
+		<groupId>org.easymock</groupId>
+		<artifactId>easymock</artifactId>
+		<version>2.4</version>
+		<scope>test</scope>
+	</dependency>
+	<dependency>
+		<groupId>org.easymock</groupId>
+		<artifactId>easymockclassextension</artifactId>
+		<version>2.4</version>
+		<scope>test</scope>
+	</dependency>
+  </dependencies>
+</project>
