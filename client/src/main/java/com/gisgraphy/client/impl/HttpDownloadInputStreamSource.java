@@ -20,7 +20,7 @@
 /**
  * 
  */
-package com.sirika.gisgraphy.client.impl;
+package com.gisgraphy.client.impl;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -35,14 +35,14 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.io.InputStreamSource;
 
-import com.sirika.gisgraphy.client.ResourceNotExistingException;
-import com.sirika.gisgraphy.client.UnknownGisgraphyQueryException;
-import com.sirika.gisgraphy.client.UrlGenerator;
+import com.gisgraphy.client.ResourceNotExistingException;
+import com.gisgraphy.client.UnknownGisgraphyQueryException;
+import com.gisgraphy.client.UrlGenerator;
 
 class HttpDownloadInputStreamSource implements InputStreamSource{
     private final static Logger logger = LoggerFactory.getLogger(HttpDownloadInputStreamSource.class);
     private HttpClient httpClient;
-    private com.sirika.gisgraphy.client.UrlGenerator urlGenerator;
+    private com.gisgraphy.client.UrlGenerator urlGenerator;
     private HttpGet httpGet;
     private SearchQuery searchQuery;
     

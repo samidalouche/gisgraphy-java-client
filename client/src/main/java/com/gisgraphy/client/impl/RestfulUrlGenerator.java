@@ -1,6 +1,6 @@
-package com.sirika.gisgraphy.client.impl;
+package com.gisgraphy.client.impl;
 
-import com.sirika.gisgraphy.client.UrlGenerator;
+import com.gisgraphy.client.UrlGenerator;
 
 public class RestfulUrlGenerator implements UrlGenerator {
 

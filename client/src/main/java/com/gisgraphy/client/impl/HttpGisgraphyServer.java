@@ -17,17 +17,18 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with ImgServer.  If not, see <http://www.gnu.org/licenses/>.
  */
-package com.sirika.gisgraphy.client.impl;
+package com.gisgraphy.client.impl;
 
-import static com.sirika.gisgraphy.client.httpclienthelpers.DefaultHttpClientFactory.defaultHttpClient;
+import static com.gisgraphy.client.httpclienthelpers.DefaultHttpClientFactory.defaultHttpClient;
+
 import org.apache.commons.lang.Validate;
 import org.apache.http.client.HttpClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.io.InputStreamSource;
 
-import com.sirika.gisgraphy.client.GisgraphyServer;
-import com.sirika.gisgraphy.client.UrlGenerator;
+import com.gisgraphy.client.GisgraphyServer;
+import com.gisgraphy.client.UrlGenerator;
 
 public class HttpGisgraphyServer implements GisgraphyServer {
     private static final Logger logger = LoggerFactory.getLogger(HttpGisgraphyServer.class);

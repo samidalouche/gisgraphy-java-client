@@ -17,9 +17,9 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with ImgServer.  If not, see <http://www.gnu.org/licenses/>.
  */
-package com.sirika.gisgraphy.client;
+package com.gisgraphy.client;
 
-import com.sirika.gisgraphy.client.impl.SearchQuery;
+import com.gisgraphy.client.impl.SearchQuery;
 
 public class UnknownGisgraphyQueryException extends GisgraphyClientException {
     private static final long serialVersionUID = 1L;

@@ -1,4 +1,4 @@
-package com.sirika.gisgraphy.client.impl;
+package com.gisgraphy.client.impl;
 
 import org.springframework.util.Assert;
 

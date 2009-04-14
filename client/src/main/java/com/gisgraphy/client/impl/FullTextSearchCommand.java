@@ -17,7 +17,7 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with ImgServer.  If not, see <http://www.gnu.org/licenses/>.
  */
-package com.sirika.gisgraphy.client.impl;
+package com.gisgraphy.client.impl;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -29,8 +29,8 @@ import org.apache.http.client.methods.HttpGet;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.sirika.gisgraphy.client.UnknownGisgraphyQueryException;
-import com.sirika.gisgraphy.client.UrlGenerator;
+import com.gisgraphy.client.UnknownGisgraphyQueryException;
+import com.gisgraphy.client.UrlGenerator;
 
 public class FullTextSearchCommand {
     private static final Logger logger = LoggerFactory

@@ -1,4 +1,4 @@
-package com.sirika.gisgraphy.client;
+package com.gisgraphy.client;
 
 public class GisgraphyClientException extends RuntimeException {
     private static final long serialVersionUID = 1L;

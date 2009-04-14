@@ -1,6 +1,6 @@
-package com.sirika.gisgraphy.client;
+package com.gisgraphy.client;
 
-import com.sirika.gisgraphy.client.impl.SearchQuery;
+import com.gisgraphy.client.impl.SearchQuery;
 
 public interface UrlGenerator {
     public String generateFullTextSearchQuery(SearchQuery searchQuery);
