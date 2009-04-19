@@ -35,6 +35,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.io.InputStreamSource;
 
+import com.gisgraphy.client.GisgraphyClientException;
 import com.gisgraphy.client.ResourceNotExistingException;
 import com.gisgraphy.client.UnknownGisgraphyQueryException;
 import com.gisgraphy.client.UrlGenerator;
@@ -74,13 +75,18 @@ class HttpDownloadInputStreamSource implements InputStreamSource{
     }
 
     private void handleErrors(HttpResponse response) {
-	handle404NotFound(response);
-	handleNon2xx(response);
+    	try {
+    		handle404NotFound(response);
+    		handleNon2xx(response);
+    	}
+    	catch (GisgraphyClientException e) {
+    		httpGet.abort();
+    		throw e;
+    	}
     }
 
     private void handleNon2xx(HttpResponse response) throws UnknownGisgraphyQueryException {
 	if(response.getStatusLine().getStatusCode() >= 300) {
-	    httpGet.abort();
 	    throw new UnknownGisgraphyQueryException(searchQuery, new HttpResponseException(response.getStatusLine().getStatusCode(), "Error while downloading"));
 	}
     }
