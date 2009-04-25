@@ -11,10 +11,7 @@ import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.events.StartElement;
 import javax.xml.stream.events.XMLEvent;
 
-import com.gisgraphy.client.domain.City;
 import com.gisgraphy.client.domain.CityResult;
-import com.gisgraphy.client.domain.Country;
-import com.gisgraphy.client.domain.GisFeature;
 
 public class StaxParser {
 	public Iterable<CityResult> parse(InputStream is) {
@@ -62,87 +59,87 @@ public class StaxParser {
 								if (tagName.equals("str")) {
 									if ("name".equals(nameAttributeValue)) {
 										innerEvent = eventReader.nextEvent();
-										name = innerEvent.asCharacters().getData();
+										name = innerEvent.asCharacters().getData().trim();
 									}
 									else if ("country_code".equals(nameAttributeValue)) {
 										innerEvent = eventReader.nextEvent();
-										countryCode = innerEvent.asCharacters().getData();
+										countryCode = innerEvent.asCharacters().getData().trim();
 									}
 									else if ("country_flag_url".equals(nameAttributeValue)) {
 										innerEvent = eventReader.nextEvent();
-										countryFlagUrl = innerEvent.asCharacters().getData();
+										countryFlagUrl = innerEvent.asCharacters().getData().trim();
 									}
 									else if ("country_name".equals(nameAttributeValue)) {
 										innerEvent = eventReader.nextEvent();
-										countryName = innerEvent.asCharacters().getData();
+										countryName = innerEvent.asCharacters().getData().trim();
 									}
 									else if ("feature_class".equals(nameAttributeValue)) {
 										innerEvent = eventReader.nextEvent();
-										featureClass = innerEvent.asCharacters().getData();
+										featureClass = innerEvent.asCharacters().getData().trim();
 									}
 									else if ("feature_code".equals(nameAttributeValue)) {
 										innerEvent = eventReader.nextEvent();
-										featureCode = innerEvent.asCharacters().getData();
+										featureCode = innerEvent.asCharacters().getData().trim();
 									}
 									else if ("fully_qualified_name".equals(nameAttributeValue)) {
 										innerEvent = eventReader.nextEvent();
-										fullyQualifiedName = innerEvent.asCharacters().getData();
+										fullyQualifiedName = innerEvent.asCharacters().getData().trim();
 									}
 									else if ("google_map_url".equals(nameAttributeValue)) {
 										innerEvent = eventReader.nextEvent();
-										googleMapUrl = innerEvent.asCharacters().getData();
+										googleMapUrl = innerEvent.asCharacters().getData().trim();
 									}
 									else if ("name".equals(nameAttributeValue)) {
 										innerEvent = eventReader.nextEvent();
-										name = innerEvent.asCharacters().getData();
+										name = innerEvent.asCharacters().getData().trim();
 									}
 									else if ("name_ascii".equals(nameAttributeValue)) {
 										innerEvent = eventReader.nextEvent();
-										asciiName = innerEvent.asCharacters().getData();
+										asciiName = innerEvent.asCharacters().getData().trim();
 									}
 									else if ("timezone".equals(nameAttributeValue)) {
 										innerEvent = eventReader.nextEvent();
-										timezone = innerEvent.asCharacters().getData();
+										timezone = innerEvent.asCharacters().getData().trim();
 									}
 									else if ("yahoo_map_url".equals(nameAttributeValue)) {
 										innerEvent = eventReader.nextEvent();
-										yahooMapUrl = innerEvent.asCharacters().getData();
+										yahooMapUrl = innerEvent.asCharacters().getData().trim();
 									}
 								}
 								else if (tagName.equals("float")) {
 									if ("score".equals(nameAttributeValue)) {
 										innerEvent = eventReader.nextEvent();
-										score = Double.parseDouble(innerEvent.asCharacters().getData());
+										score = Double.parseDouble(innerEvent.asCharacters().getData().trim());
 									} 
 								}
 								else if (tagName.equals("long")) {
 									if ("feature_id".equals(nameAttributeValue)) {
 										innerEvent = eventReader.nextEvent();
-										featureId = Long.parseLong(innerEvent.asCharacters().getData());
+										featureId = Long.parseLong(innerEvent.asCharacters().getData().trim());
 									} 
 								}
 								else if (tagName.equals("int")) {
 									if ("elevation".equals(nameAttributeValue)) {
 										innerEvent = eventReader.nextEvent();
-										elevation = Integer.parseInt(innerEvent.asCharacters().getData());
+										elevation = Integer.parseInt(innerEvent.asCharacters().getData().trim());
 									}
 									else if ("gtopo30".equals(nameAttributeValue)) {
 										innerEvent = eventReader.nextEvent();
-										gTopo30 = Integer.parseInt(innerEvent.asCharacters().getData());
+										gTopo30 = Integer.parseInt(innerEvent.asCharacters().getData().trim());
 									}
 									else if ("population".equals(nameAttributeValue)) {
 										innerEvent = eventReader.nextEvent();
-										population = Integer.parseInt(innerEvent.asCharacters().getData());
+										population = Integer.parseInt(innerEvent.asCharacters().getData().trim());
 									}
 								}
 								else if (tagName.equals("double")) {
 									if ("lat".equals(nameAttributeValue)) {
 										innerEvent = eventReader.nextEvent();
-										latitude = Double.parseDouble(innerEvent.asCharacters().getData());
+										latitude = Double.parseDouble(innerEvent.asCharacters().getData().trim());
 									}
 									else if ("lng".equals(nameAttributeValue)) {
 										innerEvent = eventReader.nextEvent();
-										longitude = Double.parseDouble(innerEvent.asCharacters().getData());
+										longitude = Double.parseDouble(innerEvent.asCharacters().getData().trim());
 									}
 								}
 							} else {
