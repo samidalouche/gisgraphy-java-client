@@ -59,87 +59,87 @@ public class StaxParser {
 								if (tagName.equals("str")) {
 									if ("name".equals(nameAttributeValue)) {
 										innerEvent = eventReader.nextEvent();
-										name = innerEvent.asCharacters().getData().trim();
+										name = innerEvent.asCharacters().getData();
 									}
 									else if ("country_code".equals(nameAttributeValue)) {
 										innerEvent = eventReader.nextEvent();
-										countryCode = innerEvent.asCharacters().getData().trim();
+										countryCode = innerEvent.asCharacters().getData();
 									}
 									else if ("country_flag_url".equals(nameAttributeValue)) {
 										innerEvent = eventReader.nextEvent();
-										countryFlagUrl = innerEvent.asCharacters().getData().trim();
+										countryFlagUrl = innerEvent.asCharacters().getData();
 									}
 									else if ("country_name".equals(nameAttributeValue)) {
 										innerEvent = eventReader.nextEvent();
-										countryName = innerEvent.asCharacters().getData().trim();
+										countryName = innerEvent.asCharacters().getData();
 									}
 									else if ("feature_class".equals(nameAttributeValue)) {
 										innerEvent = eventReader.nextEvent();
-										featureClass = innerEvent.asCharacters().getData().trim();
+										featureClass = innerEvent.asCharacters().getData();
 									}
 									else if ("feature_code".equals(nameAttributeValue)) {
 										innerEvent = eventReader.nextEvent();
-										featureCode = innerEvent.asCharacters().getData().trim();
+										featureCode = innerEvent.asCharacters().getData();
 									}
 									else if ("fully_qualified_name".equals(nameAttributeValue)) {
 										innerEvent = eventReader.nextEvent();
-										fullyQualifiedName = innerEvent.asCharacters().getData().trim();
+										fullyQualifiedName = innerEvent.asCharacters().getData();
 									}
 									else if ("google_map_url".equals(nameAttributeValue)) {
 										innerEvent = eventReader.nextEvent();
-										googleMapUrl = innerEvent.asCharacters().getData().trim();
+										googleMapUrl = innerEvent.asCharacters().getData();
 									}
 									else if ("name".equals(nameAttributeValue)) {
 										innerEvent = eventReader.nextEvent();
-										name = innerEvent.asCharacters().getData().trim();
+										name = innerEvent.asCharacters().getData();
 									}
 									else if ("name_ascii".equals(nameAttributeValue)) {
 										innerEvent = eventReader.nextEvent();
-										asciiName = innerEvent.asCharacters().getData().trim();
+										asciiName = innerEvent.asCharacters().getData();
 									}
 									else if ("timezone".equals(nameAttributeValue)) {
 										innerEvent = eventReader.nextEvent();
-										timezone = innerEvent.asCharacters().getData().trim();
+										timezone = innerEvent.asCharacters().getData();
 									}
 									else if ("yahoo_map_url".equals(nameAttributeValue)) {
 										innerEvent = eventReader.nextEvent();
-										yahooMapUrl = innerEvent.asCharacters().getData().trim();
+										yahooMapUrl = innerEvent.asCharacters().getData();
 									}
 								}
 								else if (tagName.equals("float")) {
 									if ("score".equals(nameAttributeValue)) {
 										innerEvent = eventReader.nextEvent();
-										score = Double.parseDouble(innerEvent.asCharacters().getData().trim());
+										score = Double.parseDouble(innerEvent.asCharacters().getData());
 									} 
 								}
 								else if (tagName.equals("long")) {
 									if ("feature_id".equals(nameAttributeValue)) {
 										innerEvent = eventReader.nextEvent();
-										featureId = Long.parseLong(innerEvent.asCharacters().getData().trim());
+										featureId = Long.parseLong(innerEvent.asCharacters().getData());
 									} 
 								}
 								else if (tagName.equals("int")) {
 									if ("elevation".equals(nameAttributeValue)) {
 										innerEvent = eventReader.nextEvent();
-										elevation = Integer.parseInt(innerEvent.asCharacters().getData().trim());
+										elevation = Integer.parseInt(innerEvent.asCharacters().getData());
 									}
 									else if ("gtopo30".equals(nameAttributeValue)) {
 										innerEvent = eventReader.nextEvent();
-										gTopo30 = Integer.parseInt(innerEvent.asCharacters().getData().trim());
+										gTopo30 = Integer.parseInt(innerEvent.asCharacters().getData());
 									}
 									else if ("population".equals(nameAttributeValue)) {
 										innerEvent = eventReader.nextEvent();
-										population = Integer.parseInt(innerEvent.asCharacters().getData().trim());
+										population = Integer.parseInt(innerEvent.asCharacters().getData());
 									}
 								}
 								else if (tagName.equals("double")) {
 									if ("lat".equals(nameAttributeValue)) {
 										innerEvent = eventReader.nextEvent();
-										latitude = Double.parseDouble(innerEvent.asCharacters().getData().trim());
+										latitude = Double.parseDouble(innerEvent.asCharacters().getData());
 									}
 									else if ("lng".equals(nameAttributeValue)) {
 										innerEvent = eventReader.nextEvent();
-										longitude = Double.parseDouble(innerEvent.asCharacters().getData().trim());
+										longitude = Double.parseDouble(innerEvent.asCharacters().getData());
 									}
 								}
 							} else {
