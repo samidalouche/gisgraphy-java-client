@@ -1,5 +1,10 @@
 package com.gisgraphy.client.parser;
 
+import static com.gisgraphy.client.objectmothers.FullTextSearchResultsObjectMother.irvine;
+import static com.gisgraphy.client.objectmothers.FullTextSearchResultsObjectMother.paris;
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.junit.Assert.assertThat;
+
 import java.io.IOException;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
@@ -10,13 +15,6 @@ import org.junit.Test;
 import org.springframework.core.io.InputStreamSource;
 
 import com.gisgraphy.client.domain.CityResult;
-
-import static org.hamcrest.CoreMatchers.equalTo;
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.not;
-import static org.junit.Assert.assertThat;
-
-import static com.gisgraphy.client.objectmothers.FullTextSearchResultsObjectMother.*;
 
 public class ParserTest {
     private StaxParser staxParser = new StaxParser();
