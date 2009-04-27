@@ -19,19 +19,18 @@
  */
 package com.gisgraphy.client;
 
-import com.gisgraphy.client.impl.SearchQuery;
 
 public class UnknownGisgraphyQueryException extends GisgraphyClientException {
     private static final long serialVersionUID = 1L;
 
-    private SearchQuery searchQuery;
+    private GisgraphyQuery searchQuery;
 
-    public UnknownGisgraphyQueryException(SearchQuery searchQuery, Exception e) {
+    public UnknownGisgraphyQueryException(GisgraphyQuery searchQuery, Exception e) {
 	super(e);
 	this.searchQuery = searchQuery;
     }
 
-    public SearchQuery getSearchQuery() {
+    public GisgraphyQuery getSearchQuery() {
 	return searchQuery;
     }
 

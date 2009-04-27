@@ -2,7 +2,9 @@ package com.gisgraphy.client.impl;
 
 import org.springframework.util.Assert;
 
-public class SearchQuery {
+import com.gisgraphy.client.GisgraphyQuery;
+
+public class SearchQuery implements GisgraphyQuery {
     private String queryString;
     private Integer paginationStartIndex;
     private Integer paginationEndIndex;

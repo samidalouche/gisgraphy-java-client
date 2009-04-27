@@ -19,19 +19,18 @@
  */
 package com.gisgraphy.client;
 
-import com.gisgraphy.client.impl.SearchQuery;
 
 
 public class ResourceNotExistingException extends GisgraphyClientException {
     private static final long serialVersionUID = 1L;
     
-    private SearchQuery searchQuery;
+    private GisgraphyQuery searchQuery;
     
-    public ResourceNotExistingException(SearchQuery searchQuery) {
+    public ResourceNotExistingException(GisgraphyQuery searchQuery) {
 	this.searchQuery = searchQuery;
     }
 
-    public SearchQuery getSearchQuery() {
+    public GisgraphyQuery getSearchQuery() {
         return searchQuery;
     }
     

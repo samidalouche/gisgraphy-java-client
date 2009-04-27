@@ -31,46 +31,56 @@ import com.gisgraphy.client.GisgraphyServer;
 import com.gisgraphy.client.UrlGenerator;
 
 public class HttpGisgraphyServer implements GisgraphyServer {
-    private static final Logger logger = LoggerFactory.getLogger(HttpGisgraphyServer.class);
-    private UrlGenerator urlGenerator;
-    private HttpClient httpClient;
-    
-    public HttpGisgraphyServer(String baseImageServiceUrl) {
-	this(defaultHttpClient(), defaultUrlGeneratorFor(baseImageServiceUrl));
-    }
+	private static final Logger logger = LoggerFactory.getLogger(HttpGisgraphyServer.class);
+	private UrlGenerator urlGenerator;
+	private HttpClient httpClient;
 
-    public HttpGisgraphyServer(UrlGenerator urlGenerator) {
-	this(defaultHttpClient(), urlGenerator);
-    }
-    
-    public HttpGisgraphyServer(HttpClient httpClient, String baseImageServiceUrl) {
-	this(httpClient, defaultUrlGeneratorFor(baseImageServiceUrl));
-    }
-    
-    public HttpGisgraphyServer(HttpClient httpClient, UrlGenerator urlGenerator) {
-	logger.info("Creating Image Server using , HttpClient [{}], URLGenerator [{}]", httpClient, urlGenerator);
-	Validate.notNull(urlGenerator);
-	Validate.notNull(httpClient);
-	this.urlGenerator = urlGenerator ;
-	this.httpClient = httpClient;
-    }
+	public HttpGisgraphyServer(String baseImageServiceUrl) {
+		this(defaultHttpClient(), defaultUrlGeneratorFor(baseImageServiceUrl));
+	}
 
-    public InputStreamSource fullTextSearch(SearchQuery searchQuery) {
-	return new HttpDownloadInputStreamSource(httpClient, urlGenerator, searchQuery);
-    }
+	public HttpGisgraphyServer(UrlGenerator urlGenerator) {
+		this(defaultHttpClient(), urlGenerator);
+	}
 
-    public String generateFullTextSearchQuery(SearchQuery searchQuery) {
-	String url = urlGenerator.generateFullTextSearchQuery(searchQuery);
-	logger.debug("getFullTextSearchQueryUrl: generated URL : {}", url);
-	return url;
-    }
- 
-    public void destroy() throws Exception {
-	this.httpClient.getConnectionManager().shutdown();
-    }
-    
-    private static RestfulUrlGenerator defaultUrlGeneratorFor(String baseImageServiceUrl) {
-	Validate.notNull(baseImageServiceUrl);
-	return new RestfulUrlGenerator(baseImageServiceUrl);
-    }
+	public HttpGisgraphyServer(HttpClient httpClient, String baseImageServiceUrl) {
+		this(httpClient, defaultUrlGeneratorFor(baseImageServiceUrl));
+	}
+
+	public HttpGisgraphyServer(HttpClient httpClient, UrlGenerator urlGenerator) {
+		logger.info("Creating Image Server using , HttpClient [{}], URLGenerator [{}]", httpClient, urlGenerator);
+		Validate.notNull(urlGenerator);
+		Validate.notNull(httpClient);
+		this.urlGenerator = urlGenerator;
+		this.httpClient = httpClient;
+	}
+
+	public InputStreamSource fullTextSearch(SearchQuery searchQuery) {
+		return new FullTextQueryInputStreamSource(httpClient, urlGenerator, searchQuery);
+	}
+
+	public String generateFullTextSearchQuery(SearchQuery searchQuery) {
+		String url = urlGenerator.generateFullTextSearchQuery(searchQuery);
+		logger.debug("getFullTextSearchQueryUrl: generated URL : {}", url);
+		return url;
+	}
+
+	public void destroy() throws Exception {
+		this.httpClient.getConnectionManager().shutdown();
+	}
+
+	private static RestfulUrlGenerator defaultUrlGeneratorFor(String baseImageServiceUrl) {
+		Validate.notNull(baseImageServiceUrl);
+		return new RestfulUrlGenerator(baseImageServiceUrl);
+	}
+
+	public InputStreamSource geolocalisationSearch(GeolocalisationQuery geolocalisationQuery) {
+		return new GeolocalisationQueryInputStreamSource(httpClient, urlGenerator, geolocalisationQuery);
+	}
+
+	public String generateGeolocalisationQuery(GeolocalisationQuery geolocalisationQuery) {
+		String url = urlGenerator.generateGeolocalisationQuery(geolocalisationQuery);
+		logger.debug("generateGeolocalisationQuery: generated URL : {}", url);
+		return url;
+	}
 }

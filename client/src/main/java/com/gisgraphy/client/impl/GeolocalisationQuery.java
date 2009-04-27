@@ -1,9 +1,8 @@
 package com.gisgraphy.client.impl;
 
-import org.springframework.util.Assert;
+import com.gisgraphy.client.GisgraphyQuery;
 
-public class GeolocalisationQuery {
-    private String queryString;
+public class GeolocalisationQuery implements GisgraphyQuery {
     private Integer paginationStartIndex;
     private Double latitude;
     private Double longitude;
@@ -23,10 +22,6 @@ public class GeolocalisationQuery {
 	    searchQuery = new GeolocalisationQuery();
 	}
 
-	public GeolocalisationQueryBuilder withQueryString(String queryString) {
-	    searchQuery.queryString = queryString;
-	    return this;
-	}
 
 	public GeolocalisationQueryBuilder withPaginationStartIndex(Integer startIndex) {
 	    searchQuery.paginationStartIndex = startIndex;
@@ -64,18 +59,12 @@ public class GeolocalisationQuery {
 	}
 
 	public GeolocalisationQuery build() {
-	    check();
 	    return searchQuery;
 	}
-
-	private void check() {
-	    Assert.hasText(searchQuery.queryString);
-	}
     }
 
-    public String getQueryString() {
-	return queryString;
-    }
+
+
 
     public Integer getPaginationStartIndex() {
 	return paginationStartIndex;
