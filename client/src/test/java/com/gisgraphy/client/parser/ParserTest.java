@@ -23,7 +23,7 @@ public class ParserTest {
     public void shouldParseIrvineCorrectly() {
 	InputStreamSource iss = irvine();
 	try {
-	    Iterable<CityResult> results = staxParser.parse(iss.getInputStream());
+	    Iterable<CityResult> results = staxParser.parseFullTextSearchResult(iss.getInputStream());
 	    Iterator<CityResult> iterator = results.iterator();
 	    assertThat(iterator.hasNext(), equalTo(true));
 	    CityResult firstResult = iterator.next();
@@ -73,7 +73,7 @@ public class ParserTest {
     public void shouldParseParisCorrectly() {
 	InputStreamSource iss = paris();
 	try {
-	    Iterable<CityResult> results = staxParser.parse(iss.getInputStream());
+	    Iterable<CityResult> results = staxParser.parseFullTextSearchResult(iss.getInputStream());
 	    Iterator<CityResult> iterator = results.iterator();
 	    assertThat(iterator.hasNext(), equalTo(true));
 	    CityResult firstResult = iterator.next();

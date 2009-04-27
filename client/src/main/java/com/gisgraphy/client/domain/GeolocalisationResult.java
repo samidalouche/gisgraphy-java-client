@@ -27,7 +27,11 @@ public class GeolocalisationResult {
 	private String yahooMapUrl;
 	private String countryFlagUrl;
 	
-	public class GeolocalisationResultBuilder {
+	public static GeolocalisationResultBuilder newGeolocalisationResult() {
+		return new GeolocalisationResultBuilder();
+	}
+	
+	public static class GeolocalisationResultBuilder {
 		private GeolocalisationResult result;
 		
 		public GeolocalisationResultBuilder() {
@@ -149,7 +153,7 @@ public class GeolocalisationResult {
 			return this;
 		}
 		
-		public GeolocalisationResultBuilder withYahooMapUrl(String yahoooMapUrl) {
+		public GeolocalisationResultBuilder withYahooMapUrl(String yahooMapUrl) {
 			result.yahooMapUrl = yahooMapUrl;
 			return this;
 		}
@@ -157,6 +161,10 @@ public class GeolocalisationResult {
 		public GeolocalisationResultBuilder withCountryFlagUrl(String countryFlagUrl) {
 			result.countryFlagUrl = countryFlagUrl;
 			return this;
+		}
+		
+		public GeolocalisationResult build() {
+			return result;
 		}
 	}
 
