@@ -78,7 +78,7 @@ public class ParserTest {
 	    assertThat(iterator.hasNext(), equalTo(true));
 	    CityResult firstResult = iterator.next();
 	    assertThat(firstResult.getAsciiName(), equalTo("Paris"));
-	    assertThat(firstResult.getScore(), equalTo(201940.75));
+	    assertThat(firstResult.getScore(), equalTo(202211.78));
 	    assertThat(firstResult.getName(), equalTo("Paris"));
 	    assertThat(firstResult.getCountryCode(), equalTo("FR"));
 	    assertThat(firstResult.getCountryFlagUrl(), equalTo("/images/flags/FR.png"));
@@ -87,7 +87,7 @@ public class ParserTest {
 	    assertThat(firstResult.getFeatureClass(), equalTo("P"));
 	    assertThat(firstResult.getFeatureCode(), equalTo("PPLC"));
 	    assertThat(firstResult.getFeatureId(), equalTo(2988507L));
-	    assertThat(firstResult.getFullyQualifiedName(), equalTo("Paris (75000), Departement"));
+	    assertThat(firstResult.getFullyQualifiedName(), equalTo("Paris (75000), Département de Ville-de-Paris, Région Île-de-France"));
 	    assertThat(firstResult.getGoogleMapUrl(), equalTo("http://maps.google.com/maps?f=q&amp;ie=UTF-8&amp;iwloc=addr&amp;om=1&amp;z=12&amp;q=Paris&amp;ll=48.883408813476564,2.34879994392395"));
 	    assertThat(firstResult.getGTopo30(), equalTo(30));
 	    assertThat(firstResult.getLatitude(), equalTo(48.85340881347656));
