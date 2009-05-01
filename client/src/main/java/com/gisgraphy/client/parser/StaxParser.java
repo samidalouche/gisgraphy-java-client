@@ -186,7 +186,7 @@ public class StaxParser {
 						String countryCode = null;
 						String featureClass = null;
 						String featureCode = null;
-						Integer featureId = null;
+						Long featureId = null;
 						Integer gTopo30 = null;
 						Integer population = null;
 						String timezone = null;
@@ -237,7 +237,7 @@ public class StaxParser {
 									featureCode = innerEvent.asCharacters().getData();
 								} else if ("featureId".equals(tagName)) {
 									innerEvent = eventReader.nextEvent();
-									featureId = Integer.parseInt(innerEvent.asCharacters().getData());
+									featureId = Long.parseLong(innerEvent.asCharacters().getData());
 								} else if ("gtopo30".equals(tagName)) {
 									innerEvent = eventReader.nextEvent();
 									gTopo30 = Integer.parseInt(innerEvent.asCharacters().getData());

@@ -15,7 +15,7 @@ public class GeolocalisationResult {
 	private String countryCode;
 	private String featureClass;
 	private String featureCode;
-	private Integer featureId;
+	private Long featureId;
 	private Integer gTopo30;
 	private Integer population;
 	private String timezone;
@@ -108,7 +108,7 @@ public class GeolocalisationResult {
 			return this;
 		}
 		
-		public GeolocalisationResultBuilder withFeatureId(Integer featureId) {
+		public GeolocalisationResultBuilder withFeatureId(Long featureId) {
 			result.featureId = featureId;
 			return this;
 		}
@@ -224,7 +224,7 @@ public class GeolocalisationResult {
 		return featureCode;
 	}
 
-	public Integer getFeatureId() {
+	public Long getFeatureId() {
 		return featureId;
 	}
 

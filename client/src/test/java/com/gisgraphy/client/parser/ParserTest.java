@@ -1,7 +1,5 @@
 package com.gisgraphy.client.parser;
 
-import static com.gisgraphy.client.objectmothers.FullTextSearchResultsObjectMother.irvine;
-import static com.gisgraphy.client.objectmothers.FullTextSearchResultsObjectMother.paris;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.junit.Assert.assertThat;
 
@@ -15,13 +13,16 @@ import org.junit.Test;
 import org.springframework.core.io.InputStreamSource;
 
 import com.gisgraphy.client.domain.CityResult;
+import com.gisgraphy.client.domain.GeolocalisationResult;
+import com.gisgraphy.client.objectmothers.FullTextSearchResultsObjectMother;
+import com.gisgraphy.client.objectmothers.GeolocalisationQueryResultsObjectMother;
 
 public class ParserTest {
     private StaxParser staxParser = new StaxParser();
     
     @Test
-    public void shouldParseIrvineCorrectly() {
-	InputStreamSource iss = irvine();
+    public void shouldParseFullTextSearchForIrvineCorrectly() {
+	InputStreamSource iss = FullTextSearchResultsObjectMother.irvine();
 	try {
 	    Iterable<CityResult> results = staxParser.parseFullTextSearchResult(iss.getInputStream());
 	    Iterator<CityResult> iterator = results.iterator();
@@ -69,9 +70,10 @@ public class ParserTest {
 	}
     }
     
+    
     @Test
     public void shouldParseParisCorrectly() {
-	InputStreamSource iss = paris();
+	InputStreamSource iss = FullTextSearchResultsObjectMother.paris();
 	try {
 	    Iterable<CityResult> results = staxParser.parseFullTextSearchResult(iss.getInputStream());
 	    Iterator<CityResult> iterator = results.iterator();
@@ -103,6 +105,54 @@ public class ParserTest {
 	    
 	    CityResult lastResult = iterator.next();
 	    assertThat(lastResult.getAsciiName(), equalTo("Paris"));
+	    
+	    try {
+	    	iterator.next();
+	    	Assert.fail();
+	    }
+	    catch (NoSuchElementException e) {
+	    	
+	    }
+	    
+	
+	} catch (IOException e) {
+	    Assert.fail();
+	    e.printStackTrace();
+	}
+    }
+    
+    
+
+    @Test
+    public void shouldParseGeolocalisationQueryForParisCorrectly() {
+	InputStreamSource iss = GeolocalisationQueryResultsObjectMother.paris();
+	try {
+	    Iterable<GeolocalisationResult> results = staxParser.parseGeolocalisationResult(iss.getInputStream());
+	    Iterator<GeolocalisationResult> iterator = results.iterator();
+	    assertThat(iterator.hasNext(), equalTo(true));
+	    GeolocalisationResult firstResult = iterator.next();
+	    assertThat(firstResult.getAsciiName(), equalTo("Paris"));
+	    assertThat(firstResult.getName(), equalTo("Paris"));
+	    assertThat(firstResult.getCountryCode(), equalTo("FR"));
+	    assertThat(firstResult.getCountryFlagUrl(), equalTo("/images/flags/FR.png"));
+	    assertThat(firstResult.getFeatureClass(), equalTo("P"));
+	    assertThat(firstResult.getFeatureCode(), equalTo("PPLC"));
+	    assertThat(firstResult.getFeatureId(), equalTo(2988507L));
+	    assertThat(firstResult.getGoogleMapUrl(), equalTo("http://maps.google.com/maps?f=q&amp;ie=UTF-8&amp;iwloc=addr&amp;om=1&amp;z=12&amp;q=Paris&amp;ll=48.883408813476564,2.34879994392395"));
+	    assertThat(firstResult.getGTopo30(), equalTo(30));
+	    assertThat(firstResult.getLatitude(), equalTo(48.85340881347656));
+	    assertThat(firstResult.getLongitude(), equalTo(2.34879994392395));
+	    assertThat(firstResult.getPopulation(), equalTo(2138551));
+	    assertThat(firstResult.getTimezone(), equalTo("Europe/Paris"));
+	    assertThat(firstResult.getYahooMapUrl(), equalTo("http://maps.yahoo.com/broadband?mag=6&amp;mvt=m&amp;lon=2.34879994392395&amp;lat=48.85340881347656"));
+
+	    // skip through 8 results, then test the last
+	    for (int i = 0; i < 4; i++) {
+	    	iterator.next();
+	    }
+	    
+	    GeolocalisationResult lastResult = iterator.next();
+	    assertThat(lastResult.getAsciiName(), equalTo("Ivry-sur-Seine"));
 	    
 	    try {
 	    	iterator.next();
