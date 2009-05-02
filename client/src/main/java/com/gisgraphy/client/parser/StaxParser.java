@@ -223,6 +223,18 @@ public class StaxParser {
 								} else if ("adm4Code".equals(tagName)) {
 									innerEvent = eventReader.nextEvent();
 									adm4Code = innerEvent.asCharacters().getData();
+								} else if ("adm1Name".equals(tagName)) {
+									innerEvent = eventReader.nextEvent();
+									adm1Name = innerEvent.asCharacters().getData();
+								} else if ("adm2Name".equals(tagName)) {
+									innerEvent = eventReader.nextEvent();
+									adm2Name = innerEvent.asCharacters().getData();
+								} else if ("adm3Name".equals(tagName)) {
+									innerEvent = eventReader.nextEvent();
+									adm3Name = innerEvent.asCharacters().getData();
+								} else if ("adm4Name".equals(tagName)) {
+									innerEvent = eventReader.nextEvent();
+									adm4Name = innerEvent.asCharacters().getData();
 								} else if ("asciiName".equals(tagName)) {
 									innerEvent = eventReader.nextEvent();
 									asciiName = innerEvent.asCharacters().getData();
