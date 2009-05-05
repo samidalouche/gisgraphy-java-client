@@ -33,46 +33,43 @@ import com.gisgraphy.client.UnknownGisgraphyQueryException;
 import com.gisgraphy.client.UrlGenerator;
 
 public class FullTextSearchCommand {
-    private static final Logger logger = LoggerFactory
-	    .getLogger(FullTextSearchCommand.class);
+	private static final Logger logger = LoggerFactory.getLogger(FullTextSearchCommand.class);
 
-    private HttpClient httpClient;
-    private UrlGenerator urlGenerator;
-    private SearchQuery searchQuery;
+	private HttpClient httpClient;
+	private UrlGenerator urlGenerator;
+	private SearchQuery searchQuery;
 
-    public FullTextSearchCommand(HttpClient httpClient,
-	    UrlGenerator urlGenerator, SearchQuery searchQuery) {
-	super();
-	this.httpClient = httpClient;
-	this.urlGenerator = urlGenerator;
-	this.searchQuery = searchQuery;
-    }
-
-    /**
-     * 
-     * @return the XML resulting from the gisgraphy call
-     * @throws UnknownGisgraphyQueryException
-     * @throws UnknownGisgraphyQueryException
-     */
-    public InputStream execute() throws UnknownGisgraphyQueryException {
-	try {
-	    HttpGet httpGet = createHttpGetFor(searchQuery);
-	    HttpResponse response = httpClient.execute(httpGet);
-	    HttpEntity entity = response.getEntity();
-	    logger
-		    .debug("Gisgraphy search query done successfully for searchQuery: "
-			    + searchQuery);
-	    return entity.getContent();
-
-	} catch (IOException e) {
-	    throw new UnknownGisgraphyQueryException(searchQuery, e);
+	public FullTextSearchCommand(HttpClient httpClient, UrlGenerator urlGenerator, SearchQuery searchQuery) {
+		super();
+		this.httpClient = httpClient;
+		this.urlGenerator = urlGenerator;
+		this.searchQuery = searchQuery;
 	}
-    }
 
-    private HttpGet createHttpGetFor(SearchQuery searchQuery) {
-	HttpGet httpGet = new HttpGet(urlGenerator
-		.generateFullTextSearchQuery(searchQuery));
-	return httpGet;
-    }
+	/**
+	 * 
+	 * @return the XML resulting from the gisgraphy call
+	 * @throws UnknownGisgraphyQueryException
+	 * @throws UnknownGisgraphyQueryException
+	 */
+	public InputStream execute() throws UnknownGisgraphyQueryException {
+		try {
+			HttpGet httpGet = createHttpGetFor(searchQuery);
+			HttpResponse response = httpClient.execute(httpGet);
+			HttpEntity entity = response.getEntity();
+			logger.debug("Gisgraphy search query done successfully for searchQuery: " + searchQuery);
+			return entity.getContent();
+
+		} catch (IOException e) {
+			throw new UnknownGisgraphyQueryException(searchQuery, e);
+		}
+	}
+
+	private HttpGet createHttpGetFor(SearchQuery searchQuery) {
+		HttpGet httpGet = new HttpGet(urlGenerator.generateFullTextSearchQuery(searchQuery));
+		// Explicitly set to expect UTF-8 from Gisgraphy
+		httpGet.setHeader("Content-type", "text/xml; charset=UTF-8");
+		return httpGet;
+	}
 
 }

@@ -33,46 +33,44 @@ import com.gisgraphy.client.UnknownGisgraphyQueryException;
 import com.gisgraphy.client.UrlGenerator;
 
 public class GeolocalisationQueryCommand {
-    private static final Logger logger = LoggerFactory
-	    .getLogger(GeolocalisationQueryCommand.class);
+	private static final Logger logger = LoggerFactory.getLogger(GeolocalisationQueryCommand.class);
 
-    private HttpClient httpClient;
-    private UrlGenerator urlGenerator;
-    private GeolocalisationQuery geolocalisationQuery;
+	private HttpClient httpClient;
+	private UrlGenerator urlGenerator;
+	private GeolocalisationQuery geolocalisationQuery;
 
-    public GeolocalisationQueryCommand(HttpClient httpClient,
-	    UrlGenerator urlGenerator, GeolocalisationQuery geolocalisationQuery) {
-	super();
-	this.httpClient = httpClient;
-	this.urlGenerator = urlGenerator;
-	this.geolocalisationQuery = geolocalisationQuery;
-    }
-
-    /**
-     * 
-     * @return the XML resulting from the gisgraphy call
-     * @throws UnknownGisgraphyQueryException
-     * @throws UnknownGisgraphyQueryException
-     */
-    public InputStream execute() throws UnknownGisgraphyQueryException {
-	try {
-	    HttpGet httpGet = createHttpGetFor(geolocalisationQuery);
-	    HttpResponse response = httpClient.execute(httpGet);
-	    HttpEntity entity = response.getEntity();
-	    logger
-		    .debug("Gisgraphy search query done successfully for searchQuery: "
-			    + geolocalisationQuery);
-	    return entity.getContent();
-
-	} catch (IOException e) {
-	    throw new UnknownGisgraphyQueryException(geolocalisationQuery, e);
+	public GeolocalisationQueryCommand(HttpClient httpClient, UrlGenerator urlGenerator,
+			GeolocalisationQuery geolocalisationQuery) {
+		super();
+		this.httpClient = httpClient;
+		this.urlGenerator = urlGenerator;
+		this.geolocalisationQuery = geolocalisationQuery;
 	}
-    }
 
-    private HttpGet createHttpGetFor(GeolocalisationQuery geolocalisationQuery) {
-	HttpGet httpGet = new HttpGet(urlGenerator
-		.generateGeolocalisationQuery(geolocalisationQuery));
-	return httpGet;
-    }
+	/**
+	 * 
+	 * @return the XML resulting from the gisgraphy call
+	 * @throws UnknownGisgraphyQueryException
+	 * @throws UnknownGisgraphyQueryException
+	 */
+	public InputStream execute() throws UnknownGisgraphyQueryException {
+		try {
+			HttpGet httpGet = createHttpGetFor(geolocalisationQuery);
+			HttpResponse response = httpClient.execute(httpGet);
+			HttpEntity entity = response.getEntity();
+			logger.debug("Gisgraphy search query done successfully for searchQuery: " + geolocalisationQuery);
+			return entity.getContent();
+
+		} catch (IOException e) {
+			throw new UnknownGisgraphyQueryException(geolocalisationQuery, e);
+		}
+	}
+
+	private HttpGet createHttpGetFor(GeolocalisationQuery geolocalisationQuery) {
+		HttpGet httpGet = new HttpGet(urlGenerator.generateGeolocalisationQuery(geolocalisationQuery));
+		// Explicitly set to expect UTF-8 from Gisgraphy
+		httpGet.setHeader("Content-type", "text/xml; charset=UTF-8");
+		return httpGet;
+	}
 
 }
