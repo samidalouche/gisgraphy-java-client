@@ -12,7 +12,7 @@ import junit.framework.Assert;
 import org.junit.Test;
 import org.springframework.core.io.InputStreamSource;
 
-import com.gisgraphy.client.domain.CityResult;
+import com.gisgraphy.client.domain.FullTextQueryResult;
 import com.gisgraphy.client.domain.GeolocalisationResult;
 import com.gisgraphy.client.objectmothers.FullTextSearchResultsObjectMother;
 import com.gisgraphy.client.objectmothers.GeolocalisationQueryResultsObjectMother;
@@ -24,11 +24,12 @@ public class ParserTest {
     public void shouldParseFullTextSearchForIrvineCorrectly() {
 	InputStreamSource iss = FullTextSearchResultsObjectMother.irvine();
 	try {
-	    Iterable<CityResult> results = staxParser.parseFullTextSearchResult(iss.getInputStream());
-	    Iterator<CityResult> iterator = results.iterator();
+	    Iterable<FullTextQueryResult> results = staxParser.parseFullTextSearchResult(iss.getInputStream());
+	    Iterator<FullTextQueryResult> iterator = results.iterator();
 	    assertThat(iterator.hasNext(), equalTo(true));
-	    CityResult firstResult = iterator.next();
+	    FullTextQueryResult firstResult = iterator.next();
 	    assertThat(firstResult.getAsciiName(), equalTo("Irvine"));
+	    assertThat(firstResult.getPlaceType(), equalTo("City"));
 	    assertThat(firstResult.getScore(), equalTo(16920.297));
 	    assertThat(firstResult.getName(), equalTo("Irvine"));
 	    assertThat(firstResult.getCountryCode(), equalTo("US"));
@@ -52,7 +53,7 @@ public class ParserTest {
 	    	iterator.next();
 	    }
 	    
-	    CityResult lastResult = iterator.next();
+	    FullTextQueryResult lastResult = iterator.next();
 	    assertThat(lastResult.getAsciiName(), equalTo("North Irvine"));
 	    
 	    try {
@@ -75,10 +76,10 @@ public class ParserTest {
     public void shouldParseParisCorrectly() {
 	InputStreamSource iss = FullTextSearchResultsObjectMother.paris();
 	try {
-	    Iterable<CityResult> results = staxParser.parseFullTextSearchResult(iss.getInputStream());
-	    Iterator<CityResult> iterator = results.iterator();
+	    Iterable<FullTextQueryResult> results = staxParser.parseFullTextSearchResult(iss.getInputStream());
+	    Iterator<FullTextQueryResult> iterator = results.iterator();
 	    assertThat(iterator.hasNext(), equalTo(true));
-	    CityResult firstResult = iterator.next();
+	    FullTextQueryResult firstResult = iterator.next();
 	    assertThat(firstResult.getAsciiName(), equalTo("Paris"));
 	    assertThat(firstResult.getScore(), equalTo(202211.78));
 	    assertThat(firstResult.getName(), equalTo("Paris"));
@@ -103,7 +104,7 @@ public class ParserTest {
 	    	iterator.next();
 	    }
 	    
-	    CityResult lastResult = iterator.next();
+	    FullTextQueryResult lastResult = iterator.next();
 	    assertThat(lastResult.getAsciiName(), equalTo("Paris"));
 	    
 	    try {

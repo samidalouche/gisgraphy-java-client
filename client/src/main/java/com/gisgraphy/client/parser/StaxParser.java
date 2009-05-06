@@ -11,13 +11,13 @@ import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.events.StartElement;
 import javax.xml.stream.events.XMLEvent;
 
-import com.gisgraphy.client.domain.CityResult;
+import com.gisgraphy.client.domain.FullTextQueryResult;
 import com.gisgraphy.client.domain.GeolocalisationResult;
 
 public class StaxParser {
-	public Iterable<CityResult> parseFullTextSearchResult(InputStream is) {
+	public Iterable<FullTextQueryResult> parseFullTextSearchResult(InputStream is) {
 
-		List<CityResult> output = new ArrayList<CityResult>();
+		List<FullTextQueryResult> output = new ArrayList<FullTextQueryResult>();
 
 		try {
 			// First create a new XMLInputFactory
@@ -48,6 +48,7 @@ public class StaxParser {
 						int population = 0;
 						String timezone = null;
 						String yahooMapUrl = null;
+						String placeType = null;
 
 						// We have a new CityResult
 						XMLEvent innerEvent = null;
@@ -65,6 +66,9 @@ public class StaxParser {
 									} else if ("country_code".equals(nameAttributeValue)) {
 										innerEvent = eventReader.nextEvent();
 										countryCode = innerEvent.asCharacters().getData();
+									} else if ("placetype".equals(nameAttributeValue)) {
+										innerEvent = eventReader.nextEvent();
+										placeType = innerEvent.asCharacters().getData();
 									} else if ("country_flag_url".equals(nameAttributeValue)) {
 										innerEvent = eventReader.nextEvent();
 										countryFlagUrl = innerEvent.asCharacters().getData();
@@ -132,14 +136,16 @@ public class StaxParser {
 									// Create a new CityResult and add it to the
 									// output
 									// output.add(cityResult);
-									final CityResult cityResult = CityResult.newCityResult().withAsciiName(asciiName)
-											.withCountryCode(countryCode).withCountryFlagUrl(countryFlagUrl)
-											.withCountryName(countryName).withElevation(elevation).withFeatureClass(
-													featureClass).withFeatureCode(featureCode).withFeatureId(featureId)
-											.withFullyQualifiedName(fullyQualifiedName).withGoogleMapUrl(googleMapUrl)
-											.withGTopo30(gTopo30).withLatitude(latitude).withLongitude(longitude)
-											.withName(name).withPopulation(population).withScore(score).withTimezone(
-													timezone).withYahooMapUrl(yahooMapUrl).build();
+									final FullTextQueryResult cityResult = FullTextQueryResult.newFullTextQueryResult()
+											.withAsciiName(asciiName).withCountryCode(countryCode).withPlaceType(
+													placeType).withCountryFlagUrl(countryFlagUrl).withCountryName(
+													countryName).withElevation(elevation)
+											.withFeatureClass(featureClass).withFeatureCode(featureCode).withFeatureId(
+													featureId).withFullyQualifiedName(fullyQualifiedName)
+											.withGoogleMapUrl(googleMapUrl).withGTopo30(gTopo30).withLatitude(latitude)
+											.withLongitude(longitude).withName(name).withPopulation(population)
+											.withScore(score).withTimezone(timezone).withYahooMapUrl(yahooMapUrl)
+											.build();
 
 									output.add(cityResult);
 									break;
@@ -288,33 +294,17 @@ public class StaxParser {
 									// Create a new CityResult and add it to the
 									// output
 									// output.add(cityResult);
-									final GeolocalisationResult geolocalisationResult = GeolocalisationResult.newGeolocalisationResult()
-									.withDistance(distance)
-									.withAdm1Code(adm1Code)
-									.withAdm2Code(adm2Code)
-									.withAdm3Code(adm3Code)
-									.withAdm4Code(adm4Code)
-									.withAdm1Name(adm1Name)
-									.withAdm2Name(adm2Name)
-									.withAdm3Name(adm3Name)
-									.withAdm4Name(adm4Name)
-									.withCountryCode(countryCode)
-									.withAsciiName(asciiName)
-									.withCountryFlagUrl(countryFlagUrl)
-									.withFeatureClass(featureClass)
-									.withFeatureCode(featureCode)
-									.withFeatureId(featureId)
-									.withGoogleMapUrl(googleMapUrl)
-									.withGTopo30(gTopo30)
-									.withLatitude(latitude)
-									.withLongitude(longitude)
-									.withName(name)
-									.withPopulation(population)
-									.withTimezone(timezone)
-									.withYahooMapUrl(yahooMapUrl)
-									.withPlaceType(placeType)
-									.withZipCode(zipCode)
-									.build();
+									final GeolocalisationResult geolocalisationResult = GeolocalisationResult
+											.newGeolocalisationResult().withDistance(distance).withAdm1Code(adm1Code)
+											.withAdm2Code(adm2Code).withAdm3Code(adm3Code).withAdm4Code(adm4Code)
+											.withAdm1Name(adm1Name).withAdm2Name(adm2Name).withAdm3Name(adm3Name)
+											.withAdm4Name(adm4Name).withCountryCode(countryCode).withAsciiName(
+													asciiName).withCountryFlagUrl(countryFlagUrl).withFeatureClass(
+													featureClass).withFeatureCode(featureCode).withFeatureId(featureId)
+											.withGoogleMapUrl(googleMapUrl).withGTopo30(gTopo30).withLatitude(latitude)
+											.withLongitude(longitude).withName(name).withPopulation(population)
+											.withTimezone(timezone).withYahooMapUrl(yahooMapUrl).withPlaceType(
+													placeType).withZipCode(zipCode).build();
 
 									output.add(geolocalisationResult);
 									break;

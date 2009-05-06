@@ -29,12 +29,12 @@ import org.junit.Before;
 import org.junit.Test;
 import org.springframework.core.io.InputStreamSource;
 
-import com.gisgraphy.client.domain.CityResult;
+import com.gisgraphy.client.domain.FullTextQueryResult;
 import com.gisgraphy.client.impl.HttpGisgraphyServer;
 import com.gisgraphy.client.impl.SearchQuery;
 import com.gisgraphy.client.parser.StaxParser;
 
-public class GisgraphyServerIntegrationTest {
+public class GisgraphyServerFullTextQueryIntegrationTest {
 	private static final String BASE_GISGRAPHY_SERVER_URL = "http://localhost:8080";
 	private static final HttpGisgraphyServer gisgraphyServer = new HttpGisgraphyServer(BASE_GISGRAPHY_SERVER_URL);
 	private static final StaxParser parser = new StaxParser();
@@ -47,12 +47,12 @@ public class GisgraphyServerIntegrationTest {
     @Test
     public void shouldExecuteFullTextSearchForParisWithoutPlaceTypeIncludesOtherTypes() throws IOException {
     	InputStreamSource iss = gisgraphyServer.fullTextSearch(SearchQuery.newSearchQuery().withQueryString("paris").build());
-    	Iterable<CityResult> results = parser.parseFullTextSearchResult(iss.getInputStream());
-    	Iterator<CityResult> iterator = results.iterator();
+    	Iterable<FullTextQueryResult> results = parser.parseFullTextSearchResult(iss.getInputStream());
+    	Iterator<FullTextQueryResult> iterator = results.iterator();
     	for (int i = 0; i < 10; i++) {
     		Assert.assertTrue(iterator.hasNext());
-    		CityResult city = iterator.next();
-    		if (i == 1) Assert.assertEquals("Département de Ville-de-Paris", city.getName());
+    		FullTextQueryResult place = iterator.next();
+    		if (i == 1) Assert.assertEquals("Département de Ville-de-Paris", place.getName());
     	}
     	
     	Assert.assertFalse(iterator.hasNext());
@@ -61,11 +61,12 @@ public class GisgraphyServerIntegrationTest {
     @Test
     public void shouldExecuteFullTextSearchForParisWithPlaceTypeOnlyIncludesCities() throws IOException {
     	InputStreamSource iss = gisgraphyServer.fullTextSearch(SearchQuery.newSearchQuery().withQueryString("paris").withPlaceType("City").build());
-    	Iterable<CityResult> results = parser.parseFullTextSearchResult(iss.getInputStream());
-    	Iterator<CityResult> iterator = results.iterator();
+    	Iterable<FullTextQueryResult> results = parser.parseFullTextSearchResult(iss.getInputStream());
+    	Iterator<FullTextQueryResult> iterator = results.iterator();
     	for (int i = 0; i < 10; i++) {
     		Assert.assertTrue(iterator.hasNext());
-    		CityResult city = iterator.next();
+    		FullTextQueryResult city = iterator.next();
+    		Assert.assertEquals("City", city.getPlaceType());
     		Assert.assertTrue(city.getName().contains("Paris") || city.getName().equals("La Défense"));
     	}
     	
