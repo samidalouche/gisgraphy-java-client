@@ -17,7 +17,7 @@ public class SearchQuery implements GisgraphyQuery {
 	return new SearchQueryBuilder();
     }
 
-    private static class SearchQueryBuilder {
+    public static class SearchQueryBuilder {
 	private SearchQuery searchQuery;
 
 	public SearchQueryBuilder() {
