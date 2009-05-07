@@ -6,13 +6,13 @@
 	<artifactId>gisgraphy-java-client</artifactId>
 	<name>Gisgraphy Java Client</name>
 	<version>0.1-SNAPSHOT</version>
-    
-    <parent>
-    <artifactId>gisgraphy-java-client-parent</artifactId>
-    <groupId>com.sirika.gisgraphy</groupId>
-    <version>0.1-SNAPSHOT</version>
-  </parent>
-  
+
+	<parent>
+		<artifactId>gisgraphy-java-client-parent</artifactId>
+		<groupId>com.sirika.gisgraphy</groupId>
+		<version>0.1-SNAPSHOT</version>
+	</parent>
+
 	<properties>
 		<slf4j.version>1.5.2</slf4j.version>
 		<geotools.version>2.5.1</geotools.version>
@@ -29,7 +29,7 @@
 			<artifactId>google-collections</artifactId>
 			<version>0.9</version>
 		</dependency>
-		
+
 		<!--  GIS  -->
 		<dependency>
 			<groupId>com.vividsolutions</groupId>
@@ -64,6 +64,12 @@
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-core</artifactId>
 			<version>2.5.6</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-beans</artifactId>
+			<version>${springframework.version}</version>
+			<optional>true</optional>
 		</dependency>
 		<dependency>
 			<groupId>commons-lang</groupId>
@@ -117,7 +123,7 @@
 			<version>2.4</version>
 			<scope>test</scope>
 		</dependency>
-		
+
 		<!-- I18N -->
 		<dependency>
 			<groupId>com.ibm.icu</groupId>

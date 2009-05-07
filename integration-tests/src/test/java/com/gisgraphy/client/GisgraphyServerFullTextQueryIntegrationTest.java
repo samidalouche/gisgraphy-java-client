@@ -30,13 +30,10 @@ import org.junit.Test;
 import org.springframework.core.io.InputStreamSource;
 
 import com.gisgraphy.client.domain.FullTextQueryResult;
-import com.gisgraphy.client.impl.HttpGisgraphyServer;
 import com.gisgraphy.client.impl.SearchQuery;
 import com.gisgraphy.client.parser.StaxParser;
 
-public class GisgraphyServerFullTextQueryIntegrationTest {
-	private static final String BASE_GISGRAPHY_SERVER_URL = "http://localhost:8080";
-	private static final HttpGisgraphyServer gisgraphyServer = new HttpGisgraphyServer(BASE_GISGRAPHY_SERVER_URL);
+public class GisgraphyServerFullTextQueryIntegrationTest extends AbstractGisgraphyClientIntegrationTestCase {
 	private static final StaxParser parser = new StaxParser();
 
     @Before @After
@@ -46,7 +43,7 @@ public class GisgraphyServerFullTextQueryIntegrationTest {
     
     @Test
     public void shouldExecuteFullTextSearchForParisWithoutPlaceTypeIncludesOtherTypes() throws IOException {
-    	InputStreamSource iss = gisgraphyServer.fullTextSearch(SearchQuery.newSearchQuery().withQueryString("paris").build());
+    	InputStreamSource iss = httpGisgraphyServer.fullTextSearch(SearchQuery.newSearchQuery().withQueryString("paris").build());
     	Iterable<FullTextQueryResult> results = parser.parseFullTextSearchResult(iss.getInputStream());
     	Iterator<FullTextQueryResult> iterator = results.iterator();
     	for (int i = 0; i < 10; i++) {
@@ -60,7 +57,7 @@ public class GisgraphyServerFullTextQueryIntegrationTest {
     
     @Test
     public void shouldExecuteFullTextSearchForParisWithPlaceTypeOnlyIncludesCities() throws IOException {
-    	InputStreamSource iss = gisgraphyServer.fullTextSearch(SearchQuery.newSearchQuery().withQueryString("paris").withPlaceType("City").build());
+    	InputStreamSource iss = httpGisgraphyServer.fullTextSearch(SearchQuery.newSearchQuery().withQueryString("paris").withPlaceType("City").build());
     	Iterable<FullTextQueryResult> results = parser.parseFullTextSearchResult(iss.getInputStream());
     	Iterator<FullTextQueryResult> iterator = results.iterator();
     	for (int i = 0; i < 10; i++) {
