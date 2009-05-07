@@ -48,7 +48,7 @@ public class HttpGisgraphyServer implements GisgraphyServer {
 	}
 
 	public HttpGisgraphyServer(HttpClient httpClient, UrlGenerator urlGenerator) {
-		logger.info("Creating Image Server using , HttpClient [{}], URLGenerator [{}]", httpClient, urlGenerator);
+		logger.info("Creating Gisgraphy Server using , HttpClient [{}], URLGenerator [{}]", httpClient, urlGenerator);
 		Validate.notNull(urlGenerator);
 		Validate.notNull(httpClient);
 		this.urlGenerator = urlGenerator;
