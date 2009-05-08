@@ -55,11 +55,11 @@ public class HttpGisgraphyServer implements GisgraphyServer {
 		this.httpClient = httpClient;
 	}
 
-	public InputStreamSource fullTextSearch(SearchQuery searchQuery) {
+	public InputStreamSource fullTextSearch(FullTextQuery searchQuery) {
 		return new FullTextQueryInputStreamSource(httpClient, urlGenerator, searchQuery);
 	}
 
-	public String generateFullTextSearchQuery(SearchQuery searchQuery) {
+	public String generateFullTextSearchQuery(FullTextQuery searchQuery) {
 		String url = urlGenerator.generateFullTextSearchQuery(searchQuery);
 		logger.debug("getFullTextSearchQueryUrl: generated URL : {}", url);
 		return url;

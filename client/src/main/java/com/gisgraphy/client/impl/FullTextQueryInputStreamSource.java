@@ -45,9 +45,9 @@ class FullTextQueryInputStreamSource implements InputStreamSource {
 	private HttpClient httpClient;
 	private com.gisgraphy.client.UrlGenerator urlGenerator;
 	private HttpGet httpGet;
-	private SearchQuery searchQuery;
+	private FullTextQuery searchQuery;
 
-	public FullTextQueryInputStreamSource(HttpClient httpClient, UrlGenerator urlGenerator, SearchQuery searchQuery) {
+	public FullTextQueryInputStreamSource(HttpClient httpClient, UrlGenerator urlGenerator, FullTextQuery searchQuery) {
 		super();
 		this.urlGenerator = urlGenerator;
 		this.httpClient = httpClient;

@@ -37,9 +37,9 @@ public class FullTextSearchCommand {
 
 	private HttpClient httpClient;
 	private UrlGenerator urlGenerator;
-	private SearchQuery searchQuery;
+	private FullTextQuery searchQuery;
 
-	public FullTextSearchCommand(HttpClient httpClient, UrlGenerator urlGenerator, SearchQuery searchQuery) {
+	public FullTextSearchCommand(HttpClient httpClient, UrlGenerator urlGenerator, FullTextQuery searchQuery) {
 		super();
 		this.httpClient = httpClient;
 		this.urlGenerator = urlGenerator;
@@ -65,7 +65,7 @@ public class FullTextSearchCommand {
 		}
 	}
 
-	private HttpGet createHttpGetFor(SearchQuery searchQuery) {
+	private HttpGet createHttpGetFor(FullTextQuery searchQuery) {
 		HttpGet httpGet = new HttpGet(urlGenerator.generateFullTextSearchQuery(searchQuery));
 		// Explicitly set to expect UTF-8 from Gisgraphy
 		httpGet.setHeader("Content-type", "text/xml; charset=UTF-8");

@@ -11,11 +11,11 @@ public class RestfulUrlGenerator implements UrlGenerator {
 		this.baseUrl = baseUrl;
 	}
 
-	public String generateFullTextSearchQuery(SearchQuery searchQuery) {
-		return String.format("%s/fulltext/fulltextsearch?q=%s&from=%s&to=%s&format=%s&lang=%s&placetype=%s&country=%s",
-				baseUrl, searchQuery.getQueryString(), searchQuery.getPaginationStartIndex(), searchQuery
-						.getPaginationEndIndex(), searchQuery.getOutputFormat(), searchQuery.getLanguageCode(),
-				searchQuery.getPlaceType(), searchQuery.getCountryCode());
+	public String generateFullTextSearchQuery(FullTextQuery fullTextQuery) {
+		return String.format("%s/fulltext/fulltextsearch?q=%s&from=%s&to=%s&format=%s&lang=%s&placetype=%s&country=%sstyle=%s",
+				baseUrl, fullTextQuery.getQueryString(), fullTextQuery.getPaginationStartIndex(), fullTextQuery
+						.getPaginationEndIndex(), fullTextQuery.getOutputFormat(), fullTextQuery.getLanguageCode(),
+				fullTextQuery.getPlaceType(), fullTextQuery.getCountryCode(), fullTextQuery.getOutputStyle());
 	}
 	
 	public String generateGeolocalisationQuery(GeolocalisationQuery geolocalisationQuery) {
