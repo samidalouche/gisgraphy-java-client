@@ -169,15 +169,17 @@ public class StaxParser {
 									// output
 									// output.add(cityResult);
 									final FullTextQueryResult cityResult = FullTextQueryResult.newFullTextQueryResult()
-											.withAsciiName(asciiName).withCountryCode(countryCode).withPlaceType(
-													placeType).withCountryFlagUrl(countryFlagUrl).withCountryName(
-													countryName).withElevation(elevation)
-											.withFeatureClass(featureClass).withFeatureCode(featureCode).withFeatureId(
-													featureId).withFullyQualifiedName(fullyQualifiedName)
-											.withGoogleMapUrl(googleMapUrl).withGTopo30(gTopo30).withLatitude(latitude)
-											.withLongitude(longitude).withName(name).withPopulation(population)
-											.withScore(score).withTimezone(timezone).withYahooMapUrl(yahooMapUrl)
-											.build();
+											.withAsciiName(asciiName).withAdm1Code(adm1Code).withAdm1Name(adm1Name)
+											.withAdm2Code(adm2Code).withAdm2Name(adm2Name).withAdm3Code(adm3Code)
+											.withAdm3Name(adm3Name).withAdm4Code(adm4Code).withAdm4Name(adm4Name)
+											.withCountryCode(countryCode).withPlaceType(placeType).withCountryFlagUrl(
+													countryFlagUrl).withCountryName(countryName).withElevation(
+													elevation).withFeatureClass(featureClass).withFeatureCode(
+													featureCode).withFeatureId(featureId).withFullyQualifiedName(
+													fullyQualifiedName).withGoogleMapUrl(googleMapUrl).withGTopo30(
+													gTopo30).withLatitude(latitude).withLongitude(longitude).withName(
+													name).withPopulation(population).withScore(score).withTimezone(
+													timezone).withYahooMapUrl(yahooMapUrl).build();
 
 									output.add(cityResult);
 									break;

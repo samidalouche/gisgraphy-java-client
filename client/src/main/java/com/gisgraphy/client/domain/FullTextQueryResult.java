@@ -3,6 +3,14 @@ package com.gisgraphy.client.domain;
 public class FullTextQueryResult {
 	private double score;
 	private String countryCode;
+	private String adm1Name;
+	private String adm1Code;
+	private String adm2Name;
+	private String adm2Code;
+	private String adm3Name;
+	private String adm3Code;
+	private String adm4Name;
+	private String adm4Code;
 	private String countryFlagUrl;
 	private String countryName;
 	private int elevation;
@@ -35,6 +43,46 @@ public class FullTextQueryResult {
 		
 		public FullTextQueryResultBuilder withScore(double score) {
 			fullTextQueryResult.score = score;
+			return this;
+		}
+		
+		public FullTextQueryResultBuilder withAdm1Code(String adm1Code) {
+			fullTextQueryResult.adm1Code = adm1Code;
+			return this;
+		}
+		
+		public FullTextQueryResultBuilder withAdm2Code(String adm2Code) {
+			fullTextQueryResult.adm2Code = adm2Code;
+			return this;
+		}
+		
+		public FullTextQueryResultBuilder withAdm3Code(String adm3Code) {
+			fullTextQueryResult.adm3Code = adm3Code;
+			return this;
+		}
+		
+		public FullTextQueryResultBuilder withAdm4Code(String adm4Code) {
+			fullTextQueryResult.adm4Code = adm4Code;
+			return this;
+		}
+		
+		public FullTextQueryResultBuilder withAdm1Name(String adm1Name) {
+			fullTextQueryResult.adm1Name = adm1Name;
+			return this;
+		}
+		
+		public FullTextQueryResultBuilder withAdm2Name(String adm2Name) {
+			fullTextQueryResult.adm2Name = adm2Name;
+			return this;
+		}
+		
+		public FullTextQueryResultBuilder withAdm3Name(String adm3Name) {
+			fullTextQueryResult.adm3Name = adm3Name;
+			return this;
+		}
+		
+		public FullTextQueryResultBuilder withAdm4Name(String adm4Name) {
+			fullTextQueryResult.adm4Name = adm4Name;
 			return this;
 		}
 		
@@ -186,6 +234,31 @@ public class FullTextQueryResult {
 	public String getPlaceType() {
 		return placeType;
 	}
+	public String getAdm1Name() {
+		return adm1Name;
+	}
+	public String getAdm1Code() {
+		return adm1Code;
+	}
+	public String getAdm2Name() {
+		return adm2Name;
+	}
+	public String getAdm2Code() {
+		return adm2Code;
+	}
+	public String getAdm3Name() {
+		return adm3Name;
+	}
+	public String getAdm3Code() {
+		return adm3Code;
+	}
+	public String getAdm4Name() {
+		return adm4Name;
+	}
+	public String getAdm4Code() {
+		return adm4Code;
+	}
+	
 	
 	
 }

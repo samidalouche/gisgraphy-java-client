@@ -69,6 +69,14 @@ public class GisgraphyServerFullTextQueryIntegrationTest extends AbstractGisgrap
 			Assert.assertTrue(iterator.hasNext());
 			FullTextQueryResult city = iterator.next();
 			Assert.assertEquals("City", city.getPlaceType());
+			Assert.assertNotNull(city.getAdm1Code());
+			Assert.assertNotNull(city.getAdm2Code());
+			//Assert.assertNotNull(city.getAdm3Code());
+			//Assert.assertNotNull(city.getAdm4Code());
+			Assert.assertNotNull(city.getAdm1Name());
+			Assert.assertNotNull(city.getAdm2Name());
+			//Assert.assertNotNull(city.getAdm3Name());
+			//Assert.assertNotNull(city.getAdm4Name());
 			Assert.assertTrue(city.getName().contains("Paris") || city.getName().equals("La Défense"));
 		}
 

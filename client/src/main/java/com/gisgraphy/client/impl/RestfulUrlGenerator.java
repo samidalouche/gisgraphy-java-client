@@ -12,7 +12,7 @@ public class RestfulUrlGenerator implements UrlGenerator {
 	}
 
 	public String generateFullTextSearchQuery(FullTextQuery fullTextQuery) {
-		return String.format("%s/fulltext/fulltextsearch?q=%s&from=%s&to=%s&format=%s&lang=%s&placetype=%s&country=%sstyle=%s",
+		return String.format("%s/fulltext/fulltextsearch?q=%s&from=%s&to=%s&format=%s&lang=%s&placetype=%s&country=%s&style=%s",
 				baseUrl, fullTextQuery.getQueryString(), fullTextQuery.getPaginationStartIndex(), fullTextQuery
 						.getPaginationEndIndex(), fullTextQuery.getOutputFormat(), fullTextQuery.getLanguageCode(),
 				fullTextQuery.getPlaceType(), fullTextQuery.getCountryCode(), fullTextQuery.getOutputStyle());
