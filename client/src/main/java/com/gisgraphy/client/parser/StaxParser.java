@@ -31,6 +31,14 @@ public class StaxParser {
 				if (event.isStartElement()) {
 					if (event.asStartElement().getName().getLocalPart().equals("doc")) {
 						double score = 0;
+						String adm1Name = null;
+						String adm1Code = null;
+						String adm2Name = null;
+						String adm2Code = null;
+						String adm3Name = null;
+						String adm3Code = null;
+						String adm4Name = null;
+						String adm4Code = null;
 						String countryCode = null;
 						String countryFlagUrl = null;
 						String countryName = null;
@@ -63,7 +71,31 @@ public class StaxParser {
 									if ("name".equals(nameAttributeValue)) {
 										innerEvent = eventReader.nextEvent();
 										name = innerEvent.asCharacters().getData();
-									} else if ("country_code".equals(nameAttributeValue)) {
+									} else if ("adm1_code".equals(nameAttributeValue)) {
+										innerEvent = eventReader.nextEvent();
+										adm1Code = innerEvent.asCharacters().getData();
+									} else if ("adm1_name".equals(nameAttributeValue)) {
+										innerEvent = eventReader.nextEvent();
+										adm1Name = innerEvent.asCharacters().getData();
+									} else if ("adm2_code".equals(nameAttributeValue)) {
+										innerEvent = eventReader.nextEvent();
+										adm2Code = innerEvent.asCharacters().getData();
+									} else if ("adm2_name".equals(nameAttributeValue)) {
+										innerEvent = eventReader.nextEvent();
+										adm2Name = innerEvent.asCharacters().getData();
+									} else if ("adm3_name".equals(nameAttributeValue)) {
+										innerEvent = eventReader.nextEvent();
+										adm3Name = innerEvent.asCharacters().getData();
+									}else if ("adm3_code".equals(nameAttributeValue)) {
+										innerEvent = eventReader.nextEvent();
+										adm3Code = innerEvent.asCharacters().getData();
+									}else if ("adm4_name".equals(nameAttributeValue)) {
+										innerEvent = eventReader.nextEvent();
+										adm4Name = innerEvent.asCharacters().getData();
+									}else if ("adm4_code".equals(nameAttributeValue)) {
+										innerEvent = eventReader.nextEvent();
+										adm4Code = innerEvent.asCharacters().getData();
+									}else if ("country_code".equals(nameAttributeValue)) {
 										innerEvent = eventReader.nextEvent();
 										countryCode = innerEvent.asCharacters().getData();
 									} else if ("placetype".equals(nameAttributeValue)) {
