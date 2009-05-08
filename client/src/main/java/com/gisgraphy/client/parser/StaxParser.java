@@ -86,16 +86,16 @@ public class StaxParser {
 									} else if ("adm3_name".equals(nameAttributeValue)) {
 										innerEvent = eventReader.nextEvent();
 										adm3Name = innerEvent.asCharacters().getData();
-									}else if ("adm3_code".equals(nameAttributeValue)) {
+									} else if ("adm3_code".equals(nameAttributeValue)) {
 										innerEvent = eventReader.nextEvent();
 										adm3Code = innerEvent.asCharacters().getData();
-									}else if ("adm4_name".equals(nameAttributeValue)) {
+									} else if ("adm4_name".equals(nameAttributeValue)) {
 										innerEvent = eventReader.nextEvent();
 										adm4Name = innerEvent.asCharacters().getData();
-									}else if ("adm4_code".equals(nameAttributeValue)) {
+									} else if ("adm4_code".equals(nameAttributeValue)) {
 										innerEvent = eventReader.nextEvent();
 										adm4Code = innerEvent.asCharacters().getData();
-									}else if ("country_code".equals(nameAttributeValue)) {
+									} else if ("country_code".equals(nameAttributeValue)) {
 										innerEvent = eventReader.nextEvent();
 										countryCode = innerEvent.asCharacters().getData();
 									} else if ("placetype".equals(nameAttributeValue)) {
