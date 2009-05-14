@@ -13,6 +13,8 @@ import javax.xml.stream.events.XMLEvent;
 
 import com.gisgraphy.client.domain.FullTextQueryResult;
 import com.gisgraphy.client.domain.GeolocalisationResult;
+import com.google.common.collect.ImmutableList;
+import com.google.common.collect.ImmutableMap;
 
 public class StaxParser {
 
@@ -58,6 +60,15 @@ public class StaxParser {
                         String timezone = null;
                         String yahooMapUrl = null;
                         String placeType = null;
+                        // This will map 2 or 3 letter language codes to their
+                        // alternate country name
+                        // We need an ImmutableMap.Builder while parsing
+                        ImmutableMap.Builder<String, List<String>> alternateCountryNamesBuilder = ImmutableMap.builder();
+                        ImmutableMap.Builder<String, List<String>> alternateNamesBuilder = ImmutableMap.builder();
+                        ImmutableMap.Builder<String, List<String>> alternateAdm1NamesBuilder = ImmutableMap.builder();
+                        ImmutableMap.Builder<String, List<String>> alternateAdm2NamesBuilder = ImmutableMap.builder();
+                        ImmutableMap.Builder<String, List<String>> alternateAdm3NamesBuilder = ImmutableMap.builder();
+                        ImmutableMap.Builder<String, List<String>> alternateAdm4NamesBuilder = ImmutableMap.builder();
 
                         // We have a new CityResult
                         XMLEvent innerEvent = null;
@@ -132,6 +143,26 @@ public class StaxParser {
                                         innerEvent = eventReader.nextEvent();
                                         yahooMapUrl = innerEvent.asCharacters().getData();
                                     }
+                                } else if (tagName.equals("arr")) {
+                                    if (nameAttributeValue.startsWith("country_name_alternate")) {
+                                        this.parseAlternateNameArray(nameAttributeValue.substring(nameAttributeValue.lastIndexOf("_") + 1)
+                                                , alternateCountryNamesBuilder, eventReader, innerEvent);
+                                    } else if (nameAttributeValue.startsWith("name_alternate")) {
+                                        this.parseAlternateNameArray(nameAttributeValue.substring(nameAttributeValue.lastIndexOf("_") + 1)
+                                                , alternateNamesBuilder, eventReader, innerEvent);
+                                    } else if (nameAttributeValue.startsWith("adm1_name_alternate")) {
+                                        this.parseAlternateNameArray(nameAttributeValue.substring(nameAttributeValue.lastIndexOf("_") + 1)
+                                                , alternateAdm1NamesBuilder, eventReader, innerEvent);
+                                    } else if (nameAttributeValue.startsWith("adm2_name_alternate")) {
+                                       this.parseAlternateNameArray(nameAttributeValue.substring(nameAttributeValue.lastIndexOf("_") + 1)
+                                                , alternateAdm2NamesBuilder, eventReader, innerEvent);
+                                    } else if (nameAttributeValue.startsWith("adm3_name_alternate")) {
+                                        this.parseAlternateNameArray(nameAttributeValue.substring(nameAttributeValue.lastIndexOf("_") + 1)
+                                                , alternateAdm3NamesBuilder, eventReader, innerEvent);
+                                    } else if (nameAttributeValue.startsWith("adm4_name_alternate")) {
+                                        this.parseAlternateNameArray(nameAttributeValue.substring(nameAttributeValue.lastIndexOf("_") + 1)
+                                                , alternateAdm4NamesBuilder, eventReader, innerEvent);
+                                    }
                                 } else if (tagName.equals("float")) {
                                     if ("score".equals(nameAttributeValue)) {
                                         innerEvent = eventReader.nextEvent();
@@ -174,7 +205,14 @@ public class StaxParser {
                                             fullyQualifiedName).withGoogleMapUrl(googleMapUrl).withGTopo30(
                                             gTopo30).withLatitude(latitude).withLongitude(longitude).withName(
                                             name).withPopulation(population).withScore(score).withTimezone(
-                                            timezone).withYahooMapUrl(yahooMapUrl).build();
+                                            timezone).withYahooMapUrl(yahooMapUrl)
+                                            .withAlternateNames(alternateNamesBuilder.build())
+                                            .withCountryAlternateNames(alternateCountryNamesBuilder.build())
+                                            .withAdm1AlternateNames(alternateAdm1NamesBuilder.build())
+                                            .withAdm2AlternateNames(alternateAdm2NamesBuilder.build())
+                                            .withAdm3AlternateNames(alternateAdm3NamesBuilder.build())
+                                            .withAdm4AlternateNames(alternateAdm4NamesBuilder.build())
+                                            .build();
 
                                     output.add(cityResult);
                                     break;
@@ -190,6 +228,20 @@ public class StaxParser {
         }
 
         return output;
+    }
+
+    private void parseAlternateNameArray(String languageCode, ImmutableMap.Builder mapBuilder, XMLEventReader eventReader, XMLEvent arrEvent) throws XMLStreamException {
+        ImmutableList.Builder<String> alternateNamesListBuilder = ImmutableList.builder();
+
+        while (!arrEvent.isEndElement() && !arrEvent.asEndElement().getName().getLocalPart().equals("arr")) {
+            arrEvent = eventReader.nextEvent(); // this should be a <str>aleternateNameHere</str>
+            if (arrEvent.isStartElement() && arrEvent.asStartElement().getName().getLocalPart().equals("str")) {
+                arrEvent = eventReader.nextEvent(); // the alternate name
+                String alternateName = arrEvent.asCharacters().getData();
+                alternateNamesListBuilder.add(alternateName);
+            }
+        }
+        mapBuilder.put(languageCode, alternateNamesListBuilder.build());
     }
 
     public Iterable<GeolocalisationResult> parseGeolocalisationResult(InputStream is) {
