@@ -233,7 +233,7 @@ public class StaxParser {
     private void parseAlternateNameArray(String languageCode, ImmutableMap.Builder mapBuilder, XMLEventReader eventReader, XMLEvent arrEvent) throws XMLStreamException {
         ImmutableList.Builder<String> alternateNamesListBuilder = ImmutableList.builder();
 
-        while (!arrEvent.isEndElement() && !arrEvent.asEndElement().getName().getLocalPart().equals("arr")) {
+        while (!arrEvent.isEndElement() || !arrEvent.asEndElement().getName().getLocalPart().equals("arr")) {
             arrEvent = eventReader.nextEvent(); // this should be a <str>aleternateNameHere</str>
             if (arrEvent.isStartElement() && arrEvent.asStartElement().getName().getLocalPart().equals("str")) {
                 arrEvent = eventReader.nextEvent(); // the alternate name

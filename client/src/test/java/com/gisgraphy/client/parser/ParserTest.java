@@ -120,6 +120,66 @@ public class ParserTest {
 	    Assert.fail();
 	    e.printStackTrace();
 	}
+
+
+    }
+
+    @Test
+    public void shouldParseSeattleCorrectly() {
+	InputStreamSource iss = FullTextSearchResultsObjectMother.seattle();
+	try {
+	    Iterable<FullTextQueryResult> results = staxParser.parseFullTextSearchResult(iss.getInputStream());
+	    Iterator<FullTextQueryResult> iterator = results.iterator();
+	    assertThat(iterator.hasNext(), equalTo(true));
+	    FullTextQueryResult firstResult = iterator.next();
+	    assertThat(firstResult.getAsciiName(), equalTo("Seattle"));
+	    assertThat(firstResult.getScore(), equalTo(50085.02));
+	    assertThat(firstResult.getName(), equalTo("Seattle"));
+	    assertThat(firstResult.getCountryCode(), equalTo("US"));
+	    assertThat(firstResult.getCountryFlagUrl(), equalTo("/images/flags/US.png"));
+	    assertThat(firstResult.getCountryName(), equalTo("United States"));
+	    assertThat(firstResult.getElevation(), equalTo(56));
+	    assertThat(firstResult.getFeatureClass(), equalTo("P"));
+	    assertThat(firstResult.getFeatureCode(), equalTo("PPL"));
+	    assertThat(firstResult.getFeatureId(), equalTo(5809844L));
+	    assertThat(firstResult.getFullyQualifiedName(), equalTo("Seattle, King County, Washington"));
+	    assertThat(firstResult.getGoogleMapUrl(), equalTo("http://maps.google.com/maps?f=q&amp;ie=UTF-8&amp;iwloc=addr&amp;om=1&amp;z=12&amp;q=Seattle&amp;ll=47.63620880126953,-122.33206939697266"));
+	    assertThat(firstResult.getGTopo30(), equalTo(60));
+	    assertThat(firstResult.getLatitude(), equalTo(47.60620880126953));
+	    assertThat(firstResult.getLongitude(), equalTo(-122.33206939697266));
+	    assertThat(firstResult.getPopulation(), equalTo(569369));
+	    assertThat(firstResult.getTimezone(), equalTo("America/Los_Angeles"));
+	    assertThat(firstResult.getYahooMapUrl(), equalTo("http://maps.yahoo.com/broadband?mag=6&amp;mvt=m&amp;lon=-122.33206939697266&amp;lat=47.60620880126953"));
+	    assertThat(firstResult.getCountryAlternateNames().get("AZ").size(), equalTo(1));
+	    assertThat(firstResult.getCountryAlternateNames().get("AZ").get(0), equalTo("Amerika Birləşmiş Ştatları"));
+	    
+	    assertThat(firstResult.getCountryAlternateNames().get("BE").size(), equalTo(2));
+	    assertThat(firstResult.getCountryAlternateNames().get("BE").get(0), equalTo("Злучаныя Штаты"));
+	    assertThat(firstResult.getCountryAlternateNames().get("BE").get(1), equalTo("Злучаныя Штаты Амерыкі"));
+	    
+	    // skip through 8 results, then test the last
+	    for (int i = 0; i < 8; i++) {
+	    	iterator.next();
+	    }
+
+	    FullTextQueryResult lastResult = iterator.next();
+	    assertThat(lastResult.getAsciiName(), equalTo("Seattle Bar Recreation Site"));
+
+	    try {
+	    	iterator.next();
+	    	Assert.fail();
+	    }
+	    catch (NoSuchElementException e) {
+
+	    }
+
+
+	} catch (IOException e) {
+	    Assert.fail();
+	    e.printStackTrace();
+	}
+
+
     }
     
     
