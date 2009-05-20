@@ -22,6 +22,7 @@ package com.gisgraphy.client;
 import java.io.IOException;
 import java.util.Iterator;
 
+import javax.xml.stream.XMLStreamException;
 import junit.framework.Assert;
 
 import org.junit.After;
@@ -44,10 +45,10 @@ public class GisgraphyServerFullTextQueryIntegrationTest extends AbstractGisgrap
 	}
 
 	@Test
-	public void shouldExecuteFullTextSearchForParisWithoutPlaceTypeIncludesOtherTypes() throws IOException {
+	public void shouldExecuteFullTextSearchForParisWithoutPlaceTypeIncludesOtherTypes() throws IOException, XMLStreamException {
 		InputStreamSource iss = httpGisgraphyServer.fullTextSearch(FullTextQuery.newSearchQuery().withQueryString(
 				"paris").withOutputStyle(OutputStyle.FULL).build());
-		Iterable<FullTextQueryResult> results = parser.parseFullTextSearchResult(iss.getInputStream());
+		Iterable<FullTextQueryResult> results = parser.parseFullTextSearchResult(iss);
 		Iterator<FullTextQueryResult> iterator = results.iterator();
 		for (int i = 0; i < 10; i++) {
 			Assert.assertTrue(iterator.hasNext());
@@ -60,10 +61,10 @@ public class GisgraphyServerFullTextQueryIntegrationTest extends AbstractGisgrap
 	}
 
 	@Test
-	public void shouldExecuteFullTextSearchForParisWithPlaceTypeOnlyIncludesCities() throws IOException {
+	public void shouldExecuteFullTextSearchForParisWithPlaceTypeOnlyIncludesCities() throws IOException, XMLStreamException {
 		InputStreamSource iss = httpGisgraphyServer.fullTextSearch(FullTextQuery.newSearchQuery().withQueryString(
 				"paris").withPlaceType("City").withOutputStyle(OutputStyle.FULL).build());
-		Iterable<FullTextQueryResult> results = parser.parseFullTextSearchResult(iss.getInputStream());
+		Iterable<FullTextQueryResult> results = parser.parseFullTextSearchResult(iss);
 		Iterator<FullTextQueryResult> iterator = results.iterator();
 		for (int i = 0; i < 10; i++) {
 			Assert.assertTrue(iterator.hasNext());
