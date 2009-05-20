@@ -15,17 +15,21 @@ import com.gisgraphy.client.domain.FullTextQueryResult;
 import com.gisgraphy.client.domain.GeolocalisationResult;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
+import java.io.IOException;
+import org.apache.commons.io.IOUtils;
+import org.springframework.core.io.InputStreamSource;
 
 public class StaxParser {
 
-    public Iterable<FullTextQueryResult> parseFullTextSearchResult(InputStream is) {
+    public Iterable<FullTextQueryResult> parseFullTextSearchResult(InputStreamSource iss) throws IOException, XMLStreamException {
 
         List<FullTextQueryResult> output = new ArrayList<FullTextQueryResult>();
-
+        InputStream is = null;
         try {
             // First create a new XMLInputFactory
             XMLInputFactory inputFactory = XMLInputFactory.newInstance();
             // Setup a new eventReader
+            is = iss.getInputStream();
             XMLEventReader eventReader = inputFactory.createXMLEventReader(is);
             // Read the XML document
             while (eventReader.hasNext()) {
@@ -223,8 +227,9 @@ public class StaxParser {
 
                 }
             }
-        } catch (XMLStreamException e) {
-            e.printStackTrace();
+        }
+        finally {
+            IOUtils.closeQuietly(is);
         }
 
         return output;
@@ -244,14 +249,15 @@ public class StaxParser {
         mapBuilder.put(languageCode, alternateNamesListBuilder.build());
     }
 
-    public Iterable<GeolocalisationResult> parseGeolocalisationResult(InputStream is) {
+    public Iterable<GeolocalisationResult> parseGeolocalisationResult(InputStreamSource iss) throws IOException, XMLStreamException {
 
         List<GeolocalisationResult> output = new ArrayList<GeolocalisationResult>();
-
+        InputStream is = null;
         try {
             // First create a new XMLInputFactory
             XMLInputFactory inputFactory = XMLInputFactory.newInstance();
             // Setup a new eventReader
+            is = iss.getInputStream();
             XMLEventReader eventReader = inputFactory.createXMLEventReader(is);
             // Read the XML document
             while (eventReader.hasNext()) {
@@ -388,8 +394,9 @@ public class StaxParser {
 
                 }
             }
-        } catch (XMLStreamException e) {
-            e.printStackTrace();
+        } 
+        finally {
+            IOUtils.closeQuietly(is);
         }
 
         return output;

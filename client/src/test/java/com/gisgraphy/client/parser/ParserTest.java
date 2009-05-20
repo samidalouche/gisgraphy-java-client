@@ -16,6 +16,7 @@ import com.gisgraphy.client.domain.FullTextQueryResult;
 import com.gisgraphy.client.domain.GeolocalisationResult;
 import com.gisgraphy.client.objectmothers.FullTextSearchResultsObjectMother;
 import com.gisgraphy.client.objectmothers.GeolocalisationQueryResultsObjectMother;
+import javax.xml.stream.XMLStreamException;
 
 public class ParserTest {
     private StaxParser staxParser = new StaxParser();
@@ -24,7 +25,7 @@ public class ParserTest {
     public void shouldParseFullTextSearchForIrvineCorrectly() {
 	InputStreamSource iss = FullTextSearchResultsObjectMother.irvine();
 	try {
-	    Iterable<FullTextQueryResult> results = staxParser.parseFullTextSearchResult(iss.getInputStream());
+	    Iterable<FullTextQueryResult> results = staxParser.parseFullTextSearchResult(iss);
 	    Iterator<FullTextQueryResult> iterator = results.iterator();
 	    assertThat(iterator.hasNext(), equalTo(true));
 	    FullTextQueryResult firstResult = iterator.next();
@@ -68,7 +69,10 @@ public class ParserTest {
 	} catch (IOException e) {
 	    Assert.fail();
 	    e.printStackTrace();
-	}
+	} catch (XMLStreamException e) {
+            Assert.fail();
+            e.printStackTrace();
+        }
     }
     
     
@@ -76,7 +80,7 @@ public class ParserTest {
     public void shouldParseParisCorrectly() {
 	InputStreamSource iss = FullTextSearchResultsObjectMother.paris();
 	try {
-	    Iterable<FullTextQueryResult> results = staxParser.parseFullTextSearchResult(iss.getInputStream());
+	    Iterable<FullTextQueryResult> results = staxParser.parseFullTextSearchResult(iss);
 	    Iterator<FullTextQueryResult> iterator = results.iterator();
 	    assertThat(iterator.hasNext(), equalTo(true));
 	    FullTextQueryResult firstResult = iterator.next();
@@ -119,7 +123,10 @@ public class ParserTest {
 	} catch (IOException e) {
 	    Assert.fail();
 	    e.printStackTrace();
-	}
+	} catch (XMLStreamException e) {
+            Assert.fail();
+            e.printStackTrace();
+        }
 
 
     }
@@ -128,7 +135,7 @@ public class ParserTest {
     public void shouldParseSeattleCorrectly() {
 	InputStreamSource iss = FullTextSearchResultsObjectMother.seattle();
 	try {
-	    Iterable<FullTextQueryResult> results = staxParser.parseFullTextSearchResult(iss.getInputStream());
+	    Iterable<FullTextQueryResult> results = staxParser.parseFullTextSearchResult(iss);
 	    Iterator<FullTextQueryResult> iterator = results.iterator();
 	    assertThat(iterator.hasNext(), equalTo(true));
 	    FullTextQueryResult firstResult = iterator.next();
@@ -177,7 +184,10 @@ public class ParserTest {
 	} catch (IOException e) {
 	    Assert.fail();
 	    e.printStackTrace();
-	}
+	}  catch (XMLStreamException e) {
+            Assert.fail();
+            e.printStackTrace();
+        }
 
 
     }
@@ -188,7 +198,7 @@ public class ParserTest {
     public void shouldParseGeolocalisationQueryForParisCorrectly() {
 	InputStreamSource iss = GeolocalisationQueryResultsObjectMother.paris();
 	try {
-	    Iterable<GeolocalisationResult> results = staxParser.parseGeolocalisationResult(iss.getInputStream());
+	    Iterable<GeolocalisationResult> results = staxParser.parseGeolocalisationResult(iss);
 	    Iterator<GeolocalisationResult> iterator = results.iterator();
 	    assertThat(iterator.hasNext(), equalTo(true));
 	    GeolocalisationResult firstResult = iterator.next();
@@ -238,6 +248,9 @@ public class ParserTest {
 	} catch (IOException e) {
 	    Assert.fail();
 	    e.printStackTrace();
-	}
+	} catch (XMLStreamException e) {
+            Assert.fail();
+            e.printStackTrace();
+        }
     }
 }
