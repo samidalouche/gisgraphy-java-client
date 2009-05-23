@@ -2,50 +2,66 @@ package com.gisgraphy.client.domain;
 
 import java.io.Serializable;
 
+import org.apache.commons.lang.Validate;
+
 /**
- * Represents a Continent (i.e. Europe, Asia..). The continents have been
- * imported from Geonames Continent List, so it is not necessary to have a
- * featureSource, since it's always Geonames.
- * 
- * Code is written Upper case !!
- * 
- * @author Sami Dalouche (sami.dalouche@gmail.com)
+ * Represents a Continent (i.e. Europe, Asia..).
  * 
  */
-public class Continent implements Serializable {
+public final class Continent implements Serializable {
     private static final long serialVersionUID = 1L;
-
-    /**
-     * @see #getGeonamesCode()
-     */
+    
+    public static Continent continent(String code) {
+	return new Continent(code, code);
+    }
     private String geonamesCode;
-
-    /**
-     * @see #getGeonamesName()
-     */
     private String geonamesName;
-
-    /**
-     * @see #getId()
-     */
-    private Long id;
 
     /**
      * @param geonamesCode
      * @param geonamesName
      */
-    public Continent(String geonamesCode, String geonamesName) {
+    private Continent(String geonamesCode, String geonamesName) {
 	super();
+	Validate.notEmpty(geonamesCode);
+	Validate.notEmpty(geonamesName);
 	this.geonamesCode = geonamesCode;
 	this.geonamesName = geonamesName;
     }
 
-    /**
-     * 
-     */
-    @SuppressWarnings("unused")
-    private Continent() {
-	super();
+   
+    public String getCode() {
+	return getGeonamesCode();
+    }
+
+    public String getGeonamesCode() {
+	return this.geonamesCode;
+    }
+    
+    public String getGeonamesName() {
+	return this.geonamesName;
+    }
+    
+    public String getName() {
+	return getGeonamesName();
+    }
+
+    public Continent withCode(String code) {
+	return new Continent(code, this.getName());
+    }
+    
+    public Continent withName(String name) {
+	return new Continent(this.getCode(), name);
+    }
+    
+    
+    @Override
+    public int hashCode() {
+	final int PRIME = 31;
+	int result = 1;
+	result = PRIME * result
+		+ ((geonamesCode == null) ? 0 : geonamesCode.hashCode());
+	return result;
     }
 
     @Override
@@ -63,55 +79,6 @@ public class Continent implements Serializable {
 	} else if (!geonamesCode.equals(other.geonamesCode))
 	    return false;
 	return true;
-    }
-
-    /**
-     * 
-     * @return
-     */
-    public String getGeonamesCode() {
-	return this.geonamesCode;
-    }
-
-    public String getGeonamesName() {
-	return this.geonamesName;
-    }
-
-    public Long getId() {
-	return this.id;
-    }
-
-    @Override
-    public int hashCode() {
-	final int PRIME = 31;
-	int result = 1;
-	result = PRIME * result
-		+ ((geonamesCode == null) ? 0 : geonamesCode.hashCode());
-	return result;
-    }
-
-    /**
-     * @see #getGeonamesCode()
-     * @param geonamesCode
-     */
-    public void setGeonamesCode(String geonamesCode) {
-	this.geonamesCode = geonamesCode;
-    }
-
-    /**
-     * @see #getGeonamesName()
-     * @param geonamesName
-     */
-    public void setGeonamesName(String geonamesName) {
-	this.geonamesName = geonamesName;
-    }
-
-    /**
-     * @see #getId()
-     * @param id
-     */
-    public void setId(Long id) {
-	this.id = id;
     }
 
 }
