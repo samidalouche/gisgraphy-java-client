@@ -175,7 +175,8 @@ public class AdministrativeDivision extends AbstractAdministrativeEntity
      * @return
      */
     private String getCountryIso3166Alpha3Code() {
-	return getCountry().getIso3166Alpha3Code();
+	return null;
+	//return getCountry().getIso3166Alpha3Code();
     }
 
     @Override

@@ -80,9 +80,9 @@ public abstract class AbstractAdministrativeEntity {
      * 
      * @return
      */
-    public Country getCountry() {
+  /* public Country getCountry() {
 	if (this instanceof Country) {
-	    return (Country) this;
+	 //   return (Country) this;
 	} else {
 	    if (parentEntity != null) {
 		return parentEntity.getCountry();
@@ -91,7 +91,7 @@ public abstract class AbstractAdministrativeEntity {
 			"It is theoretically impossible to reach that point");
 	    }
 	}
-    }
+    }*/
 
     public abstract String getDisplayableCode();
 

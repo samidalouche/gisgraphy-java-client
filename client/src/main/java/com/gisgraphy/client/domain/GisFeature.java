@@ -218,7 +218,7 @@ public class GisFeature {
     public Country getCountry() {
 
 	if (parentEntity != null) {
-	    return parentEntity.getCountry();
+	    return null;  //parentEntity.getCountry();
 	} else {
 	    throw new RuntimeException(
 		    "Programming Error: It looks like there are other AbstractAdministrativeEntity "
@@ -511,15 +511,6 @@ public class GisFeature {
      *                The country to set.
      */
 
-    @Deprecated
-    public void setCountry(Country country) {
-	if (country != null) {
-	    if ((this.parentEntity == null)
-		    || (this.parentEntity instanceof Country)) {
-		this.setParentEntity(country);
-	    }
-	}
-    }
 
     /**
      * @see #getElevation()
@@ -572,7 +563,7 @@ public class GisFeature {
      * @param firstOrderAdministrativeDivision
      *                The firstOrderAdministrativeDivision to set.
      */
-    @Deprecated
+   /* @Deprecated
     public void setFirstOrderAdministrativeDivision(
 	    AdministrativeDivision administrativeDivision) {
 	if (administrativeDivision != null) {
@@ -583,7 +574,7 @@ public class GisFeature {
 	    }
 
 	}
-    }
+    }*/
 
     /**
      * @øee {@link #getGtopo30AverageElevation()}
