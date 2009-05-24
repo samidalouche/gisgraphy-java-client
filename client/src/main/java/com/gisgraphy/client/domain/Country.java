@@ -26,7 +26,7 @@ public class Country implements Serializable, AdministrativeEntity {
     private String equivalentFipsCode;
     private String fipsCode;
     private CountryCode iso3166Id;
-    private String name;
+    private String name; // use gisFeature instead
     private List<Country> neighbourCountries = new ArrayList<Country>();
     private String phonePrefix;
     private Long population;
