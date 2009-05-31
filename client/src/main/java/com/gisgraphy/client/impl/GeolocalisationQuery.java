@@ -1,6 +1,7 @@
 package com.gisgraphy.client.impl;
 
 import com.gisgraphy.client.GisgraphyQuery;
+import com.gisgraphy.client.UrlGenerator;
 
 public class GeolocalisationQuery implements GisgraphyQuery {
     private Integer paginationStartIndex;
@@ -94,6 +95,9 @@ public class GeolocalisationQuery implements GisgraphyQuery {
 		return radius;
 	}
 
-    
+	@Override
+	public String accept(UrlGenerator restfulUrlGenerator) {
+		return restfulUrlGenerator.visit(this);
+	}
 
 }

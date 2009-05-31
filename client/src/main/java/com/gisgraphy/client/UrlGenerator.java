@@ -1,9 +1,11 @@
 package com.gisgraphy.client;
 
-import com.gisgraphy.client.impl.GeolocalisationQuery;
 import com.gisgraphy.client.impl.FullTextQuery;
+import com.gisgraphy.client.impl.GeolocalisationQuery;
 
 public interface UrlGenerator {
-    public String generateFullTextSearchQuery(FullTextQuery searchQuery);
-    public String generateGeolocalisationQuery(GeolocalisationQuery geolocalisationQuery);
+	
+	public String generateUrl(GisgraphyQuery query);
+	public String visit(FullTextQuery fullTextQuery);
+	public String visit(GeolocalisationQuery geolocalisationQuery);
 }

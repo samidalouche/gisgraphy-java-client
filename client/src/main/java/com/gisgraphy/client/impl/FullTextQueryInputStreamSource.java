@@ -53,7 +53,7 @@ class FullTextQueryInputStreamSource implements InputStreamSource {
 		this.httpClient = httpClient;
 		this.searchQuery = searchQuery;
 
-		this.httpGet = new HttpGet(urlGenerator.generateFullTextSearchQuery(searchQuery));
+		this.httpGet = new HttpGet(urlGenerator.generateUrl(searchQuery));
 	}
 
 	public InputStream getInputStream() throws IOException {

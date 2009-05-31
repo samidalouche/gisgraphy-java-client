@@ -1,22 +1,4 @@
-/**
- * ImgServer Java REST Client
- * Copyright (C) 2008 Sami Dalouche
- *
- * This file is part of ImgServer Java REST Client.
- *
- * ImgServer Java REST Client is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * ImgServer Java REST Client is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Lesser General Public License for more details.
- *
- * You should have received a copy of the GNU Lesser General Public License
- * along with ImgServer.  If not, see <http://www.gnu.org/licenses/>.
- */
+
 package com.gisgraphy.client.impl;
 
 import static com.gisgraphy.client.httpclienthelpers.DefaultHttpClientFactory.defaultHttpClient;
@@ -27,6 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.io.InputStreamSource;
 
+import com.gisgraphy.client.GisgraphyQuery;
 import com.gisgraphy.client.GisgraphyServer;
 import com.gisgraphy.client.UrlGenerator;
 
@@ -55,15 +38,16 @@ public class HttpGisgraphyServer implements GisgraphyServer {
 		this.httpClient = httpClient;
 	}
 
-	public InputStreamSource fullTextSearch(FullTextQuery searchQuery) {
-		return new FullTextQueryInputStreamSource(httpClient, urlGenerator, searchQuery);
+	public InputStreamSource executeSearch(GisgraphyQuery searchQuery) {
+		return new GisgraphyQueryCommand(httpClient, urlGenerator, searchQuery).execute();
 	}
 
 	public String generateFullTextSearchQuery(FullTextQuery searchQuery) {
-		String url = urlGenerator.generateFullTextSearchQuery(searchQuery);
+		String url = urlGenerator.generateUrl(searchQuery);
 		logger.debug("getFullTextSearchQueryUrl: generated URL : {}", url);
 		return url;
 	}
+	
 
 	public void destroy() throws Exception {
 		this.httpClient.getConnectionManager().shutdown();
@@ -74,13 +58,24 @@ public class HttpGisgraphyServer implements GisgraphyServer {
 		return new RestfulUrlGenerator(baseImageServiceUrl);
 	}
 
-	public InputStreamSource geolocalisationSearch(GeolocalisationQuery geolocalisationQuery) {
-		return new GeolocalisationQueryInputStreamSource(httpClient, urlGenerator, geolocalisationQuery);
-	}
-
 	public String generateGeolocalisationQuery(GeolocalisationQuery geolocalisationQuery) {
-		String url = urlGenerator.generateGeolocalisationQuery(geolocalisationQuery);
+		String url = urlGenerator.generateUrl(geolocalisationQuery);
 		logger.debug("generateGeolocalisationQuery: generated URL : {}", url);
 		return url;
+	}
+
+	@Override
+	public String generateUrl(GisgraphyQuery query) {
+		return urlGenerator.generateUrl(query);
+	}
+
+	@Override
+	public String visit(FullTextQuery fullTextQuery) {
+		return fullTextQuery.accept(urlGenerator);
+	}
+
+	@Override
+	public String visit(GeolocalisationQuery geolocalisationQuery) {
+		return geolocalisationQuery.accept(urlGenerator);
 	}
 }

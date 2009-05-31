@@ -3,6 +3,7 @@ package com.gisgraphy.client.impl;
 import org.springframework.util.Assert;
 
 import com.gisgraphy.client.GisgraphyQuery;
+import com.gisgraphy.client.UrlGenerator;
 
 public class FullTextQuery implements GisgraphyQuery {
     private String queryString;
@@ -105,6 +106,11 @@ public class FullTextQuery implements GisgraphyQuery {
 
 	public OutputStyle getOutputStyle() {
 		return outputStyle;
+	}
+
+	@Override
+	public String accept(UrlGenerator restfulUrlGenerator) {
+		return restfulUrlGenerator.visit(this);
 	}
 
 }

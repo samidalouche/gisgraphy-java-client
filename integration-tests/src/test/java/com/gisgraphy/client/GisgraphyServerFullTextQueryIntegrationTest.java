@@ -46,7 +46,7 @@ public class GisgraphyServerFullTextQueryIntegrationTest extends AbstractGisgrap
 
 	@Test
 	public void shouldExecuteFullTextSearchForParisWithoutPlaceTypeIncludesOtherTypes() throws IOException, XMLStreamException {
-		InputStreamSource iss = httpGisgraphyServer.fullTextSearch(FullTextQuery.newSearchQuery().withQueryString(
+		InputStreamSource iss = httpGisgraphyServer.executeSearch(FullTextQuery.newSearchQuery().withQueryString(
 				"paris").withOutputStyle(OutputStyle.FULL).build());
 		Iterable<FullTextQueryResult> results = parser.parseFullTextSearchResult(iss);
 		Iterator<FullTextQueryResult> iterator = results.iterator();
@@ -62,7 +62,7 @@ public class GisgraphyServerFullTextQueryIntegrationTest extends AbstractGisgrap
 
 	@Test
 	public void shouldExecuteFullTextSearchForParisWithPlaceTypeOnlyIncludesCities() throws IOException, XMLStreamException {
-		InputStreamSource iss = httpGisgraphyServer.fullTextSearch(FullTextQuery.newSearchQuery().withQueryString(
+		InputStreamSource iss = httpGisgraphyServer.executeSearch(FullTextQuery.newSearchQuery().withQueryString(
 				"paris").withPlaceType("City").withOutputStyle(OutputStyle.FULL).build());
 		Iterable<FullTextQueryResult> results = parser.parseFullTextSearchResult(iss);
 		Iterator<FullTextQueryResult> iterator = results.iterator();

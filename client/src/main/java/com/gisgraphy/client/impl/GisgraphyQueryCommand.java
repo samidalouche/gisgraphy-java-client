@@ -19,27 +19,23 @@
  */
 package com.gisgraphy.client.impl;
 
-import java.io.IOException;
-import java.io.InputStream;
-
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpGet;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.core.io.InputStreamSource;
 
+import com.gisgraphy.client.GisgraphyQuery;
 import com.gisgraphy.client.UnknownGisgraphyQueryException;
 import com.gisgraphy.client.UrlGenerator;
 
-public class FullTextSearchCommand {
-	private static final Logger logger = LoggerFactory.getLogger(FullTextSearchCommand.class);
+public class GisgraphyQueryCommand {
+	private static final Logger logger = LoggerFactory.getLogger(GisgraphyQueryCommand.class);
 
-	private HttpClient httpClient;
-	private UrlGenerator urlGenerator;
-	private FullTextQuery searchQuery;
+	private final HttpClient httpClient;
+	private final UrlGenerator urlGenerator;
+	private final GisgraphyQuery searchQuery;
 
-	public FullTextSearchCommand(HttpClient httpClient, UrlGenerator urlGenerator, FullTextQuery searchQuery) {
+	public GisgraphyQueryCommand(HttpClient httpClient, UrlGenerator urlGenerator, GisgraphyQuery searchQuery) {
 		super();
 		this.httpClient = httpClient;
 		this.urlGenerator = urlGenerator;
@@ -52,24 +48,8 @@ public class FullTextSearchCommand {
 	 * @throws UnknownGisgraphyQueryException
 	 * @throws UnknownGisgraphyQueryException
 	 */
-	public InputStream execute() throws UnknownGisgraphyQueryException {
-		try {
-			HttpGet httpGet = createHttpGetFor(searchQuery);
-			HttpResponse response = httpClient.execute(httpGet);
-			HttpEntity entity = response.getEntity();
-			logger.debug("Gisgraphy search query done successfully for searchQuery: " + searchQuery);
-			return entity.getContent();
-
-		} catch (IOException e) {
-			throw new UnknownGisgraphyQueryException(searchQuery, e);
-		}
-	}
-
-	private HttpGet createHttpGetFor(FullTextQuery searchQuery) {
-		HttpGet httpGet = new HttpGet(urlGenerator.generateFullTextSearchQuery(searchQuery));
-		// Explicitly set to expect UTF-8 from Gisgraphy
-		httpGet.setHeader("Content-type", "text/xml; charset=UTF-8");
-		return httpGet;
+	public InputStreamSource execute() throws UnknownGisgraphyQueryException {
+		return new HttpGisgraphyQueryInputStreamSource(this.httpClient, this.urlGenerator, this.searchQuery);	
 	}
 
 }

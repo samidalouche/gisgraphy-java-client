@@ -16,7 +16,7 @@
 	<properties>
 		<slf4j.version>1.5.2</slf4j.version>
 		<geotools.version>2.5.1</geotools.version>
-	 <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 	<repositories>
 		<repository>
@@ -25,6 +25,11 @@
 		</repository>
 	</repositories>
 	<dependencies>
+		<dependency>
+			<groupId>com.sirika.httpclienthelpers</groupId>
+			<artifactId>httpclienthelpers-springsupport</artifactId>
+			<version>0.3-SNAPSHOT</version>
+		</dependency>
 		<dependency>
 			<groupId>com.google.collections</groupId>
 			<artifactId>google-collections</artifactId>
@@ -142,22 +147,22 @@
 	</dependencies>
 	<build>
 		<plugins>
-		 <plugin>
-		  <groupId>org.apache.maven.plugins</groupId>
-		  <artifactId>maven-compiler-plugin</artifactId>
-		  <version>2.0.2</version>
-		  <configuration>
-		   <encoding>${project.build.sourceEncoding}</encoding>
-		  </configuration>
-		 </plugin>
-		 <plugin>
-		  <groupId>org.apache.maven.plugins</groupId>
-		  <artifactId>maven-resources-plugin</artifactId>
-		  <version>2.2</version>
-		  <configuration>
-		   <encoding>${project.build.sourceEncoding}</encoding>
-		  </configuration>
-		 </plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>2.0.2</version>
+				<configuration>
+					<encoding>${project.build.sourceEncoding}</encoding>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-resources-plugin</artifactId>
+				<version>2.2</version>
+				<configuration>
+					<encoding>${project.build.sourceEncoding}</encoding>
+				</configuration>
+			</plugin>
 		</plugins>
 	</build>
 </project>
