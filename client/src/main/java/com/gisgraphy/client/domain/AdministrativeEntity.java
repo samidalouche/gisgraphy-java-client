@@ -1,4 +1,4 @@
-package com.gisgraphy.client.domain.crap;
+package com.gisgraphy.client.domain;
 
 public interface AdministrativeEntity {
     /**

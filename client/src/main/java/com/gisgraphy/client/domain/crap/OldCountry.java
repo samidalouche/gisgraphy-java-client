@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.gisgraphy.client.domain.AdministrativeEntity;
 import com.gisgraphy.client.domain.Continent;
 import com.gisgraphy.client.domain.IsoCountryCode;
 import com.ibm.icu.util.Currency;

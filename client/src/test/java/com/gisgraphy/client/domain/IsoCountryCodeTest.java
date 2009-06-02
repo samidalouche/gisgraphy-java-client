@@ -11,7 +11,7 @@ public class  IsoCountryCodeTest {
     
     @Test
     public void shouldCreateFranceCountryCode() {
-	assertEquals("IsoCountryCode[alpha2=FR,alpha3=FRA,numeric=250]", CountryCodeObjectMother.franceCountryCode().toString());
+	assertEquals("IsoCountryCode[alpha2=FR,alpha3=FRA,numeric=250]", IsoCountryCodeObjectMother.franceCountryCode().toString());
     }
     
     @Test
