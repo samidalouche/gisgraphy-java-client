@@ -4,7 +4,7 @@ import com.google.common.collect.ImmutableList;
 
 public class AdministrativeCountryInformationObjectMother {
 
-    public static AdministrativeCountryInformation franceCountryInformationObjectMother() {
+    public static AdministrativeCountryInformation franceAdministrativeCountryInformation() {
 	return AdministrativeCountryInformation
 		.administrativeCountryInformation()
 		.withTopLevelDomain(".fr")

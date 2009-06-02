@@ -4,7 +4,7 @@ import static com.gisgraphy.client.domain.GeographicCountryInformation.geographi
 
 public class GeographicCountryInformationObjectMother {
 
-    public GeographicCountryInformation frenchGeographicCountryInformation() {
+    public static GeographicCountryInformation franceGeographicCountryInformation() {
 	return geographicCountryInformation().withPopulation(64094000L).withArea(new Double("547030"));
     }
 }
