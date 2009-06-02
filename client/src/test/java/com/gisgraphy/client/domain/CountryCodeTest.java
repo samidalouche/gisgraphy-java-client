@@ -1,6 +1,6 @@
 package com.gisgraphy.client.domain;
 
-import static com.gisgraphy.client.domain.CountryCode.alpha2Code;
+import static com.gisgraphy.client.domain.IsoCountryCode.alpha2Code;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;

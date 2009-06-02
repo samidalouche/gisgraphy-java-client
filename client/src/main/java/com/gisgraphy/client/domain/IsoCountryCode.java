@@ -10,7 +10,7 @@ import org.apache.commons.lang.builder.ToStringStyle;
  * @author Sami Dalouche (sami.dalouche@gmail.com)
  *
  */
-public final class CountryCode {
+public final class IsoCountryCode {
     public final static class CountryCodeBuilder {
 	private String iso3166Alpha2Code;
 	private String iso3166Alpha3Code;
@@ -22,9 +22,9 @@ public final class CountryCode {
 	    this.iso3166Alpha3Code = alpha3Code;
 	    return this;
 	}
-	public CountryCode andNumericCode(int numericCode) {
+	public IsoCountryCode andNumericCode(int numericCode) {
 	    this.iso3166NumericCode = numericCode;
-	    return new CountryCode(this.iso3166Alpha2Code, this.iso3166Alpha3Code, this.iso3166NumericCode);
+	    return new IsoCountryCode(this.iso3166Alpha2Code, this.iso3166Alpha3Code, this.iso3166NumericCode);
 	}
     }
     
@@ -36,7 +36,7 @@ public final class CountryCode {
     private String iso3166Alpha3Code;
     private int iso3166NumericCode;
 
-    private CountryCode(String iso3166Alpha2Code, String iso3166Alpha3Code, int iso3166NumericCode) {
+    private IsoCountryCode(String iso3166Alpha2Code, String iso3166Alpha3Code, int iso3166NumericCode) {
 	super();
 	Validate.notEmpty(iso3166Alpha2Code);
 	Validate.notEmpty(iso3166Alpha3Code);
@@ -89,7 +89,7 @@ public final class CountryCode {
 	    return false;
 	if (getClass() != obj.getClass())
 	    return false;
-	CountryCode other = (CountryCode) obj;
+	IsoCountryCode other = (IsoCountryCode) obj;
 	if (iso3166Alpha2Code == null) {
 	    if (other.iso3166Alpha2Code != null)
 		return false;

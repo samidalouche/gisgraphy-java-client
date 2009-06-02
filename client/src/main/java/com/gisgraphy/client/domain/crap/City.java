@@ -1,4 +1,4 @@
-package com.gisgraphy.client.domain;
+package com.gisgraphy.client.domain.crap;
 
 import java.util.List;
 
@@ -110,7 +110,7 @@ public class City implements ICity, Comparable<City> {
     }
 
     
-    public Country getCountry() {
+    public OldCountry getCountry() {
 	return associatedGisFeature.getCountry();
     }
 

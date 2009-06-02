@@ -1,7 +1,7 @@
 /**
  *
  */
-package com.gisgraphy.client.domain;
+package com.gisgraphy.client.domain.crap;
 
 import java.util.Date;
 import java.util.List;
@@ -215,7 +215,7 @@ public class GisFeature {
     }
     
 
-    public Country getCountry() {
+    public OldCountry getCountry() {
 
 	if (parentEntity != null) {
 	    return null;  //parentEntity.getCountry();

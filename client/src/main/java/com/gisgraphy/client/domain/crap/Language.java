@@ -1,7 +1,7 @@
 /**
  *
  */
-package com.gisgraphy.client.domain;
+package com.gisgraphy.client.domain.crap;
 
 
 /**

@@ -1,7 +1,7 @@
 /**
  *
  */
-package com.gisgraphy.client.domain;
+package com.gisgraphy.client.domain.crap;
 
 /**
  * @author Sami Dalouche (sami.dalouche@gmail.com) THe source of a Feature. A

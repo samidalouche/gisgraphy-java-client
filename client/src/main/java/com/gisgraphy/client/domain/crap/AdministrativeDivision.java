@@ -1,21 +1,21 @@
 /**
  *
  */
-package com.gisgraphy.client.domain;
+package com.gisgraphy.client.domain.crap;
 
 import java.io.Serializable;
 
 
 /**
  * <p>
- * Represents a (sub) division of a {@link Country}. To KISS, here is an
+ * Represents a (sub) division of a {@link OldCountry}. To KISS, here is an
  * example :
  * </p>
  * 
  * <p>
  * The U.S. Country is divided into States, and each state is divided into
  * Counties. Each state is going to be a {@link AdministrativeDivision} instance
- * that refers to the U.S. {@link Country} as its
+ * that refers to the U.S. {@link OldCountry} as its
  * {@link AdministrativeDivision#parentEntity}, and each Country results in a
  * {@link AdministrativeDivision} that refers to its parent State ({@link AdministrativeDivision})
  * as its {@link AdministrativeDivision#parentEntity}.

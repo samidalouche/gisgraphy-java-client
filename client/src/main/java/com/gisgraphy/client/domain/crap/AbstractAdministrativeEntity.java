@@ -1,4 +1,4 @@
-package com.gisgraphy.client.domain;
+package com.gisgraphy.client.domain.crap;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,10 +6,10 @@ import java.util.List;
 /**
  * <p>
  * An abstract Administrative Entity. This by itself doesn't mean anything, but
- * is used to abstract out the notion of {@link Country} and
+ * is used to abstract out the notion of {@link OldCountry} and
  * {@link AdministrativeDivision}. It is mainly used in
  * {@link AdministrativeDivision} to refer to the parent entity, which can
- * either be a {@link Country} (in the case of a First Order
+ * either be a {@link OldCountry} (in the case of a First Order
  * AdministrativeDivision - e.g. a State -) or another
  * {@link AdministrativeDivision} in the case of a nested
  * {@link AdministrativeDivision} (e.g. a County, or Département, ..).
@@ -126,17 +126,17 @@ public abstract class AbstractAdministrativeEntity {
 
     /**
      * <p>
-     * the {@link Country} that this division divises, or the parent
+     * the {@link OldCountry} that this division divises, or the parent
      * {@link AdministrativeDivision}. See {@link AbstractAdministrativeEntity}
      * for more information.
      * </p>
      * <p>
      * Is always null for a Country. Is it however necessary to keep this
      * property here, because of
-     * {@link Country#getNestedAdministrativeEntities()}. In fact, if this
+     * {@link OldCountry#getNestedAdministrativeEntities()}. In fact, if this
      * method returned {@link AdministrativeDivision} directly, there would be a
      * FK from {@link AdministrativeDivision#getParentEntity()} to
-     * {@link Country #getId()}, which is not what we want.
+     * {@link OldCountry #getId()}, which is not what we want.
      * </p>
      * 
      * @return Returns the {@link AbstractAdministrativeEntity}.
