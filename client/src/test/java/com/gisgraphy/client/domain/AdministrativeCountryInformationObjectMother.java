@@ -1,5 +1,7 @@
 package com.gisgraphy.client.domain;
 
+import com.google.common.collect.ImmutableList;
+
 public class AdministrativeCountryInformationObjectMother {
 
     public static AdministrativeCountryInformation franceCountryInformationObjectMother() {
@@ -8,6 +10,7 @@ public class AdministrativeCountryInformationObjectMother {
 		.withTopLevelDomain(".fr")
 		.withPhonePrefix("33")
 		.withPostalCodeMask("#####")
-		.withPostalCodeRegex("\\d{5}");
+		.withPostalCodeRegex("^(\\d{5})$")
+		.withSpokenLanguages(ImmutableList.of(IsoLanguageObjectMother.frenchIsoLanguage()));
     }
 }

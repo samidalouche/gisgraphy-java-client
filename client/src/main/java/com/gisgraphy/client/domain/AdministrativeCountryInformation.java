@@ -1,19 +1,23 @@
 package com.gisgraphy.client.domain;
 
+import com.google.common.collect.ImmutableList;
+
 public final class AdministrativeCountryInformation {
     private String topLevelDomain;
     private String phonePrefix;
     private String postalCodeMask;
     private String postalCodeRegex;
+    private ImmutableList<IsoLanguage> spokenLanguages = ImmutableList.of();
     
     private AdministrativeCountryInformation() {}
     
-    private AdministrativeCountryInformation(String topLevelDomain, String phonePrefix, String postalCodeMask, String postalCodeRegex) {
+    private AdministrativeCountryInformation(String topLevelDomain, String phonePrefix, String postalCodeMask, String postalCodeRegex, Iterable<IsoLanguage> spokenLanguages) {
 	super();
 	this.topLevelDomain = topLevelDomain;
 	this.phonePrefix = phonePrefix;
 	this.postalCodeMask = postalCodeMask;
 	this.postalCodeRegex = postalCodeRegex;
+	this.spokenLanguages = ImmutableList.copyOf(spokenLanguages);
     }
     
     public static AdministrativeCountryInformation administrativeCountryInformation() {
@@ -21,19 +25,23 @@ public final class AdministrativeCountryInformation {
     }
     
     public AdministrativeCountryInformation withTopLevelDomain(String topLevelDomain) {
-	return new AdministrativeCountryInformation(topLevelDomain, this.phonePrefix, this.postalCodeMask, this.postalCodeRegex);
+	return new AdministrativeCountryInformation(topLevelDomain, this.phonePrefix, this.postalCodeMask, this.postalCodeRegex, this.spokenLanguages);
     }
     
     public AdministrativeCountryInformation withPhonePrefix(String phonePrefix) {
-	return new AdministrativeCountryInformation(this.topLevelDomain, phonePrefix, this.postalCodeMask, this.postalCodeRegex);
+	return new AdministrativeCountryInformation(this.topLevelDomain, phonePrefix, this.postalCodeMask, this.postalCodeRegex, this.spokenLanguages);
     }
     
     public AdministrativeCountryInformation withPostalCodeMask(String postalCodeMask) {
-	return new AdministrativeCountryInformation(this.topLevelDomain, this.phonePrefix, postalCodeMask, this.postalCodeRegex);
+	return new AdministrativeCountryInformation(this.topLevelDomain, this.phonePrefix, postalCodeMask, this.postalCodeRegex, this.spokenLanguages);
     }
     
     public AdministrativeCountryInformation withPostalCodeRegex(String postalCodeRegex) {
-	return new AdministrativeCountryInformation(this.topLevelDomain, this.phonePrefix, this.postalCodeMask, postalCodeRegex);
+	return new AdministrativeCountryInformation(this.topLevelDomain, this.phonePrefix, this.postalCodeMask, postalCodeRegex, this.spokenLanguages);
+    }
+    
+    public AdministrativeCountryInformation withSpokenLanguages(Iterable<IsoLanguage> spokenLanguages) {
+	return new AdministrativeCountryInformation(this.topLevelDomain, this.phonePrefix, this.postalCodeMask, postalCodeRegex, spokenLanguages);
     }
 
     public String getTopLevelDomain() {
@@ -52,6 +60,10 @@ public final class AdministrativeCountryInformation {
         return postalCodeRegex;
     }
 
+    public ImmutableList<IsoLanguage> getSpokenLanguages() {
+        return spokenLanguages;
+    }
+
     @Override
     public int hashCode() {
 	final int prime = 31;
@@ -62,6 +74,8 @@ public final class AdministrativeCountryInformation {
 		+ ((postalCodeMask == null) ? 0 : postalCodeMask.hashCode());
 	result = prime * result
 		+ ((postalCodeRegex == null) ? 0 : postalCodeRegex.hashCode());
+	result = prime * result
+		+ ((spokenLanguages == null) ? 0 : spokenLanguages.hashCode());
 	result = prime * result
 		+ ((topLevelDomain == null) ? 0 : topLevelDomain.hashCode());
 	return result;
@@ -91,6 +105,11 @@ public final class AdministrativeCountryInformation {
 		return false;
 	} else if (!postalCodeRegex.equals(other.postalCodeRegex))
 	    return false;
+	if (spokenLanguages == null) {
+	    if (other.spokenLanguages != null)
+		return false;
+	} else if (!spokenLanguages.equals(other.spokenLanguages))
+	    return false;
 	if (topLevelDomain == null) {
 	    if (other.topLevelDomain != null)
 		return false;
@@ -98,6 +117,8 @@ public final class AdministrativeCountryInformation {
 	    return false;
 	return true;
     }
+    
+    
     
     
 }
