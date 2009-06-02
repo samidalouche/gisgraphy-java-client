@@ -1,10 +1,16 @@
 package com.gisgraphy.client.domain;
 
+import static com.gisgraphy.client.domain.AdministrativeCountryInformationObjectMother.antarcticaAdministrativeCountryInformation;
 import static com.gisgraphy.client.domain.AdministrativeCountryInformationObjectMother.franceAdministrativeCountryInformation;
+import static com.gisgraphy.client.domain.ContinentObjectMother.antarcticaContinent;
 import static com.gisgraphy.client.domain.ContinentObjectMother.europe;
+import static com.gisgraphy.client.domain.FipsCountryCodeObjectMother.antarcticaFipsCountryCode;
 import static com.gisgraphy.client.domain.FipsCountryCodeObjectMother.franceFipsCountryCode;
+import static com.gisgraphy.client.domain.GeographicCountryInformationObjectMother.antarcticaGeographicCountryInformation;
 import static com.gisgraphy.client.domain.GeographicCountryInformationObjectMother.franceGeographicCountryInformation;
+import static com.gisgraphy.client.domain.GisFeatureObjectMother.antarcticaGisFeature;
 import static com.gisgraphy.client.domain.GisFeatureObjectMother.franceGisFeature;
+import static com.gisgraphy.client.domain.IsoCountryCodeObjectMother.antarcticaCountryCode;
 import static com.gisgraphy.client.domain.IsoCountryCodeObjectMother.franceCountryCode;
 
 import com.ibm.icu.util.Currency;
@@ -20,5 +26,16 @@ public class CountryObjectMother {
 		.withFipsCountryCode(franceFipsCountryCode())
 		.withAdministrativeCountryInformation(franceAdministrativeCountryInformation())
 		.withGeographicCountryInformation(franceGeographicCountryInformation());
+    }
+    
+    public static Country antarctica() {
+	return Country.countryName("Antarctica")
+		.withIsoCountryCode(antarcticaCountryCode())
+		.withContinent(antarcticaContinent())
+		.andGisFeature(antarcticaGisFeature())
+		.withCurrency(null)
+		.withFipsCountryCode(antarcticaFipsCountryCode())
+		.withAdministrativeCountryInformation(antarcticaAdministrativeCountryInformation())
+		.withGeographicCountryInformation(antarcticaGeographicCountryInformation());
     }
 }

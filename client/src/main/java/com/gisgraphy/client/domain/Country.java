@@ -57,7 +57,7 @@ public final class Country {
 	super();
 	
 	Validate.notNull(isoCountryCode);
-	Validate.notNull(name);
+	Validate.notEmpty(name);
 	Validate.notNull(continent);
 	Validate.notNull(gisFeature);
 	
@@ -88,10 +88,12 @@ public final class Country {
     }
     
     public Country withAdministrativeCountryInformation(AdministrativeCountryInformation administrativeCountryInformation) {
+	Validate.notNull(administrativeCountryInformation);
 	return new Country(this.isoCountryCode, this.name, this.continent, this.gisFeature, this.currency, this.fipsCountryCode, administrativeCountryInformation, this.geographicCountryInformation);
     }
     
     public Country withGeographicCountryInformation(GeographicCountryInformation geographicCountryInformation) {
+	Validate.notNull(geographicCountryInformation);
 	return new Country(this.isoCountryCode, this.name, this.continent, this.gisFeature, this.currency, this.fipsCountryCode, this.administrativeCountryInformation, geographicCountryInformation);
     }
 

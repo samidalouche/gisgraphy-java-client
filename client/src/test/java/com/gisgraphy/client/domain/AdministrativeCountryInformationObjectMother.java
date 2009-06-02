@@ -13,4 +13,10 @@ public class AdministrativeCountryInformationObjectMother {
 		.withPostalCodeRegex("^(\\d{5})$")
 		.withSpokenLanguages(ImmutableList.of(IsoLanguageObjectMother.frenchIsoLanguage()));
     }
+    
+    public static AdministrativeCountryInformation antarcticaAdministrativeCountryInformation() {
+	return AdministrativeCountryInformation
+		.administrativeCountryInformation()
+		.withTopLevelDomain(".aq");
+    }
 }

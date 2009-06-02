@@ -6,4 +6,8 @@ public class IsoCountryCodeObjectMother {
     public static IsoCountryCode franceCountryCode() {
 	return alpha2Code("FR").alpha3Code("FRA").andNumericCode(250);
     }
+    
+    public static IsoCountryCode antarcticaCountryCode() {
+	return alpha2Code("AQ").alpha3Code("ATA").andNumericCode(10);
+    }
 }
