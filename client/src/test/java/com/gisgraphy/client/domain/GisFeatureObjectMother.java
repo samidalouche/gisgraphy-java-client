@@ -9,4 +9,8 @@ public class GisFeatureObjectMother {
     public static GisFeature antarcticaGisFeature() {
 	return new GisFeature();
     }
+    
+    public static GisFeature usOutlyingIslandsGisFeature() {
+	return new GisFeature();
+    }
 }

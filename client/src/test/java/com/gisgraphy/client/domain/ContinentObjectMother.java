@@ -10,4 +10,8 @@ public class ContinentObjectMother {
     public static Continent antarcticaContinent() {
 	return continent("AN").withName("Antarctica");
     }
+    
+    public static Continent oceania() {
+	return continent("OC").withName("Oceania");
+    }
 }

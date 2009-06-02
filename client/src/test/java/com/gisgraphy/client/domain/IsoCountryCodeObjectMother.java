@@ -10,4 +10,9 @@ public class IsoCountryCodeObjectMother {
     public static IsoCountryCode antarcticaCountryCode() {
 	return alpha2Code("AQ").alpha3Code("ATA").andNumericCode(10);
     }
+    
+    public static IsoCountryCode usOutlyingIslandsCountryCode() {
+	return alpha2Code("UM").alpha3Code("UMI").andNumericCode(581);
+    }
+    
 }

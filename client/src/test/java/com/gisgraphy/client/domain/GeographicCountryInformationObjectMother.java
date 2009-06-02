@@ -11,4 +11,8 @@ public class GeographicCountryInformationObjectMother {
     public static GeographicCountryInformation antarcticaGeographicCountryInformation() {
 	return geographicCountryInformation().withPopulation(0L).withArea(new Double("14000000"));
     }
+    
+    public static GeographicCountryInformation usOutlyingIslandsGeographicCountryInformation() {
+	return geographicCountryInformation();
+    }
 }

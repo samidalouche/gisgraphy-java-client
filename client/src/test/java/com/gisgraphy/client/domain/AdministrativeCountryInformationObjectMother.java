@@ -19,4 +19,10 @@ public class AdministrativeCountryInformationObjectMother {
 		.administrativeCountryInformation()
 		.withTopLevelDomain(".aq");
     }
+    
+    public static AdministrativeCountryInformation usOutlyingIslandsAdministrativeCountryInformation() {
+	return AdministrativeCountryInformation
+		.administrativeCountryInformation()
+		.withTopLevelDomain(".am");
+    }
 }
