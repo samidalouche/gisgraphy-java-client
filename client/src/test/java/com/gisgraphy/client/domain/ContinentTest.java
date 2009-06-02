@@ -13,6 +13,7 @@ public class ContinentTest {
     @Test
     public void shouldCreateEuropeContinent() {
 	Continent europe = ContinentObjectMother.europe();
+	assertEquals("Continent[code=EU,name=Europe]", europe.toString());
 	assertEquals("EU", europe.getCode());
 	assertEquals("EU", europe.getGeonamesCode());
 	assertEquals("Europe", europe.getName());

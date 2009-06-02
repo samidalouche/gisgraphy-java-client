@@ -3,6 +3,8 @@ package com.gisgraphy.client.domain;
 import java.io.Serializable;
 
 import org.apache.commons.lang.Validate;
+import org.apache.commons.lang.builder.ToStringBuilder;
+import org.apache.commons.lang.builder.ToStringStyle;
 
 /**
  * Represents a Continent (i.e. Europe, Asia..).
@@ -80,6 +82,13 @@ public final class Continent implements Serializable {
 	} else if (!geonamesCode.equals(other.geonamesCode))
 	    return false;
 	return true;
+    }
+    
+    @Override
+    public String toString() {
+	return new ToStringBuilder(this, ToStringStyle.SHORT_PREFIX_STYLE)
+		.append("code", this.getCode())
+		.append("name", this.getName()).toString();
     }
 
 }

@@ -1,6 +1,5 @@
 package com.gisgraphy.client.domain;
 
-import com.google.common.collect.ImmutableList;
 import com.ibm.icu.util.Currency;
 
 /**
@@ -14,11 +13,14 @@ import com.ibm.icu.util.Currency;
  * 
  */
 public final class Country {
-    private Continent continent;
+
     private IsoCountryCode isoCountryCode;
-    private FipsCountryCode fipsCountryCode;
     private String name;
-    private Currency currency;
-    private AdministrativeCountryInformation administrativeCountryInformation;
     private GisFeature gisFeature;
+    private Continent continent;
+    
+    private Currency currency;
+    private FipsCountryCode fipsCountryCode;
+    private AdministrativeCountryInformation administrativeCountryInformation = AdministrativeCountryInformation.administrativeCountryInformation();
+    private GeographicCountryInformation geographicCountryInformation = GeographicCountryInformation.geographicCountryInformation();
 }

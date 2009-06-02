@@ -22,7 +22,7 @@ public class AlternateGisFeatureName implements
     /**
      * @see #getGisFeature()
      */
-    private GisFeature gisFeature;
+    private OldGisFeature gisFeature;
 
     /**
      * @see #getId()
@@ -48,13 +48,13 @@ public class AlternateGisFeatureName implements
 	super();
     }
 
-    public AlternateGisFeatureName(String alternateName, GisFeature gisFeature) {
+    public AlternateGisFeatureName(String alternateName, OldGisFeature gisFeature) {
 	super();
 	this.alternateName = alternateName;
 	this.gisFeature = gisFeature;
     }
 
-    public AlternateGisFeatureName(String alternateName, GisFeature gisFeature,
+    public AlternateGisFeatureName(String alternateName, OldGisFeature gisFeature,
 	    OldLanguage language) {
 	super();
 	this.alternateName = alternateName;
@@ -120,7 +120,7 @@ public class AlternateGisFeatureName implements
      * 
      * @return
      */
-    public GisFeature getGisFeature() {
+    public OldGisFeature getGisFeature() {
 	return gisFeature;
     }
 
@@ -233,7 +233,7 @@ public class AlternateGisFeatureName implements
      * @see #getGisFeature()
      * @param gisFeature
      */
-    public void setGisFeature(GisFeature gisFeature) {
+    public void setGisFeature(OldGisFeature gisFeature) {
 	this.gisFeature = gisFeature;
     }
 

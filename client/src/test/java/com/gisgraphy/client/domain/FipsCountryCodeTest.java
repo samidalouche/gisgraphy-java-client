@@ -11,12 +11,14 @@ public class FipsCountryCodeTest {
 	FipsCountryCode fipsCountryCode = FipsCountryCodeObjectMother.franceFipsCountryCode();
 	assertEquals("FR", fipsCountryCode.getFipsCode());
 	assertNull(fipsCountryCode.getEquivalentFipsCode());
+	assertEquals("FipsCountryCode[fipsCode=FR,equivalentFipsCode=<null>]", fipsCountryCode.toString());
     }
     
     @Test public void shouldCreateEquivalentFipsCountryCode() {
 	FipsCountryCode fipsCountryCode = FipsCountryCode.equivalentFipsCountryCode("FI");
 	assertNull(fipsCountryCode.getFipsCode());
 	assertEquals("FI", fipsCountryCode.getEquivalentFipsCode());
+	assertEquals("FipsCountryCode[fipsCode=<null>,equivalentFipsCode=FI]", fipsCountryCode.toString());
     }
     
     @Test public void fipsCodesWithSameFipsCodeShouldBeEqual() {

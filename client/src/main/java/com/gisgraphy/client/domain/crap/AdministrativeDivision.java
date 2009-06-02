@@ -95,7 +95,7 @@ public class AdministrativeDivision extends AbstractAdministrativeEntity
 
     /**
      * The Second Order geonamesCode. It is relative (and unique among) to the
-     * feature Source ({@link GisFeature#getFeatureSource()})
+     * feature Source ({@link OldGisFeature#getFeatureSource()})
      * 
      * For the US, it is the FIPS State/County geonamesCode
      * http://en.wikipedia.org/wiki/List_of_FIPS_region_codes

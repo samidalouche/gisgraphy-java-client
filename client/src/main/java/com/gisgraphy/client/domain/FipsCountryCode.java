@@ -1,5 +1,8 @@
 package com.gisgraphy.client.domain;
 
+import org.apache.commons.lang.builder.ToStringBuilder;
+import org.apache.commons.lang.builder.ToStringStyle;
+
 /**
  * The FIPS code for a Country.
  * 
@@ -76,5 +79,12 @@ public final class FipsCountryCode {
 	} else if (!fipsCode.equals(other.fipsCode))
 	    return false;
 	return true;
+    }
+    
+    @Override
+    public String toString() {
+	return new ToStringBuilder(this, ToStringStyle.SHORT_PREFIX_STYLE)
+		.append("fipsCode", this.fipsCode)
+		.append("equivalentFipsCode", this.equivalentFipsCode).toString();
     }
 }

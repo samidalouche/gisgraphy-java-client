@@ -1,5 +1,8 @@
 package com.gisgraphy.client.domain;
 
+import org.apache.commons.lang.builder.ToStringBuilder;
+import org.apache.commons.lang.builder.ToStringStyle;
+
 import com.google.common.collect.ImmutableList;
 
 public final class AdministrativeCountryInformation {
@@ -118,7 +121,9 @@ public final class AdministrativeCountryInformation {
 	return true;
     }
     
-    
-    
+    @Override
+    public String toString() {
+	return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);
+    }
     
 }

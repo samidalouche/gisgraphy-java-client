@@ -21,7 +21,7 @@ public class City implements ICity, Comparable<City> {
     /**
      * @see #getAssociatedGisFeature()
      */
-    private GisFeature associatedGisFeature;
+    private OldGisFeature associatedGisFeature;
 
     /**
      * @see #getId()
@@ -35,7 +35,7 @@ public class City implements ICity, Comparable<City> {
 	super();
     }
 
-    public City(GisFeature associatedGisFeature) {
+    public City(OldGisFeature associatedGisFeature) {
 	super();
 	this.associatedGisFeature = associatedGisFeature;
     }
@@ -50,7 +50,7 @@ public class City implements ICity, Comparable<City> {
 
     /**
      * 
-     * @see GisFeature#distance(GisFeature, Unit)
+     * @see OldGisFeature#distance(OldGisFeature, Unit)
      * @param city
      * @param unit
      * @return
@@ -77,7 +77,7 @@ public class City implements ICity, Comparable<City> {
     }
 
     /**
-     * @see GisFeature#getAlternateNames()
+     * @see OldGisFeature#getAlternateNames()
      * @return
      */
     public List<AlternateGisFeatureName> getAlternateNames() {
@@ -100,7 +100,7 @@ public class City implements ICity, Comparable<City> {
      * 
      * @return
      */
-    public GisFeature getAssociatedGisFeature() {
+    public OldGisFeature getAssociatedGisFeature() {
 	return this.associatedGisFeature;
     }
 
@@ -161,7 +161,7 @@ public class City implements ICity, Comparable<City> {
     }
 
     /**
-     * @see GisFeature#getLatitude()
+     * @see OldGisFeature#getLatitude()
      * @return
      */
     
@@ -170,7 +170,7 @@ public class City implements ICity, Comparable<City> {
     }
 
     /**
-     * @see GisFeature#getLongitude()
+     * @see OldGisFeature#getLongitude()
      * @return
      */
     
@@ -235,7 +235,7 @@ public class City implements ICity, Comparable<City> {
      * @see #getAssociatedGisFeature()
      * @param associatedGisFeature
      */
-    public void setAssociatedGisFeature(GisFeature associatedGisFeature) {
+    public void setAssociatedGisFeature(OldGisFeature associatedGisFeature) {
 	this.associatedGisFeature = associatedGisFeature;
     }
 

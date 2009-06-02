@@ -35,11 +35,11 @@ public class OldCountry implements Serializable, AdministrativeEntity {
     private String phonePrefix;
     private String postalCodeMask;
     private String postalCodeRegex;
+    private List<OldLanguage> spokenLanguages = new ArrayList<OldLanguage>();
     
     private Long population;
     private Double area;
     private List<OldCountry> neighbourCountries = new ArrayList<OldCountry>();
-    private List<OldLanguage> spokenLanguages = new ArrayList<OldLanguage>();
     
     
     public OldCountry() {

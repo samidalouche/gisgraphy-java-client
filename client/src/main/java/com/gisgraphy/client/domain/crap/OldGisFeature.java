@@ -27,7 +27,7 @@ import com.vividsolutions.jts.geom.PrecisionModel;
  * 
  * FIXME: the couple source, featureId should be unique !
  */
-public class GisFeature {
+public class OldGisFeature {
     public static final String LOCATION_COLUMN = "location";
 
     public static final int WGS84_SRID = 4326;
@@ -111,7 +111,7 @@ public class GisFeature {
      */
     protected GisFeatureSourceType featureSource = GisFeatureSourceType.GEONAMES;
 
-    public GisFeature(AbstractAdministrativeEntity parentEntity,
+    public OldGisFeature(AbstractAdministrativeEntity parentEntity,
 	    Double locationLongitude, Double locationLatitude, String name,
 	    GisFeatureSourceType featureSource, Long featureId) {
 	super();
@@ -123,19 +123,19 @@ public class GisFeature {
 
     }
 
-    public GisFeature(GisFeatureSourceType featureSource, Long featureId) {
+    public OldGisFeature(GisFeatureSourceType featureSource, Long featureId) {
 	super();
 	this.featureSource = featureSource;
 	this.featureId = featureId;
     }
 
     /**
-     * Creates a {@link GisFeature} with a featureSourceType of
+     * Creates a {@link OldGisFeature} with a featureSourceType of
      * {@link GisFeatureSourceType#FUNALA}
      * 
      * @param featureId
      */
-    public GisFeature(Long featureId) {
+    public OldGisFeature(Long featureId) {
 	super();
 	this.featureSource = GisFeatureSourceType.FUNALA;
 	this.featureId = featureId;
@@ -145,7 +145,7 @@ public class GisFeature {
      * 
      */
     @SuppressWarnings("unused")
-    private GisFeature() {
+    private OldGisFeature() {
 	super();
     }
 
@@ -157,7 +157,7 @@ public class GisFeature {
      *                can be null, defaults si {@link SI#METER}
      * @return
      */
-    public double distance(GisFeature gisFeature, Unit<Length> unit) {
+    public double distance(OldGisFeature gisFeature, Unit<Length> unit) {
 	Unit<Length> targetUnit = (unit != null) ? unit : SI.METER;
 	com.vividsolutions.jts.geom.Geometry me = getLocationAsJtsPoint();
 	com.vividsolutions.jts.geom.Geometry other = gisFeature.getLocationAsJtsPoint();
@@ -179,7 +179,7 @@ public class GisFeature {
 	if (this.getClass() != obj.getClass()) {
 	    return false;
 	}
-	final GisFeature other = (GisFeature) obj;
+	final OldGisFeature other = (OldGisFeature) obj;
 	if (this.featureId == null) {
 	    if (other.featureId != null) {
 		return false;
@@ -279,7 +279,7 @@ public class GisFeature {
     /**
      * The Feature Code, as described in
      * http://www.geonames.org/statistics/total.html It is relative to the
-     * Feature Class. ({@link GisFeature#getFeatureClass()}
+     * Feature Class. ({@link OldGisFeature#getFeatureClass()}
      * 
      * @return
      */

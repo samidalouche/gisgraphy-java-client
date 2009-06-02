@@ -33,7 +33,7 @@ public abstract class AbstractAdministrativeEntity {
     /**
      * @see #getAssociatedGisFeature()
      */
-    protected GisFeature associatedGisFeature;
+    protected OldGisFeature associatedGisFeature;
 
     /**
      * @see #getNestedAdministrativeEntities()
@@ -70,7 +70,7 @@ public abstract class AbstractAdministrativeEntity {
      * 
      * @return
      */
-    public GisFeature getAssociatedGisFeature() {
+    public OldGisFeature getAssociatedGisFeature() {
 	return associatedGisFeature;
     }
 
@@ -149,7 +149,7 @@ public abstract class AbstractAdministrativeEntity {
      * @see #getAssociatedGisFeature()
      * @param associatedGisFeature
      */
-    public void setAssociatedGisFeature(GisFeature associatedGisFeature) {
+    public void setAssociatedGisFeature(OldGisFeature associatedGisFeature) {
 	this.associatedGisFeature = associatedGisFeature;
     }
 
