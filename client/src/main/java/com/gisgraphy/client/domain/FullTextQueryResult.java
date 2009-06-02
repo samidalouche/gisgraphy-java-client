@@ -3,57 +3,18 @@ package com.gisgraphy.client.domain;
 import java.util.List;
 import java.util.Map;
 
-public class FullTextQueryResult {
-
-    private double score;
-    private String countryCode;
-    private String adm1Name;
-    private String adm1Code;
-    private String adm2Name;
-    private String adm2Code;
-    private String adm3Name;
-    private String adm3Code;
-    private String adm4Name;
-    private String adm4Code;
-    private String countryFlagUrl;
-    private String countryName;
-    private int elevation;
-    private String featureClass;
-    private String featureCode;
-    private long featureId;
-    private String fullyQualifiedName;
-    private String googleMapUrl;
-    private int gTopo30;
-    private double latitude;
-    private double longitude;
-    private String name;
-    private String asciiName;
-    private int population;
-    private String timezone;
-    private String placeType;
-    private String yahooMapUrl;
-    private Map<String, List<String>> alternateNames;
-    private Map<String, List<String>> countryAlternateNames;
-    private Map<String, List<String>> adm1AlternateNames;
-    private Map<String, List<String>> adm2AlternateNames;
-    private Map<String, List<String>> adm3AlternateNames;
-    private Map<String, List<String>> adm4AlternateNames;
-
-    public static FullTextQueryResultBuilder newFullTextQueryResult() {
-        return new FullTextQueryResultBuilder();
-    }
+public final class FullTextQueryResult {
 
     public static class FullTextQueryResultBuilder {
 
         private FullTextQueryResult fullTextQueryResult = new FullTextQueryResult();
 
-        public FullTextQueryResultBuilder withPlaceType(String placeType) {
-            fullTextQueryResult.placeType = placeType;
-            return this;
+        public FullTextQueryResult build() {
+            return fullTextQueryResult;
         }
 
-        public FullTextQueryResultBuilder withScore(double score) {
-            fullTextQueryResult.score = score;
+        public FullTextQueryResultBuilder withAdm1AlternateNames(Map<String, List<String>> adm1AlternateNames) {
+            fullTextQueryResult.adm1AlternateNames = adm1AlternateNames;
             return this;
         }
 
@@ -62,23 +23,18 @@ public class FullTextQueryResult {
             return this;
         }
 
-        public FullTextQueryResultBuilder withAdm2Code(String adm2Code) {
-            fullTextQueryResult.adm2Code = adm2Code;
-            return this;
-        }
-
-        public FullTextQueryResultBuilder withAdm3Code(String adm3Code) {
-            fullTextQueryResult.adm3Code = adm3Code;
-            return this;
-        }
-
-        public FullTextQueryResultBuilder withAdm4Code(String adm4Code) {
-            fullTextQueryResult.adm4Code = adm4Code;
-            return this;
-        }
-
         public FullTextQueryResultBuilder withAdm1Name(String adm1Name) {
             fullTextQueryResult.adm1Name = adm1Name;
+            return this;
+        }
+
+        public FullTextQueryResultBuilder withAdm2AlternateNames(Map<String, List<String>> adm2AlternateNames) {
+            fullTextQueryResult.adm2AlternateNames = adm2AlternateNames;
+            return this;
+        }
+
+        public FullTextQueryResultBuilder withAdm2Code(String adm2Code) {
+            fullTextQueryResult.adm2Code = adm2Code;
             return this;
         }
 
@@ -87,13 +43,48 @@ public class FullTextQueryResult {
             return this;
         }
 
+        public FullTextQueryResultBuilder withAdm3AlternateNames(Map<String, List<String>> adm3AlternateNames) {
+            fullTextQueryResult.adm3AlternateNames = adm3AlternateNames;
+            return this;
+        }
+
+        public FullTextQueryResultBuilder withAdm3Code(String adm3Code) {
+            fullTextQueryResult.adm3Code = adm3Code;
+            return this;
+        }
+
         public FullTextQueryResultBuilder withAdm3Name(String adm3Name) {
             fullTextQueryResult.adm3Name = adm3Name;
             return this;
         }
 
+        public FullTextQueryResultBuilder withAdm4AlternateNames(Map<String, List<String>> adm4AlternateNames) {
+            fullTextQueryResult.adm4AlternateNames = adm4AlternateNames;
+            return this;
+        }
+
+        public FullTextQueryResultBuilder withAdm4Code(String adm4Code) {
+            fullTextQueryResult.adm4Code = adm4Code;
+            return this;
+        }
+
         public FullTextQueryResultBuilder withAdm4Name(String adm4Name) {
             fullTextQueryResult.adm4Name = adm4Name;
+            return this;
+        }
+
+        public FullTextQueryResultBuilder withAlternateNames(Map<String, List<String>> alternateNames) {
+            fullTextQueryResult.alternateNames = alternateNames;
+            return this;
+        }
+
+        public FullTextQueryResultBuilder withAsciiName(String asciiName) {
+            fullTextQueryResult.asciiName = asciiName;
+            return this;
+        }
+
+        public FullTextQueryResultBuilder withCountryAlternateNames(Map<String, List<String>> countryAlternateNames) {
+            fullTextQueryResult.countryAlternateNames = countryAlternateNames;
             return this;
         }
 
@@ -162,13 +153,18 @@ public class FullTextQueryResult {
             return this;
         }
 
-        public FullTextQueryResultBuilder withAsciiName(String asciiName) {
-            fullTextQueryResult.asciiName = asciiName;
+        public FullTextQueryResultBuilder withPlaceType(String placeType) {
+            fullTextQueryResult.placeType = placeType;
             return this;
         }
 
         public FullTextQueryResultBuilder withPopulation(int population) {
             fullTextQueryResult.population = population;
+            return this;
+        }
+
+        public FullTextQueryResultBuilder withScore(double score) {
+            fullTextQueryResult.score = score;
             return this;
         }
 
@@ -181,44 +177,104 @@ public class FullTextQueryResult {
             fullTextQueryResult.yahooMapUrl = yahooMapUrl;
             return this;
         }
+    }
+    public static FullTextQueryResultBuilder newFullTextQueryResult() {
+        return new FullTextQueryResultBuilder();
+    }
+    private Map<String, List<String>> adm1AlternateNames;
+    private String adm1Code;
+    private String adm1Name;
+    private Map<String, List<String>> adm2AlternateNames;
+    private String adm2Code;
+    private String adm2Name;
+    private Map<String, List<String>> adm3AlternateNames;
+    private String adm3Code;
+    private String adm3Name;
+    private Map<String, List<String>> adm4AlternateNames;
+    private String adm4Code;
+    private String adm4Name;
+    private Map<String, List<String>> alternateNames;
+    private String asciiName;
+    private Map<String, List<String>> countryAlternateNames;
+    private String countryCode;
+    private String countryFlagUrl;
+    private String countryName;
+    private int elevation;
+    private String featureClass;
+    private String featureCode;
+    private long featureId;
+    private String fullyQualifiedName;
+    private String googleMapUrl;
+    private int gTopo30;
+    private double latitude;
+    private double longitude;
+    private String name;
+    private String placeType;
+    private int population;
+    private double score;
 
-        public FullTextQueryResultBuilder withAlternateNames(Map<String, List<String>> alternateNames) {
-            fullTextQueryResult.alternateNames = alternateNames;
-            return this;
-        }
+    private String timezone;
 
-        public FullTextQueryResultBuilder withCountryAlternateNames(Map<String, List<String>> countryAlternateNames) {
-            fullTextQueryResult.countryAlternateNames = countryAlternateNames;
-            return this;
-        }
+    private String yahooMapUrl;
 
-        public FullTextQueryResultBuilder withAdm1AlternateNames(Map<String, List<String>> adm1AlternateNames) {
-            fullTextQueryResult.adm1AlternateNames = adm1AlternateNames;
-            return this;
-        }
-
-        public FullTextQueryResultBuilder withAdm2AlternateNames(Map<String, List<String>> adm2AlternateNames) {
-            fullTextQueryResult.adm2AlternateNames = adm2AlternateNames;
-            return this;
-        }
-
-        public FullTextQueryResultBuilder withAdm3AlternateNames(Map<String, List<String>> adm3AlternateNames) {
-            fullTextQueryResult.adm3AlternateNames = adm3AlternateNames;
-            return this;
-        }
-
-        public FullTextQueryResultBuilder withAdm4AlternateNames(Map<String, List<String>> adm4AlternateNames) {
-            fullTextQueryResult.adm4AlternateNames = adm4AlternateNames;
-            return this;
-        }
-
-        public FullTextQueryResult build() {
-            return fullTextQueryResult;
-        }
+    public Map<String, List<String>> getAdm1AlternateNames() {
+        return adm1AlternateNames;
     }
 
-    public double getScore() {
-        return score;
+    public String getAdm1Code() {
+        return adm1Code;
+    }
+
+    public String getAdm1Name() {
+        return adm1Name;
+    }
+
+    public Map<String, List<String>> getAdm2AlternateNames() {
+        return adm2AlternateNames;
+    }
+
+    public String getAdm2Code() {
+        return adm2Code;
+    }
+
+    public String getAdm2Name() {
+        return adm2Name;
+    }
+
+    public Map<String, List<String>> getAdm3AlternateNames() {
+        return adm3AlternateNames;
+    }
+
+    public String getAdm3Code() {
+        return adm3Code;
+    }
+
+    public String getAdm3Name() {
+        return adm3Name;
+    }
+
+    public Map<String, List<String>> getAdm4AlternateNames() {
+        return adm4AlternateNames;
+    }
+
+    public String getAdm4Code() {
+        return adm4Code;
+    }
+
+    public String getAdm4Name() {
+        return adm4Name;
+    }
+
+    public Map<String, List<String>> getAlternateNames() {
+        return alternateNames;
+    }
+
+    public String getAsciiName() {
+        return asciiName;
+    }
+
+    public Map<String, List<String>> getCountryAlternateNames() {
+        return countryAlternateNames;
     }
 
     public String getCountryCode() {
@@ -273,12 +329,16 @@ public class FullTextQueryResult {
         return name;
     }
 
-    public String getAsciiName() {
-        return asciiName;
+    public String getPlaceType() {
+        return placeType;
     }
 
     public int getPopulation() {
         return population;
+    }
+
+    public double getScore() {
+        return score;
     }
 
     public String getTimezone() {
@@ -287,65 +347,5 @@ public class FullTextQueryResult {
 
     public String getYahooMapUrl() {
         return yahooMapUrl;
-    }
-
-    public String getPlaceType() {
-        return placeType;
-    }
-
-    public String getAdm1Name() {
-        return adm1Name;
-    }
-
-    public String getAdm1Code() {
-        return adm1Code;
-    }
-
-    public String getAdm2Name() {
-        return adm2Name;
-    }
-
-    public String getAdm2Code() {
-        return adm2Code;
-    }
-
-    public String getAdm3Name() {
-        return adm3Name;
-    }
-
-    public String getAdm3Code() {
-        return adm3Code;
-    }
-
-    public String getAdm4Name() {
-        return adm4Name;
-    }
-
-    public String getAdm4Code() {
-        return adm4Code;
-    }
-
-    public Map<String, List<String>> getAlternateNames() {
-        return alternateNames;
-    }
-
-    public Map<String, List<String>> getCountryAlternateNames() {
-        return countryAlternateNames;
-    }
-
-    public Map<String, List<String>> getAdm1AlternateNames() {
-        return adm1AlternateNames;
-    }
-
-    public Map<String, List<String>> getAdm2AlternateNames() {
-        return adm2AlternateNames;
-    }
-
-    public Map<String, List<String>> getAdm3AlternateNames() {
-        return adm3AlternateNames;
-    }
-
-    public Map<String, List<String>> getAdm4AlternateNames() {
-        return adm4AlternateNames;
     }
 }

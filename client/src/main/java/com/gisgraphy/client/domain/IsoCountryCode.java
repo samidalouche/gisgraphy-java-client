@@ -40,8 +40,8 @@ public final class IsoCountryCode {
 	super();
 	Validate.notEmpty(iso3166Alpha2Code);
 	Validate.notEmpty(iso3166Alpha3Code);
-	this.iso3166Alpha2Code = iso3166Alpha2Code;
-	this.iso3166Alpha3Code = iso3166Alpha3Code;
+	this.iso3166Alpha2Code = iso3166Alpha2Code.toUpperCase();
+	this.iso3166Alpha3Code = iso3166Alpha3Code.toUpperCase();
 	this.iso3166NumericCode = iso3166NumericCode;
     }
 

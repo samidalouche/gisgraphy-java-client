@@ -32,7 +32,7 @@ public class AlternateGisFeatureName implements
     /**
      * @see #getLanguage()
      */
-    private Language language;
+    private OldLanguage language;
 
     /**
      * @see #isPreferredName()
@@ -55,7 +55,7 @@ public class AlternateGisFeatureName implements
     }
 
     public AlternateGisFeatureName(String alternateName, GisFeature gisFeature,
-	    Language language) {
+	    OldLanguage language) {
 	super();
 	this.alternateName = alternateName;
 	this.gisFeature = gisFeature;
@@ -135,7 +135,7 @@ public class AlternateGisFeatureName implements
 
     /**
      * 
-     * @return null if no alternate name has no {@link Language}
+     * @return null if no alternate name has no {@link OldLanguage}
      */
     public String getIso639Alpha2LanguageCode() {
 	String s = null;
@@ -147,7 +147,7 @@ public class AlternateGisFeatureName implements
 
     /**
      * 
-     * @return null if no alternate name has no {@link Language}
+     * @return null if no alternate name has no {@link OldLanguage}
      */
     public String getIso639Alpha3LanguageCode() {
 	String s = null;
@@ -159,7 +159,7 @@ public class AlternateGisFeatureName implements
 
     /**
      * 
-     * @return null if no alternate name has no {@link Language}
+     * @return null if no alternate name has no {@link OldLanguage}
      */
     public String getIso639LanguageName() {
 	String s = null;
@@ -175,7 +175,7 @@ public class AlternateGisFeatureName implements
      * @return
      */
     // @Column(nullable = true) : not allowed
-    public Language getLanguage() {
+    public OldLanguage getLanguage() {
 	return language;
     }
 
@@ -249,7 +249,7 @@ public class AlternateGisFeatureName implements
      * @see #getLanguage()
      * @param language
      */
-    public void setLanguage(Language language) {
+    public void setLanguage(OldLanguage language) {
 	this.language = language;
     }
 

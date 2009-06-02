@@ -12,7 +12,7 @@ package com.gisgraphy.client.domain;
  * @author Sami Dalouche (sami.dalouche@gmail.com)
  *
  */
-public class FipsCountryCode {
+public final class FipsCountryCode {
     private String fipsCode;
     private String equivalentFipsCode;
     

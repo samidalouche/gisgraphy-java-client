@@ -7,6 +7,7 @@ import org.apache.commons.lang.Validate;
 /**
  * Represents a Continent (i.e. Europe, Asia..).
  * 
+ * @see ContinentRepository
  */
 public final class Continent implements Serializable {
     private static final long serialVersionUID = 1L;

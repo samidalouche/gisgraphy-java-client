@@ -12,7 +12,7 @@ package com.gisgraphy.client.domain.crap;
  * @see <a href="http://en.wikipedia.org/wiki/List_of_languages">List Of
  *      Languages</a>
  */
-public class Language {
+public class OldLanguage {
 
     /**
      * @see #getId()
@@ -34,7 +34,7 @@ public class Language {
      */
     private String iso639LanguageName;
 
-    public Language() {
+    public OldLanguage() {
 	super();
     }
 
@@ -43,7 +43,7 @@ public class Language {
      * @param iso639Alpha2LanguageCode
      * @param iso639Alpha3LanguageCode
      */
-    public Language(String iso639LanguageName, String iso639Alpha2LanguageCode,
+    public OldLanguage(String iso639LanguageName, String iso639Alpha2LanguageCode,
 	    String iso639Alpha3LanguageCode) {
 	super();
 

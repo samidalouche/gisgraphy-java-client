@@ -7,11 +7,16 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-public class CountryCodeTest {
+public class  IsoCountryCodeTest {
     
     @Test
     public void shouldCreateFranceCountryCode() {
-	assertEquals("CountryCode[alpha2=FR,alpha3=FRA,numeric=250]", CountryCodeObjectMother.franceCountryCode().toString());
+	assertEquals("IsoCountryCode[alpha2=FR,alpha3=FRA,numeric=250]", CountryCodeObjectMother.franceCountryCode().toString());
+    }
+    
+    @Test
+    public void lowercaseCountryCodesShouldBeUppercased() {
+	assertEquals("IsoCountryCode[alpha2=FR,alpha3=FRA,numeric=250]", alpha2Code("fr").alpha3Code("fra").andNumericCode(250).toString());
     }
     
     @Test(expected=IllegalArgumentException.class)

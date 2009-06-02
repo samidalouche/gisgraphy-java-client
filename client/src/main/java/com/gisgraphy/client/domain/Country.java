@@ -1,5 +1,8 @@
 package com.gisgraphy.client.domain;
 
+import com.google.common.collect.ImmutableList;
+import com.ibm.icu.util.Currency;
+
 /**
  * A Country as defined by ISO 3166. 
  * 
@@ -10,8 +13,12 @@ package com.gisgraphy.client.domain;
  *      href="http://www.iso.org/iso/en/prods-services/popstds/countrynamecodes.html">Country Name Codes</a>
  * 
  */
-public class Country {
+public final class Country {
     private Continent continent;
     private IsoCountryCode isoCountryCode;
     private FipsCountryCode fipsCountryCode;
+    private String name;
+    private Currency currency;
+    private AdministrativeCountryInformation administrativeCountryInformation;
+    private GisFeature gisFeature;
 }

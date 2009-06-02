@@ -22,21 +22,26 @@ import com.ibm.icu.util.Currency;
 public class OldCountry implements Serializable, AdministrativeEntity {
     private static final long serialVersionUID = 1L;
 
-    private Double area;
     private Continent continent;
-    private String currencyCode;
     private String equivalentFipsCode;
     private String fipsCode;
     private IsoCountryCode iso3166Id;
+    
     private String name; // use gisFeature instead
-    private List<OldCountry> neighbourCountries = new ArrayList<OldCountry>();
+    
+    private String currencyCode;
+    
+    private String topLevelDomain;
     private String phonePrefix;
-    private Long population;
     private String postalCodeMask;
     private String postalCodeRegex;
-    private List<Language> spokenLanguages = new ArrayList<Language>();
-    private String topLevelDomain;
-
+    
+    private Long population;
+    private Double area;
+    private List<OldCountry> neighbourCountries = new ArrayList<OldCountry>();
+    private List<OldLanguage> spokenLanguages = new ArrayList<OldLanguage>();
+    
+    
     public OldCountry() {
 	super();
 
@@ -74,7 +79,7 @@ public class OldCountry implements Serializable, AdministrativeEntity {
      * 
      * @param lang
      */
-    public void addSpokenLanguage(Language lang) {
+    public void addSpokenLanguage(OldLanguage lang) {
 	this.spokenLanguages.add(lang);
     }
 
@@ -238,10 +243,10 @@ public class OldCountry implements Serializable, AdministrativeEntity {
     /**
      * All language codes spoken in this Country.
      * 
-     * @see Language
+     * @see OldLanguage
      * @return
      */
-    public List<Language> getSpokenLanguages() {
+    public List<OldLanguage> getSpokenLanguages() {
 	return this.spokenLanguages;
     }
 
