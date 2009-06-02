@@ -36,6 +36,14 @@ public class CountryTest {
 	Assert.assertNull(antarctica.getCurrency());
     }
     
+    @Test
+    public void shouldCreateCountryWithoutFipsCode() {
+	Country usOutlyingIslands = CountryObjectMother.usOutlyingIslands();
+	Assert.assertNull(usOutlyingIslands.getFipsCountryCode());
+    }
+    
+    
+    
     @Test(expected=IllegalArgumentException.class)
     public void shouldNotCreateCountryWhenNameIsNull() {
 	Country.countryName(null)
@@ -107,4 +115,6 @@ public class CountryTest {
 		.withAdministrativeCountryInformation(franceAdministrativeCountryInformation())
 		.withGeographicCountryInformation(null);
     }
+    
+    
 }
