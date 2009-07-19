@@ -9,7 +9,7 @@ public class IsoLanguageTest {
 
     @Test
     public void shouldCreateFrenchLanguage() {
-	assertEquals("IsoLanguage[name=Francais,alpha2=fr,alpha3=fra]", frenchIsoLanguage().toString());
+	assertEquals("IsoLanguage[name=Français,alpha2=fr,alpha3=fra]", frenchIsoLanguage().toString());
     }
     
     @Test
