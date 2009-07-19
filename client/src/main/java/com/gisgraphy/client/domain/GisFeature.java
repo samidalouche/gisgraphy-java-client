@@ -15,23 +15,22 @@ public final class GisFeature {
     public static final GeometryFactory GEOMETRY_FACTORY = new GeometryFactory(PRECISION_MODEL, WGS84_SRID);
     
     private Long featureId;
+    private AbstractAdministrativeEntity parentEntity;
     
-    private String name;
-    private String asciiName;
-    private List<AlternateGisFeatureName> alternateNames;
-
+    private GisFeatureName featureName;
+    
     private String featureClass;
     private String featureCode;
 
     private Geometry location;
     private Long elevation;
     private Long gtopo30AverageElevation;
+    private Long population;
+    private String timeZone;
     
     private Date lastModificationDate;
     
-    private AbstractAdministrativeEntity parentEntity;
-    private Long population;
-    private String timeZone;
+    
     
     
     @Override
