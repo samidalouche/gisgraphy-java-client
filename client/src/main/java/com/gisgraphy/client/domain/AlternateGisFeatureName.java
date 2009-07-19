@@ -29,6 +29,10 @@ public final class AlternateGisFeatureName implements Comparable<AlternateGisFea
 	this.shortName = shortName;
     }
 
+    public AlternateGisFeatureName withName(String name) {
+	return new AlternateGisFeatureName(name, this.language, this.preferred, this.shortName);
+    }
+    
     public AlternateGisFeatureName withLanguage(IsoLanguage language) {
 	return new AlternateGisFeatureName(this.name, language, this.preferred, this.shortName);
     }
@@ -77,6 +81,38 @@ public final class AlternateGisFeatureName implements Comparable<AlternateGisFea
 
     public IsoLanguage getLanguage() {
         return language;
+    }
+
+    @Override
+    public int hashCode() {
+	final int prime = 31;
+	int result = 1;
+	result = prime * result
+		+ ((language == null) ? 0 : language.hashCode());
+	result = prime * result + ((name == null) ? 0 : name.hashCode());
+	return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+	if (this == obj)
+	    return true;
+	if (obj == null)
+	    return false;
+	if (getClass() != obj.getClass())
+	    return false;
+	AlternateGisFeatureName other = (AlternateGisFeatureName) obj;
+	if (language == null) {
+	    if (other.language != null)
+		return false;
+	} else if (!language.equals(other.language))
+	    return false;
+	if (name == null) {
+	    if (other.name != null)
+		return false;
+	} else if (!name.equals(other.name))
+	    return false;
+	return true;
     }
     
 }

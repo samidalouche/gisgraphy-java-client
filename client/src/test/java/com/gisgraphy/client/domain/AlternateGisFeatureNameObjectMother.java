@@ -9,6 +9,10 @@ public class AlternateGisFeatureNameObjectMother {
 	return alternateName("Paris").withLanguage(frenchIsoLanguage()).preferred(true);
     }
     
+    public static AlternateGisFeatureName parisShortNameInFrench() {
+	return alternateName("ps").withLanguage(frenchIsoLanguage()).preferred(false).shortName(true);
+    }
+    
     public static AlternateGisFeatureName panameInFrench() {
 	return alternateName("Paname").withLanguage(frenchIsoLanguage()).preferred(false);
     }
