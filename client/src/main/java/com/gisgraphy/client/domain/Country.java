@@ -53,7 +53,7 @@ public final class Country {
     private AdministrativeCountryInformation administrativeCountryInformation = AdministrativeCountryInformation.administrativeCountryInformation();
     private GeographicCountryInformation geographicCountryInformation = GeographicCountryInformation.geographicCountryInformation();
     
-    public Country(IsoCountryCode isoCountryCode, String name, Continent continent, GisFeature gisFeature) {
+    private Country(IsoCountryCode isoCountryCode, String name, Continent continent, GisFeature gisFeature) {
 	super();
 	
 	Validate.notNull(isoCountryCode);
@@ -67,7 +67,7 @@ public final class Country {
 	this.continent = continent;
     }
     
-    public Country(IsoCountryCode isoCountryCode, String name, Continent continent, GisFeature gisFeature, Currency currency, FipsCountryCode fipsCountryCode, AdministrativeCountryInformation administrativeCountryInformation, GeographicCountryInformation geographicCountryInformation) {
+    private Country(IsoCountryCode isoCountryCode, String name, Continent continent, GisFeature gisFeature, Currency currency, FipsCountryCode fipsCountryCode, AdministrativeCountryInformation administrativeCountryInformation, GeographicCountryInformation geographicCountryInformation) {
 	this(isoCountryCode, name, continent, gisFeature);
 	this.currency = currency;
 	this.fipsCountryCode = fipsCountryCode;
