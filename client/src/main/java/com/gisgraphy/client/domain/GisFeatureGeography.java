@@ -35,10 +35,12 @@ class GisFeatureGeography {
         }
 
         public GisFeatureGeographyBuilder(final Geometry location) {
+            this();
             geography.location = location;
         }
 
         public GisFeatureGeographyBuilder(final Double x, final Double y) {
+            this();
             geography.location = GisFeature.GEOMETRY_FACTORY.createPoint(new Coordinate(x, y));
         }
 
