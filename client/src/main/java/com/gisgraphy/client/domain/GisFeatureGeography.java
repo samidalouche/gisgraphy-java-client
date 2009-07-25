@@ -7,14 +7,14 @@ import com.vividsolutions.jts.geom.Geometry;
  * @author christophe
  */
 class GisFeatureGeography {
+
     private Geometry location;
     private Long elevation;
     private Long gtopo30AverageElevation;
     private Long population;
     private String timeZone;
-    
+
     private GisFeatureGeography() {
-        
     }
 
     public static GisFeatureGeographyBuilder gisFeatureGeography(final Geometry location) {
@@ -22,6 +22,7 @@ class GisFeatureGeography {
     }
 
     private static class GisFeatureGeographyBuilder {
+
         private GisFeatureGeography geography;
 
         public GisFeatureGeographyBuilder(final Geometry location) {
@@ -52,8 +53,6 @@ class GisFeatureGeography {
         public GisFeatureGeography build() {
             return geography;
         }
-
-
     }
 
     public Long getElevation() {
@@ -75,6 +74,4 @@ class GisFeatureGeography {
     public String getTimeZone() {
         return timeZone;
     }
-
-    
 }

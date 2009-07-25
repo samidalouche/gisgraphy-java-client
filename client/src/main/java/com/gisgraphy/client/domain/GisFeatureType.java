@@ -5,6 +5,7 @@ package com.gisgraphy.client.domain;
  * @author christophe
  */
 public class GisFeatureType {
+
     private String featureClass;
     private String featureCode;
 
@@ -20,6 +21,4 @@ public class GisFeatureType {
     public String getFeatureCode() {
         return featureCode;
     }
-
-
 }
