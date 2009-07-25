@@ -1,6 +1,6 @@
 package com.gisgraphy.client.domain;
 
-import org.springframework.util.Assert;
+import org.apache.commons.lang.Validate;
 
 /**
  *
@@ -12,8 +12,8 @@ public class GisFeatureType {
     private String featureCode;
 
     public GisFeatureType(String featureClass, String featureCode) {
-        Assert.hasText(featureClass);
-        Assert.hasText(featureCode);
+        Validate.notEmpty(featureClass);
+        Validate.notEmpty(featureCode);
         this.featureClass = featureClass;
         this.featureCode = featureCode;
     }
