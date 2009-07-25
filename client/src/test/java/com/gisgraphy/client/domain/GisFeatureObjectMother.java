@@ -3,14 +3,14 @@ package com.gisgraphy.client.domain;
 public class GisFeatureObjectMother {
 
     public static GisFeature franceGisFeature() {
-	return new GisFeature();
+	throw new UnsupportedOperationException();
     }
     
     public static GisFeature antarcticaGisFeature() {
-	return new GisFeature();
+	throw new UnsupportedOperationException();
     }
     
     public static GisFeature usOutlyingIslandsGisFeature() {
-	return new GisFeature();
+	throw new UnsupportedOperationException();
     }
 }
