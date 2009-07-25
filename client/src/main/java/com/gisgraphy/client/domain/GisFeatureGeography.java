@@ -1,6 +1,7 @@
 package com.gisgraphy.client.domain;
 
 import com.vividsolutions.jts.geom.Geometry;
+import com.vividsolutions.jts.geom.Coordinate;
 
 /**
  *
@@ -21,13 +22,24 @@ class GisFeatureGeography {
         return new GisFeatureGeographyBuilder(location);
     }
 
-    private static class GisFeatureGeographyBuilder {
+    public static GisFeatureGeographyBuilder gisFeatureGeography(final Double x, final Double y) {
+        return new GisFeatureGeographyBuilder(x, y);
+    }
+
+    public static class GisFeatureGeographyBuilder {
 
         private GisFeatureGeography geography;
 
-        public GisFeatureGeographyBuilder(final Geometry location) {
+        private GisFeatureGeographyBuilder() {
             geography = new GisFeatureGeography();
+        }
+
+        public GisFeatureGeographyBuilder(final Geometry location) {
             geography.location = location;
+        }
+
+        public GisFeatureGeographyBuilder(final Double x, final Double y) {
+            geography.location = GisFeature.GEOMETRY_FACTORY.createPoint(new Coordinate(x, y));
         }
 
         public GisFeatureGeographyBuilder elevation(final Long elevation) {

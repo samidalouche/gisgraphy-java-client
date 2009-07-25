@@ -23,7 +23,7 @@ public final class GisFeature {
     private GisFeature() {
     }
 
-    private static class GisFeatureBuilder {
+    public static class GisFeatureBuilder {
 
         private GisFeature gisFeature;
 
