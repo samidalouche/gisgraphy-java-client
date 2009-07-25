@@ -12,20 +12,25 @@ public final class GisFeatureName {
 
     private String name;
     private String asciiName;
-    private ImmutableSet<AlternateGisFeatureName> alternateNames = emptySet();
+    private AlternateNamesProvider alternateNamesProvider = emptyAlternateNamesProvider();
 
     private GisFeatureName(String name) {
         this(name, null, emptySet());
     }
 
-    private GisFeatureName(String name, String asciiName, Iterable<AlternateGisFeatureName> alternateNames) {
+    
+    private GisFeatureName(String name, String asciiName, AlternateNamesProvider alternateNamesProvider) {
         super();
 
         Validate.notEmpty(name);
 
         this.name = name;
         this.asciiName = asciiName;
-        this.alternateNames = ImmutableSet.copyOf(alternateNames);
+        this.alternateNamesProvider = alternateNamesProvider;
+    }
+
+    private GisFeatureName(String name, String asciiName, Iterable<AlternateGisFeatureName> alternateNames) {
+        this(name, asciiName, new InMemoryAlternateNamesProvider(ImmutableSet.copyOf(alternateNames)));
     }
 
     public static GisFeatureName name(String name) {
@@ -33,15 +38,19 @@ public final class GisFeatureName {
     }
 
     public GisFeatureName withName(String name) {
-        return new GisFeatureName(name, this.asciiName, this.alternateNames);
+        return new GisFeatureName(name, this.asciiName, this.alternateNamesProvider);
     }
 
     public GisFeatureName withAsciiName(String asciiName) {
-        return new GisFeatureName(this.name, asciiName, this.alternateNames);
+        return new GisFeatureName(this.name, asciiName, this.alternateNamesProvider);
     }
 
     public GisFeatureName withAlternateNames(Iterable<AlternateGisFeatureName> alternateNames) {
         return new GisFeatureName(this.name, this.asciiName, alternateNames);
+    }
+    
+    public GisFeatureName withAlternateNamesProvider(AlternateNamesProvider alternateNamesProvider) {
+        return new GisFeatureName(this.name, this.asciiName, alternateNamesProvider);
     }
 
     private static ImmutableSet<AlternateGisFeatureName> emptySet() {
@@ -56,8 +65,12 @@ public final class GisFeatureName {
         return asciiName;
     }
 
+    private AlternateNamesProvider emptyAlternateNamesProvider() {
+	return new InMemoryAlternateNamesProvider(emptySet());
+    }
+    
     public ImmutableSet<AlternateGisFeatureName> getAlternateNames() {
-        return alternateNames;
+        return this.alternateNamesProvider.getAlternateNames();
     }
 
     /**
@@ -66,7 +79,7 @@ public final class GisFeatureName {
      * @return the preferred name if it exists, otherwise the default name
      */
     public String getPreferredName(final IsoLanguage language) {
-        Iterable<AlternateGisFeatureName> alternateGisFeatureNames = Iterables.filter(alternateNames, new Predicate<AlternateGisFeatureName>() {
+        Iterable<AlternateGisFeatureName> alternateGisFeatureNames = Iterables.filter(this.alternateNamesProvider.getAlternateNames(), new Predicate<AlternateGisFeatureName>() {
 
             public boolean apply(AlternateGisFeatureName input) {
                 return input.getLanguage().equals(language) && input.isPreferred();
@@ -87,7 +100,7 @@ public final class GisFeatureName {
      * @return the short name if it exists, otherwise the default name 
      */
     public String getShortName(final IsoLanguage language) {
-        Iterable<AlternateGisFeatureName> alternateGisFeatureNames = Iterables.filter(alternateNames, new Predicate<AlternateGisFeatureName>() {
+        Iterable<AlternateGisFeatureName> alternateGisFeatureNames = Iterables.filter(this.alternateNamesProvider.getAlternateNames(), new Predicate<AlternateGisFeatureName>() {
 
             public boolean apply(AlternateGisFeatureName input) {
                 return input.getLanguage().equals(language) && input.isShort();
@@ -99,6 +112,6 @@ public final class GisFeatureName {
 
     @Override
     public String toString() {
-        return new ToStringBuilder(this, ToStringStyle.SHORT_PREFIX_STYLE).append("name", this.name).append("asciiName", this.asciiName).append("alternateNames", this.alternateNames).toString();
+        return new ToStringBuilder(this, ToStringStyle.SHORT_PREFIX_STYLE).append("name", this.name).append("asciiName", this.asciiName).append("alternateNames", this.alternateNamesProvider).toString();
     }
 }

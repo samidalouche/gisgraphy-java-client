@@ -30,6 +30,12 @@ public class GisFeatureNameTest {
     }
     
     @Test
+    public void shouldNotHaveAlternateNamesByDefault() {
+	GisFeatureName rambouillet = GisFeatureNameObjectMother.rambouilletGisFeatureNameWithoutAlternateNames();
+	assertEquals(0, Iterables.size(rambouillet.getAlternateNames()));
+    }
+    
+    @Test
     public void shouldCreateGisFeatureNameWithGivenName() {
 	assertEquals("Paris2", parisGisFeatureName().withName("Paris2").getName());
     }

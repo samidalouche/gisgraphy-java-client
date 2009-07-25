@@ -1,7 +1,13 @@
 package com.gisgraphy.client.domain;
 
 import static com.gisgraphy.client.domain.AlternateGisFeatureName.alternateName;
+import static com.gisgraphy.client.domain.AlternateGisFeatureNameObjectMother.panameInFrench;
+import static com.gisgraphy.client.domain.AlternateGisFeatureNameObjectMother.parisInEnglish;
+import static com.gisgraphy.client.domain.AlternateGisFeatureNameObjectMother.parisInFrench;
+import static com.gisgraphy.client.domain.AlternateGisFeatureNameObjectMother.parisShortNameInFrench;
 import static com.gisgraphy.client.domain.IsoLanguageObjectMother.frenchIsoLanguage;
+
+import com.google.common.collect.ImmutableSet;
 
 public class AlternateGisFeatureNameObjectMother {
 
@@ -19,5 +25,13 @@ public class AlternateGisFeatureNameObjectMother {
     
     public static  AlternateGisFeatureName parisInEnglish() {
 	return alternateName("Paris").withLanguage(IsoLanguageObjectMother.englishIsoLanguage()).preferred(true);
+    }
+    
+    public static ImmutableSet<AlternateGisFeatureName> allParisAlternateNames() {
+	return ImmutableSet.of(
+		parisInFrench(), 
+		panameInFrench(), 
+		parisInEnglish(),
+		parisShortNameInFrench());
     }
 }
