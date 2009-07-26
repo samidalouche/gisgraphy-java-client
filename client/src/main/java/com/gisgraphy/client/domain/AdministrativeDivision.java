@@ -1,0 +1,133 @@
+package com.gisgraphy.client.domain;
+
+import org.apache.commons.lang.Validate;
+import org.apache.commons.lang.builder.ToStringBuilder;
+import org.apache.commons.lang.builder.ToStringStyle;
+
+import com.gisgraphy.client.domain.crap.OldGisFeature;
+
+/**
+ * <p>
+ * Represents a (sub) division of a {@link Country}. To KISS, here is an
+ * example :
+ * </p>
+ * 
+ * <p>
+ * The U.S. Country is divided into States, and each state is divided into
+ * Counties. Each state is going to be a {@link AdministrativeDivision} instance
+ * that refers to the U.S. {@link Country} as its
+ * {@link AdministrativeDivision#parentEntity}, and each state results in a
+ * {@link AdministrativeDivision} (county) that refers to its parent State ({@link AdministrativeDivision})
+ * as its {@link AdministrativeDivision#parentEntity}.
+ * </p>
+ * 
+ * <p>
+ * In France, it is the same with Régions, Départements, Cantons, Communes...
+ * </p>
+ * 
+ * @author Sami Dalouche (sami.dalouche@gmail.com)
+ */
+public final class AdministrativeDivision {
+    
+    public static class AdministrativeDivisionBuilder {
+	private String name;
+	private String code;
+	private GisFeature gisFeature;
+	private AdministrativeEntity parentEntity;
+	public AdministrativeDivisionBuilder(String name) {
+	    this.name = name;
+	}
+	
+	public AdministrativeDivisionBuilder withCode(String code) {
+	    this.code = code;
+	    return this;
+	}
+	
+	public AdministrativeDivisionBuilder withGisFeature(GisFeature gisFeature) {
+	    this.gisFeature = gisFeature;
+	    return this;
+	}
+	
+	public AdministrativeDivision andParentEntity(AdministrativeEntity administrativeEntity) {
+	    this.parentEntity = administrativeEntity;
+	    return new AdministrativeDivision(this.name, this.code, this.gisFeature, this.parentEntity);
+	}
+	
+    }
+    
+    private String name;
+    private String code;
+    private GisFeature gisFeature;
+    private AdministrativeEntity parentEntity;
+    
+    
+    public AdministrativeDivision(String name, String code, GisFeature gisFeature, AdministrativeEntity parentEntity) {
+	super();
+	Validate.notEmpty(name);
+	Validate.notEmpty(code);
+	Validate.notNull(gisFeature);
+	Validate.notNull(parentEntity);
+	
+	this.name = name;
+	this.code = code;
+	this.gisFeature = gisFeature;
+	this.parentEntity = parentEntity;
+    }
+
+    public String getName() {
+        return name;
+    }
+    
+    /**
+     * Geonames ADM code. It is relative (and unique among) to the
+     * feature Source ({@link OldGisFeature#getFeatureSource()})
+     * 
+     * For the US, it is the FIPS State/County geonamesCode
+     * http://en.wikipedia.org/wiki/List_of_FIPS_region_codes
+     * 
+     * @return Returns the geonamesCode.
+     */
+    public String getCode() {
+        return code;
+    }
+    public GisFeature getGisFeature() {
+        return gisFeature;
+    }
+    public AdministrativeEntity getParentEntity() {
+        return parentEntity;
+    }
+
+    @Override
+    public int hashCode() {
+	final int prime = 31;
+	int result = 1;
+	result = prime * result + ((code == null) ? 0 : code.hashCode());
+	return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+	if (this == obj)
+	    return true;
+	if (obj == null)
+	    return false;
+	if (getClass() != obj.getClass())
+	    return false;
+	AdministrativeDivision other = (AdministrativeDivision) obj;
+	if (code == null) {
+	    if (other.code != null)
+		return false;
+	} else if (!code.equals(other.code))
+	    return false;
+	return true;
+    }
+
+    @Override
+    public String toString() {
+	return new ToStringBuilder(this, ToStringStyle.SHORT_PREFIX_STYLE)
+		.append("code", code)
+		.append("name", name)
+		.append("gisFeature", gisFeature)
+		.append("parentEntity", parentEntity).toString();
+    }
+}
