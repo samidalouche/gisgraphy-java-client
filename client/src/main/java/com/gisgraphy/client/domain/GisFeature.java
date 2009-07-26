@@ -62,6 +62,9 @@ public final class GisFeature {
         }
 
         public GisFeature build() {
+            if (gisFeature.lastModificationDate == null) {
+                gisFeature.lastModificationDate = new DateTime();
+            }
             check();
             return gisFeature;
         }
@@ -90,7 +93,7 @@ public final class GisFeature {
         return featureId;
     }
 
-    public GisFeatureName getFeatureName() {
+    public GisFeatureName getName() {
         return featureName;
     }
 
@@ -102,11 +105,11 @@ public final class GisFeature {
         return parentEntity;
     }
 
-    public GisFeatureGeography getFeatureGeography() {
+    public GisFeatureGeography getGeography() {
         return featureGeography;
     }
 
-    public GisFeatureType getFeatureType() {
+    public GisFeatureType getType() {
         return featureType;
     }
 
