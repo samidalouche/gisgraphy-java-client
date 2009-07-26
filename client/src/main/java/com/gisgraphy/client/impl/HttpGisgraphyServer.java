@@ -1,7 +1,7 @@
 
 package com.gisgraphy.client.impl;
 
-import static com.gisgraphy.client.httpclienthelpers.DefaultHttpClientFactory.defaultHttpClient;
+import static com.sirika.httpclienthelpers.DefaultHttpClientFactory.defaultHttpClient;
 
 import org.apache.commons.lang.Validate;
 import org.apache.http.client.HttpClient;
