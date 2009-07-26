@@ -28,6 +28,15 @@ public class GisFeatureTest {
     assertEquals(france.getGeography().getLocation().getCoordinate().y, GisFeatureObjectMother.FRANCE_LATITUDE, 0.0001);
     assertNotNull(france.getLastModificationDate());
     }
+
+    public void shouldCreateGisFeature() {
+	GisFeature.gisFeature()
+            .featureId(1L)
+            .name(GisFeatureName.name("France"))
+            .type(new GisFeatureType("A", "PLCI"))
+            .geography(GisFeatureGeography.gisFeatureGeography(GisFeatureObjectMother.FRANCE_LONGITUDE, GisFeatureObjectMother.FRANCE_LATITUDE).build())
+            .build();
+    }
     
     @Test(expected=IllegalArgumentException.class)
     public void shouldNotCreateGisFeatureWithNullFeatureId() {
