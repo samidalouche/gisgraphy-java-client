@@ -37,9 +37,9 @@ public class GisFeatureObjectMother {
     public static GisFeature franceGisFeature() {
         return GisFeature.gisFeature()
                 .featureId(FRANCE_FEATURE_ID)
-                .featureName(GisFeatureName.name(FRANCE_FEATURE_NAME))
-                .featureType(new GisFeatureType(FRANCE_FEATURE_CLASS,FRANCE_FEATURE_CODE))
-                .featureGeography(
+                .name(GisFeatureName.name(FRANCE_FEATURE_NAME))
+                .type(new GisFeatureType(FRANCE_FEATURE_CLASS,FRANCE_FEATURE_CODE))
+                .geography(
                     GisFeatureGeography.gisFeatureGeography(FRANCE_LONGITUDE, FRANCE_LATITUDE)
                     .population(FRANCE_POPULATION)
                     .build())
@@ -49,9 +49,9 @@ public class GisFeatureObjectMother {
     public static GisFeature antarcticaGisFeature() {
         return GisFeature.gisFeature()
                 .featureId(ANTARCTICA_FEATURE_ID)
-                .featureName(GisFeatureName.name(ANTARCTICA_FEATURE_NAME))
-                .featureType(new GisFeatureType(ANTARCTICA_FEATURE_CLASS,ANTARCTICA_FEATURE_CODE))
-                .featureGeography(
+                .name(GisFeatureName.name(ANTARCTICA_FEATURE_NAME))
+                .type(new GisFeatureType(ANTARCTICA_FEATURE_CLASS,ANTARCTICA_FEATURE_CODE))
+                .geography(
                     GisFeatureGeography.gisFeatureGeography(ANTARCTICA_LONGITUDE,ANTARCTICA_LATITUDE)
                     .population(ANTARCTICA_POPULATION)
                     .build())
@@ -65,9 +65,9 @@ public class GisFeatureObjectMother {
     public static GisFeature usOutlyingIslandsGisFeature() {
         return GisFeature.gisFeature()
                 .featureId(US_OUTLYING_ISLANDS_FEATURE_ID)
-                .featureName(GisFeatureName.name(US_OUTLYING_ISLANDS_FEATURE_NAME))
-                .featureType(new GisFeatureType(US_OUTLYING_ISLANDS_FEATURE_CLASS,US_OUTLYING_ISLANDS_FEATURE_CODE))
-                .featureGeography(
+                .name(GisFeatureName.name(US_OUTLYING_ISLANDS_FEATURE_NAME))
+                .type(new GisFeatureType(US_OUTLYING_ISLANDS_FEATURE_CLASS,US_OUTLYING_ISLANDS_FEATURE_CODE))
+                .geography(
                     GisFeatureGeography.gisFeatureGeography(US_OUTLYING_ISLANDS_LONGITUDE, US_OUTLYING_ISLANDS_LATITUDE)
                     .population(US_OUTLYING_ISLANDS_POPULATION)
                     .gtopo30AverageElevation(US_OUTLYING_ISLANDS_GTOPO30)

@@ -41,17 +41,17 @@ public final class GisFeature {
             return this;
         }
 
-        public GisFeatureBuilder featureName(GisFeatureName featureName) {
+        public GisFeatureBuilder name(GisFeatureName featureName) {
             gisFeature.featureName = featureName;
             return this;
         }
 
-        public GisFeatureBuilder featureType(GisFeatureType featureType) {
+        public GisFeatureBuilder type(GisFeatureType featureType) {
             gisFeature.featureType = featureType;
             return this;
         }
 
-        public GisFeatureBuilder featureGeography(GisFeatureGeography geography) {
+        public GisFeatureBuilder geography(GisFeatureGeography geography) {
             gisFeature.featureGeography = geography;
             return this;
         }
