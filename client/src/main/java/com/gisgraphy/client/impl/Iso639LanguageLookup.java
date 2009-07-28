@@ -11,7 +11,8 @@ import com.google.common.collect.ImmutableMap;
 
 public class Iso639LanguageLookup implements LanguageRepository {
 	
-	private final ImmutableMap<String, IsoLanguage> ISO639MAP;
+	private final ImmutableMap<String, IsoLanguage> ISO639ALPHA3MAP;
+	private final ImmutableMap<String, IsoLanguage> ISO639ALPHA2MAP;
 
 	public Iso639LanguageLookup() throws UnsupportedEncodingException, IOException {
 		
@@ -19,7 +20,8 @@ public class Iso639LanguageLookup implements LanguageRepository {
 		try {
 			in = new BufferedReader(new InputStreamReader(this.getClass().getResourceAsStream("iso-languagecodes.txt"), "UTF8"));
 			    
-			final ImmutableMap.Builder<String, IsoLanguage> iso639LanguageBuilder = ImmutableMap.builder();
+			final ImmutableMap.Builder<String, IsoLanguage> iso639Alpha3LanguageBuilder = ImmutableMap.builder();
+			final ImmutableMap.Builder<String, IsoLanguage> iso639Alpha2LanguageBuilder = ImmutableMap.builder();
 			String line;
 			while ((line = in.readLine()) != null) {
 				String[] res = line.split("\t");
@@ -33,12 +35,15 @@ public class Iso639LanguageLookup implements LanguageRepository {
 				String languageName = res[i++];
 				IsoLanguage iso = IsoLanguage.isoLanguage(languageName).alpha3(iso639Alpha3);
 				
-				if (!iso639Alpha2.equals(""))
+				if (!iso639Alpha2.equals("")) {
 					iso = iso.alpha2(iso639Alpha2);
+					iso639Alpha2LanguageBuilder.put(iso639Alpha2, iso);
+				}
 				
-				iso639LanguageBuilder.put(iso639Alpha3, iso);
+				iso639Alpha3LanguageBuilder.put(iso639Alpha3, iso);
 			}
-			ISO639MAP = iso639LanguageBuilder.build();
+			ISO639ALPHA3MAP = iso639Alpha3LanguageBuilder.build();
+			ISO639ALPHA2MAP = iso639Alpha2LanguageBuilder.build();
 		} finally {
 			if (in != null)
 				in.close();
@@ -46,7 +51,11 @@ public class Iso639LanguageLookup implements LanguageRepository {
 	}
 	
 	public IsoLanguage findByAlpha3Code(String code) {
-		return ISO639MAP.get(code);
+		return ISO639ALPHA3MAP.get(code);
+	}
+	
+	public IsoLanguage findByAlpha2Code(String code) {
+		return ISO639ALPHA2MAP.get(code);
 	}
 	
 	/**
