@@ -2,6 +2,7 @@ package com.gisgraphy.client.domain;
 
 import com.vividsolutions.jts.geom.Geometry;
 import com.vividsolutions.jts.geom.Coordinate;
+import org.apache.commons.lang.Validate;
 import org.apache.commons.lang.builder.ToStringBuilder;
 import org.apache.commons.lang.builder.ToStringStyle;
 
@@ -38,12 +39,16 @@ class GisFeatureGeography {
 
         public GisFeatureGeographyBuilder(final Geometry location) {
             this();
+            Validate.notNull(location);
+            Validate.isTrue(location.isValid());
             geography.location = location;
         }
 
-        public GisFeatureGeographyBuilder(final Double x, final Double y) {
-            this();
-            geography.location = GisFeature.GEOMETRY_FACTORY.createPoint(new Coordinate(x, y));
+        public GisFeatureGeographyBuilder(final Double longitude, final Double latitude) {
+            //this();
+            //Validate.isTrue(-180.0 <= longitude && longitude <= 180.0);
+            //Validate.isTrue(-90.0 <= latitude && latitude <= 90.0);
+            this(GisFeature.GEOMETRY_FACTORY.createPoint(new Coordinate(longitude, latitude)));
         }
 
         public GisFeatureGeographyBuilder elevation(final Long elevation) {
