@@ -1,5 +1,7 @@
 package com.gisgraphy.client.domain;
 
+import org.joda.time.DateTime;
+import org.junit.Assert;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
@@ -27,6 +29,38 @@ public class GisFeatureTest {
             .type(new GisFeatureType("A", "PLCI"))
             .geography(GisFeatureGeography.gisFeatureGeography(GisFeatureObjectMother.FRANCE_LONGITUDE, GisFeatureObjectMother.FRANCE_LATITUDE).build())
             .build();
+    }
+
+    public void shouldCreateGisFeatureWithModificationDate() {
+	GisFeature.gisFeature()
+            .featureId(1L)
+            .name(GisFeatureName.name("France"))
+            .type(new GisFeatureType("A", "PLCI"))
+            .geography(GisFeatureGeography.gisFeatureGeography(GisFeatureObjectMother.FRANCE_LONGITUDE, GisFeatureObjectMother.FRANCE_LATITUDE).build())
+            .lastModificationDate(new DateTime())
+            .build();
+    }
+
+    public void shouldCreateGisFeatureWithNullParentEntity() {
+	GisFeature.gisFeature()
+            .featureId(1L)
+            .name(GisFeatureName.name("France"))
+            .type(new GisFeatureType("A", "PLCI"))
+            .geography(GisFeatureGeography.gisFeatureGeography(GisFeatureObjectMother.FRANCE_LONGITUDE, GisFeatureObjectMother.FRANCE_LATITUDE).build())
+            .lastModificationDate(new DateTime())
+            .parentEntity(null)
+            .build();
+    }
+
+    public void shouldCreateGisFeatureWithNullModificationDate() {
+	final GisFeature gisFeature = GisFeature.gisFeature()
+            .featureId(1L)
+            .name(GisFeatureName.name("France"))
+            .type(new GisFeatureType("A", "PLCI"))
+            .geography(GisFeatureGeography.gisFeatureGeography(GisFeatureObjectMother.FRANCE_LONGITUDE, GisFeatureObjectMother.FRANCE_LATITUDE).build())
+            .lastModificationDate(null)
+            .build();
+    Assert.assertNotNull(gisFeature.getLastModificationDate());
     }
     
     @Test(expected=IllegalArgumentException.class)
