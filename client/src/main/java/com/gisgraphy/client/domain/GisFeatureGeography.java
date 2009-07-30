@@ -2,6 +2,7 @@ package com.gisgraphy.client.domain;
 
 import com.vividsolutions.jts.geom.Geometry;
 import com.vividsolutions.jts.geom.Coordinate;
+import com.vividsolutions.jts.geom.Envelope;
 import org.apache.commons.lang.Validate;
 import org.apache.commons.lang.builder.ToStringBuilder;
 import org.apache.commons.lang.builder.ToStringStyle;
@@ -32,6 +33,7 @@ class GisFeatureGeography {
     public static class GisFeatureGeographyBuilder {
 
         private GisFeatureGeography geography;
+        public static final Geometry VALID_COORDINATE_BOUNDS = GisFeature.GEOMETRY_FACTORY.toGeometry(new Envelope(-180.0, 180.0, -90.0, 90.0));
 
         private GisFeatureGeographyBuilder() {
             geography = new GisFeatureGeography();
@@ -41,6 +43,7 @@ class GisFeatureGeography {
             this();
             Validate.notNull(location);
             Validate.isTrue(location.isValid());
+            Validate.isTrue(location.coveredBy(VALID_COORDINATE_BOUNDS));
             geography.location = location;
         }
 
