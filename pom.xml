@@ -179,19 +179,31 @@
 	</reporting>
 
 	<repositories>
-		<!--  Our own repository 
+
 		<repository>
-			<id>sirika.com-maven2</id>
-			<name>Sirika Repository</name>
-			<url>http://www.sirika.com/maven2</url>
+			<id>sirika-releases</id>
+			<name>Sirika Releases Repository</name>
+			<url>http://www.sirika.com/maven2/releases</url>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+
+		<repository>
+			<id>sirika-snapshots</id>
+			<name>Sirika Snapshots Repository</name>
+			<url>http://www.sirika.com/maven2/snapshots</url>
 			<snapshots>
 				<enabled>true</enabled>
-				<updatePolicy>daily</updatePolicy>
 			</snapshots>
-		</repository>-->
-		
-		
-		
+		</repository>
+
+		<repository>
+                        <id>geotools</id>
+                        <name>Geotools repository</name>
+                        <url>http://maven.geotools.fr/repository</url>
+                </repository>
+
 	</repositories>
 
 	<pluginRepositories/>
