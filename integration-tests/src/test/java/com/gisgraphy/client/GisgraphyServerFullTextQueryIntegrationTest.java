@@ -33,7 +33,7 @@ import org.springframework.core.io.InputStreamSource;
 import com.gisgraphy.client.impl.FullTextQuery;
 import com.gisgraphy.client.impl.FullTextQueryResult;
 import com.gisgraphy.client.impl.OutputStyle;
-import com.gisgraphy.client.parser.StaxParser;
+import com.gisgraphy.client.impl.StaxParser;
 
 public class GisgraphyServerFullTextQueryIntegrationTest extends AbstractGisgraphyClientIntegrationTestCase {
 	private static final StaxParser parser = new StaxParser();

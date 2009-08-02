@@ -1,4 +1,4 @@
-package com.gisgraphy.client.parser;
+package com.gisgraphy.client.impl;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.junit.Assert.assertThat;
@@ -13,9 +13,9 @@ import org.junit.Test;
 import org.springframework.core.io.InputStreamSource;
 
 import com.gisgraphy.client.impl.FullTextQueryResult;
-import com.gisgraphy.client.impl.FullTextSearchResultsObjectMother;
-import com.gisgraphy.client.impl.GeolocalisationQueryResultsObjectMother;
 import com.gisgraphy.client.impl.GeolocalisationResult;
+import com.gisgraphy.client.impl.StaxParser;
+
 import javax.xml.stream.XMLStreamException;
 
 public class ParserTest {

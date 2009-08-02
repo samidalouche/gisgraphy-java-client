@@ -1,4 +1,4 @@
-package com.gisgraphy.client.parser;
+package com.gisgraphy.client.impl;
 
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -11,8 +11,6 @@ import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.events.StartElement;
 import javax.xml.stream.events.XMLEvent;
 
-import com.gisgraphy.client.impl.FullTextQueryResult;
-import com.gisgraphy.client.impl.GeolocalisationResult;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import java.io.IOException;
