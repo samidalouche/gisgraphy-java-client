@@ -35,15 +35,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.io.InputStreamSource;
 
-import com.gisgraphy.client.GisgraphyClientException;
-import com.gisgraphy.client.ResourceNotExistingException;
-import com.gisgraphy.client.UnknownGisgraphyQueryException;
-import com.gisgraphy.client.UrlGenerator;
 
 class FullTextQueryInputStreamSource implements InputStreamSource {
 	private final static Logger logger = LoggerFactory.getLogger(FullTextQueryInputStreamSource.class);
 	private HttpClient httpClient;
-	private com.gisgraphy.client.UrlGenerator urlGenerator;
+	private com.gisgraphy.client.impl.UrlGenerator urlGenerator;
 	private HttpGet httpGet;
 	private FullTextQuery searchQuery;
 

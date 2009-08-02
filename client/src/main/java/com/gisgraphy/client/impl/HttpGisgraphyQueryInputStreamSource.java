@@ -38,10 +38,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.io.InputStreamSource;
 
-import com.gisgraphy.client.GisgraphyQuery;
-import com.gisgraphy.client.ResourceNotExistingException;
-import com.gisgraphy.client.UnknownGisgraphyQueryException;
-import com.gisgraphy.client.UrlGenerator;
 import com.google.common.collect.ImmutableList;
 import com.sirika.httpclienthelpers.template.AbstractHttpErrorHandler;
 import com.sirika.httpclienthelpers.template.HttpClientTemplate;

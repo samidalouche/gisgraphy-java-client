@@ -24,9 +24,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.io.InputStreamSource;
 
-import com.gisgraphy.client.GisgraphyQuery;
-import com.gisgraphy.client.UnknownGisgraphyQueryException;
-import com.gisgraphy.client.UrlGenerator;
 
 public class GisgraphyQueryCommand {
 	private static final Logger logger = LoggerFactory.getLogger(GisgraphyQueryCommand.class);

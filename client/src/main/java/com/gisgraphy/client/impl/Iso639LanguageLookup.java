@@ -5,8 +5,8 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 
-import com.gisgraphy.client.domain.IsoLanguage;
-import com.gisgraphy.client.domain.LanguageRepository;
+import com.gisgraphy.client.language.IsoLanguage;
+import com.gisgraphy.client.language.LanguageRepository;
 import com.google.common.collect.ImmutableMap;
 
 public class Iso639LanguageLookup implements LanguageRepository {

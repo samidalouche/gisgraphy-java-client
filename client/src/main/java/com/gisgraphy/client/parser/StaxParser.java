@@ -11,8 +11,8 @@ import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.events.StartElement;
 import javax.xml.stream.events.XMLEvent;
 
-import com.gisgraphy.client.domain.FullTextQueryResult;
-import com.gisgraphy.client.domain.GeolocalisationResult;
+import com.gisgraphy.client.impl.FullTextQueryResult;
+import com.gisgraphy.client.impl.GeolocalisationResult;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import java.io.IOException;

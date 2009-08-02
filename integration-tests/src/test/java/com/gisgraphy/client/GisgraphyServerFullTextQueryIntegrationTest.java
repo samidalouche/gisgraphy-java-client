@@ -30,8 +30,8 @@ import org.junit.Before;
 import org.junit.Test;
 import org.springframework.core.io.InputStreamSource;
 
-import com.gisgraphy.client.domain.FullTextQueryResult;
 import com.gisgraphy.client.impl.FullTextQuery;
+import com.gisgraphy.client.impl.FullTextQueryResult;
 import com.gisgraphy.client.impl.OutputStyle;
 import com.gisgraphy.client.parser.StaxParser;
 

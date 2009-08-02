@@ -9,9 +9,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.io.InputStreamSource;
 
-import com.gisgraphy.client.GisgraphyQuery;
-import com.gisgraphy.client.GisgraphyServer;
-import com.gisgraphy.client.UrlGenerator;
 
 public class HttpGisgraphyServer implements GisgraphyServer {
 	private static final Logger logger = LoggerFactory.getLogger(HttpGisgraphyServer.class);

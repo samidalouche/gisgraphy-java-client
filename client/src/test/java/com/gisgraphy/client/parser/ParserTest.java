@@ -12,8 +12,8 @@ import junit.framework.Assert;
 import org.junit.Test;
 import org.springframework.core.io.InputStreamSource;
 
-import com.gisgraphy.client.domain.FullTextQueryResult;
-import com.gisgraphy.client.domain.GeolocalisationResult;
+import com.gisgraphy.client.impl.FullTextQueryResult;
+import com.gisgraphy.client.impl.GeolocalisationResult;
 import com.gisgraphy.client.objectmothers.FullTextSearchResultsObjectMother;
 import com.gisgraphy.client.objectmothers.GeolocalisationQueryResultsObjectMother;
 import javax.xml.stream.XMLStreamException;

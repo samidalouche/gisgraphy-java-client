@@ -1,7 +1,5 @@
 package com.gisgraphy.client.impl;
 
-import com.gisgraphy.client.GisgraphyQuery;
-import com.gisgraphy.client.UrlGenerator;
 
 public class GeolocalisationQuery implements GisgraphyQuery {
     private Integer paginationStartIndex;

@@ -1,9 +1,9 @@
 package com.gisgraphy.client.impl;
 
-import static com.gisgraphy.client.domain.Continent.continent;
+import static com.gisgraphy.client.continent.Continent.continent;
 
-import com.gisgraphy.client.domain.Continent;
-import com.gisgraphy.client.domain.ContinentRepository;
+import com.gisgraphy.client.continent.Continent;
+import com.gisgraphy.client.continent.ContinentRepository;
 import com.google.common.collect.ImmutableMap;
 
 public class StaticContinentRepository implements ContinentRepository {

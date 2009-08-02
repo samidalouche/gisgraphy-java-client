@@ -2,8 +2,6 @@ package com.gisgraphy.client.impl;
 
 import org.springframework.util.Assert;
 
-import com.gisgraphy.client.GisgraphyQuery;
-import com.gisgraphy.client.UrlGenerator;
 
 public class FullTextQuery implements GisgraphyQuery {
     private String queryString;
