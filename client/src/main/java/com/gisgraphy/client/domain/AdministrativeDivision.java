@@ -27,7 +27,7 @@ import com.gisgraphy.client.domain.crap.OldGisFeature;
  * 
  * @author Sami Dalouche (sami.dalouche@gmail.com)
  */
-public final class AdministrativeDivision {
+public final class AdministrativeDivision implements AdministrativeEntity {
     
     public static class AdministrativeDivisionBuilder {
 	private String name;
@@ -55,13 +55,17 @@ public final class AdministrativeDivision {
 	
     }
     
+    public static AdministrativeDivisionBuilder administrativeDivision(String name) {
+	return new AdministrativeDivisionBuilder(name);
+    }
+    
     private String name;
     private String code;
     private GisFeature gisFeature;
     private AdministrativeEntity parentEntity;
     
     
-    public AdministrativeDivision(String name, String code, GisFeature gisFeature, AdministrativeEntity parentEntity) {
+    private AdministrativeDivision(String name, String code, GisFeature gisFeature, AdministrativeEntity parentEntity) {
 	super();
 	Validate.notEmpty(name);
 	Validate.notEmpty(code);
@@ -79,8 +83,7 @@ public final class AdministrativeDivision {
     }
     
     /**
-     * Geonames ADM code. It is relative (and unique among) to the
-     * feature Source ({@link OldGisFeature#getFeatureSource()})
+     * Geonames ADM code. 
      * 
      * For the US, it is the FIPS State/County geonamesCode
      * http://en.wikipedia.org/wiki/List_of_FIPS_region_codes
@@ -98,10 +101,20 @@ public final class AdministrativeDivision {
     }
 
     @Override
+    public String toString() {
+	return new ToStringBuilder(this, ToStringStyle.SHORT_PREFIX_STYLE)
+		.append("code", code)
+		.append("name", name)
+		.append("gisFeature", gisFeature)
+		.append("parentEntity", parentEntity).toString();
+    }
+
+    @Override
     public int hashCode() {
 	final int prime = 31;
 	int result = 1;
-	result = prime * result + ((code == null) ? 0 : code.hashCode());
+	result = prime * result
+		+ ((gisFeature == null) ? 0 : gisFeature.hashCode());
 	return result;
     }
 
@@ -114,20 +127,11 @@ public final class AdministrativeDivision {
 	if (getClass() != obj.getClass())
 	    return false;
 	AdministrativeDivision other = (AdministrativeDivision) obj;
-	if (code == null) {
-	    if (other.code != null)
+	if (gisFeature == null) {
+	    if (other.gisFeature != null)
 		return false;
-	} else if (!code.equals(other.code))
+	} else if (!gisFeature.equals(other.gisFeature))
 	    return false;
 	return true;
-    }
-
-    @Override
-    public String toString() {
-	return new ToStringBuilder(this, ToStringStyle.SHORT_PREFIX_STYLE)
-		.append("code", code)
-		.append("name", name)
-		.append("gisFeature", gisFeature)
-		.append("parentEntity", parentEntity).toString();
     }
 }

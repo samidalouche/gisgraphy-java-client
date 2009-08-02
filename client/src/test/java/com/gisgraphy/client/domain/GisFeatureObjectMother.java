@@ -1,5 +1,7 @@
 package com.gisgraphy.client.domain;
 
+import static com.gisgraphy.client.domain.GisFeatureGeography.gisFeatureGeography;
+
 /**
  *
  * @author christophe
@@ -73,5 +75,54 @@ public class GisFeatureObjectMother {
                     .gtopo30AverageElevation(US_OUTLYING_ISLANDS_GTOPO30)
                     .build())
                 .build();
+    }
+    
+    public static GisFeature rambouilletAdm4GisFeature() {
+	return GisFeature.gisFeature()
+		.featureId(6444057L)
+		.name(GisFeatureName.name("Rambouillet").withAsciiName("Rambouillet"))
+		.type(new GisFeatureType("A", "ADM4"))
+		.geography(
+			gisFeatureGeography(new Double("1.8333332538604736"), new Double("48.650001525878906"))
+			.population(0L)
+			.build())
+		.build();
+    }
+    
+    public static GisFeature arrondissementDeRambouilletAdm3GisFeature() {
+	return GisFeature.gisFeature()
+		.featureId(2984512L)
+		.name(GisFeatureName.name("Rambouillet").withAsciiName("Rambouillet"))
+		.type(new GisFeatureType("A", "ADM3"))
+		.geography(
+			gisFeatureGeography(new Double("1.9166667461395264"), new Double("48.58333206176758"))
+			.population(0L)
+			.build())
+		.build();
+    }
+    
+    public static GisFeature yvelinesAdm2GisFeature() {
+	return GisFeature.gisFeature()
+		.featureId(2967196L)
+		.name(GisFeatureName.name("Département des Yvelines").withAsciiName("Departement des Yvelines"))
+		.type(new GisFeatureType("A", "ADM2"))
+		.geography(
+			gisFeatureGeography(new Double("1.8666666746139526"), new Double("48.78333282470703"))
+			.population(1411761L)
+			.gtopo30AverageElevation(104L)
+			.build())
+		.build();
+    }
+    
+    public static GisFeature ileDeFranceAdm1GisFeature() {
+	return GisFeature.gisFeature()
+		.featureId(3012874L)
+		.name(GisFeatureName.name("Région Île-de-France").withAsciiName("Region Ile-de-France"))
+		.type(new GisFeatureType("A", "ADM1"))
+		.geography(
+			gisFeatureGeography(new Double("2.5"), new Double("48.5"))
+			.population(11341257L)
+			.build())
+		.build();
     }
 }

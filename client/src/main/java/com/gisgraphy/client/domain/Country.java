@@ -15,7 +15,7 @@ import com.ibm.icu.util.Currency;
  *      href="http://www.iso.org/iso/en/prods-services/popstds/countrynamecodes.html">Country Name Codes</a>
  * 
  */
-public final class Country {
+public final class Country implements AdministrativeEntity {
     public static class CountryBuilder {
 	private Continent continent;
 	private GisFeature gisFeature;

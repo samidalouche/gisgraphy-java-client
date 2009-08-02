@@ -26,8 +26,8 @@ class GisFeatureGeography {
         return new GisFeatureGeographyBuilder(location);
     }
 
-    public static GisFeatureGeographyBuilder gisFeatureGeography(final Double x, final Double y) {
-        return new GisFeatureGeographyBuilder(x, y);
+    public static GisFeatureGeographyBuilder gisFeatureGeography(final Double longitude, final Double latitude) {
+        return new GisFeatureGeographyBuilder(longitude, latitude);
     }
 
     public static class GisFeatureGeographyBuilder {
