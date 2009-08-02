@@ -38,7 +38,7 @@ public class Iso639LanguageLookup implements LanguageRepository {
 				Iso639Language iso = Iso639Language.isoLanguage(languageName).withAlpha3(iso639Alpha3);
 				
 				if (!iso639Alpha2.equals("")) {
-					iso = iso.withAlpha2(iso639Alpha2);
+					iso = iso.withAlpha2Code(iso639Alpha2);
 					iso639Alpha2LanguageBuilder.put(iso639Alpha2, iso);
 				}
 				

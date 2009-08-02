@@ -5,11 +5,11 @@ import com.gisgraphy.client.language.Iso639Language;
 public class IsoLanguageObjectMother {
 
     public static Iso639Language frenchIsoLanguage() {
-	return Iso639Language.isoLanguage("Français").withAlpha3("fra").withAlpha2("fr");
+	return Iso639Language.isoLanguage("Français").withAlpha3("fra").withAlpha2Code("fr");
     }
     
     public static Iso639Language englishIsoLanguage() {
-	return Iso639Language.isoLanguage("English").withAlpha3("eng").withAlpha2("en");
+	return Iso639Language.isoLanguage("English").withAlpha3("eng").withAlpha2Code("en");
     }
     
     public static Iso639Language ghotuo() {

@@ -29,6 +29,10 @@ public final class Iso639Language {
 	}
     }
 
+    public static LanguageBuilder isoLanguage(String languageName) {
+	return new LanguageBuilder(languageName);
+    }
+    
     private String alpha2Code;
     private String alpha3Code;
     private String name;
@@ -50,15 +54,25 @@ public final class Iso639Language {
 	this.alpha3Code = alpha3Code.toLowerCase();
     }
     
-    public static LanguageBuilder isoLanguage(String languageName) {
-	return new LanguageBuilder(languageName);
-    }
     
-    public Iso639Language withAlpha2(String iso639Alpha2LanguageCode)  {
+    
+    /**
+     * 
+     * @param iso639Alpha2LanguageCode
+     * @return
+     * @see <a href="http://en.wikipedia.org/wiki/ISO_639-1">ISO 639-1</a>
+     */
+    public Iso639Language withAlpha2Code(String iso639Alpha2LanguageCode)  {
 	    return new Iso639Language(this.name, this.alpha3Code, iso639Alpha2LanguageCode);
     }
     
-    public Iso639Language withAlpha3(String iso639Alpha3LanguageCode)  {
+    /**
+     * 
+     * @param iso639Alpha3LanguageCode
+     * @return
+     * @see <a href="http://en.wikipedia.org/wiki/ISO_639-1">ISO 639-3</a>
+     */
+    public Iso639Language withAlpha3Code(String iso639Alpha3LanguageCode)  {
 	    return new Iso639Language(this.name, iso639Alpha3LanguageCode, this.alpha2Code);
     }
     
@@ -78,7 +92,7 @@ public final class Iso639Language {
     /**
      * ISO-639-3 alpha3 code
      * @return
-     * @see <a href="http://en.wikipedia.org/wiki/ISO_639-1">ISO 639-1</a>
+     * @see <a href="http://en.wikipedia.org/wiki/ISO_639-1">ISO 639-3</a>
      */
     public String getAlpha3Code() {
         return alpha3Code;
