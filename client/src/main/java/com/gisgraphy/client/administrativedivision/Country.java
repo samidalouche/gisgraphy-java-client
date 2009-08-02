@@ -118,6 +118,22 @@ public final class Country implements AdministrativeEntity,GisFeatureAware {
         return name;
     }
 
+    public Country withIsoCountryCode(IsoCountryCode isoCountryCode) {
+	return new Country(isoCountryCode, this.name, this.continent, this.gisFeature, this.currency, this.fipsCountryCode, this.administrativeCountryInformation, this.geographicCountryInformation);
+    }
+    
+    public Country withName(String name) {
+	return new Country(this.isoCountryCode, name, this.continent, this.gisFeature, this.currency, this.fipsCountryCode, this.administrativeCountryInformation, this.geographicCountryInformation);
+    }
+    
+    public Country withContinent(Continent continent) {
+	return new Country(this.isoCountryCode, this.name, continent, this.gisFeature, this.currency, this.fipsCountryCode, this.administrativeCountryInformation, this.geographicCountryInformation);
+    }
+    
+    public Country withGisFeature(GisFeature gisFeature) {
+	return new Country(this.isoCountryCode, this.name, this.continent, gisFeature, this.currency, this.fipsCountryCode, this.administrativeCountryInformation, this.geographicCountryInformation);
+    }
+    
     public Country withAdministrativeCountryInformation(AdministrativeCountryInformation administrativeCountryInformation) {
 	Validate.notNull(administrativeCountryInformation);
 	return new Country(this.isoCountryCode, this.name, this.continent, this.gisFeature, this.currency, this.fipsCountryCode, administrativeCountryInformation, this.geographicCountryInformation);
