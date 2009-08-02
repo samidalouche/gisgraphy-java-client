@@ -169,4 +169,8 @@ public final class GisFeature implements GisFeatureAware{
     public String getGisFeatureShortName(IsoLanguage language) {
 	return featureName.getShortName(language);
     }
+
+    public GisFeature getGisFeature() {
+	return this;
+    }
 }
