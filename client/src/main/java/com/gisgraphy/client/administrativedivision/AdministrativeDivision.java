@@ -8,7 +8,7 @@ import com.gisgraphy.client.gisfeature.AdministrativeEntity;
 import com.gisgraphy.client.gisfeature.AlternateGisFeatureName;
 import com.gisgraphy.client.gisfeature.GisFeature;
 import com.gisgraphy.client.gisfeature.GisFeatureAware;
-import com.gisgraphy.client.language.IsoLanguage;
+import com.gisgraphy.client.language.Iso639Language;
 import com.google.common.collect.ImmutableSet;
 
 /**
@@ -153,11 +153,11 @@ public final class AdministrativeDivision implements AdministrativeEntity,GisFea
 	return gisFeature.getGisFeatureOriginalName();
     }
 
-    public String getGisFeaturePreferredName(IsoLanguage language) {
+    public String getGisFeaturePreferredName(Iso639Language language) {
 	return gisFeature.getGisFeaturePreferredName(language);
     }
 
-    public String getGisFeatureShortName(IsoLanguage language) {
+    public String getGisFeatureShortName(Iso639Language language) {
 	return gisFeature.getGisFeatureShortName(language);
     } 
 

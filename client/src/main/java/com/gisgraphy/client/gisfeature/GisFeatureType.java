@@ -10,38 +10,38 @@ import org.apache.commons.lang.builder.ToStringStyle;
  */
 public final class GisFeatureType {
     public static class GisFeatureTypeBuilder {
-	private String featureClass;
+	private String geonamesFeatureClass;
 
 	public GisFeatureTypeBuilder(String featureClass) {
 	    super();
-	    this.featureClass = featureClass;
+	    this.geonamesFeatureClass = featureClass;
 	}
 	
-	public GisFeatureType featureCode(String code) {
-	    return new GisFeatureType(this.featureClass, code);
+	public GisFeatureType geonamesFeatureCode(String code) {
+	    return new GisFeatureType(this.geonamesFeatureClass, code);
 	}
  	
     }
-    private String featureClass;
-    private String featureCode;
+    private String geonamesFeatureClass;
+    private String geonamesFeatureCode;
 
     public static GisFeatureTypeBuilder featureClass(String featureClass) {
 	return new GisFeatureTypeBuilder(featureClass);
     }
     
-    private GisFeatureType(String featureClass, String featureCode) {
-        Validate.notEmpty(featureClass);
-        Validate.notEmpty(featureCode);
-        this.featureClass = featureClass;
-        this.featureCode = featureCode;
+    private GisFeatureType(String geonamesFeatureClass, String geonamesFeatureCode) {
+        Validate.notEmpty(geonamesFeatureClass);
+        Validate.notEmpty(geonamesFeatureCode);
+        this.geonamesFeatureClass = geonamesFeatureClass;
+        this.geonamesFeatureCode = geonamesFeatureCode;
     }
 
-    public String getFeatureClass() {
-        return featureClass;
+    public String getGeonamesFeatureClass() {
+        return geonamesFeatureClass;
     }
 
-    public String getFeatureCode() {
-        return featureCode;
+    public String getGeonamesFeatureCode() {
+        return geonamesFeatureCode;
     }
 
     @Override
@@ -53,10 +53,10 @@ public final class GisFeatureType {
             return false;
         }
         final GisFeatureType other = (GisFeatureType) obj;
-        if ((this.featureClass == null) ? (other.featureClass != null) : !this.featureClass.equals(other.featureClass)) {
+        if ((this.geonamesFeatureClass == null) ? (other.geonamesFeatureClass != null) : !this.geonamesFeatureClass.equals(other.geonamesFeatureClass)) {
             return false;
         }
-        if ((this.featureCode == null) ? (other.featureCode != null) : !this.featureCode.equals(other.featureCode)) {
+        if ((this.geonamesFeatureCode == null) ? (other.geonamesFeatureCode != null) : !this.geonamesFeatureCode.equals(other.geonamesFeatureCode)) {
             return false;
         }
         return true;
@@ -65,13 +65,13 @@ public final class GisFeatureType {
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 37 * hash + (this.featureClass != null ? this.featureClass.hashCode() : 0);
-        hash = 37 * hash + (this.featureCode != null ? this.featureCode.hashCode() : 0);
+        hash = 37 * hash + (this.geonamesFeatureClass != null ? this.geonamesFeatureClass.hashCode() : 0);
+        hash = 37 * hash + (this.geonamesFeatureCode != null ? this.geonamesFeatureCode.hashCode() : 0);
         return hash;
     }
 
     @Override
     public String toString() {
-        return new ToStringBuilder(this, ToStringStyle.SHORT_PREFIX_STYLE).append("featureClass", this.featureClass).append("featureCode", this.featureCode).toString();
+        return new ToStringBuilder(this, ToStringStyle.SHORT_PREFIX_STYLE).append("geonamesFeatureClass", this.geonamesFeatureClass).append("geonamesFeatureCode", this.geonamesFeatureCode).toString();
     }
 }

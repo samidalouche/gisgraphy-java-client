@@ -1,18 +1,18 @@
 package com.gisgraphy.client.language;
 
-import com.gisgraphy.client.language.IsoLanguage;
+import com.gisgraphy.client.language.Iso639Language;
 
 public class IsoLanguageObjectMother {
 
-    public static IsoLanguage frenchIsoLanguage() {
-	return IsoLanguage.isoLanguage("Français").alpha3("fra").alpha2("fr");
+    public static Iso639Language frenchIsoLanguage() {
+	return Iso639Language.isoLanguage("Français").withAlpha3("fra").withAlpha2("fr");
     }
     
-    public static IsoLanguage englishIsoLanguage() {
-	return IsoLanguage.isoLanguage("English").alpha3("eng").alpha2("en");
+    public static Iso639Language englishIsoLanguage() {
+	return Iso639Language.isoLanguage("English").withAlpha3("eng").withAlpha2("en");
     }
     
-    public static IsoLanguage ghotuo() {
-	return IsoLanguage.isoLanguage("Ghotuo").alpha3("aaa");
+    public static Iso639Language ghotuo() {
+	return Iso639Language.isoLanguage("Ghotuo").withAlpha3("aaa");
     }
 }

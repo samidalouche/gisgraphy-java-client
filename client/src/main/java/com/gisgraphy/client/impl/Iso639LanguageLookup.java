@@ -5,14 +5,14 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 
-import com.gisgraphy.client.language.IsoLanguage;
+import com.gisgraphy.client.language.Iso639Language;
 import com.gisgraphy.client.language.LanguageRepository;
 import com.google.common.collect.ImmutableMap;
 
 public class Iso639LanguageLookup implements LanguageRepository {
 	
-	private final ImmutableMap<String, IsoLanguage> ISO639ALPHA3MAP;
-	private final ImmutableMap<String, IsoLanguage> ISO639ALPHA2MAP;
+	private final ImmutableMap<String, Iso639Language> ISO639ALPHA3MAP;
+	private final ImmutableMap<String, Iso639Language> ISO639ALPHA2MAP;
 
 	public Iso639LanguageLookup() throws UnsupportedEncodingException, IOException {
 		
@@ -20,8 +20,8 @@ public class Iso639LanguageLookup implements LanguageRepository {
 		try {
 			in = new BufferedReader(new InputStreamReader(this.getClass().getResourceAsStream("iso-languagecodes.txt"), "UTF8"));
 			    
-			final ImmutableMap.Builder<String, IsoLanguage> iso639Alpha3LanguageBuilder = ImmutableMap.builder();
-			final ImmutableMap.Builder<String, IsoLanguage> iso639Alpha2LanguageBuilder = ImmutableMap.builder();
+			final ImmutableMap.Builder<String, Iso639Language> iso639Alpha3LanguageBuilder = ImmutableMap.builder();
+			final ImmutableMap.Builder<String, Iso639Language> iso639Alpha2LanguageBuilder = ImmutableMap.builder();
 			String line;
 			// Skip the first line, which contains header informatiion
 			in.readLine();
@@ -35,10 +35,10 @@ public class Iso639LanguageLookup implements LanguageRepository {
 				// which are fucked by nature
 				String iso639Alpha2 = res[i++];
 				String languageName = res[i++];
-				IsoLanguage iso = IsoLanguage.isoLanguage(languageName).alpha3(iso639Alpha3);
+				Iso639Language iso = Iso639Language.isoLanguage(languageName).withAlpha3(iso639Alpha3);
 				
 				if (!iso639Alpha2.equals("")) {
-					iso = iso.alpha2(iso639Alpha2);
+					iso = iso.withAlpha2(iso639Alpha2);
 					iso639Alpha2LanguageBuilder.put(iso639Alpha2, iso);
 				}
 				
@@ -52,11 +52,11 @@ public class Iso639LanguageLookup implements LanguageRepository {
 		}
 	}
 	
-	public IsoLanguage findByAlpha3Code(String code) {
+	public Iso639Language findByAlpha3Code(String code) {
 		return ISO639ALPHA3MAP.get(code);
 	}
 	
-	public IsoLanguage findByAlpha2Code(String code) {
+	public Iso639Language findByAlpha2Code(String code) {
 		return ISO639ALPHA2MAP.get(code);
 	}
 	

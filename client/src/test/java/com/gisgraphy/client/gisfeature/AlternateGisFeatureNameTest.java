@@ -49,7 +49,7 @@ public class AlternateGisFeatureNameTest {
     @Test
     public void toStringShouldNotBePathetic() {
 	AlternateGisFeatureName alternateName = parisInFrench();
-	Assert.assertEquals("AlternateGisFeatureName[name=Paris,language=IsoLanguage[name=Français,alpha2=fr,alpha3=fra],preferred=true,short=false]", alternateName.toString());
+	Assert.assertEquals("AlternateGisFeatureName[name=Paris,language=Iso639Language[name=Français,alpha2=fr,alpha3=fra],preferred=true,short=false]", alternateName.toString());
     }
     
     @Test(expected=IllegalArgumentException.class)

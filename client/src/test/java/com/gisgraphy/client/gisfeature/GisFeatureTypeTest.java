@@ -7,21 +7,21 @@ import org.junit.Test;
 public class GisFeatureTypeTest {
     @Test(expected=IllegalArgumentException.class)
     public void shouldNotCreateGisFeatureTypeWithNullFeatureClass() {
-	featureClass(null).featureCode("ADM2");
+	featureClass(null).geonamesFeatureCode("ADM2");
     }
 
     @Test(expected=IllegalArgumentException.class)
     public void shouldNotCreateGisFeatureTypeWithEmptyFeatureClass() {
-	featureClass("").featureCode("ADM2");
+	featureClass("").geonamesFeatureCode("ADM2");
     }
 
     @Test(expected=IllegalArgumentException.class)
     public void shouldNotCreateGisFeatureTypeWithNullFeatureCode() {
-	featureClass("A").featureCode(null);
+	featureClass("A").geonamesFeatureCode(null);
     }
 
     @Test(expected=IllegalArgumentException.class)
     public void shouldNotCreateGisFeatureTypeWithEmptyFeatureCode() {
-	featureClass("A").featureCode("");
+	featureClass("A").geonamesFeatureCode("");
     }
 }

@@ -3,7 +3,7 @@ package com.gisgraphy.client.administrativedivision;
 import org.apache.commons.lang.builder.ToStringBuilder;
 import org.apache.commons.lang.builder.ToStringStyle;
 
-import com.gisgraphy.client.language.IsoLanguage;
+import com.gisgraphy.client.language.Iso639Language;
 import com.google.common.collect.ImmutableList;
 
 public final class AdministrativeCountryInformation {
@@ -11,11 +11,11 @@ public final class AdministrativeCountryInformation {
     private String phonePrefix;
     private String postalCodeMask;
     private String postalCodeRegex;
-    private ImmutableList<IsoLanguage> spokenLanguages = ImmutableList.of();
+    private ImmutableList<Iso639Language> spokenLanguages = ImmutableList.of();
     
     private AdministrativeCountryInformation() {}
     
-    private AdministrativeCountryInformation(String topLevelDomain, String phonePrefix, String postalCodeMask, String postalCodeRegex, Iterable<IsoLanguage> spokenLanguages) {
+    private AdministrativeCountryInformation(String topLevelDomain, String phonePrefix, String postalCodeMask, String postalCodeRegex, Iterable<Iso639Language> spokenLanguages) {
 	super();
 	this.topLevelDomain = topLevelDomain;
 	this.phonePrefix = phonePrefix;
@@ -44,7 +44,7 @@ public final class AdministrativeCountryInformation {
 	return new AdministrativeCountryInformation(this.topLevelDomain, this.phonePrefix, this.postalCodeMask, postalCodeRegex, this.spokenLanguages);
     }
     
-    public AdministrativeCountryInformation withSpokenLanguages(Iterable<IsoLanguage> spokenLanguages) {
+    public AdministrativeCountryInformation withSpokenLanguages(Iterable<Iso639Language> spokenLanguages) {
 	return new AdministrativeCountryInformation(this.topLevelDomain, this.phonePrefix, this.postalCodeMask, postalCodeRegex, spokenLanguages);
     }
 
@@ -64,7 +64,7 @@ public final class AdministrativeCountryInformation {
         return postalCodeRegex;
     }
 
-    public ImmutableList<IsoLanguage> getSpokenLanguages() {
+    public ImmutableList<Iso639Language> getSpokenLanguages() {
         return spokenLanguages;
     }
 

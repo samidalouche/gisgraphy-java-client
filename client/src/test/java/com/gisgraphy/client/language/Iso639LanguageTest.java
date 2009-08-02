@@ -6,15 +6,15 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 
 
-public class IsoLanguageTest {
+public class Iso639LanguageTest {
 
     @Test
     public void shouldCreateFrenchLanguage() {
-	assertEquals("IsoLanguage[name=Français,alpha2=fr,alpha3=fra]", frenchIsoLanguage().toString());
+	assertEquals("Iso639Language[name=Français,alpha2=fr,alpha3=fra]", frenchIsoLanguage().toString());
     }
     
     @Test
     public void shouldCreateLanguageThatDoesNotHaveAnyAlpha2Code() {
-	assertEquals("IsoLanguage[name=Ghotuo,alpha2=<null>,alpha3=aaa]", IsoLanguageObjectMother.ghotuo().toString());
+	assertEquals("Iso639Language[name=Ghotuo,alpha2=<null>,alpha3=aaa]", IsoLanguageObjectMother.ghotuo().toString());
     }
 }

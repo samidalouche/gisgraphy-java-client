@@ -5,7 +5,7 @@ import org.apache.commons.lang.builder.ToStringBuilder;
 import org.apache.commons.lang.builder.ToStringStyle;
 
 import com.gisgraphy.client.impl.InMemoryAlternateNamesProvider;
-import com.gisgraphy.client.language.IsoLanguage;
+import com.gisgraphy.client.language.Iso639Language;
 import com.google.common.base.Predicate;
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Iterables;
@@ -80,7 +80,7 @@ public final class GisFeatureName {
      * @param language
      * @return the preferred name if it exists, otherwise the default name
      */
-    public String getPreferredName(final IsoLanguage language) {
+    public String getPreferredName(final Iso639Language language) {
         Iterable<AlternateGisFeatureName> alternateGisFeatureNames = Iterables.filter(this.alternateNamesProvider.getAlternateNames(), new Predicate<AlternateGisFeatureName>() {
 
             public boolean apply(AlternateGisFeatureName input) {
@@ -101,7 +101,7 @@ public final class GisFeatureName {
      * @param language
      * @return the short name if it exists, otherwise the default name 
      */
-    public String getShortName(final IsoLanguage language) {
+    public String getShortName(final Iso639Language language) {
         Iterable<AlternateGisFeatureName> alternateGisFeatureNames = Iterables.filter(this.alternateNamesProvider.getAlternateNames(), new Predicate<AlternateGisFeatureName>() {
 
             public boolean apply(AlternateGisFeatureName input) {

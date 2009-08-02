@@ -4,12 +4,12 @@ import org.apache.commons.lang.Validate;
 import org.apache.commons.lang.builder.ToStringBuilder;
 import org.apache.commons.lang.builder.ToStringStyle;
 
-import com.gisgraphy.client.language.IsoLanguage;
+import com.gisgraphy.client.language.Iso639Language;
 
 public final class AlternateGisFeatureName implements Comparable<AlternateGisFeatureName>{
     
     private String name;
-    private IsoLanguage language;
+    private Iso639Language language;
     private boolean preferred = false;
     private boolean shortName = false;
 
@@ -21,7 +21,7 @@ public final class AlternateGisFeatureName implements Comparable<AlternateGisFea
 	this(name, null, false, false);
     }
     
-    private AlternateGisFeatureName(String name, IsoLanguage language, boolean preferred, boolean shortName) {
+    private AlternateGisFeatureName(String name, Iso639Language language, boolean preferred, boolean shortName) {
 	super();
 	Validate.notEmpty(name);
 	
@@ -35,7 +35,7 @@ public final class AlternateGisFeatureName implements Comparable<AlternateGisFea
 	return new AlternateGisFeatureName(name, this.language, this.preferred, this.shortName);
     }
     
-    public AlternateGisFeatureName withLanguage(IsoLanguage language) {
+    public AlternateGisFeatureName withLanguage(Iso639Language language) {
 	return new AlternateGisFeatureName(this.name, language, this.preferred, this.shortName);
     }
     
@@ -81,7 +81,7 @@ public final class AlternateGisFeatureName implements Comparable<AlternateGisFea
 		.append("short", this.shortName).toString();
     }
 
-    public IsoLanguage getLanguage() {
+    public Iso639Language getLanguage() {
         return language;
     }
 

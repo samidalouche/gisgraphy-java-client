@@ -50,9 +50,9 @@ public class GisFeatureObjectMother {
      */
     public static GisFeature franceGisFeature() {
         return gisFeature()
-                .featureId(FRANCE_FEATURE_ID)
+                .geonamesId(FRANCE_FEATURE_ID)
                 .name(gisFeatureName(FRANCE_FEATURE_NAME))
-                .type(featureClass(FRANCE_FEATURE_CLASS).featureCode(FRANCE_FEATURE_CODE))
+                .type(featureClass(FRANCE_FEATURE_CLASS).geonamesFeatureCode(FRANCE_FEATURE_CODE))
                 .geography(
                     GisFeatureGeography.gisFeatureGeography(FRANCE_LONGITUDE, FRANCE_LATITUDE)
                     .withPopulation(FRANCE_POPULATION))
@@ -61,9 +61,9 @@ public class GisFeatureObjectMother {
 
     public static GisFeature antarcticaGisFeature() {
         return gisFeature()
-                .featureId(ANTARCTICA_FEATURE_ID)
+                .geonamesId(ANTARCTICA_FEATURE_ID)
                 .name(gisFeatureName(ANTARCTICA_FEATURE_NAME))
-                .type(featureClass(ANTARCTICA_FEATURE_CLASS).featureCode(ANTARCTICA_FEATURE_CODE))
+                .type(featureClass(ANTARCTICA_FEATURE_CLASS).geonamesFeatureCode(ANTARCTICA_FEATURE_CODE))
                 .geography(
                     GisFeatureGeography.gisFeatureGeography(ANTARCTICA_LONGITUDE,ANTARCTICA_LATITUDE)
                     .withPopulation(ANTARCTICA_POPULATION))
@@ -76,9 +76,9 @@ public class GisFeatureObjectMother {
      */
     public static GisFeature usOutlyingIslandsGisFeature() {
         return gisFeature()
-                .featureId(US_OUTLYING_ISLANDS_FEATURE_ID)
+                .geonamesId(US_OUTLYING_ISLANDS_FEATURE_ID)
                 .name(gisFeatureName(US_OUTLYING_ISLANDS_FEATURE_NAME))
-                .type(featureClass(US_OUTLYING_ISLANDS_FEATURE_CLASS).featureCode(US_OUTLYING_ISLANDS_FEATURE_CODE))
+                .type(featureClass(US_OUTLYING_ISLANDS_FEATURE_CLASS).geonamesFeatureCode(US_OUTLYING_ISLANDS_FEATURE_CODE))
                 .geography(
                     GisFeatureGeography.gisFeatureGeography(US_OUTLYING_ISLANDS_LONGITUDE, US_OUTLYING_ISLANDS_LATITUDE)
                     .withPopulation(US_OUTLYING_ISLANDS_POPULATION)
@@ -88,10 +88,10 @@ public class GisFeatureObjectMother {
     
     public static GisFeature rambouilletAdm4GisFeature() {
 	return gisFeature()
-		.featureId(6444057L)
+		.geonamesId(6444057L)
 		.name(gisFeatureName("Rambouillet").withAsciiName("Rambouillet"))
-		.type(featureClass("A").featureCode("ADM4"))
-		.parentEntity(arrondissementDeRambouilletAdm3())
+		.type(featureClass("A").geonamesFeatureCode("ADM4"))
+		.parentAdministrativeEntity(arrondissementDeRambouilletAdm3())
 		.geography(
 			gisFeatureGeography(new Double("1.8333332538604736"), new Double("48.650001525878906"))
 			.withPopulation(0L))
@@ -100,10 +100,10 @@ public class GisFeatureObjectMother {
     
     public static GisFeature arrondissementDeRambouilletAdm3GisFeature() {
 	return gisFeature()
-		.featureId(2984512L)
+		.geonamesId(2984512L)
 		.name(gisFeatureName("Rambouillet").withAsciiName("Rambouillet"))
-		.type(featureClass("A").featureCode("ADM3"))
-		.parentEntity(yvelinesAdm2())
+		.type(featureClass("A").geonamesFeatureCode("ADM3"))
+		.parentAdministrativeEntity(yvelinesAdm2())
 		.geography(
 			gisFeatureGeography(new Double("1.9166667461395264"), new Double("48.58333206176758"))
 			.withPopulation(0L))
@@ -112,10 +112,10 @@ public class GisFeatureObjectMother {
     
     public static GisFeature yvelinesAdm2GisFeature() {
 	return gisFeature()
-		.featureId(2967196L)
+		.geonamesId(2967196L)
 		.name(gisFeatureName("Département des Yvelines").withAsciiName("Departement des Yvelines"))
-		.type(featureClass("A").featureCode("ADM2"))
-		.parentEntity(ileDeFranceAdm1())
+		.type(featureClass("A").geonamesFeatureCode("ADM2"))
+		.parentAdministrativeEntity(ileDeFranceAdm1())
 		.geography(
 			gisFeatureGeography(new Double("1.8666666746139526"), new Double("48.78333282470703"))
 			.withPopulation(1411761L)
@@ -125,10 +125,10 @@ public class GisFeatureObjectMother {
     
     public static GisFeature ileDeFranceAdm1GisFeature() {
 	return gisFeature()
-		.featureId(3012874L)
+		.geonamesId(3012874L)
 		.name(gisFeatureName("Région Île-de-France").withAsciiName("Region Ile-de-France"))
-		.type(featureClass("A").featureCode("ADM1"))
-		.parentEntity(france())
+		.type(featureClass("A").geonamesFeatureCode("ADM1"))
+		.parentAdministrativeEntity(france())
 		.geography(
 			gisFeatureGeography(new Double("2.5"), new Double("48.5"))
 			.withPopulation(11341257L))

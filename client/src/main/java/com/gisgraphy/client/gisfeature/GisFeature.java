@@ -5,7 +5,7 @@ import org.apache.commons.lang.builder.ToStringStyle;
 import org.joda.time.DateTime;
 import org.springframework.util.Assert;
 
-import com.gisgraphy.client.language.IsoLanguage;
+import com.gisgraphy.client.language.Iso639Language;
 import com.google.common.collect.ImmutableSet;
 import com.vividsolutions.jts.geom.GeometryFactory;
 import com.vividsolutions.jts.geom.PrecisionModel;
@@ -15,11 +15,11 @@ public final class GisFeature implements GisFeatureAware{
     public static final int WGS84_SRID = 4326;
     public static final PrecisionModel PRECISION_MODEL = new PrecisionModel(PrecisionModel.FLOATING);
     public static final GeometryFactory GEOMETRY_FACTORY = new GeometryFactory(PRECISION_MODEL, WGS84_SRID);
-    private Long featureId;
+    private Long geonamesId;
+    private GisFeatureName name;
+    private GisFeatureType type;
     private AdministrativeEntity parentAdministrativeEntity;
-    private GisFeatureName featureName;
-    private GisFeatureType featureType;
-    private GisFeatureGeography featureGeography;
+    private GisFeatureGeography geography;
     private DateTime lastModificationDate;
 
     private GisFeature() {
@@ -33,28 +33,28 @@ public final class GisFeature implements GisFeatureAware{
             gisFeature = new GisFeature();
         }
 
-        public GisFeatureBuilder featureId(Long featureId) {
-            gisFeature.featureId = featureId;
+        public GisFeatureBuilder geonamesId(Long featureId) {
+            gisFeature.geonamesId = featureId;
             return this;
         }
 
-        public GisFeatureBuilder parentEntity(AdministrativeEntity parentEntity) {
+        public GisFeatureBuilder parentAdministrativeEntity(AdministrativeEntity parentEntity) {
             gisFeature.parentAdministrativeEntity = parentEntity;
             return this;
         }
 
         public GisFeatureBuilder name(GisFeatureName featureName) {
-            gisFeature.featureName = featureName;
+            gisFeature.name = featureName;
             return this;
         }
 
         public GisFeatureBuilder type(GisFeatureType featureType) {
-            gisFeature.featureType = featureType;
+            gisFeature.type = featureType;
             return this;
         }
 
         public GisFeatureBuilder geography(GisFeatureGeography geography) {
-            gisFeature.featureGeography = geography;
+            gisFeature.geography = geography;
             return this;
         }
 
@@ -68,14 +68,20 @@ public final class GisFeature implements GisFeatureAware{
                 gisFeature.lastModificationDate = new DateTime();
             }
             check();
-            return gisFeature;
+            return returnAndNullify();
         }
 
+	private GisFeature returnAndNullify() {
+	    GisFeature toReturn = gisFeature;
+            this.gisFeature = null;
+	    return toReturn;
+	}
+
         private void check() {
-            Assert.notNull(gisFeature.featureId);
-            Assert.notNull(gisFeature.featureGeography);
-            Assert.notNull(gisFeature.featureName);
-            Assert.notNull(gisFeature.featureType);
+            Assert.notNull(gisFeature.geonamesId);
+            Assert.notNull(gisFeature.geography);
+            Assert.notNull(gisFeature.name);
+            Assert.notNull(gisFeature.type);
         }
     }
 
@@ -83,20 +89,24 @@ public final class GisFeature implements GisFeatureAware{
         return new GisFeatureBuilder();
     }
 
-    public String getFeatureClass() {
-        return featureType.getFeatureClass();
+    public String getGeonamesFeatureClass() {
+        return type.getGeonamesFeatureClass();
     }
 
-    public String getFeatureCode() {
-        return featureType.getFeatureCode();
+    public String getGeonamesFeatureCode() {
+        return type.getGeonamesFeatureCode();
     }
 
-    public Long getFeatureId() {
-        return featureId;
+    /**
+     * the public, stable, Geoname feature ID
+     * @return
+     */
+    public Long getGeonameId() {
+        return geonamesId;
     }
 
     public GisFeatureName getName() {
-        return featureName;
+        return name;
     }
 
     public DateTime getLastModificationDate() {
@@ -108,18 +118,18 @@ public final class GisFeature implements GisFeatureAware{
     }
 
     public GisFeatureGeography getGeography() {
-        return featureGeography;
+        return geography;
     }
 
     public GisFeatureType getType() {
-        return featureType;
+        return type;
     }
 
     @Override
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result + ((featureId == null) ? 0 : featureId.hashCode());
+        result = prime * result + ((geonamesId == null) ? 0 : geonamesId.hashCode());
         return result;
     }
 
@@ -135,11 +145,11 @@ public final class GisFeature implements GisFeatureAware{
             return false;
         }
         GisFeature other = (GisFeature) obj;
-        if (featureId == null) {
-            if (other.featureId != null) {
+        if (geonamesId == null) {
+            if (other.geonamesId != null) {
                 return false;
             }
-        } else if (!featureId.equals(other.featureId)) {
+        } else if (!geonamesId.equals(other.geonamesId)) {
             return false;
         }
         return true;
@@ -147,27 +157,27 @@ public final class GisFeature implements GisFeatureAware{
 
     @Override
     public String toString() {
-        return new ToStringBuilder(this, ToStringStyle.SHORT_PREFIX_STYLE).append("featureId", this.featureId).append("featureName", this.featureName).append("featureType", this.featureType).append("featureGeograhy", this.featureGeography).append("lastModificationDate", this.lastModificationDate).append("parentEntity", this.parentAdministrativeEntity).toString();
+        return new ToStringBuilder(this, ToStringStyle.SHORT_PREFIX_STYLE).append("featureId", this.geonamesId).append("featureName", this.name).append("featureType", this.type).append("featureGeograhy", this.geography).append("lastModificationDate", this.lastModificationDate).append("parentEntity", this.parentAdministrativeEntity).toString();
     }
 
     public ImmutableSet<AlternateGisFeatureName> getGisFeatureAlternateNames() {
-	return featureName.getAlternateNames();
+	return name.getAlternateNames();
     }
 
     public String getGisFeatureAsciiName() {
-	return featureName.getAsciiName();
+	return name.getAsciiName();
     }
 
     public String getGisFeatureOriginalName() {
-	return featureName.getName();
+	return name.getName();
     }
 
-    public String getGisFeaturePreferredName(IsoLanguage language) {
-	return featureName.getPreferredName(language);
+    public String getGisFeaturePreferredName(Iso639Language language) {
+	return name.getPreferredName(language);
     }
 
-    public String getGisFeatureShortName(IsoLanguage language) {
-	return featureName.getShortName(language);
+    public String getGisFeatureShortName(Iso639Language language) {
+	return name.getShortName(language);
     }
 
     public GisFeature getGisFeature() {
