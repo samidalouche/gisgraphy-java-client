@@ -39,7 +39,6 @@ public final class AdministrativeDivision implements AdministrativeEntity,GisFea
 	private String name;
 	private String code;
 	private GisFeature gisFeature;
-	private AdministrativeEntity parentEntity;
 	public AdministrativeDivisionBuilder(String name) {
 	    this.name = name;
 	}
@@ -49,14 +48,9 @@ public final class AdministrativeDivision implements AdministrativeEntity,GisFea
 	    return this;
 	}
 	
-	public AdministrativeDivisionBuilder withGisFeature(GisFeature gisFeature) {
+	public AdministrativeDivision andGisFeature(GisFeature gisFeature) {
 	    this.gisFeature = gisFeature;
-	    return this;
-	}
-	
-	public AdministrativeDivision andParentEntity(AdministrativeEntity administrativeEntity) {
-	    this.parentEntity = administrativeEntity;
-	    return new AdministrativeDivision(this.name, this.code, this.gisFeature, this.parentEntity);
+	    return new AdministrativeDivision(this.name, this.code, this.gisFeature);
 	}
 	
     }
@@ -68,20 +62,18 @@ public final class AdministrativeDivision implements AdministrativeEntity,GisFea
     private String name;
     private String code;
     private GisFeature gisFeature;
-    private AdministrativeEntity parentEntity;
     
     
-    private AdministrativeDivision(String name, String code, GisFeature gisFeature, AdministrativeEntity parentEntity) {
+    private AdministrativeDivision(String name, String code, GisFeature gisFeature) {
 	super();
 	Validate.notEmpty(name);
 	Validate.notEmpty(code);
 	Validate.notNull(gisFeature);
-	Validate.notNull(parentEntity);
+	Validate.notNull(gisFeature.getParentAdministrativeEntity());
 	
 	this.name = name;
 	this.code = code;
 	this.gisFeature = gisFeature;
-	this.parentEntity = parentEntity;
     }
 
     public String getName() {
@@ -103,7 +95,7 @@ public final class AdministrativeDivision implements AdministrativeEntity,GisFea
         return gisFeature;
     }
     public AdministrativeEntity getParentEntity() {
-        return parentEntity;
+        return gisFeature.getParentAdministrativeEntity();
     }
 
     @Override
@@ -112,7 +104,7 @@ public final class AdministrativeDivision implements AdministrativeEntity,GisFea
 		.append("code", code)
 		.append("name", name)
 		.append("gisFeature", gisFeature)
-		.append("parentEntity", parentEntity).toString();
+		.toString();
     }
 
     @Override
@@ -142,11 +134,11 @@ public final class AdministrativeDivision implements AdministrativeEntity,GisFea
     }
 
     public int getAdminitrativeDivisionLevel() {
-	return parentEntity.getAdminitrativeDivisionLevel()+1;
+	return getParentAdministrativeEntity().getAdminitrativeDivisionLevel()+1;
     }
 
-    public AdministrativeEntity getParentAdminitrativeEntity() {
-	return parentEntity;
+    public AdministrativeEntity getParentAdministrativeEntity() {
+	return gisFeature.getParentAdministrativeEntity();
     }
     
 
@@ -168,7 +160,6 @@ public final class AdministrativeDivision implements AdministrativeEntity,GisFea
 
     public String getGisFeatureShortName(IsoLanguage language) {
 	return gisFeature.getGisFeatureShortName(language);
-    }
-    
+    } 
 
 }

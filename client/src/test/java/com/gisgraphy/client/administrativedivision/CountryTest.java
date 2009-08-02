@@ -122,7 +122,7 @@ public class CountryTest {
     }
     
     @Test public void parentAdministrativeEntityShouldBeNull() {
-	Assert.assertNull(france().getParentAdminitrativeEntity());
+	Assert.assertNull(france().getParentAdministrativeEntity());
     }
     
 }

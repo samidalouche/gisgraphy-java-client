@@ -7,5 +7,5 @@ public interface AdministrativeEntity {
      */
     int getAdminitrativeDivisionLevel();
     
-    AdministrativeEntity getParentAdminitrativeEntity();
+    AdministrativeEntity getParentAdministrativeEntity();
 }

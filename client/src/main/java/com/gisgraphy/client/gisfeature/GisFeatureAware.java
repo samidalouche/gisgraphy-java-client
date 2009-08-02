@@ -24,5 +24,7 @@ public interface GisFeatureAware {
      * @return the short name if it exists, otherwise the default name 
      */
     String getGisFeatureShortName(final IsoLanguage language);
+    
+    AdministrativeEntity getParentAdministrativeEntity();
 
 }

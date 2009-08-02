@@ -140,7 +140,7 @@ public final class Country implements AdministrativeEntity,GisFeatureAware {
 	return 0;
     }
 
-    public AdministrativeEntity getParentAdminitrativeEntity() {
+    public AdministrativeEntity getParentAdministrativeEntity() {
 	return null;
     }
 

@@ -2,7 +2,6 @@ package com.gisgraphy.client.administrativedivision;
 
 import static com.gisgraphy.client.administrativedivision.AdministrativeDivision.administrativeDivision;
 import static com.gisgraphy.client.administrativedivision.AdministrativeDivisionObjectMother.arrondissementDeRambouilletAdm3;
-import static com.gisgraphy.client.administrativedivision.CountryObjectMother.france;
 import static com.gisgraphy.client.gisfeature.GisFeatureObjectMother.arrondissementDeRambouilletAdm3GisFeature;
 import static com.gisgraphy.client.gisfeature.GisFeatureObjectMother.rambouilletAdm4GisFeature;
 import static org.junit.Assert.assertEquals;
@@ -11,8 +10,6 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Assert;
 import org.junit.Test;
-
-import com.gisgraphy.client.administrativedivision.AdministrativeDivision;
 
 public class AdministrativeDivisionTest {
 
@@ -29,61 +26,47 @@ public class AdministrativeDivisionTest {
     public void shouldNotCreateAdministrativeDivisionWithNullName() {
 	administrativeDivision(null)
 		.withCode("78517")
-		.withGisFeature(rambouilletAdm4GisFeature())
-		.andParentEntity(arrondissementDeRambouilletAdm3());
+		.andGisFeature(rambouilletAdm4GisFeature());
     }
     
     @Test(expected=IllegalArgumentException.class)
     public void shouldNotCreateAdministrativeDivisionWithEmptyName() {
 	administrativeDivision("")
 		.withCode("78517")
-		.withGisFeature(rambouilletAdm4GisFeature())
-		.andParentEntity(arrondissementDeRambouilletAdm3());
+		.andGisFeature(rambouilletAdm4GisFeature());
     }
     
     @Test(expected=IllegalArgumentException.class)
     public void shouldNotCreateAdministrativeDivisionWithNullCode() {
 	administrativeDivision("Rambouillet")
 		.withCode(null)
-		.withGisFeature(rambouilletAdm4GisFeature())
-		.andParentEntity(arrondissementDeRambouilletAdm3());
+		.andGisFeature(rambouilletAdm4GisFeature());
     }
     
     @Test(expected=IllegalArgumentException.class)
     public void shouldNotCreateAdministrativeDivisionWithEmptyCode() {
 	administrativeDivision("Rambouillet")
 		.withCode("")
-		.withGisFeature(rambouilletAdm4GisFeature())
-		.andParentEntity(arrondissementDeRambouilletAdm3());
+		.andGisFeature(rambouilletAdm4GisFeature());
     }
     
     @Test(expected=IllegalArgumentException.class)
     public void shouldNotCreateAdministrativeDivisionWithNullGisFeature() {
 	administrativeDivision("Rambouillet")
 		.withCode("78517")
-		.withGisFeature(null)
-		.andParentEntity(arrondissementDeRambouilletAdm3());
+		.andGisFeature(null);
     }
-    
-    @Test(expected=IllegalArgumentException.class)
-    public void shouldNotCreateAdministrativeDivisionWithNullParentEntity() {
-	administrativeDivision("Rambouillet")
-		.withCode("78517")
-		.withGisFeature(rambouilletAdm4GisFeature())
-		.andParentEntity(null);
-    }
+   
     
     @Test
     public void administrativeDivisionsWithSameGisFeatureShouldBeEqual() {
 	AdministrativeDivision rambouillet1 = administrativeDivision("Rambouillet")
 		.withCode("78517")
-		.withGisFeature(rambouilletAdm4GisFeature())
-		.andParentEntity(arrondissementDeRambouilletAdm3());
+		.andGisFeature(rambouilletAdm4GisFeature());
 	
 	AdministrativeDivision rambouillet2 = administrativeDivision("Rambouillet2")
 		.withCode("78517-2")
-		.withGisFeature(rambouilletAdm4GisFeature())
-		.andParentEntity(AdministrativeDivisionObjectMother.yvelinesAdm2());
+		.andGisFeature(rambouilletAdm4GisFeature());
 	
 	assertEquals(rambouillet1, rambouillet2);
 	assertEquals(rambouillet1.hashCode(), rambouillet2.hashCode());
@@ -93,13 +76,11 @@ public class AdministrativeDivisionTest {
     public void administrativeDivisionsWithDifferentGisFeatureShouldNotBeEqual() {
 	AdministrativeDivision rambouillet1 = administrativeDivision("Rambouillet")
 		.withCode("78517")
-		.withGisFeature(rambouilletAdm4GisFeature())
-		.andParentEntity(arrondissementDeRambouilletAdm3());
+		.andGisFeature(rambouilletAdm4GisFeature());
 	
 	AdministrativeDivision rambouillet2 = administrativeDivision("Rambouillet")
 		.withCode("78517")
-		.withGisFeature(arrondissementDeRambouilletAdm3GisFeature())
-		.andParentEntity(arrondissementDeRambouilletAdm3());
+		.andGisFeature(arrondissementDeRambouilletAdm3GisFeature());
 	
 	assertFalse(rambouillet1.equals(rambouillet2));
 	assertTrue(rambouillet1.hashCode() != rambouillet2.hashCode());

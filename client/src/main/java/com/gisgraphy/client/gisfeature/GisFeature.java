@@ -16,7 +16,7 @@ public final class GisFeature implements GisFeatureAware{
     public static final PrecisionModel PRECISION_MODEL = new PrecisionModel(PrecisionModel.FLOATING);
     public static final GeometryFactory GEOMETRY_FACTORY = new GeometryFactory(PRECISION_MODEL, WGS84_SRID);
     private Long featureId;
-    private AdministrativeEntity parentEntity;
+    private AdministrativeEntity parentAdministrativeEntity;
     private GisFeatureName featureName;
     private GisFeatureType featureType;
     private GisFeatureGeography featureGeography;
@@ -39,7 +39,7 @@ public final class GisFeature implements GisFeatureAware{
         }
 
         public GisFeatureBuilder parentEntity(AdministrativeEntity parentEntity) {
-            gisFeature.parentEntity = parentEntity;
+            gisFeature.parentAdministrativeEntity = parentEntity;
             return this;
         }
 
@@ -103,8 +103,8 @@ public final class GisFeature implements GisFeatureAware{
         return lastModificationDate;
     }
 
-    public AdministrativeEntity getParentEntity() {
-        return parentEntity;
+    public AdministrativeEntity getParentAdministrativeEntity() {
+        return parentAdministrativeEntity;
     }
 
     public GisFeatureGeography getGeography() {
@@ -147,7 +147,7 @@ public final class GisFeature implements GisFeatureAware{
 
     @Override
     public String toString() {
-        return new ToStringBuilder(this, ToStringStyle.SHORT_PREFIX_STYLE).append("featureId", this.featureId).append("featureName", this.featureName).append("featureType", this.featureType).append("featureGeograhy", this.featureGeography).append("lastModificationDate", this.lastModificationDate).append("parentEntity", this.parentEntity).toString();
+        return new ToStringBuilder(this, ToStringStyle.SHORT_PREFIX_STYLE).append("featureId", this.featureId).append("featureName", this.featureName).append("featureType", this.featureType).append("featureGeograhy", this.featureGeography).append("lastModificationDate", this.lastModificationDate).append("parentEntity", this.parentAdministrativeEntity).toString();
     }
 
     public ImmutableSet<AlternateGisFeatureName> getGisFeatureAlternateNames() {

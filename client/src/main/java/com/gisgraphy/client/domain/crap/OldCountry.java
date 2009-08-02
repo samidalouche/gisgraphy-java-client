@@ -275,7 +275,7 @@ public class OldCountry implements Serializable, AdministrativeEntity {
     }*/
 
 
-    public AdministrativeEntity getParentAdminitrativeEntity() {
+    public AdministrativeEntity getParentAdministrativeEntity() {
 	return null;
     }
 
