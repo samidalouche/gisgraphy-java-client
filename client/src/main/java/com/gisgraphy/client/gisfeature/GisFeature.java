@@ -1,14 +1,16 @@
 package com.gisgraphy.client.gisfeature;
 
-import com.gisgraphy.client.domain.crap.AbstractAdministrativeEntity;
-import com.vividsolutions.jts.geom.GeometryFactory;
-import com.vividsolutions.jts.geom.PrecisionModel;
 import org.apache.commons.lang.builder.ToStringBuilder;
 import org.apache.commons.lang.builder.ToStringStyle;
 import org.joda.time.DateTime;
 import org.springframework.util.Assert;
 
-public final class GisFeature {
+import com.gisgraphy.client.language.IsoLanguage;
+import com.google.common.collect.ImmutableSet;
+import com.vividsolutions.jts.geom.GeometryFactory;
+import com.vividsolutions.jts.geom.PrecisionModel;
+
+public final class GisFeature implements GisFeatureAware{
 
     public static final int WGS84_SRID = 4326;
     public static final PrecisionModel PRECISION_MODEL = new PrecisionModel(PrecisionModel.FLOATING);
@@ -146,5 +148,25 @@ public final class GisFeature {
     @Override
     public String toString() {
         return new ToStringBuilder(this, ToStringStyle.SHORT_PREFIX_STYLE).append("featureId", this.featureId).append("featureName", this.featureName).append("featureType", this.featureType).append("featureGeograhy", this.featureGeography).append("lastModificationDate", this.lastModificationDate).append("parentEntity", this.parentEntity).toString();
+    }
+
+    public ImmutableSet<AlternateGisFeatureName> getGisFeatureAlternateNames() {
+	return featureName.getAlternateNames();
+    }
+
+    public String getGisFeatureAsciiName() {
+	return featureName.getAsciiName();
+    }
+
+    public String getGisFeatureOriginalName() {
+	return featureName.getName();
+    }
+
+    public String getGisFeaturePreferredName(IsoLanguage language) {
+	return featureName.getPreferredName(language);
+    }
+
+    public String getGisFeatureShortName(IsoLanguage language) {
+	return featureName.getShortName(language);
     }
 }

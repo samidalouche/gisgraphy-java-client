@@ -4,7 +4,11 @@ import org.apache.commons.lang.Validate;
 
 import com.gisgraphy.client.continent.Continent;
 import com.gisgraphy.client.gisfeature.AdministrativeEntity;
+import com.gisgraphy.client.gisfeature.AlternateGisFeatureName;
 import com.gisgraphy.client.gisfeature.GisFeature;
+import com.gisgraphy.client.gisfeature.GisFeatureAware;
+import com.gisgraphy.client.language.IsoLanguage;
+import com.google.common.collect.ImmutableSet;
 import com.ibm.icu.util.Currency;
 
 /**
@@ -18,7 +22,7 @@ import com.ibm.icu.util.Currency;
  *      href="http://www.iso.org/iso/en/prods-services/popstds/countrynamecodes.html">Country Name Codes</a>
  * 
  */
-public final class Country implements AdministrativeEntity {
+public final class Country implements AdministrativeEntity,GisFeatureAware {
     public static class CountryBuilder {
 	private Continent continent;
 	private GisFeature gisFeature;
@@ -138,6 +142,26 @@ public final class Country implements AdministrativeEntity {
 
     public AdministrativeEntity getParentAdminitrativeEntity() {
 	return null;
+    }
+
+    public ImmutableSet<AlternateGisFeatureName> getGisFeatureAlternateNames() {
+	return gisFeature.getGisFeatureAlternateNames();
+    }
+
+    public String getGisFeatureAsciiName() {
+	return gisFeature.getGisFeatureAsciiName();
+    }
+
+    public String getGisFeatureOriginalName() {
+	return gisFeature.getGisFeatureOriginalName();
+    }
+
+    public String getGisFeaturePreferredName(IsoLanguage language) {
+	return gisFeature.getGisFeaturePreferredName(language);
+    }
+
+    public String getGisFeatureShortName(IsoLanguage language) {
+	return gisFeature.getGisFeatureShortName(language);
     }
     
     

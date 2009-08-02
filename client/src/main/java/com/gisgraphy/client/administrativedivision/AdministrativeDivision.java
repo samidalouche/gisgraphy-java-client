@@ -6,7 +6,11 @@ import org.apache.commons.lang.builder.ToStringStyle;
 
 import com.gisgraphy.client.domain.crap.OldGisFeature;
 import com.gisgraphy.client.gisfeature.AdministrativeEntity;
+import com.gisgraphy.client.gisfeature.AlternateGisFeatureName;
 import com.gisgraphy.client.gisfeature.GisFeature;
+import com.gisgraphy.client.gisfeature.GisFeatureAware;
+import com.gisgraphy.client.language.IsoLanguage;
+import com.google.common.collect.ImmutableSet;
 
 /**
  * <p>
@@ -29,7 +33,7 @@ import com.gisgraphy.client.gisfeature.GisFeature;
  * 
  * @author Sami Dalouche (sami.dalouche@gmail.com)
  */
-public final class AdministrativeDivision implements AdministrativeEntity {
+public final class AdministrativeDivision implements AdministrativeEntity,GisFeatureAware {
     
     public static class AdministrativeDivisionBuilder {
 	private String name;
@@ -144,4 +148,27 @@ public final class AdministrativeDivision implements AdministrativeEntity {
     public AdministrativeEntity getParentAdminitrativeEntity() {
 	return parentEntity;
     }
+    
+
+    public ImmutableSet<AlternateGisFeatureName> getGisFeatureAlternateNames() {
+	return gisFeature.getGisFeatureAlternateNames();
+    }
+
+    public String getGisFeatureAsciiName() {
+	return gisFeature.getGisFeatureAsciiName();
+    }
+
+    public String getGisFeatureOriginalName() {
+	return gisFeature.getGisFeatureOriginalName();
+    }
+
+    public String getGisFeaturePreferredName(IsoLanguage language) {
+	return gisFeature.getGisFeaturePreferredName(language);
+    }
+
+    public String getGisFeatureShortName(IsoLanguage language) {
+	return gisFeature.getGisFeatureShortName(language);
+    }
+    
+
 }
