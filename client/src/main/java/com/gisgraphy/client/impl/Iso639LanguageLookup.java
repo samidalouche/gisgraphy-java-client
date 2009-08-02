@@ -23,6 +23,8 @@ public class Iso639LanguageLookup implements LanguageRepository {
 			final ImmutableMap.Builder<String, IsoLanguage> iso639Alpha3LanguageBuilder = ImmutableMap.builder();
 			final ImmutableMap.Builder<String, IsoLanguage> iso639Alpha2LanguageBuilder = ImmutableMap.builder();
 			String line;
+			// Skip the first line, which contains header informatiion
+			in.readLine();
 			while ((line = in.readLine()) != null) {
 				String[] res = line.split("\t");
 				int i = 0;
