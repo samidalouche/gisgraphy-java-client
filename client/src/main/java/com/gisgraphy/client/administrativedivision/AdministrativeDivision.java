@@ -5,6 +5,7 @@ import org.apache.commons.lang.builder.ToStringBuilder;
 import org.apache.commons.lang.builder.ToStringStyle;
 
 import com.gisgraphy.client.domain.crap.OldGisFeature;
+import com.gisgraphy.client.gisfeature.AdministrativeEntity;
 import com.gisgraphy.client.gisfeature.GisFeature;
 
 /**
@@ -134,5 +135,13 @@ public final class AdministrativeDivision implements AdministrativeEntity {
 	} else if (!gisFeature.equals(other.gisFeature))
 	    return false;
 	return true;
+    }
+
+    public int getAdminitrativeDivisionLevel() {
+	return parentEntity.getAdminitrativeDivisionLevel()+1;
+    }
+
+    public AdministrativeEntity getParentAdminitrativeEntity() {
+	return parentEntity;
     }
 }

@@ -2,6 +2,7 @@ package com.gisgraphy.client.administrativedivision;
 
 import static com.gisgraphy.client.administrativedivision.AdministrativeDivision.administrativeDivision;
 import static com.gisgraphy.client.administrativedivision.AdministrativeDivisionObjectMother.arrondissementDeRambouilletAdm3;
+import static com.gisgraphy.client.administrativedivision.CountryObjectMother.france;
 import static com.gisgraphy.client.gisfeature.GisFeatureObjectMother.arrondissementDeRambouilletAdm3GisFeature;
 import static com.gisgraphy.client.gisfeature.GisFeatureObjectMother.rambouilletAdm4GisFeature;
 import static org.junit.Assert.assertEquals;
@@ -102,6 +103,22 @@ public class AdministrativeDivisionTest {
 	
 	assertFalse(rambouillet1.equals(rambouillet2));
 	assertTrue(rambouillet1.hashCode() != rambouillet2.hashCode());
+    }
+    
+    @Test public void administrativeDivisionLevelShouldBe1ForAdm1() {
+	Assert.assertEquals(1,AdministrativeDivisionObjectMother.ileDeFranceAdm1().getAdminitrativeDivisionLevel());
+    }
+    
+    @Test public void administrativeDivisionLevelShouldBe2ForAdm2() {
+	Assert.assertEquals(2,AdministrativeDivisionObjectMother.yvelinesAdm2().getAdminitrativeDivisionLevel());
+    }
+    
+    @Test public void administrativeDivisionLevelShouldBe3ForAdm3() {
+	Assert.assertEquals(3,AdministrativeDivisionObjectMother.arrondissementDeRambouilletAdm3().getAdminitrativeDivisionLevel());
+    }
+    
+    @Test public void administrativeDivisionLevelShouldBe4ForAdm4() {
+	Assert.assertEquals(4,AdministrativeDivisionObjectMother.rambouilletAdm4().getAdminitrativeDivisionLevel());
     }
     
 }

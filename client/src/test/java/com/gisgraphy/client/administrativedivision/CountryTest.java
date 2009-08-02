@@ -117,5 +117,12 @@ public class CountryTest {
 		.withGeographicCountryInformation(null);
     }
     
+    @Test public void administrativeDivisionLevelShouldAlwaysBeZero() {
+	Assert.assertEquals(0,france().getAdminitrativeDivisionLevel());
+    }
+    
+    @Test public void parentAdministrativeEntityShouldBeNull() {
+	Assert.assertNull(france().getParentAdminitrativeEntity());
+    }
     
 }

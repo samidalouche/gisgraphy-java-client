@@ -1,10 +1,16 @@
 package com.gisgraphy.client.gisfeature;
 
+import static com.gisgraphy.client.administrativedivision.AdministrativeDivisionObjectMother.arrondissementDeRambouilletAdm3;
+import static com.gisgraphy.client.administrativedivision.AdministrativeDivisionObjectMother.ileDeFranceAdm1;
+import static com.gisgraphy.client.administrativedivision.AdministrativeDivisionObjectMother.yvelinesAdm2;
+import static com.gisgraphy.client.administrativedivision.CountryObjectMother.france;
 import static com.gisgraphy.client.gisfeature.GisFeature.gisFeature;
 import static com.gisgraphy.client.gisfeature.GisFeatureGeography.gisFeatureGeography;
 import static com.gisgraphy.client.gisfeature.GisFeatureName.gisFeatureName;
 import static com.gisgraphy.client.gisfeature.GisFeatureType.featureClass;
 
+import com.gisgraphy.client.administrativedivision.AdministrativeDivisionObjectMother;
+import com.gisgraphy.client.administrativedivision.CountryObjectMother;
 import com.gisgraphy.client.gisfeature.GisFeature;
 import com.gisgraphy.client.gisfeature.GisFeatureGeography;
 
@@ -85,6 +91,7 @@ public class GisFeatureObjectMother {
 		.featureId(6444057L)
 		.name(gisFeatureName("Rambouillet").withAsciiName("Rambouillet"))
 		.type(featureClass("A").featureCode("ADM4"))
+		.parentEntity(arrondissementDeRambouilletAdm3())
 		.geography(
 			gisFeatureGeography(new Double("1.8333332538604736"), new Double("48.650001525878906"))
 			.withPopulation(0L))
@@ -96,6 +103,7 @@ public class GisFeatureObjectMother {
 		.featureId(2984512L)
 		.name(gisFeatureName("Rambouillet").withAsciiName("Rambouillet"))
 		.type(featureClass("A").featureCode("ADM3"))
+		.parentEntity(yvelinesAdm2())
 		.geography(
 			gisFeatureGeography(new Double("1.9166667461395264"), new Double("48.58333206176758"))
 			.withPopulation(0L))
@@ -107,6 +115,7 @@ public class GisFeatureObjectMother {
 		.featureId(2967196L)
 		.name(gisFeatureName("Département des Yvelines").withAsciiName("Departement des Yvelines"))
 		.type(featureClass("A").featureCode("ADM2"))
+		.parentEntity(ileDeFranceAdm1())
 		.geography(
 			gisFeatureGeography(new Double("1.8666666746139526"), new Double("48.78333282470703"))
 			.withPopulation(1411761L)
@@ -119,6 +128,7 @@ public class GisFeatureObjectMother {
 		.featureId(3012874L)
 		.name(gisFeatureName("Région Île-de-France").withAsciiName("Region Ile-de-France"))
 		.type(featureClass("A").featureCode("ADM1"))
+		.parentEntity(france())
 		.geography(
 			gisFeatureGeography(new Double("2.5"), new Double("48.5"))
 			.withPopulation(11341257L))

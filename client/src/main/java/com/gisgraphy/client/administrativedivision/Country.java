@@ -3,6 +3,7 @@ package com.gisgraphy.client.administrativedivision;
 import org.apache.commons.lang.Validate;
 
 import com.gisgraphy.client.continent.Continent;
+import com.gisgraphy.client.gisfeature.AdministrativeEntity;
 import com.gisgraphy.client.gisfeature.GisFeature;
 import com.ibm.icu.util.Currency;
 
@@ -129,6 +130,14 @@ public final class Country implements AdministrativeEntity {
     public Country withGeographicCountryInformation(GeographicCountryInformation geographicCountryInformation) {
 	Validate.notNull(geographicCountryInformation);
 	return new Country(this.isoCountryCode, this.name, this.continent, this.gisFeature, this.currency, this.fipsCountryCode, this.administrativeCountryInformation, geographicCountryInformation);
+    }
+
+    public int getAdminitrativeDivisionLevel() {
+	return 0;
+    }
+
+    public AdministrativeEntity getParentAdminitrativeEntity() {
+	return null;
     }
     
     

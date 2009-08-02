@@ -14,7 +14,7 @@ public final class GisFeature {
     public static final PrecisionModel PRECISION_MODEL = new PrecisionModel(PrecisionModel.FLOATING);
     public static final GeometryFactory GEOMETRY_FACTORY = new GeometryFactory(PRECISION_MODEL, WGS84_SRID);
     private Long featureId;
-    private AbstractAdministrativeEntity parentEntity;
+    private AdministrativeEntity parentEntity;
     private GisFeatureName featureName;
     private GisFeatureType featureType;
     private GisFeatureGeography featureGeography;
@@ -36,7 +36,7 @@ public final class GisFeature {
             return this;
         }
 
-        public GisFeatureBuilder parentEntity(AbstractAdministrativeEntity parentEntity) {
+        public GisFeatureBuilder parentEntity(AdministrativeEntity parentEntity) {
             gisFeature.parentEntity = parentEntity;
             return this;
         }
@@ -101,7 +101,7 @@ public final class GisFeature {
         return lastModificationDate;
     }
 
-    public AbstractAdministrativeEntity getParentEntity() {
+    public AdministrativeEntity getParentEntity() {
         return parentEntity;
     }
 
