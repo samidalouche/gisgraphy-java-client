@@ -5,9 +5,9 @@ import com.google.common.collect.ImmutableSet;
 
 public interface GisFeatureAware {
 
+    Long getGeonamesId();
+    
     String getGisFeatureOriginalName();
-
-    String getGisFeatureAsciiName();
 
     ImmutableSet<AlternateGisFeatureName> getGisFeatureAlternateNames();
 

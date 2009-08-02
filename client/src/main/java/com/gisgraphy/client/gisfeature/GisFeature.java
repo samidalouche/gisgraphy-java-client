@@ -101,7 +101,7 @@ public final class GisFeature implements GisFeatureAware{
      * the public, stable, Geoname feature ID
      * @return
      */
-    public Long getGeonameId() {
+    public Long getGeonamesId() {
         return geonamesId;
     }
 

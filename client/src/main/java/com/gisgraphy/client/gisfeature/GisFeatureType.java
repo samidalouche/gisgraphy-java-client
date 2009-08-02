@@ -25,7 +25,7 @@ public final class GisFeatureType {
     private String geonamesFeatureClass;
     private String geonamesFeatureCode;
 
-    public static GisFeatureTypeBuilder featureClass(String featureClass) {
+    public static GisFeatureTypeBuilder geonamesFeatureClass(String featureClass) {
 	return new GisFeatureTypeBuilder(featureClass);
     }
     

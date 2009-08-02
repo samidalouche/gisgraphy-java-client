@@ -8,4 +8,5 @@ public interface AdministrativeEntity {
     int getAdminitrativeDivisionLevel();
     
     AdministrativeEntity getParentAdministrativeEntity();
+    
 }

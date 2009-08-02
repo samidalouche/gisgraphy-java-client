@@ -160,12 +160,12 @@ public final class Country implements AdministrativeEntity,GisFeatureAware {
 	return null;
     }
 
+    public Long getGeonamesId() {
+	return gisFeature.getGeonamesId();
+    }
+    
     public ImmutableSet<AlternateGisFeatureName> getGisFeatureAlternateNames() {
 	return gisFeature.getGisFeatureAlternateNames();
-    }
-
-    public String getGisFeatureAsciiName() {
-	return gisFeature.getGisFeatureAsciiName();
     }
 
     public String getGisFeatureOriginalName() {
@@ -179,6 +179,8 @@ public final class Country implements AdministrativeEntity,GisFeatureAware {
     public String getGisFeatureShortName(Iso639Language language) {
 	return gisFeature.getGisFeatureShortName(language);
     }
+
+    
     
     
 }

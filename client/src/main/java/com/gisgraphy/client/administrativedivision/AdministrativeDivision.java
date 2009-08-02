@@ -140,13 +140,12 @@ public final class AdministrativeDivision implements AdministrativeEntity,GisFea
 	return gisFeature.getParentAdministrativeEntity();
     }
     
-
+    public Long getGeonamesId() {
+	return gisFeature.getGeonamesId();
+    }
+    
     public ImmutableSet<AlternateGisFeatureName> getGisFeatureAlternateNames() {
 	return gisFeature.getGisFeatureAlternateNames();
-    }
-
-    public String getGisFeatureAsciiName() {
-	return gisFeature.getGisFeatureAsciiName();
     }
 
     public String getGisFeatureOriginalName() {
