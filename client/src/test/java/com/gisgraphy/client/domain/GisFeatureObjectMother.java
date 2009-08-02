@@ -1,6 +1,9 @@
 package com.gisgraphy.client.domain;
 
+import static com.gisgraphy.client.domain.GisFeature.gisFeature;
 import static com.gisgraphy.client.domain.GisFeatureGeography.gisFeatureGeography;
+import static com.gisgraphy.client.domain.GisFeatureName.gisFeatureName;
+import static com.gisgraphy.client.domain.GisFeatureType.featureClass;
 
 /**
  *
@@ -37,26 +40,24 @@ public class GisFeatureObjectMother {
      * @return
      */
     public static GisFeature franceGisFeature() {
-        return GisFeature.gisFeature()
+        return gisFeature()
                 .featureId(FRANCE_FEATURE_ID)
-                .name(GisFeatureName.name(FRANCE_FEATURE_NAME))
-                .type(new GisFeatureType(FRANCE_FEATURE_CLASS,FRANCE_FEATURE_CODE))
+                .name(gisFeatureName(FRANCE_FEATURE_NAME))
+                .type(featureClass(FRANCE_FEATURE_CLASS).featureCode(FRANCE_FEATURE_CODE))
                 .geography(
                     GisFeatureGeography.gisFeatureGeography(FRANCE_LONGITUDE, FRANCE_LATITUDE)
-                    .population(FRANCE_POPULATION)
-                    .build())
+                    .withPopulation(FRANCE_POPULATION))
                 .build();
     }
 
     public static GisFeature antarcticaGisFeature() {
-        return GisFeature.gisFeature()
+        return gisFeature()
                 .featureId(ANTARCTICA_FEATURE_ID)
-                .name(GisFeatureName.name(ANTARCTICA_FEATURE_NAME))
-                .type(new GisFeatureType(ANTARCTICA_FEATURE_CLASS,ANTARCTICA_FEATURE_CODE))
+                .name(gisFeatureName(ANTARCTICA_FEATURE_NAME))
+                .type(featureClass(ANTARCTICA_FEATURE_CLASS).featureCode(ANTARCTICA_FEATURE_CODE))
                 .geography(
                     GisFeatureGeography.gisFeatureGeography(ANTARCTICA_LONGITUDE,ANTARCTICA_LATITUDE)
-                    .population(ANTARCTICA_POPULATION)
-                    .build())
+                    .withPopulation(ANTARCTICA_POPULATION))
                 .build();
     }
 
@@ -65,64 +66,59 @@ public class GisFeatureObjectMother {
      * @return
      */
     public static GisFeature usOutlyingIslandsGisFeature() {
-        return GisFeature.gisFeature()
+        return gisFeature()
                 .featureId(US_OUTLYING_ISLANDS_FEATURE_ID)
-                .name(GisFeatureName.name(US_OUTLYING_ISLANDS_FEATURE_NAME))
-                .type(new GisFeatureType(US_OUTLYING_ISLANDS_FEATURE_CLASS,US_OUTLYING_ISLANDS_FEATURE_CODE))
+                .name(gisFeatureName(US_OUTLYING_ISLANDS_FEATURE_NAME))
+                .type(featureClass(US_OUTLYING_ISLANDS_FEATURE_CLASS).featureCode(US_OUTLYING_ISLANDS_FEATURE_CODE))
                 .geography(
                     GisFeatureGeography.gisFeatureGeography(US_OUTLYING_ISLANDS_LONGITUDE, US_OUTLYING_ISLANDS_LATITUDE)
-                    .population(US_OUTLYING_ISLANDS_POPULATION)
-                    .gtopo30AverageElevation(US_OUTLYING_ISLANDS_GTOPO30)
-                    .build())
+                    .withPopulation(US_OUTLYING_ISLANDS_POPULATION)
+                    .withGtopo30AverageElevation(US_OUTLYING_ISLANDS_GTOPO30))
                 .build();
     }
     
     public static GisFeature rambouilletAdm4GisFeature() {
-	return GisFeature.gisFeature()
+	return gisFeature()
 		.featureId(6444057L)
-		.name(GisFeatureName.name("Rambouillet").withAsciiName("Rambouillet"))
-		.type(new GisFeatureType("A", "ADM4"))
+		.name(gisFeatureName("Rambouillet").withAsciiName("Rambouillet"))
+		.type(featureClass("A").featureCode("ADM4"))
 		.geography(
 			gisFeatureGeography(new Double("1.8333332538604736"), new Double("48.650001525878906"))
-			.population(0L)
-			.build())
+			.withPopulation(0L))
 		.build();
     }
     
     public static GisFeature arrondissementDeRambouilletAdm3GisFeature() {
-	return GisFeature.gisFeature()
+	return gisFeature()
 		.featureId(2984512L)
-		.name(GisFeatureName.name("Rambouillet").withAsciiName("Rambouillet"))
-		.type(new GisFeatureType("A", "ADM3"))
+		.name(gisFeatureName("Rambouillet").withAsciiName("Rambouillet"))
+		.type(featureClass("A").featureCode("ADM3"))
 		.geography(
 			gisFeatureGeography(new Double("1.9166667461395264"), new Double("48.58333206176758"))
-			.population(0L)
-			.build())
+			.withPopulation(0L))
 		.build();
     }
     
     public static GisFeature yvelinesAdm2GisFeature() {
-	return GisFeature.gisFeature()
+	return gisFeature()
 		.featureId(2967196L)
-		.name(GisFeatureName.name("Département des Yvelines").withAsciiName("Departement des Yvelines"))
-		.type(new GisFeatureType("A", "ADM2"))
+		.name(gisFeatureName("Département des Yvelines").withAsciiName("Departement des Yvelines"))
+		.type(featureClass("A").featureCode("ADM2"))
 		.geography(
 			gisFeatureGeography(new Double("1.8666666746139526"), new Double("48.78333282470703"))
-			.population(1411761L)
-			.gtopo30AverageElevation(104L)
-			.build())
+			.withPopulation(1411761L)
+			.withGtopo30AverageElevation(104L))
 		.build();
     }
     
     public static GisFeature ileDeFranceAdm1GisFeature() {
-	return GisFeature.gisFeature()
+	return gisFeature()
 		.featureId(3012874L)
-		.name(GisFeatureName.name("Région Île-de-France").withAsciiName("Region Ile-de-France"))
-		.type(new GisFeatureType("A", "ADM1"))
+		.name(gisFeatureName("Région Île-de-France").withAsciiName("Region Ile-de-France"))
+		.type(featureClass("A").featureCode("ADM1"))
 		.geography(
 			gisFeatureGeography(new Double("2.5"), new Double("48.5"))
-			.population(11341257L)
-			.build())
+			.withPopulation(11341257L))
 		.build();
     }
 }

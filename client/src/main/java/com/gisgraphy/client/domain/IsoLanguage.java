@@ -8,11 +8,11 @@ import org.apache.commons.lang.builder.ToStringBuilder;
 import org.apache.commons.lang.builder.ToStringStyle;
 
 /**
- * ISO 639
+ * ISO 639-3 Language
  * Codes are written lowercase !!!
  * 
  * @author Sami Dalouche (sami.dalouche@gmail.com)
- * @see <a href="http://en.wikipedia.org/wiki/List_of_languages">List Of Languages</a>
+ * @see <a href="http://en.wikipedia.org/wiki/ISO_639-3">ISO 639-3</a>
  */
 public final class IsoLanguage {
     public static class LanguageBuilder {

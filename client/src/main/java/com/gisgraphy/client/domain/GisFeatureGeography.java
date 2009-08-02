@@ -13,30 +13,29 @@ import org.apache.commons.lang.builder.ToStringStyle;
  */
 class GisFeatureGeography {
 
-    private Geometry location;
-    private Long elevation;
-    private Long gtopo30AverageElevation;
-    private Long population;
-    private String timeZone;
-
-    private GisFeatureGeography() {
-    }
-
-    public static GisFeatureGeographyBuilder gisFeatureGeography(final Geometry location) {
-        return new GisFeatureGeographyBuilder(location);
-    }
-
-    public static GisFeatureGeographyBuilder gisFeatureGeography(final Double longitude, final Double latitude) {
-        return new GisFeatureGeographyBuilder(longitude, latitude);
-    }
-
     public static class GisFeatureGeographyBuilder {
 
-        private GisFeatureGeography geography;
         public static final Geometry VALID_COORDINATE_BOUNDS = GisFeature.GEOMETRY_FACTORY.toGeometry(new Envelope(-180.0, 180.0, -90.0, 90.0));
+        private GisFeatureGeography geography;
 
         private GisFeatureGeographyBuilder() {
             geography = new GisFeatureGeography();
+        }
+        
+        private GisFeatureGeographyBuilder(GisFeatureGeography template) {
+            geography = new GisFeatureGeography();
+            geography.elevation = template.elevation;
+            geography.gtopo30AverageElevation = template.gtopo30AverageElevation;
+            geography.location = template.location;
+            geography.population = template.population;
+            geography.timeZone = template.timeZone;
+        }
+
+        public GisFeatureGeographyBuilder(final Double longitude, final Double latitude) {
+            //this();
+            //Validate.isTrue(-180.0 <= longitude && longitude <= 180.0);
+            //Validate.isTrue(-90.0 <= latitude && latitude <= 90.0);
+            this(GisFeature.GEOMETRY_FACTORY.createPoint(new Coordinate(longitude, latitude)));
         }
 
         public GisFeatureGeographyBuilder(final Geometry location) {
@@ -47,13 +46,15 @@ class GisFeatureGeography {
             geography.location = location;
         }
 
-        public GisFeatureGeographyBuilder(final Double longitude, final Double latitude) {
-            //this();
-            //Validate.isTrue(-180.0 <= longitude && longitude <= 180.0);
-            //Validate.isTrue(-90.0 <= latitude && latitude <= 90.0);
-            this(GisFeature.GEOMETRY_FACTORY.createPoint(new Coordinate(longitude, latitude)));
+        public GisFeatureGeography build() {
+            return geography;
         }
 
+        public GisFeatureGeographyBuilder location(final Geometry location) {
+            geography.location = location;
+            return this;
+        }
+        
         public GisFeatureGeographyBuilder elevation(final Long elevation) {
             geography.elevation = elevation;
             return this;
@@ -73,32 +74,42 @@ class GisFeatureGeography {
             geography.timeZone = timeZone;
             return this;
         }
+    }
+    public static GisFeatureGeography gisFeatureGeography(final Double longitude, final Double latitude) {
+        return new GisFeatureGeographyBuilder(longitude, latitude).build();
+    }
+    public static GisFeatureGeography gisFeatureGeography(final Geometry location) {
+        return new GisFeatureGeographyBuilder(location).build();
+    }
+    private Long elevation;
+    private Long gtopo30AverageElevation;
+    private Geometry location;
+    private Long population;
+    private String timeZone;
 
-        public GisFeatureGeography build() {
-            return geography;
-        }
+    private GisFeatureGeography() {
     }
 
-    public Long getElevation() {
-        return elevation;
+    public GisFeatureGeography withLocation(final Geometry location) {
+	return new GisFeatureGeographyBuilder(this).location(location).build();
+    }
+    
+    public GisFeatureGeography withElevation(final Long elevation) {
+	return new GisFeatureGeographyBuilder(this).elevation(elevation).build();
     }
 
-    public Long getGtopo30AverageElevation() {
-        return gtopo30AverageElevation;
+    public GisFeatureGeography withGtopo30AverageElevation(final Long gtopo30AverageElevation) {
+	return new GisFeatureGeographyBuilder(this).gtopo30AverageElevation(gtopo30AverageElevation).build();
     }
 
-    public Geometry getLocation() {
-        return location;
+    public GisFeatureGeography withPopulation(final Long population) {
+	return new GisFeatureGeographyBuilder(this).population(population).build();
     }
 
-    public Long getPopulation() {
-        return population;
+    public GisFeatureGeography withTimeZone(final String timeZone) {
+	return new GisFeatureGeographyBuilder(this).timeZone(timeZone).build();
     }
-
-    public String getTimeZone() {
-        return timeZone;
-    }
-
+    
     @Override
     public boolean equals(Object obj) {
         if (obj == null) {
@@ -124,6 +135,26 @@ class GisFeatureGeography {
             return false;
         }
         return true;
+    }
+
+    public Long getElevation() {
+        return elevation;
+    }
+
+    public Long getGtopo30AverageElevation() {
+        return gtopo30AverageElevation;
+    }
+
+    public Geometry getLocation() {
+        return location;
+    }
+
+    public Long getPopulation() {
+        return population;
+    }
+
+    public String getTimeZone() {
+        return timeZone;
     }
 
     @Override

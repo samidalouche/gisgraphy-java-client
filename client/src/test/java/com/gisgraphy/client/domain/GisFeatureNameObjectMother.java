@@ -5,14 +5,14 @@ import static com.gisgraphy.client.domain.AlternateGisFeatureNameObjectMother.al
 public class GisFeatureNameObjectMother {
     public static GisFeatureName parisGisFeatureName() {
 	return GisFeatureName
-		.name("Paris")
+		.gisFeatureName("Paris")
 		.withAsciiName("Paris")
 		.withAlternateNames(allParisAlternateNames());
     }
     
     public static GisFeatureName rambouilletGisFeatureNameWithoutAlternateNames() {
 	return GisFeatureName
-		.name("Rambouillet")
+		.gisFeatureName("Rambouillet")
 		.withAsciiName("Rambouillet");
 	}
 }

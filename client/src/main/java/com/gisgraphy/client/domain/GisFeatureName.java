@@ -4,6 +4,7 @@ import org.apache.commons.lang.Validate;
 import org.apache.commons.lang.builder.ToStringBuilder;
 import org.apache.commons.lang.builder.ToStringStyle;
 
+import com.gisgraphy.client.impl.InMemoryAlternateNamesProvider;
 import com.google.common.base.Predicate;
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Iterables;
@@ -33,7 +34,7 @@ public final class GisFeatureName {
         this(name, asciiName, new InMemoryAlternateNamesProvider(ImmutableSet.copyOf(alternateNames)));
     }
 
-    public static GisFeatureName name(String name) {
+    public static GisFeatureName gisFeatureName(String name) {
         return new GisFeatureName(name);
     }
 

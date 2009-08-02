@@ -9,11 +9,27 @@ import org.apache.commons.lang.builder.ToStringStyle;
  * @author christophe
  */
 public class GisFeatureType {
+    public static class GisFeatureTypeBuilder {
+	private String featureClass;
 
+	public GisFeatureTypeBuilder(String featureClass) {
+	    super();
+	    this.featureClass = featureClass;
+	}
+	
+	public GisFeatureType featureCode(String code) {
+	    return new GisFeatureType(this.featureClass, code);
+	}
+ 	
+    }
     private String featureClass;
     private String featureCode;
 
-    public GisFeatureType(String featureClass, String featureCode) {
+    public static GisFeatureTypeBuilder featureClass(String featureClass) {
+	return new GisFeatureTypeBuilder(featureClass);
+    }
+    
+    private GisFeatureType(String featureClass, String featureCode) {
         Validate.notEmpty(featureClass);
         Validate.notEmpty(featureCode);
         this.featureClass = featureClass;

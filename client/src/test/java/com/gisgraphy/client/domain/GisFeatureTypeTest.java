@@ -1,25 +1,27 @@
 package com.gisgraphy.client.domain;
 
+import static com.gisgraphy.client.domain.GisFeatureType.featureClass;
+
 import org.junit.Test;
 
 public class GisFeatureTypeTest {
     @Test(expected=IllegalArgumentException.class)
     public void shouldNotCreateGisFeatureTypeWithNullFeatureClass() {
-	new GisFeatureType(null, "PLCI");
+	featureClass(null).featureCode("ADM2");
     }
 
     @Test(expected=IllegalArgumentException.class)
     public void shouldNotCreateGisFeatureTypeWithEmptyFeatureClass() {
-	new GisFeatureType("", "PLCI");
+	featureClass("").featureCode("ADM2");
     }
 
     @Test(expected=IllegalArgumentException.class)
     public void shouldNotCreateGisFeatureTypeWithNullFeatureCode() {
-	new GisFeatureType("A", null);
+	featureClass("A").featureCode(null);
     }
 
     @Test(expected=IllegalArgumentException.class)
     public void shouldNotCreateGisFeatureTypeWithEmptyFeatureCode() {
-	new GisFeatureType("A", "");
+	featureClass("A").featureCode("");
     }
 }

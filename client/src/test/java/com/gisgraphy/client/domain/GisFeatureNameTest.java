@@ -48,12 +48,12 @@ public class GisFeatureNameTest {
     
     @Test(expected=IllegalArgumentException.class)
     public void shouldNotCreateGisFeatureNameWithNullName() {
-	GisFeatureName.name(null);
+	GisFeatureName.gisFeatureName(null);
     }
     
     @Test(expected=IllegalArgumentException.class)
     public void shouldNotCreateGisFeatureNameWithEmptyName() {
-	GisFeatureName.name("");
+	GisFeatureName.gisFeatureName("");
     }
     
     @Test
