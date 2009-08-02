@@ -8,7 +8,7 @@ import org.apache.commons.lang.builder.ToStringStyle;
  *
  * @author christophe
  */
-public class GisFeatureType {
+public final class GisFeatureType {
     public static class GisFeatureTypeBuilder {
 	private String featureClass;
 
