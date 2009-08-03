@@ -22,7 +22,18 @@ public interface AdministrativeEntity {
      * @return
      */
     AdministrativeEntity getParentAdministrativeEntity();
+    
+    /**
+     * Return the administrative entity that is positioned at the given level 
+     * (0 will be the country, 1 will be ADM1, etc..)
+     * @param level
+     * @return
+     */
     AdministrativeEntity getAdministrativeEntity(int level);
     
+    /**
+     * Return the country for this administrative division
+     * @return
+     */
     Country getCountry();
 }

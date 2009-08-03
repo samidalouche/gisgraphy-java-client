@@ -5,9 +5,16 @@ import com.google.common.collect.ImmutableSet;
 
 public interface GisFeatureAware {
 
+    /**
+     * @return the stable, geonames-provided ID for the given feature
+     */
     Long getGeonamesId();
     
-    String getGisFeatureOriginalName();
+    /**
+     * 
+     * @return the feature default name, that may or may not contain non-ascii characters
+     */
+    String getGisFeatureDefaultName();
 
     ImmutableSet<AlternateGisFeatureName> getGisFeatureAlternateNames();
 
@@ -24,6 +31,10 @@ public interface GisFeatureAware {
      * @return the short name if it exists, otherwise the default name 
      */
     String getGisFeatureShortName(final Iso639Language language);
+    
+    /**
+     * @return the GIS Feature itself
+     */
     GisFeature getGisFeature();
 
 }

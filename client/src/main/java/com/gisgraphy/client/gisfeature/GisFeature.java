@@ -160,6 +160,8 @@ public final class GisFeature implements GisFeatureAware{
         return new ToStringBuilder(this, ToStringStyle.SHORT_PREFIX_STYLE).append("featureId", this.geonamesId).append("featureName", this.name).append("featureType", this.type).append("featureGeograhy", this.geography).append("lastModificationDate", this.lastModificationDate).append("parentEntity", this.parentAdministrativeEntity).toString();
     }
 
+    
+    // GisFeatureAware //
     public ImmutableSet<AlternateGisFeatureName> getGisFeatureAlternateNames() {
 	return name.getAlternateNames();
     }
@@ -168,7 +170,7 @@ public final class GisFeature implements GisFeatureAware{
 	return name.getAsciiName();
     }
 
-    public String getGisFeatureOriginalName() {
+    public String getGisFeatureDefaultName() {
 	return name.getName();
     }
 
@@ -183,4 +185,5 @@ public final class GisFeature implements GisFeatureAware{
     public GisFeature getGisFeature() {
 	return this;
     }
+    // //
 }

@@ -15,8 +15,11 @@ import com.gisgraphy.client.gisfeature.AlternateGisFeatureName;
 
 public class AlternateGisFeatureNameTest {
     
-    @Test
-    public void shouldCreateAlternateName() {
+    @Test public void shouldBeCompareable() {
+	Assert.assertTrue(parisInEnglish().compareTo(panameInFrench()) >= 1);
+    }
+    
+    @Test public void shouldCreateAlternateName() {
 	AlternateGisFeatureName alternateName = parisInFrench();
 	assertEquals("Paris", alternateName.getName());
 	assertEquals(frenchIsoLanguage(), alternateName.getLanguage());
@@ -24,41 +27,34 @@ public class AlternateGisFeatureNameTest {
 	assertEquals(false, alternateName.isShort());
     }
     
-    @Test
-    public void shouldCreateNewAlternateNameWithNewName() {
+    @Test public void shouldCreateNewAlternateNameWithNewName() {
 	assertEquals("Paris2", parisInFrench().withName("Paris2").getName());
     }
     
-    @Test
-    public void alternateNamesWithSameNameAndLanguageshouldBeEqual() {
+    @Test public void alternateNamesWithSameNameAndLanguageshouldBeEqual() {
 	assertEquals(parisInFrench().preferred(true).shortName(true), parisInFrench().preferred(false).shortName(false));
     }
     
-    @Test
-    public void shouldNotBeEqualBecauseOfLanguage() {
+    @Test public void shouldNotBeEqualBecauseOfLanguage() {
 	assertFalse(parisInFrench().equals(parisInEnglish()));
 	assertFalse(parisInFrench().hashCode() == parisInEnglish().hashCode());
     }
     
-    @Test
-    public void shouldNotBeEqualBecauseOfName() {
+    @Test public void shouldNotBeEqualBecauseOfName() {
 	assertFalse(parisInFrench().equals(panameInFrench()));
 	assertFalse(parisInFrench().hashCode() == panameInFrench().hashCode());
     }
     
-    @Test
-    public void toStringShouldNotBePathetic() {
+    @Test public void toStringShouldNotBePathetic() {
 	AlternateGisFeatureName alternateName = parisInFrench();
 	Assert.assertEquals("AlternateGisFeatureName[name=Paris,language=Iso639Language[name=Français,alpha2=fr,alpha3=fra],preferred=true,short=false]", alternateName.toString());
     }
     
-    @Test(expected=IllegalArgumentException.class)
-    public void shouldNotCreateAlternateGisFeatureNameWithNullName() {
+    @Test(expected=IllegalArgumentException.class) public void shouldNotCreateAlternateGisFeatureNameWithNullName() {
 	alternateName(null);
     }
     
-    @Test(expected=IllegalArgumentException.class)
-    public void shouldNotCreateAlternateGisFeatureNameWithEmptyName() {
+    @Test(expected=IllegalArgumentException.class) public void shouldNotCreateAlternateGisFeatureNameWithEmptyName() {
 	alternateName("");
     }
 }

@@ -181,8 +181,8 @@ public final class Country implements AdministrativeEntity,GisFeatureAware {
 	return gisFeature.getGisFeatureAlternateNames();
     }
 
-    public String getGisFeatureOriginalName() {
-	return gisFeature.getGisFeatureOriginalName();
+    public String getGisFeatureDefaultName() {
+	return gisFeature.getGisFeatureDefaultName();
     }
 
     public String getGisFeaturePreferredName(Iso639Language language) {

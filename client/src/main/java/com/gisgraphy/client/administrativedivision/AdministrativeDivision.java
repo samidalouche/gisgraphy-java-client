@@ -159,8 +159,8 @@ public final class AdministrativeDivision implements AdministrativeEntity,GisFea
 	return gisFeature.getGisFeatureAlternateNames();
     }
 
-    public String getGisFeatureOriginalName() {
-	return gisFeature.getGisFeatureOriginalName();
+    public String getGisFeatureDefaultName() {
+	return gisFeature.getGisFeatureDefaultName();
     }
 
     public String getGisFeaturePreferredName(Iso639Language language) {
