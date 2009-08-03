@@ -6,6 +6,10 @@ import static com.gisgraphy.client.administrativedivision.AdministrativeDivision
 import static com.gisgraphy.client.administrativedivision.CountryObjectMother.france;
 import static com.gisgraphy.client.gisfeature.GisFeature.gisFeature;
 import static com.gisgraphy.client.gisfeature.GisFeatureGeography.gisFeatureGeography;
+import static com.gisgraphy.client.gisfeature.GisFeatureGeographyObjectMother.arrondissementDeRambouilletAdm3GisFeatureGeography;
+import static com.gisgraphy.client.gisfeature.GisFeatureGeographyObjectMother.ileDeFranceAdm1GisFeatureGeography;
+import static com.gisgraphy.client.gisfeature.GisFeatureGeographyObjectMother.rambouilletAdm4GisFeatureGeography;
+import static com.gisgraphy.client.gisfeature.GisFeatureGeographyObjectMother.yvelinesAdm2GisFeatureGeography;
 import static com.gisgraphy.client.gisfeature.GisFeatureName.gisFeatureName;
 import static com.gisgraphy.client.gisfeature.GisFeatureType.geonamesFeatureClass;
 
@@ -92,9 +96,7 @@ public class GisFeatureObjectMother {
 		.name(gisFeatureName("Rambouillet").withAsciiName("Rambouillet"))
 		.type(geonamesFeatureClass("A").geonamesFeatureCode("ADM4"))
 		.parentAdministrativeEntity(arrondissementDeRambouilletAdm3())
-		.geography(
-			gisFeatureGeography(new Double("1.8333332538604736"), new Double("48.650001525878906"))
-			.withPopulation(0L))
+		.geography(rambouilletAdm4GisFeatureGeography())
 		.build();
     }
     
@@ -104,9 +106,7 @@ public class GisFeatureObjectMother {
 		.name(gisFeatureName("Rambouillet").withAsciiName("Rambouillet"))
 		.type(geonamesFeatureClass("A").geonamesFeatureCode("ADM3"))
 		.parentAdministrativeEntity(yvelinesAdm2())
-		.geography(
-			gisFeatureGeography(new Double("1.9166667461395264"), new Double("48.58333206176758"))
-			.withPopulation(0L))
+		.geography(arrondissementDeRambouilletAdm3GisFeatureGeography())
 		.build();
     }
     
@@ -116,10 +116,7 @@ public class GisFeatureObjectMother {
 		.name(gisFeatureName("Département des Yvelines").withAsciiName("Departement des Yvelines"))
 		.type(geonamesFeatureClass("A").geonamesFeatureCode("ADM2"))
 		.parentAdministrativeEntity(ileDeFranceAdm1())
-		.geography(
-			gisFeatureGeography(new Double("1.8666666746139526"), new Double("48.78333282470703"))
-			.withPopulation(1411761L)
-			.withGtopo30AverageElevation(104L))
+		.geography(yvelinesAdm2GisFeatureGeography())
 		.build();
     }
     
@@ -129,9 +126,9 @@ public class GisFeatureObjectMother {
 		.name(gisFeatureName("Région Île-de-France").withAsciiName("Region Ile-de-France"))
 		.type(geonamesFeatureClass("A").geonamesFeatureCode("ADM1"))
 		.parentAdministrativeEntity(france())
-		.geography(
-			gisFeatureGeography(new Double("2.5"), new Double("48.5"))
-			.withPopulation(11341257L))
+		.geography(ileDeFranceAdm1GisFeatureGeography())
 		.build();
     }
+    
+    
 }

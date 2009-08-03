@@ -1,5 +1,13 @@
 package com.gisgraphy.client.gisfeature;
 
+import static com.gisgraphy.client.gisfeature.GisFeatureGeographyObjectMother.losAngelesCityGisFeatureGeography;
+import static com.gisgraphy.client.gisfeature.GisFeatureGeographyObjectMother.marinaDelReyCityGisFeatureGeography;
+
+import javax.measure.unit.NonSI;
+import javax.measure.unit.SI;
+
+import junit.framework.Assert;
+
 import com.gisgraphy.client.gisfeature.GisFeature;
 import com.gisgraphy.client.gisfeature.GisFeatureGeography;
 import com.vividsolutions.jts.geom.Coordinate;
@@ -49,4 +57,22 @@ public class GisFeatureGeographyTest {
 	GisFeatureGeography.gisFeatureGeography(170.0, -89.0);
     }
 
+    @Test
+    public void shouldCalculateDistanceInMile() {
+	Assert.assertTrue(losAngelesCityGisFeatureGeography().distance(marinaDelReyCityGisFeatureGeography(), NonSI.MILE) > 12d 
+		&& marinaDelReyCityGisFeatureGeography().distance(losAngelesCityGisFeatureGeography(), NonSI.MILE) < 14d);
+    }
+
+    @Test
+    public void shouldCalculateDistanceInDefaultUnit() {
+	Assert.assertTrue(losAngelesCityGisFeatureGeography().distance(marinaDelReyCityGisFeatureGeography(), null) > 20000d 
+		&& marinaDelReyCityGisFeatureGeography().distance(losAngelesCityGisFeatureGeography(), null) < 22000d);
+    }
+
+    @Test
+    public void shouldCalculateDistanceInMeter() {
+	Assert.assertTrue(losAngelesCityGisFeatureGeography().distance(marinaDelReyCityGisFeatureGeography(), SI.METER) > 20000d 
+		&& marinaDelReyCityGisFeatureGeography().distance(losAngelesCityGisFeatureGeography(), SI.METER) < 22000d);
+    }
+    
 }
