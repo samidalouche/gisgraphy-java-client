@@ -1,12 +1,18 @@
 package com.gisgraphy.client.administrativedivision;
 
+import static com.gisgraphy.client.administrativedivision.AdministrativeCountryInformationObjectMother.antarcticaAdministrativeCountryInformation;
 import static com.gisgraphy.client.administrativedivision.AdministrativeCountryInformationObjectMother.franceAdministrativeCountryInformation;
 import static com.gisgraphy.client.administrativedivision.CountryObjectMother.antarctica;
 import static com.gisgraphy.client.administrativedivision.CountryObjectMother.france;
+import static com.gisgraphy.client.administrativedivision.FipsCountryCodeObjectMother.antarcticaFipsCountryCode;
 import static com.gisgraphy.client.administrativedivision.FipsCountryCodeObjectMother.franceFipsCountryCode;
+import static com.gisgraphy.client.administrativedivision.GeographicCountryInformationObjectMother.antarcticaGeographicCountryInformation;
 import static com.gisgraphy.client.administrativedivision.GeographicCountryInformationObjectMother.franceGeographicCountryInformation;
+import static com.gisgraphy.client.administrativedivision.IsoCountryCodeObjectMother.antarcticaCountryCode;
 import static com.gisgraphy.client.administrativedivision.IsoCountryCodeObjectMother.franceCountryCode;
+import static com.gisgraphy.client.continent.ContinentObjectMother.antarcticaContinent;
 import static com.gisgraphy.client.continent.ContinentObjectMother.europe;
+import static com.gisgraphy.client.gisfeature.GisFeatureObjectMother.antarcticaGisFeature;
 import static com.gisgraphy.client.gisfeature.GisFeatureObjectMother.franceGisFeature;
 import static org.junit.Assert.assertEquals;
 
@@ -123,6 +129,61 @@ public class CountryTest {
     
     @Test public void parentAdministrativeEntityShouldBeNull() {
 	Assert.assertNull(france().getParentAdministrativeEntity());
+    }
+    
+    
+    @Test public void twoCountriesWithSameGisFeatureShouldBeEqual() {
+	Country country1 = Country.countryName("France")
+		.withIsoCountryCode(franceCountryCode())
+		.withContinent(europe())
+		.andGisFeature(franceGisFeature())
+		.withCurrency(Currency.getInstance("EUR"))
+		.withFipsCountryCode(franceFipsCountryCode())
+		.withAdministrativeCountryInformation(franceAdministrativeCountryInformation())
+		.withGeographicCountryInformation(franceGeographicCountryInformation());
+	
+	Country country2 = Country.countryName("Antarctica")
+		.withIsoCountryCode(antarcticaCountryCode())
+		.withContinent(antarcticaContinent())
+		.andGisFeature(franceGisFeature()) // france gis feature
+		.withCurrency(null)
+		.withFipsCountryCode(antarcticaFipsCountryCode())
+		.withAdministrativeCountryInformation(antarcticaAdministrativeCountryInformation())
+		.withGeographicCountryInformation(antarcticaGeographicCountryInformation());
+	
+	Assert.assertEquals(country1,country2);
+	Assert.assertEquals(country1.hashCode(),country2.hashCode());
+    }
+    
+    @Test public void twoCountriesWithDifferentGisFeatureShouldNotBeEqual() {
+	Country country1 = Country.countryName("France")
+		.withIsoCountryCode(franceCountryCode())
+		.withContinent(europe())
+		.andGisFeature(franceGisFeature())
+		.withCurrency(Currency.getInstance("EUR"))
+		.withFipsCountryCode(franceFipsCountryCode())
+		.withAdministrativeCountryInformation(franceAdministrativeCountryInformation())
+		.withGeographicCountryInformation(franceGeographicCountryInformation());
+	
+	Country country2 = Country.countryName("France")
+		.withIsoCountryCode(franceCountryCode())
+		.withContinent(europe())
+		.andGisFeature(antarcticaGisFeature()) // different feature
+		.withCurrency(Currency.getInstance("EUR"))
+		.withFipsCountryCode(franceFipsCountryCode())
+		.withAdministrativeCountryInformation(franceAdministrativeCountryInformation())
+		.withGeographicCountryInformation(franceGeographicCountryInformation()); 
+	
+	Assert.assertFalse(country1.equals(country2));
+	Assert.assertTrue(country1.hashCode() != country2.hashCode());
+    }
+    
+    @Test public void getAdministrativeEntityShouldReturnItselfWhenRequestedLevelIsZero() {
+	Assert.assertEquals(france(), france().getAdministrativeEntity(0));
+    }
+    
+    @Test(expected=IllegalArgumentException.class) public void getAdministrativeEntityShouldThrowExceptionWhenRequestedLevelIsHigherThanZero() {
+	france().getAdministrativeEntity(1);
     }
     
 }

@@ -1,11 +1,18 @@
 package com.gisgraphy.client.gisfeature;
 
+import javax.measure.quantity.Length;
+import javax.measure.unit.SI;
+import javax.measure.unit.Unit;
+
 import com.vividsolutions.jts.geom.Geometry;
 import com.vividsolutions.jts.geom.Coordinate;
 import com.vividsolutions.jts.geom.Envelope;
 import org.apache.commons.lang.Validate;
 import org.apache.commons.lang.builder.ToStringBuilder;
 import org.apache.commons.lang.builder.ToStringStyle;
+import org.geotools.geometry.jts.JTS;
+import org.geotools.referencing.crs.DefaultGeographicCRS;
+import org.opengis.referencing.operation.TransformException;
 
 /**
  *
@@ -157,6 +164,17 @@ public final class GisFeatureGeography {
         return timeZone;
     }
 
+    public double distance(GisFeatureGeography o, Unit<Length> unit) {
+	Unit<Length> targetUnit = (unit != null) ? unit : SI.METER;
+	com.vividsolutions.jts.geom.Geometry me = location;
+	com.vividsolutions.jts.geom.Geometry other = o.getLocation();
+	try {
+	    return SI.METER.getConverterTo(targetUnit).convert(JTS.orthodromicDistance(me.getCoordinate(), other.getCoordinate(), DefaultGeographicCRS.WGS84));
+	} catch (TransformException e) {
+	    throw new RuntimeException(e);
+	}
+    }
+    
     @Override
     public int hashCode() {
         int hash = 3;

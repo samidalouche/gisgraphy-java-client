@@ -159,6 +159,19 @@ public final class Country implements AdministrativeEntity,GisFeatureAware {
     public AdministrativeEntity getParentAdministrativeEntity() {
 	return null;
     }
+    
+    /**
+     * FIXME: there is some duplication between {@link #getAdministrativeEntity(int)} and 
+     * {@link AdministrativeDivision#getAdministrativeEntity(int)}
+     */
+    public AdministrativeEntity getAdministrativeEntity(int level) {
+	int currentLevel = getAdminitrativeDivisionLevel();
+	if(level > currentLevel) {
+	    throw new IllegalArgumentException(String.format("Current Level (%s) is lower than requested Level (%s)", currentLevel, level));
+	} else {
+	    return this;
+	} 
+    } 
 
     public Long getGeonamesId() {
 	return gisFeature.getGeonamesId();
@@ -180,7 +193,36 @@ public final class Country implements AdministrativeEntity,GisFeatureAware {
 	return gisFeature.getGisFeatureShortName(language);
     }
 
-    
+    public Country getCountry() {
+	return this;
+    }
+
+    @Override
+    public int hashCode() {
+	final int prime = 31;
+	int result = 1;
+	result = prime * result
+		+ ((gisFeature == null) ? 0 : gisFeature.hashCode());
+	return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+	if (this == obj)
+	    return true;
+	if (obj == null)
+	    return false;
+	if (getClass() != obj.getClass())
+	    return false;
+	Country other = (Country) obj;
+	if (gisFeature == null) {
+	    if (other.gisFeature != null)
+		return false;
+	} else if (!gisFeature.equals(other.gisFeature))
+	    return false;
+	return true;
+    }
+
     
     
 }

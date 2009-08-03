@@ -140,6 +140,17 @@ public final class AdministrativeDivision implements AdministrativeEntity,GisFea
 	return gisFeature.getParentAdministrativeEntity();
     }
     
+    public AdministrativeEntity getAdministrativeEntity(int level) {
+	int currentLevel = getAdminitrativeDivisionLevel();
+	if(level > currentLevel) {
+	    throw new IllegalArgumentException(String.format("Current Level (%s) is lower than requested Level (%s)", currentLevel, level));
+	} else if(level == currentLevel) {
+	    return this;
+	} else {
+	    return getParentAdministrativeEntity().getAdministrativeEntity(level);
+	}
+    } 
+    
     public Long getGeonamesId() {
 	return gisFeature.getGeonamesId();
     }
@@ -158,6 +169,10 @@ public final class AdministrativeDivision implements AdministrativeEntity,GisFea
 
     public String getGisFeatureShortName(Iso639Language language) {
 	return gisFeature.getGisFeatureShortName(language);
-    } 
+    }
+
+    public Country getCountry() {
+	return getParentAdministrativeEntity().getCountry();
+    }
 
 }

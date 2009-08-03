@@ -25,6 +25,5 @@ public interface GisFeatureAware {
      */
     String getGisFeatureShortName(final Iso639Language language);
     GisFeature getGisFeature();
-    AdministrativeEntity getParentAdministrativeEntity();
 
 }
