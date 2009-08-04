@@ -157,7 +157,12 @@ public class ParserTest {
 	    assertThat(firstResult.getPopulation(), equalTo(569369));
 	    assertThat(firstResult.getTimezone(), equalTo("America/Los_Angeles"));
 	    assertThat(firstResult.getYahooMapUrl(), equalTo("http://maps.yahoo.com/broadband?mag=6&amp;mvt=m&amp;lon=-122.33206939697266&amp;lat=47.60620880126953"));
-	    assertThat(firstResult.getCountryAlternateNames().get("AZ").size(), equalTo(1));
+        
+	    assertThat(firstResult.getAdm1AlternateNames().size(), equalTo(3));
+        assertThat(firstResult.getAdm1AlternateNames().get("ES").get(0), equalTo("Estado de Washington"));
+        assertThat(firstResult.getAdm1AlternateNames().get("RU").get(0), equalTo("Вашингтон"));
+
+        assertThat(firstResult.getCountryAlternateNames().get("AZ").size(), equalTo(1));
 	    assertThat(firstResult.getCountryAlternateNames().get("AZ").get(0), equalTo("Amerika Birləşmiş Ştatları"));
 	    
 	    assertThat(firstResult.getCountryAlternateNames().get("BE").size(), equalTo(2));
@@ -252,5 +257,74 @@ public class ParserTest {
             Assert.fail();
             e.printStackTrace();
         }
+    }
+
+    @Test
+    public void shouldParseFranceCorrectly() {
+	InputStreamSource iss = FullTextSearchResultsObjectMother.france();
+	try {
+	    Iterable<FullTextQueryResult> results = staxParser.parseFullTextSearchResult(iss);
+	    Iterator<FullTextQueryResult> iterator = results.iterator();
+	    assertThat(iterator.hasNext(), equalTo(true));
+	    FullTextQueryResult firstResult = iterator.next();
+	    assertThat(firstResult.getAsciiName(), equalTo("Republic of France"));
+	    assertThat(firstResult.getScore(), equalTo(5798653.5));
+	    assertThat(firstResult.getName(), equalTo("France"));
+	    assertThat(firstResult.getCountryCode(), equalTo("FR"));
+	    assertThat(firstResult.getCountryFlagUrl(), equalTo("/images/flags/FR.png"));
+	    assertThat(firstResult.getCountryName(), equalTo("France"));
+	    assertThat(firstResult.getElevation(), equalTo(0));
+	    assertThat(firstResult.getFeatureClass(), equalTo("A"));
+	    assertThat(firstResult.getFeatureCode(), equalTo("PCLI"));
+	    assertThat(firstResult.getFeatureId(), equalTo(3017382L));
+	    assertThat(firstResult.getFullyQualifiedName(), equalTo("France"));
+	    assertThat(firstResult.getGoogleMapUrl(), equalTo("http://maps.google.com/maps?f=q&amp;ie=UTF-8&amp;iwloc=addr&amp;om=1&amp;z=12&amp;q=France&amp;ll=46.03,2.0"));
+	    assertThat(firstResult.getGTopo30(), equalTo(560));
+	    assertThat(firstResult.getLatitude(), equalTo(46.0));
+	    assertThat(firstResult.getLongitude(), equalTo(2.0));
+	    assertThat(firstResult.getPopulation(), equalTo(64094000));
+	    assertThat(firstResult.getTimezone(), equalTo("Europe/Paris"));
+	    assertThat(firstResult.getYahooMapUrl(), equalTo("http://maps.yahoo.com/broadband?mag=6&amp;mvt=m&amp;lon=2.0&amp;lat=46.0"));
+	    assertThat(firstResult.getAlternateNames().get("DE").size(), equalTo(1));
+	    assertThat(firstResult.getAlternateNames().get("DE").get(0), equalTo("Frankreich"));
+
+	    assertThat(firstResult.getAlternateNames().get("EL").size(), equalTo(1));
+        assertThat(firstResult.getAlternateNames().get("EL").get(0), equalTo("Γαλλία"));
+
+        assertThat(firstResult.getCountryAlternateNames().get("EL").size(), equalTo(1));
+	    assertThat(firstResult.getCountryAlternateNames().get("EL").get(0), equalTo("Γαλλία"));
+
+        assertThat(firstResult.getAlternateNames().get("BE").size(), equalTo(1));
+        assertThat(firstResult.getAlternateNames().get("BE").get(0), equalTo("Францыя"));
+
+	    assertThat(firstResult.getCountryAlternateNames().get("BE").get(0), equalTo("Францыя"));
+        assertThat(firstResult.getCountryAlternateNames().get("BE").get(0), equalTo("Францыя"));
+
+	    // skip through 8 results, then test the last
+	    for (int i = 0; i < 8; i++) {
+	    	iterator.next();
+	    }
+
+	    FullTextQueryResult lastResult = iterator.next();
+	    assertThat(lastResult.getAsciiName(), equalTo("Region Centre"));
+
+	    try {
+	    	iterator.next();
+	    	Assert.fail();
+	    }
+	    catch (NoSuchElementException e) {
+
+	    }
+
+
+	} catch (IOException e) {
+	    Assert.fail();
+	    e.printStackTrace();
+	}  catch (XMLStreamException e) {
+            Assert.fail();
+            e.printStackTrace();
+        }
+
+
     }
 }

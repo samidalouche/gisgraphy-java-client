@@ -16,4 +16,8 @@ public class FullTextSearchResultsObjectMother {
     public static InputStreamSource seattle() {
         return new ClassPathResource("/com/gisgraphy/client/sampleFullTextSearchResults/fullTextSearchForSeattleWithFullStyle.xml");
     }
+
+    public static InputStreamSource france() {
+        return new ClassPathResource("/com/gisgraphy/client/sampleFullTextSearchResults/fullTextSearchForFranceWithFullStyle.xml");
+    }
 }
