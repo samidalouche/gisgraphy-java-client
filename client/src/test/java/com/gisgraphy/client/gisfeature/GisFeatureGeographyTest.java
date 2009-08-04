@@ -41,20 +41,40 @@ public class GisFeatureGeographyTest {
 	GisFeatureGeography.gisFeatureGeography(0.0, 91.0);
     }
 
+    @Test
     public void shouldCreateGisFeatureGeographyWithValidGeometry() {
-	GisFeatureGeography.gisFeatureGeography(GisFeature.GEOMETRY_FACTORY.createPoint(new Coordinate(-170.0, 89.0)));
+	GisFeatureGeography gfg = GisFeatureGeography.gisFeatureGeography(GisFeature.GEOMETRY_FACTORY.createPoint(new Coordinate(-170.0, 89.0)));
+    Assert.assertNotNull(gfg);
+    Assert.assertEquals(1, gfg.getLocation().getNumPoints());
+    Assert.assertEquals(-170.0, gfg.getLocation().getCentroid().getCoordinate().x);
+    Assert.assertEquals(89.0, gfg.getLocation().getCentroid().getCoordinate().y);
     }
 
+    @Test
     public void shouldCreateGisFeatureGeographyWithValidGeometry2() {
-	GisFeatureGeography.gisFeatureGeography(GisFeature.GEOMETRY_FACTORY.createPoint(new Coordinate(170.0, -89.0)));
+	GisFeatureGeography gfg = GisFeatureGeography.gisFeatureGeography(GisFeature.GEOMETRY_FACTORY.createPoint(new Coordinate(170.0, -89.0)));
+    Assert.assertNotNull(gfg);
+    Assert.assertEquals(1, gfg.getLocation().getNumPoints());
+    Assert.assertEquals(170.0, gfg.getLocation().getCentroid().getCoordinate().x);
+    Assert.assertEquals(-89.0, gfg.getLocation().getCentroid().getCoordinate().y);
     }
 
+    @Test
     public void shouldCreateGisFeatureGeographyWithValidCoordinates() {
-	GisFeatureGeography.gisFeatureGeography(-170.0, 89.0);
+	GisFeatureGeography gfg = GisFeatureGeography.gisFeatureGeography(-170.0, 89.0);
+    Assert.assertNotNull(gfg);
+    Assert.assertEquals(1, gfg.getLocation().getNumPoints());
+    Assert.assertEquals(-170.0, gfg.getLocation().getCentroid().getCoordinate().x);
+    Assert.assertEquals(89.0, gfg.getLocation().getCentroid().getCoordinate().y);
     }
 
+    @Test
     public void shouldCreateGisFeatureGeographyWithValidCoordinates2() {
-	GisFeatureGeography.gisFeatureGeography(170.0, -89.0);
+	GisFeatureGeography gfg = GisFeatureGeography.gisFeatureGeography(170.0, -89.0);
+    Assert.assertNotNull(gfg);
+    Assert.assertEquals(1, gfg.getLocation().getNumPoints());
+    Assert.assertEquals(170.0, gfg.getLocation().getCentroid().getCoordinate().x);
+    Assert.assertEquals(-89.0, gfg.getLocation().getCentroid().getCoordinate().y);
     }
 
     @Test
