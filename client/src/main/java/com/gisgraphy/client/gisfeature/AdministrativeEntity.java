@@ -19,7 +19,7 @@ public interface AdministrativeEntity {
     
     /**
      * Return the parent Administrative Entity 
-     * @return
+     * @return never null
      */
     AdministrativeEntity getParentAdministrativeEntity();
     
@@ -27,7 +27,7 @@ public interface AdministrativeEntity {
      * Return the administrative entity that is positioned at the given level 
      * (0 will be the country, 1 will be ADM1, etc..)
      * @param level
-     * @return
+     * @return never null
      */
     AdministrativeEntity getAdministrativeEntity(int level);
     

@@ -116,6 +116,10 @@ public final class GisFeature implements GisFeatureAware, DistanceAware<GisFeatu
         return lastModificationDate;
     }
 
+    /**
+     * 
+     * @return possibly null result for features located in international waters
+     */
     public AdministrativeEntity getParentAdministrativeEntity() {
         return parentAdministrativeEntity;
     }

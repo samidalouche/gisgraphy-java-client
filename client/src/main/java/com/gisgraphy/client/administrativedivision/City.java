@@ -3,6 +3,8 @@ package com.gisgraphy.client.administrativedivision;
 import javax.measure.quantity.Length;
 import javax.measure.unit.Unit;
 
+import org.apache.commons.lang.Validate;
+
 import com.gisgraphy.client.gisfeature.AdministrativeEntity;
 import com.gisgraphy.client.gisfeature.AlternateGisFeatureName;
 import com.gisgraphy.client.gisfeature.DistanceAware;
@@ -11,9 +13,18 @@ import com.gisgraphy.client.gisfeature.GisFeatureAware;
 import com.gisgraphy.client.language.Iso639Language;
 import com.google.common.collect.ImmutableSet;
 
-public final class City implements Comparable<City>, GisFeatureAware, DistanceAware<City>{
+public final class City implements Comparable<City>, GisFeatureAware, DistanceAware<City>, AdministrativeEntity{
     private GisFeature gisFeature;
 
+    public City(GisFeature gisFeature) {
+	super();
+	Validate.notNull(gisFeature);
+	// only accept gisfeature with an administrative division (a city 
+	// cannot be in international waters ;-)
+	Validate.notNull(gisFeature.getParentAdministrativeEntity());
+	this.gisFeature = gisFeature;
+    }
+    
     public int compareTo(City o) {
 	if (o == null) {
 	    return 1;
@@ -84,6 +95,26 @@ public final class City implements Comparable<City>, GisFeatureAware, DistanceAw
     //// DistanceAware ////
     public double distance(City o, Unit<Length> unit) {
 	return gisFeature.distance(o.getGisFeature(), unit);
+    }
+
+    //// AdministrativeEntity ////
+    public AdministrativeEntity getAdministrativeEntity(int level) {
+	int currentLevel =  getAdminitrativeDivisionLevel();
+	if(level > currentLevel) {
+	    throw new IllegalArgumentException(String.format("Current Level (%s) is lower than requested Level (%s)", currentLevel, level));
+	} else if(level == currentLevel) {
+	    return this;
+	} else {
+	    return getParentAdministrativeEntity().getAdministrativeEntity(level);
+	}
+    }
+
+    public int getAdminitrativeDivisionLevel() {
+	return gisFeature.getParentAdministrativeEntity().getAdminitrativeDivisionLevel()+1;
+    }
+
+    public Country getCountry() {
+	return gisFeature.getParentAdministrativeEntity().getCountry();
     }
     
     
