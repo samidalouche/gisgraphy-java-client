@@ -3,7 +3,6 @@ package com.gisgraphy.client.administrativedivision;
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.gisgraphy.client.administrativedivision.AdministrativeCountryInformation;
 
 public class AdministrativeCountryInformationTest {
 

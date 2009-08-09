@@ -1,13 +1,13 @@
 package com.gisgraphy.client.administrativedivision;
 
-import com.gisgraphy.client.administrativedivision.AdministrativeCountryInformation;
+import com.gisgraphy.client.administrativedivision.GeonamesAdministrativeCountryInformation;
 import com.gisgraphy.client.language.IsoLanguageObjectMother;
 import com.google.common.collect.ImmutableList;
 
 public class AdministrativeCountryInformationObjectMother {
 
     public static AdministrativeCountryInformation franceAdministrativeCountryInformation() {
-	return AdministrativeCountryInformation
+	return GeonamesAdministrativeCountryInformation
 		.administrativeCountryInformation()
 		.withTopLevelDomain(".fr")
 		.withPhonePrefix("33")
@@ -17,13 +17,13 @@ public class AdministrativeCountryInformationObjectMother {
     }
     
     public static AdministrativeCountryInformation antarcticaAdministrativeCountryInformation() {
-	return AdministrativeCountryInformation
+	return GeonamesAdministrativeCountryInformation
 		.administrativeCountryInformation()
 		.withTopLevelDomain(".aq");
     }
     
     public static AdministrativeCountryInformation usOutlyingIslandsAdministrativeCountryInformation() {
-	return AdministrativeCountryInformation
+	return GeonamesAdministrativeCountryInformation
 		.administrativeCountryInformation()
 		.withTopLevelDomain(".am");
     }

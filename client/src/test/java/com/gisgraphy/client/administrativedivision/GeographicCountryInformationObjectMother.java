@@ -1,8 +1,7 @@
 package com.gisgraphy.client.administrativedivision;
 
-import static com.gisgraphy.client.administrativedivision.GeographicCountryInformation.geographicCountryInformation;
+import static com.gisgraphy.client.administrativedivision.GeonamesGeographicCountryInformation.geographicCountryInformation;
 
-import com.gisgraphy.client.administrativedivision.GeographicCountryInformation;
 
 public class GeographicCountryInformationObjectMother {
 

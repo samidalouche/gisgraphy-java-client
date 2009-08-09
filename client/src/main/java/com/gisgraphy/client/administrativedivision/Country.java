@@ -10,6 +10,7 @@ import com.gisgraphy.client.gisfeature.GeonamesGisFeature;
 import com.gisgraphy.client.gisfeature.GisFeature;
 import com.gisgraphy.client.gisfeature.GisFeatureType;
 import com.gisgraphy.client.language.Iso639Language;
+import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableSet;
 import com.ibm.icu.util.Currency;
 import com.vividsolutions.jts.geom.Point;
@@ -25,7 +26,7 @@ import com.vividsolutions.jts.geom.Point;
  *      href="http://www.iso.org/iso/en/prods-services/popstds/countrynamecodes.html">Country Name Codes</a>
  * 
  */
-public final class Country implements AdministrativeEntity,GisFeature,CurrencyProvider {
+public final class Country implements AdministrativeEntity,GisFeature,CurrencyProvider, AdministrativeCountryInformation, GeographicCountryInformation {
     public static class CountryBuilder {
 	private Continent continent;
 	private GisFeature gisFeature;
@@ -56,12 +57,12 @@ public final class Country implements AdministrativeEntity,GisFeature,CurrencyPr
     public static CountryBuilder countryName(String name)  {
 	return new CountryBuilder(name);
     }
-    private AdministrativeCountryInformation administrativeCountryInformation = AdministrativeCountryInformation.administrativeCountryInformation();
+    private AdministrativeCountryInformation administrativeCountryInformation = GeonamesAdministrativeCountryInformation.administrativeCountryInformation();
     private Continent continent;
     private Currency currency;
     
     private FipsCountryCode fipsCountryCode;
-    private GeographicCountryInformation geographicCountryInformation = GeographicCountryInformation.geographicCountryInformation();
+    private GeographicCountryInformation geographicCountryInformation = GeonamesGeographicCountryInformation.geographicCountryInformation();
     private GisFeature gisFeature;
     private IsoCountryCode isoCountryCode;
     
@@ -225,7 +226,9 @@ public final class Country implements AdministrativeEntity,GisFeature,CurrencyPr
     }
 
     public Long getPopulation() {
-	return gisFeature.getPopulation();
+	//return gisFeature.getPopulation();
+	// use geographicCountryInformation that should be more up to date..
+	return geographicCountryInformation.getPopulation();
     }
 
     public String getTimeZone() {
@@ -261,6 +264,30 @@ public final class Country implements AdministrativeEntity,GisFeature,CurrencyPr
 	} else if (!gisFeature.equals(other.gisFeature))
 	    return false;
 	return true;
+    }
+
+    public String getPhonePrefix() {
+	return administrativeCountryInformation.getPhonePrefix();
+    }
+
+    public String getPostalCodeMask() {
+	return administrativeCountryInformation.getPostalCodeMask();
+    }
+
+    public String getPostalCodeRegex() {
+	return administrativeCountryInformation.getPostalCodeRegex();
+    }
+
+    public ImmutableList<Iso639Language> getSpokenLanguages() {
+	return administrativeCountryInformation.getSpokenLanguages();
+    }
+
+    public String getTopLevelDomain() {
+	return administrativeCountryInformation.getTopLevelDomain();
+    }
+
+    public Double getArea() {
+	return geographicCountryInformation.getArea();
     }
 
     
