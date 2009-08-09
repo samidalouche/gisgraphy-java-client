@@ -8,7 +8,6 @@ import org.joda.time.DateTime;
 import com.gisgraphy.client.gisfeature.AdministrativeEntity;
 import com.gisgraphy.client.gisfeature.AlternateGisFeatureName;
 import com.gisgraphy.client.gisfeature.GisFeature;
-import com.gisgraphy.client.gisfeature.GisFeatureAware;
 import com.gisgraphy.client.gisfeature.GisFeatureType;
 import com.gisgraphy.client.language.Iso639Language;
 import com.google.common.collect.ImmutableSet;
@@ -35,7 +34,7 @@ import com.vividsolutions.jts.geom.Point;
  * 
  * @author Sami Dalouche (sami.dalouche@gmail.com)
  */
-public final class AdministrativeDivision implements AdministrativeEntity,GisFeatureAware {
+public final class AdministrativeDivision implements AdministrativeEntity,GisFeature {
     
     public static class AdministrativeDivisionBuilder {
 	private String name;

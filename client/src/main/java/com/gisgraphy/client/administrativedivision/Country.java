@@ -6,8 +6,8 @@ import org.joda.time.DateTime;
 import com.gisgraphy.client.continent.Continent;
 import com.gisgraphy.client.gisfeature.AdministrativeEntity;
 import com.gisgraphy.client.gisfeature.AlternateGisFeatureName;
+import com.gisgraphy.client.gisfeature.GeonamesGisFeature;
 import com.gisgraphy.client.gisfeature.GisFeature;
-import com.gisgraphy.client.gisfeature.GisFeatureAware;
 import com.gisgraphy.client.gisfeature.GisFeatureType;
 import com.gisgraphy.client.language.Iso639Language;
 import com.google.common.collect.ImmutableSet;
@@ -25,7 +25,7 @@ import com.vividsolutions.jts.geom.Point;
  *      href="http://www.iso.org/iso/en/prods-services/popstds/countrynamecodes.html">Country Name Codes</a>
  * 
  */
-public final class Country implements AdministrativeEntity,GisFeatureAware {
+public final class Country implements AdministrativeEntity,GisFeature {
     public static class CountryBuilder {
 	private Continent continent;
 	private GisFeature gisFeature;
@@ -133,7 +133,7 @@ public final class Country implements AdministrativeEntity,GisFeatureAware {
 	return new Country(this.isoCountryCode, this.name, continent, this.gisFeature, this.currency, this.fipsCountryCode, this.administrativeCountryInformation, this.geographicCountryInformation);
     }
     
-    public Country withGisFeature(GisFeature gisFeature) {
+    public Country withGisFeature(GeonamesGisFeature gisFeature) {
 	return new Country(this.isoCountryCode, this.name, this.continent, gisFeature, this.currency, this.fipsCountryCode, this.administrativeCountryInformation, this.geographicCountryInformation);
     }
     

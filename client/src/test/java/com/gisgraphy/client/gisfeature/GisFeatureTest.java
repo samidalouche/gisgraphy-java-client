@@ -9,7 +9,7 @@ import static org.junit.Assert.assertNotNull;
 
 import org.junit.Test;
 
-import com.gisgraphy.client.gisfeature.GisFeature;
+import com.gisgraphy.client.gisfeature.GeonamesGisFeature;
 import com.gisgraphy.client.gisfeature.GisFeatureGeography;
 import com.gisgraphy.client.gisfeature.GisFeatureName;
 
@@ -17,7 +17,7 @@ public class GisFeatureTest {
     
     @Test
     public void shouldCreateFranceGisFeature() {
-	GisFeature france = GisFeatureObjectMother.franceGisFeature();
+	GeonamesGisFeature france = GisFeatureObjectMother.franceGisFeature();
 	assertEquals(france.getGeonamesFeatureClass(), GisFeatureObjectMother.FRANCE_FEATURE_CLASS);
 	assertEquals(france.getGeonamesFeatureCode(), GisFeatureObjectMother.ANTARCTICA_FEATURE_CODE);
 	assertEquals(france.getGeonamesId().longValue(), GisFeatureObjectMother.FRANCE_FEATURE_ID);
@@ -29,7 +29,7 @@ public class GisFeatureTest {
     }
 
     public void shouldCreateGisFeature() {
-	GisFeature.gisFeature()
+	GeonamesGisFeature.gisFeature()
             .geonamesId(1L)
             .name(GisFeatureName.gisFeatureName("France"))
             .type(geonamesFeatureClass("A").geonamesFeatureCode("PLCI"))
@@ -38,7 +38,7 @@ public class GisFeatureTest {
     }
 
     public void shouldCreateGisFeatureWithModificationDate() {
-	GisFeature.gisFeature()
+	GeonamesGisFeature.gisFeature()
             .geonamesId(1L)
             .name(GisFeatureName.gisFeatureName("France"))
             .type(geonamesFeatureClass("A").geonamesFeatureCode("PLCI"))
@@ -48,7 +48,7 @@ public class GisFeatureTest {
     }
 
     public void shouldCreateGisFeatureWithNullParentEntity() {
-	GisFeature.gisFeature()
+	GeonamesGisFeature.gisFeature()
             .geonamesId(1L)
             .name(GisFeatureName.gisFeatureName("France"))
             .type(geonamesFeatureClass("A").geonamesFeatureCode("PLCI"))
@@ -59,7 +59,7 @@ public class GisFeatureTest {
     }
 
     public void shouldCreateGisFeatureWithNullModificationDate() {
-	final GisFeature gisFeature = GisFeature.gisFeature()
+	final GeonamesGisFeature gisFeature = GeonamesGisFeature.gisFeature()
             .geonamesId(1L)
             .name(GisFeatureName.gisFeatureName("France"))
             .type(geonamesFeatureClass("A").geonamesFeatureCode("PLCI"))
@@ -71,7 +71,7 @@ public class GisFeatureTest {
     
     @Test(expected=IllegalArgumentException.class)
     public void shouldNotCreateGisFeatureWithNullFeatureId() {
-	GisFeature.gisFeature()
+	GeonamesGisFeature.gisFeature()
             .geonamesId(null)
             .name(GisFeatureName.gisFeatureName("France"))
             .type(geonamesFeatureClass("A").geonamesFeatureCode("PLCI"))
@@ -83,7 +83,7 @@ public class GisFeatureTest {
 
     @Test(expected=IllegalArgumentException.class)
     public void shouldNotCreateGisFeatureWithNullFeatureType() {
-	GisFeature.gisFeature()
+	GeonamesGisFeature.gisFeature()
             .geonamesId(1L)
             .name(GisFeatureName.gisFeatureName("France"))
             .type(null)
@@ -93,7 +93,7 @@ public class GisFeatureTest {
 
     @Test(expected=IllegalArgumentException.class)
     public void shouldNotCreateGisFeatureWithNullGeography() {
-	GisFeature.gisFeature()
+	GeonamesGisFeature.gisFeature()
             .geonamesId(1L)
             .name(GisFeatureName.gisFeatureName("France"))
             .type(geonamesFeatureClass("A").geonamesFeatureCode("PLCI"))

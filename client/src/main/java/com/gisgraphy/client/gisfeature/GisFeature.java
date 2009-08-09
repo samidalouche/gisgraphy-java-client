@@ -1,241 +1,59 @@
 package com.gisgraphy.client.gisfeature;
 
-import javax.measure.quantity.Length;
-import javax.measure.unit.Unit;
-
-import org.apache.commons.lang.builder.ToStringBuilder;
-import org.apache.commons.lang.builder.ToStringStyle;
 import org.joda.time.DateTime;
-import org.springframework.util.Assert;
 
 import com.gisgraphy.client.language.Iso639Language;
 import com.google.common.collect.ImmutableSet;
-import com.vividsolutions.jts.geom.GeometryFactory;
 import com.vividsolutions.jts.geom.Point;
-import com.vividsolutions.jts.geom.PrecisionModel;
 
-public final class GisFeature implements GisFeatureAware, DistanceAware<GisFeature>{
-
-    public static class GisFeatureBuilder {
-
-        private GisFeature gisFeature;
-
-        public GisFeatureBuilder() {
-            gisFeature = new GisFeature();
-        }
-
-        public GisFeature build() {
-            if (gisFeature.lastModificationDate == null) {
-                gisFeature.lastModificationDate = new DateTime();
-            }
-            check();
-            return returnAndNullify();
-        }
-
-        private void check() {
-            Assert.notNull(gisFeature.geonamesId);
-            Assert.notNull(gisFeature.geography);
-            Assert.notNull(gisFeature.name);
-            Assert.notNull(gisFeature.type);
-        }
-
-        public GisFeatureBuilder geography(GisFeatureGeography geography) {
-            gisFeature.geography = geography;
-            return this;
-        }
-
-        public GisFeatureBuilder geonamesId(Long featureId) {
-            gisFeature.geonamesId = featureId;
-            return this;
-        }
-
-        public GisFeatureBuilder lastModificationDate(DateTime lastModificationDate) {
-            gisFeature.lastModificationDate = lastModificationDate;
-            return this;
-        }
-
-        public GisFeatureBuilder name(GisFeatureName featureName) {
-            gisFeature.name = featureName;
-            return this;
-        }
-
-        public GisFeatureBuilder parentAdministrativeEntity(AdministrativeEntity parentEntity) {
-            gisFeature.parentAdministrativeEntity = parentEntity;
-            return this;
-        }
-
-	private GisFeature returnAndNullify() {
-	    GisFeature toReturn = gisFeature;
-            this.gisFeature = null;
-	    return toReturn;
-	}
-
-        public GisFeatureBuilder type(GisFeatureType featureType) {
-            gisFeature.type = featureType;
-            return this;
-        }
-    }
-    public static final int WGS84_SRID = 4326;
-    public static final PrecisionModel PRECISION_MODEL = new PrecisionModel(PrecisionModel.FLOATING);
-    public static final GeometryFactory GEOMETRY_FACTORY = new GeometryFactory(PRECISION_MODEL, WGS84_SRID);
-    
-    
-    public static GisFeatureBuilder gisFeature() {
-        return new GisFeatureBuilder();
-    }
-    private GisFeatureGeography geography;
-    private Long geonamesId;
-    private DateTime lastModificationDate;
-    private GisFeatureName name;
-
-    private AdministrativeEntity parentAdministrativeEntity;
-
-    private GisFeatureType type;
-
-    private GisFeature() {
-    }
-
-    public double distance(GisFeature o, Unit<Length> unit) {
-	return this.geography.distance(o.geography, unit);
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        GisFeature other = (GisFeature) obj;
-        if (geonamesId == null) {
-            if (other.geonamesId != null) {
-                return false;
-            }
-        } else if (!geonamesId.equals(other.geonamesId)) {
-            return false;
-        }
-        return true;
-    }
-
-    public GisFeatureGeography getGeography() {
-        return geography;
-    }
-
-    public String getGeonamesFeatureClass() {
-        return type.getGeonamesFeatureClass();
-    }
-
-    public String getGeonamesFeatureCode() {
-        return type.getGeonamesFeatureCode();
-    }
+public interface GisFeature {
 
     /**
-     * the public, stable, Geoname feature ID
-     * @return
+     * @return the stable, geonames-provided ID for the given feature
      */
-    public Long getGeonamesId() {
-        return geonamesId;
-    }
-
-    public GisFeature getGisFeature() {
-	return this;
-    }
-
-    // GisFeatureAware //
-    public ImmutableSet<AlternateGisFeatureName> getGisFeatureAlternateNames() {
-	return name.getAlternateNames();
-    }
-
-    public String getGisFeatureAsciiName() {
-	return name.getAsciiName();
-    }
-
-    public String getGisFeatureDefaultName() {
-	return name.getName();
-    }
-
-    public Long getElevation() {
-	return geography.getElevation();
-    }
-
+    Long getGeonamesId();
     
-    public Long getGtopo30AverageElevation() {
-	return geography.getGtopo30AverageElevation();
-    }
+    /**
+     * 
+     * @return the feature default name, that may or may not contain non-ascii characters
+     */
+    String getGisFeatureDefaultName();
 
-    public double getLatitude() {
-	return geography.getLatitude();
-    }
-
-    public Point getLocation() {
-	return geography.getLocation();
-    }
-
-    public double getLongitude() {
-	return geography.getLongitude();
-    }
-
-    public Long getPopulation() {
-	return geography.getPopulation();
-    }
-
-    public String getGisFeaturePreferredName(Iso639Language language) {
-	return name.getPreferredName(language);
-    }
-    
-    public String getGisFeatureShortName(Iso639Language language) {
-	return name.getShortName(language);
-    }
-
-    public String getTimeZone() {
-	return geography.getTimeZone();
-    }
-
-    public DateTime getLastModificationDate() {
-        return lastModificationDate;
-    }
-
-    public GisFeatureName getName() {
-        return name;
-    }
-
-    public GisFeatureType getGisFeatureType() {
-	return type;
-    }
-
+    ImmutableSet<AlternateGisFeatureName> getGisFeatureAlternateNames();
 
     /**
      * 
-     * @return possibly null result for features located in international waters
+     * @param language
+     * @return the preferred name if it exists, otherwise the default name
      */
-    public AdministrativeEntity getParentAdministrativeEntity() {
-        return parentAdministrativeEntity;
-    }
+    String getGisFeaturePreferredName(final Iso639Language language);
 
-    public GisFeatureType getType() {
-        return type;
-    }
-
-    @Override
-    public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + ((geonamesId == null) ? 0 : geonamesId.hashCode());
-        return result;
-    }
+    /**
+     * 
+     * @param language
+     * @return the short name if it exists, otherwise the default name 
+     */
+    String getGisFeatureShortName(final Iso639Language language);
     
-    // //
+    /**
+     * @return the GIS Feature itself
+     */
+    GisFeature getGisFeature();
     
-    @Override
-    public String toString() {
-        return new ToStringBuilder(this, ToStringStyle.SHORT_PREFIX_STYLE).append("featureId", this.geonamesId).append("featureName", this.name).append("featureType", this.type).append("featureGeograhy", this.geography).append("lastModificationDate", this.lastModificationDate).append("parentEntity", this.parentAdministrativeEntity).toString();
-    }
+    Long getElevation();
+    Long getGtopo30AverageElevation();
+    Point getLocation();
+    double getLatitude();
+    double getLongitude();
+    Long getPopulation();
+    String getTimeZone();
+    DateTime getLastModificationDate();
+    
+    GisFeatureType getGisFeatureType();
 
-
-
-   
+    /**
+     * 
+     * @return null if no parent administrative entity
+     */
+    AdministrativeEntity getParentAdministrativeEntity();
 }

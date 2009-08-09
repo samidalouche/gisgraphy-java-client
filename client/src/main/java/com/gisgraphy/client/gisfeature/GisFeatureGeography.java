@@ -20,11 +20,11 @@ import org.opengis.referencing.operation.TransformException;
  *
  * @author christophe
  */
-public final class GisFeatureGeography implements DistanceAware<GisFeatureGeography>{
+public final class GisFeatureGeography implements DistanceCalculator<GisFeatureGeography>{
 
     public static class GisFeatureGeographyBuilder {
 
-        public static final Geometry VALID_COORDINATE_BOUNDS = GisFeature.GEOMETRY_FACTORY.toGeometry(new Envelope(-180.0, 180.0, -90.0, 90.0));
+        public static final Geometry VALID_COORDINATE_BOUNDS = GeonamesGisFeature.GEOMETRY_FACTORY.toGeometry(new Envelope(-180.0, 180.0, -90.0, 90.0));
         private GisFeatureGeography geography;
 
         private GisFeatureGeographyBuilder() {
@@ -44,7 +44,7 @@ public final class GisFeatureGeography implements DistanceAware<GisFeatureGeogra
             //this();
             //Validate.isTrue(-180.0 <= longitude && longitude <= 180.0);
             //Validate.isTrue(-90.0 <= latitude && latitude <= 90.0);
-            this(GisFeature.GEOMETRY_FACTORY.createPoint(new Coordinate(longitude, latitude)));
+            this(GeonamesGisFeature.GEOMETRY_FACTORY.createPoint(new Coordinate(longitude, latitude)));
         }
 
         public GisFeatureGeographyBuilder(final Point location) {

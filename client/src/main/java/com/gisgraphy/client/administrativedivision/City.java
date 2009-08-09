@@ -8,24 +8,26 @@ import org.joda.time.DateTime;
 
 import com.gisgraphy.client.gisfeature.AdministrativeEntity;
 import com.gisgraphy.client.gisfeature.AlternateGisFeatureName;
-import com.gisgraphy.client.gisfeature.DistanceAware;
+import com.gisgraphy.client.gisfeature.DistanceCalculator;
+import com.gisgraphy.client.gisfeature.GeonamesGisFeature;
 import com.gisgraphy.client.gisfeature.GisFeature;
-import com.gisgraphy.client.gisfeature.GisFeatureAware;
 import com.gisgraphy.client.gisfeature.GisFeatureType;
 import com.gisgraphy.client.language.Iso639Language;
 import com.google.common.collect.ImmutableSet;
 import com.vividsolutions.jts.geom.Point;
 
-public final class City implements Comparable<City>, GisFeatureAware, DistanceAware<City>, AdministrativeEntity{
+public final class City implements Comparable<City>, GisFeature, DistanceCalculator<City>, AdministrativeEntity{
     private GisFeature gisFeature;
+    private DistanceCalculator<GisFeature> gisFeatureDistanceCalculator;
 
-    public City(GisFeature gisFeature) {
+    public City(GeonamesGisFeature gisFeature) {
 	super();
 	Validate.notNull(gisFeature);
 	// only accept gisfeature with an administrative division (a city 
 	// cannot be in international waters ;-)
 	Validate.notNull(gisFeature.getParentAdministrativeEntity());
 	this.gisFeature = gisFeature;
+	this.gisFeatureDistanceCalculator = gisFeature;
     }
     
     public int compareTo(City o) {
@@ -135,7 +137,7 @@ public final class City implements Comparable<City>, GisFeatureAware, DistanceAw
     
     //// DistanceAware ////
     public double distance(City o, Unit<Length> unit) {
-	return gisFeature.distance(o.getGisFeature(), unit);
+	return gisFeatureDistanceCalculator.distance(o.getGisFeature(), unit);
     }
 
     //// AdministrativeEntity ////

@@ -8,7 +8,7 @@ import javax.measure.unit.SI;
 
 import org.junit.Assert;
 
-import com.gisgraphy.client.gisfeature.GisFeature;
+import com.gisgraphy.client.gisfeature.GeonamesGisFeature;
 import com.gisgraphy.client.gisfeature.GisFeatureGeography;
 import com.vividsolutions.jts.geom.Coordinate;
 import org.junit.Test;
@@ -23,12 +23,12 @@ public class GisFeatureGeographyTest {
 
     @Test(expected=IllegalArgumentException.class)
     public void shouldNotCreateGisFeatureGeographyWithInvalidGeometryLongitude() {
-	GisFeatureGeography.gisFeatureGeography(GisFeature.GEOMETRY_FACTORY.createPoint(new Coordinate(-181.0, 0.0)));
+	GisFeatureGeography.gisFeatureGeography(GeonamesGisFeature.GEOMETRY_FACTORY.createPoint(new Coordinate(-181.0, 0.0)));
     }
 
     @Test(expected=IllegalArgumentException.class)
     public void shouldNotCreateGisFeatureGeographyWithInvalidGeometryLatitude() {
-	GisFeatureGeography.gisFeatureGeography(GisFeature.GEOMETRY_FACTORY.createPoint(new Coordinate(0.0, 91.0)));
+	GisFeatureGeography.gisFeatureGeography(GeonamesGisFeature.GEOMETRY_FACTORY.createPoint(new Coordinate(0.0, 91.0)));
     }
 
     @Test(expected=IllegalArgumentException.class)
@@ -43,7 +43,7 @@ public class GisFeatureGeographyTest {
 
     @Test
     public void shouldCreateGisFeatureGeographyWithValidGeometry() {
-	GisFeatureGeography gfg = GisFeatureGeography.gisFeatureGeography(GisFeature.GEOMETRY_FACTORY.createPoint(new Coordinate(-170.0, 89.0)));
+	GisFeatureGeography gfg = GisFeatureGeography.gisFeatureGeography(GeonamesGisFeature.GEOMETRY_FACTORY.createPoint(new Coordinate(-170.0, 89.0)));
 	Assert.assertNotNull(gfg);
 	Assert.assertEquals(1, gfg.getLocation().getNumPoints());
 	Assert.assertEquals(-170.0d, gfg.getLocation().getCentroid().getCoordinate().x, 0.0001);
@@ -52,7 +52,7 @@ public class GisFeatureGeographyTest {
 
     @Test
     public void shouldCreateGisFeatureGeographyWithValidGeometry2() {
-	GisFeatureGeography gfg = GisFeatureGeography.gisFeatureGeography(GisFeature.GEOMETRY_FACTORY.createPoint(new Coordinate(170.0, -89.0)));
+	GisFeatureGeography gfg = GisFeatureGeography.gisFeatureGeography(GeonamesGisFeature.GEOMETRY_FACTORY.createPoint(new Coordinate(170.0, -89.0)));
 	Assert.assertNotNull(gfg);
 	Assert.assertEquals(1, gfg.getLocation().getNumPoints());
 	Assert.assertEquals(170.0, gfg.getLocation().getCentroid().getCoordinate().x, 0.0001);
