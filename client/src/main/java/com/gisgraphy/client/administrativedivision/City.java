@@ -1,13 +1,17 @@
 package com.gisgraphy.client.administrativedivision;
 
+import javax.measure.quantity.Length;
+import javax.measure.unit.Unit;
+
 import com.gisgraphy.client.gisfeature.AdministrativeEntity;
 import com.gisgraphy.client.gisfeature.AlternateGisFeatureName;
+import com.gisgraphy.client.gisfeature.DistanceAware;
 import com.gisgraphy.client.gisfeature.GisFeature;
 import com.gisgraphy.client.gisfeature.GisFeatureAware;
 import com.gisgraphy.client.language.Iso639Language;
 import com.google.common.collect.ImmutableSet;
 
-public final class City implements Comparable<City>, GisFeatureAware{
+public final class City implements Comparable<City>, GisFeatureAware, DistanceAware<City>{
     private GisFeature gisFeature;
 
     public int compareTo(City o) {
@@ -76,7 +80,12 @@ public final class City implements Comparable<City>, GisFeatureAware{
     public AdministrativeEntity getParentAdministrativeEntity() {
 	return gisFeature.getParentAdministrativeEntity();
     }
+
+    //// DistanceAware ////
+    public double distance(City o, Unit<Length> unit) {
+	return gisFeature.distance(o.getGisFeature(), unit);
+    }
     
-    //// ////
+    
 
 }

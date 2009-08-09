@@ -1,5 +1,8 @@
 package com.gisgraphy.client.gisfeature;
 
+import javax.measure.quantity.Length;
+import javax.measure.unit.Unit;
+
 import org.apache.commons.lang.builder.ToStringBuilder;
 import org.apache.commons.lang.builder.ToStringStyle;
 import org.joda.time.DateTime;
@@ -10,7 +13,7 @@ import com.google.common.collect.ImmutableSet;
 import com.vividsolutions.jts.geom.GeometryFactory;
 import com.vividsolutions.jts.geom.PrecisionModel;
 
-public final class GisFeature implements GisFeatureAware{
+public final class GisFeature implements GisFeatureAware, DistanceAware<GisFeature>{
 
     public static final int WGS84_SRID = 4326;
     public static final PrecisionModel PRECISION_MODEL = new PrecisionModel(PrecisionModel.FLOATING);
@@ -186,4 +189,8 @@ public final class GisFeature implements GisFeatureAware{
 	return this;
     }
     // //
+    
+    public double distance(GisFeature o, Unit<Length> unit) {
+	return this.geography.distance(o.geography, unit);
+    }
 }

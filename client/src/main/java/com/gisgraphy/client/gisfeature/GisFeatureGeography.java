@@ -18,7 +18,7 @@ import org.opengis.referencing.operation.TransformException;
  *
  * @author christophe
  */
-public final class GisFeatureGeography {
+public final class GisFeatureGeography implements DistanceAware<GisFeatureGeography>{
 
     public static class GisFeatureGeographyBuilder {
 
