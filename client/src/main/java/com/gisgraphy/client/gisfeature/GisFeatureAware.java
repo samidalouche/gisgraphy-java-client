@@ -1,7 +1,10 @@
 package com.gisgraphy.client.gisfeature;
 
+import org.joda.time.DateTime;
+
 import com.gisgraphy.client.language.Iso639Language;
 import com.google.common.collect.ImmutableSet;
+import com.vividsolutions.jts.geom.Point;
 
 public interface GisFeatureAware {
 
@@ -36,5 +39,16 @@ public interface GisFeatureAware {
      * @return the GIS Feature itself
      */
     GisFeature getGisFeature();
+    
+    Long getElevation();
+    Long getGtopo30AverageElevation();
+    Point getLocation();
+    double getLatitude();
+    double getLongitude();
+    Long getPopulation();
+    String getTimeZone();
+    DateTime getLastModificationDate();
+    
+    GisFeatureType getGisFeatureType();
 
 }

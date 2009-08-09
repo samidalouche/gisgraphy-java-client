@@ -7,6 +7,8 @@ import javax.measure.unit.Unit;
 import com.vividsolutions.jts.geom.Geometry;
 import com.vividsolutions.jts.geom.Coordinate;
 import com.vividsolutions.jts.geom.Envelope;
+import com.vividsolutions.jts.geom.Point;
+
 import org.apache.commons.lang.Validate;
 import org.apache.commons.lang.builder.ToStringBuilder;
 import org.apache.commons.lang.builder.ToStringStyle;
@@ -45,7 +47,7 @@ public final class GisFeatureGeography implements DistanceAware<GisFeatureGeogra
             this(GisFeature.GEOMETRY_FACTORY.createPoint(new Coordinate(longitude, latitude)));
         }
 
-        public GisFeatureGeographyBuilder(final Geometry location) {
+        public GisFeatureGeographyBuilder(final Point location) {
             this();
             Validate.notNull(location);
             Validate.isTrue(location.isValid());
@@ -57,7 +59,7 @@ public final class GisFeatureGeography implements DistanceAware<GisFeatureGeogra
             return geography;
         }
 
-        public GisFeatureGeographyBuilder location(final Geometry location) {
+        public GisFeatureGeographyBuilder location(final Point location) {
             geography.location = location;
             return this;
         }
@@ -85,19 +87,19 @@ public final class GisFeatureGeography implements DistanceAware<GisFeatureGeogra
     public static GisFeatureGeography gisFeatureGeography(final Double longitude, final Double latitude) {
         return new GisFeatureGeographyBuilder(longitude, latitude).build();
     }
-    public static GisFeatureGeography gisFeatureGeography(final Geometry location) {
+    public static GisFeatureGeography gisFeatureGeography(final Point location) {
         return new GisFeatureGeographyBuilder(location).build();
     }
     private Long elevation;
     private Long gtopo30AverageElevation;
-    private Geometry location;
+    private Point location;
     private Long population;
     private String timeZone;
 
     private GisFeatureGeography() {
     }
 
-    public GisFeatureGeography withLocation(final Geometry location) {
+    public GisFeatureGeography withLocation(final Point location) {
 	return new GisFeatureGeographyBuilder(this).location(location).build();
     }
     
@@ -152,8 +154,16 @@ public final class GisFeatureGeography implements DistanceAware<GisFeatureGeogra
         return gtopo30AverageElevation;
     }
 
-    public Geometry getLocation() {
+    public Point getLocation() {
         return location;
+    }
+    
+    public double getLatitude() {
+	return location.getY();
+    }
+    
+    public double getLongitude() {
+	return location.getX();
     }
 
     public Long getPopulation() {

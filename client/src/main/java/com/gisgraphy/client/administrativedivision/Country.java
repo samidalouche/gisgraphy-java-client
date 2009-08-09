@@ -1,15 +1,18 @@
 package com.gisgraphy.client.administrativedivision;
 
 import org.apache.commons.lang.Validate;
+import org.joda.time.DateTime;
 
 import com.gisgraphy.client.continent.Continent;
 import com.gisgraphy.client.gisfeature.AdministrativeEntity;
 import com.gisgraphy.client.gisfeature.AlternateGisFeatureName;
 import com.gisgraphy.client.gisfeature.GisFeature;
 import com.gisgraphy.client.gisfeature.GisFeatureAware;
+import com.gisgraphy.client.gisfeature.GisFeatureType;
 import com.gisgraphy.client.language.Iso639Language;
 import com.google.common.collect.ImmutableSet;
 import com.ibm.icu.util.Currency;
+import com.vividsolutions.jts.geom.Point;
 
 /**
  * A Country as defined by ISO 3166. 
@@ -193,6 +196,43 @@ public final class Country implements AdministrativeEntity,GisFeatureAware {
 	return gisFeature.getGisFeatureShortName(language);
     }
 
+    public Long getElevation() {
+	return gisFeature.getElevation();
+    }
+
+    public GisFeatureType getGisFeatureType() {
+	return gisFeature.getGisFeatureType();
+    }
+
+    public Long getGtopo30AverageElevation() {
+	return gisFeature.getGtopo30AverageElevation();
+    }
+
+    public DateTime getLastModificationDate() {
+	return gisFeature.getLastModificationDate();
+    }
+
+    public double getLatitude() {
+	return gisFeature.getLatitude();
+    }
+
+    public Point getLocation() {
+	return gisFeature.getLocation();
+    }
+
+    public double getLongitude() {
+	return gisFeature.getLongitude();
+    }
+
+    public Long getPopulation() {
+	return gisFeature.getPopulation();
+    }
+
+    public String getTimeZone() {
+	return gisFeature.getTimeZone();
+    }
+    
+    
     public Country getCountry() {
 	return this;
     }

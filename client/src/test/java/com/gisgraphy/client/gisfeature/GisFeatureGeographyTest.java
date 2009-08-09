@@ -6,7 +6,7 @@ import static com.gisgraphy.client.gisfeature.GisFeatureGeographyObjectMother.ma
 import javax.measure.unit.NonSI;
 import javax.measure.unit.SI;
 
-import junit.framework.Assert;
+import org.junit.Assert;
 
 import com.gisgraphy.client.gisfeature.GisFeature;
 import com.gisgraphy.client.gisfeature.GisFeatureGeography;
@@ -44,39 +44,49 @@ public class GisFeatureGeographyTest {
     @Test
     public void shouldCreateGisFeatureGeographyWithValidGeometry() {
 	GisFeatureGeography gfg = GisFeatureGeography.gisFeatureGeography(GisFeature.GEOMETRY_FACTORY.createPoint(new Coordinate(-170.0, 89.0)));
-    Assert.assertNotNull(gfg);
-    Assert.assertEquals(1, gfg.getLocation().getNumPoints());
-    Assert.assertEquals(-170.0, gfg.getLocation().getCentroid().getCoordinate().x);
-    Assert.assertEquals(89.0, gfg.getLocation().getCentroid().getCoordinate().y);
+	Assert.assertNotNull(gfg);
+	Assert.assertEquals(1, gfg.getLocation().getNumPoints());
+	Assert.assertEquals(-170.0d, gfg.getLocation().getCentroid().getCoordinate().x, 0.0001);
+	Assert.assertEquals(89.0d, gfg.getLocation().getCentroid().getCoordinate().y, 0.0001);
     }
 
     @Test
     public void shouldCreateGisFeatureGeographyWithValidGeometry2() {
 	GisFeatureGeography gfg = GisFeatureGeography.gisFeatureGeography(GisFeature.GEOMETRY_FACTORY.createPoint(new Coordinate(170.0, -89.0)));
-    Assert.assertNotNull(gfg);
-    Assert.assertEquals(1, gfg.getLocation().getNumPoints());
-    Assert.assertEquals(170.0, gfg.getLocation().getCentroid().getCoordinate().x);
-    Assert.assertEquals(-89.0, gfg.getLocation().getCentroid().getCoordinate().y);
+	Assert.assertNotNull(gfg);
+	Assert.assertEquals(1, gfg.getLocation().getNumPoints());
+	Assert.assertEquals(170.0, gfg.getLocation().getCentroid().getCoordinate().x, 0.0001);
+	Assert.assertEquals(-89.0, gfg.getLocation().getCentroid().getCoordinate().y, 0.0001);
     }
 
     @Test
     public void shouldCreateGisFeatureGeographyWithValidCoordinates() {
 	GisFeatureGeography gfg = GisFeatureGeography.gisFeatureGeography(-170.0, 89.0);
-    Assert.assertNotNull(gfg);
-    Assert.assertEquals(1, gfg.getLocation().getNumPoints());
-    Assert.assertEquals(-170.0, gfg.getLocation().getCentroid().getCoordinate().x);
-    Assert.assertEquals(89.0, gfg.getLocation().getCentroid().getCoordinate().y);
+	Assert.assertNotNull(gfg);
+	Assert.assertEquals(1, gfg.getLocation().getNumPoints());
+	Assert.assertEquals(-170.0, gfg.getLocation().getCentroid().getCoordinate().x, 0.0001);
+	Assert.assertEquals(89.0, gfg.getLocation().getCentroid().getCoordinate().y, 0.0001);
     }
 
     @Test
     public void shouldCreateGisFeatureGeographyWithValidCoordinates2() {
 	GisFeatureGeography gfg = GisFeatureGeography.gisFeatureGeography(170.0, -89.0);
-    Assert.assertNotNull(gfg);
-    Assert.assertEquals(1, gfg.getLocation().getNumPoints());
-    Assert.assertEquals(170.0, gfg.getLocation().getCentroid().getCoordinate().x);
-    Assert.assertEquals(-89.0, gfg.getLocation().getCentroid().getCoordinate().y);
+	Assert.assertNotNull(gfg);
+	Assert.assertEquals(1, gfg.getLocation().getNumPoints());
+	Assert.assertEquals(170.0, gfg.getLocation().getCentroid().getCoordinate().x, 0.0001);
+	Assert.assertEquals(-89.0, gfg.getLocation().getCentroid().getCoordinate().y, 0.0001);
     }
 
+    @Test
+    public void shouldReturnLatitude() {
+	Assert.assertEquals(34.05222d, losAngelesCityGisFeatureGeography().getLatitude(), 0.0001); 
+    }
+    
+    @Test
+    public void shouldReturnLongitude() {
+	Assert.assertEquals(-118.24278d, losAngelesCityGisFeatureGeography().getLongitude(), 0.0001);
+    }
+    
     @Test
     public void shouldCalculateDistanceInMile() {
 	Assert.assertTrue(losAngelesCityGisFeatureGeography().distance(marinaDelReyCityGisFeatureGeography(), NonSI.MILE) > 12d 
@@ -94,5 +104,5 @@ public class GisFeatureGeographyTest {
 	Assert.assertTrue(losAngelesCityGisFeatureGeography().distance(marinaDelReyCityGisFeatureGeography(), SI.METER) > 20000d 
 		&& marinaDelReyCityGisFeatureGeography().distance(losAngelesCityGisFeatureGeography(), SI.METER) < 22000d);
     }
-    
+
 }
