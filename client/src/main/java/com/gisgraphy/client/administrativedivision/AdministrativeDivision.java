@@ -11,6 +11,7 @@ import com.gisgraphy.client.gisfeature.GisFeature;
 import com.gisgraphy.client.gisfeature.GisFeatureType;
 import com.gisgraphy.client.language.Iso639Language;
 import com.google.common.collect.ImmutableSet;
+import com.ibm.icu.util.Currency;
 import com.vividsolutions.jts.geom.Point;
 
 /**
@@ -34,7 +35,7 @@ import com.vividsolutions.jts.geom.Point;
  * 
  * @author Sami Dalouche (sami.dalouche@gmail.com)
  */
-public final class AdministrativeDivision implements AdministrativeEntity,GisFeature {
+public final class AdministrativeDivision implements AdministrativeEntity,GisFeature, CurrencyProvider {
     
     public static class AdministrativeDivisionBuilder {
 	private String name;
@@ -210,6 +211,10 @@ public final class AdministrativeDivision implements AdministrativeEntity,GisFea
 
     public String getTimeZone() {
 	return gisFeature.getTimeZone();
+    }
+
+    public Currency getCurrency() {
+	return getCountry().getCurrency();
     }
     
     

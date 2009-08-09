@@ -25,7 +25,7 @@ import com.vividsolutions.jts.geom.Point;
  *      href="http://www.iso.org/iso/en/prods-services/popstds/countrynamecodes.html">Country Name Codes</a>
  * 
  */
-public final class Country implements AdministrativeEntity,GisFeature {
+public final class Country implements AdministrativeEntity,GisFeature,CurrencyProvider {
     public static class CountryBuilder {
 	private Continent continent;
 	private GisFeature gisFeature;

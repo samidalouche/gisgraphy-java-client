@@ -14,9 +14,10 @@ import com.gisgraphy.client.gisfeature.GisFeature;
 import com.gisgraphy.client.gisfeature.GisFeatureType;
 import com.gisgraphy.client.language.Iso639Language;
 import com.google.common.collect.ImmutableSet;
+import com.ibm.icu.util.Currency;
 import com.vividsolutions.jts.geom.Point;
 
-public final class City implements Comparable<City>, GisFeature, DistanceCalculator<City>, AdministrativeEntity{
+public final class City implements Comparable<City>, GisFeature, DistanceCalculator<City>, AdministrativeEntity, CurrencyProvider{
     private GisFeature gisFeature;
     private DistanceCalculator<GisFeature> gisFeatureDistanceCalculator;
 
@@ -160,6 +161,8 @@ public final class City implements Comparable<City>, GisFeature, DistanceCalcula
 	return gisFeature.getParentAdministrativeEntity().getCountry();
     }
 
-    
+    public Currency getCurrency() {
+	return getCountry().getCurrency();
+    }
 
 }

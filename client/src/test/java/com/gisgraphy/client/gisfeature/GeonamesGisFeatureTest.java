@@ -13,7 +13,7 @@ import com.gisgraphy.client.gisfeature.GeonamesGisFeature;
 import com.gisgraphy.client.gisfeature.GisFeatureGeography;
 import com.gisgraphy.client.gisfeature.GisFeatureName;
 
-public class GisFeatureTest {
+public class GeonamesGisFeatureTest {
     
     @Test
     public void shouldCreateFranceGisFeature() {
