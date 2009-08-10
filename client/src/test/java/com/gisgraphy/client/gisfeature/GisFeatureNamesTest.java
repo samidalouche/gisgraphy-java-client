@@ -3,7 +3,7 @@ package com.gisgraphy.client.gisfeature;
 import static com.gisgraphy.client.gisfeature.AlternateGisFeatureNameObjectMother.panameInFrench;
 import static com.gisgraphy.client.gisfeature.AlternateGisFeatureNameObjectMother.parisInEnglish;
 import static com.gisgraphy.client.gisfeature.AlternateGisFeatureNameObjectMother.parisInFrench;
-import static com.gisgraphy.client.gisfeature.GisFeatureNameObjectMother.parisGisFeatureName;
+import static com.gisgraphy.client.gisfeature.GisFeatureNamesObjectMother.parisGisFeatureName;
 import static com.gisgraphy.client.language.IsoLanguageObjectMother.frenchIsoLanguage;
 import static com.gisgraphy.client.language.IsoLanguageObjectMother.ghotuo;
 import static org.junit.Assert.assertEquals;
@@ -13,14 +13,14 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.gisgraphy.client.gisfeature.GisFeatureName;
+import com.gisgraphy.client.gisfeature.GisFeatureNames;
 import com.google.common.collect.Iterables;
 
-public class GisFeatureNameTest {
+public class GisFeatureNamesTest {
     
     @Test
     public void shouldCreateParisGisFeatureName() {
-	GisFeatureName parisGisFeatureName = parisGisFeatureName();
+	GisFeatureNames parisGisFeatureName = parisGisFeatureName();
 	assertEquals("Paris", parisGisFeatureName.getName());
 	assertEquals("Paris", parisGisFeatureName.getAsciiName());
 	assertNotNull(parisGisFeatureName.getAlternateNames());
@@ -32,7 +32,7 @@ public class GisFeatureNameTest {
     
     @Test
     public void shouldNotHaveAlternateNamesByDefault() {
-	GisFeatureName rambouillet = GisFeatureNameObjectMother.rambouilletGisFeatureNameWithoutAlternateNames();
+	GisFeatureNames rambouillet = GisFeatureNamesObjectMother.rambouilletGisFeatureNameWithoutAlternateNames();
 	assertEquals(0, Iterables.size(rambouillet.getAlternateNames()));
     }
     
@@ -49,12 +49,12 @@ public class GisFeatureNameTest {
     
     @Test(expected=IllegalArgumentException.class)
     public void shouldNotCreateGisFeatureNameWithNullName() {
-	GisFeatureName.gisFeatureName(null);
+	GisFeatureNames.gisFeatureName(null);
     }
     
     @Test(expected=IllegalArgumentException.class)
     public void shouldNotCreateGisFeatureNameWithEmptyName() {
-	GisFeatureName.gisFeatureName("");
+	GisFeatureNames.gisFeatureName("");
     }
     
     @Test

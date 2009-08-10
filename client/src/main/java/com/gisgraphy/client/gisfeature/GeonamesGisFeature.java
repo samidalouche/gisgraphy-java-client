@@ -8,6 +8,7 @@ import org.apache.commons.lang.builder.ToStringStyle;
 import org.joda.time.DateTime;
 import org.springframework.util.Assert;
 
+import com.gisgraphy.client.commons.DistanceCalculator;
 import com.gisgraphy.client.language.Iso639Language;
 import com.google.common.collect.ImmutableSet;
 import com.vividsolutions.jts.geom.GeometryFactory;
@@ -35,7 +36,7 @@ public final class GeonamesGisFeature implements GisFeature, DistanceCalculator<
         private void check() {
             Assert.notNull(gisFeature.geonamesId);
             Assert.notNull(gisFeature.geography);
-            Assert.notNull(gisFeature.name);
+            Assert.notNull(gisFeature.names);
             Assert.notNull(gisFeature.type);
         }
 
@@ -54,8 +55,8 @@ public final class GeonamesGisFeature implements GisFeature, DistanceCalculator<
             return this;
         }
 
-        public GisFeatureBuilder name(GisFeatureName featureName) {
-            gisFeature.name = featureName;
+        public GisFeatureBuilder names(GisFeatureNames featureNames) {
+            gisFeature.names = featureNames;
             return this;
         }
 
@@ -86,7 +87,7 @@ public final class GeonamesGisFeature implements GisFeature, DistanceCalculator<
     private GisFeatureGeography geography;
     private Long geonamesId;
     private DateTime lastModificationDate;
-    private GisFeatureName name;
+    private GisFeatureNames names;
 
     private AdministrativeEntity parentAdministrativeEntity;
 
@@ -147,15 +148,15 @@ public final class GeonamesGisFeature implements GisFeature, DistanceCalculator<
 
     // GisFeatureAware //
     public ImmutableSet<AlternateGisFeatureName> getGisFeatureAlternateNames() {
-	return name.getAlternateNames();
+	return names.getAlternateNames();
     }
 
     public String getGisFeatureAsciiName() {
-	return name.getAsciiName();
+	return names.getAsciiName();
     }
 
     public String getGisFeatureDefaultName() {
-	return name.getName();
+	return names.getName();
     }
 
     public Long getElevation() {
@@ -184,11 +185,11 @@ public final class GeonamesGisFeature implements GisFeature, DistanceCalculator<
     }
 
     public String getGisFeaturePreferredName(Iso639Language language) {
-	return name.getPreferredName(language);
+	return names.getPreferredName(language);
     }
     
     public String getGisFeatureShortName(Iso639Language language) {
-	return name.getShortName(language);
+	return names.getShortName(language);
     }
 
     public String getTimeZone() {
@@ -199,8 +200,11 @@ public final class GeonamesGisFeature implements GisFeature, DistanceCalculator<
         return lastModificationDate;
     }
 
-    public GisFeatureName getName() {
-        return name;
+    public String getName() {
+	return names.getName();
+    }
+    public GisFeatureNames getNames() {
+        return names;
     }
 
     public GisFeatureType getGisFeatureType() {
@@ -232,7 +236,7 @@ public final class GeonamesGisFeature implements GisFeature, DistanceCalculator<
     
     @Override
     public String toString() {
-        return new ToStringBuilder(this, ToStringStyle.SHORT_PREFIX_STYLE).append("featureId", this.geonamesId).append("featureName", this.name).append("featureType", this.type).append("featureGeograhy", this.geography).append("lastModificationDate", this.lastModificationDate).append("parentEntity", this.parentAdministrativeEntity).toString();
+        return new ToStringBuilder(this, ToStringStyle.SHORT_PREFIX_STYLE).append("featureId", this.geonamesId).append("featureName", this.names).append("featureType", this.type).append("featureGeograhy", this.geography).append("lastModificationDate", this.lastModificationDate).append("parentEntity", this.parentAdministrativeEntity).toString();
     }
 
 

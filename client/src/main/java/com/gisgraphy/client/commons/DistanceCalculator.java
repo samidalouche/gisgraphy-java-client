@@ -1,4 +1,4 @@
-package com.gisgraphy.client.gisfeature;
+package com.gisgraphy.client.commons;
 
 import javax.measure.quantity.Length;
 import javax.measure.unit.Unit;

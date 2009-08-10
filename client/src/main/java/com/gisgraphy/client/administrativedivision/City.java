@@ -6,9 +6,9 @@ import javax.measure.unit.Unit;
 import org.apache.commons.lang.Validate;
 import org.joda.time.DateTime;
 
+import com.gisgraphy.client.commons.DistanceCalculator;
 import com.gisgraphy.client.gisfeature.AdministrativeEntity;
 import com.gisgraphy.client.gisfeature.AlternateGisFeatureName;
-import com.gisgraphy.client.gisfeature.DistanceCalculator;
 import com.gisgraphy.client.gisfeature.GeonamesGisFeature;
 import com.gisgraphy.client.gisfeature.GisFeature;
 import com.gisgraphy.client.gisfeature.GisFeatureType;

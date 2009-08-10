@@ -10,18 +10,18 @@ import com.google.common.base.Predicate;
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Iterables;
 
-public final class GisFeatureName {
+public final class GisFeatureNames {
 
     private String name;
     private String asciiName;
     private AlternateNamesProvider alternateNamesProvider = emptyAlternateNamesProvider();
 
-    private GisFeatureName(String name) {
+    private GisFeatureNames(String name) {
         this(name, null, emptySet());
     }
 
     
-    private GisFeatureName(String name, String asciiName, AlternateNamesProvider alternateNamesProvider) {
+    private GisFeatureNames(String name, String asciiName, AlternateNamesProvider alternateNamesProvider) {
         super();
 
         Validate.notEmpty(name);
@@ -31,28 +31,28 @@ public final class GisFeatureName {
         this.alternateNamesProvider = alternateNamesProvider;
     }
 
-    private GisFeatureName(String name, String asciiName, Iterable<AlternateGisFeatureName> alternateNames) {
+    private GisFeatureNames(String name, String asciiName, Iterable<AlternateGisFeatureName> alternateNames) {
         this(name, asciiName, new InMemoryAlternateNamesProvider(ImmutableSet.copyOf(alternateNames)));
     }
 
-    public static GisFeatureName gisFeatureName(String name) {
-        return new GisFeatureName(name);
+    public static GisFeatureNames gisFeatureName(String name) {
+        return new GisFeatureNames(name);
     }
 
-    public GisFeatureName withName(String name) {
-        return new GisFeatureName(name, this.asciiName, this.alternateNamesProvider);
+    public GisFeatureNames withName(String name) {
+        return new GisFeatureNames(name, this.asciiName, this.alternateNamesProvider);
     }
 
-    public GisFeatureName withAsciiName(String asciiName) {
-        return new GisFeatureName(this.name, asciiName, this.alternateNamesProvider);
+    public GisFeatureNames withAsciiName(String asciiName) {
+        return new GisFeatureNames(this.name, asciiName, this.alternateNamesProvider);
     }
 
-    public GisFeatureName withAlternateNames(Iterable<AlternateGisFeatureName> alternateNames) {
-        return new GisFeatureName(this.name, this.asciiName, alternateNames);
+    public GisFeatureNames withAlternateNames(Iterable<AlternateGisFeatureName> alternateNames) {
+        return new GisFeatureNames(this.name, this.asciiName, alternateNames);
     }
     
-    public GisFeatureName withAlternateNamesProvider(AlternateNamesProvider alternateNamesProvider) {
-        return new GisFeatureName(this.name, this.asciiName, alternateNamesProvider);
+    public GisFeatureNames withAlternateNamesProvider(AlternateNamesProvider alternateNamesProvider) {
+        return new GisFeatureNames(this.name, this.asciiName, alternateNamesProvider);
     }
 
     private static ImmutableSet<AlternateGisFeatureName> emptySet() {
