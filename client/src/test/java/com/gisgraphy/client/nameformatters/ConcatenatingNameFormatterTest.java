@@ -29,4 +29,8 @@ public class ConcatenatingNameFormatterTest {
 		forwardNameFormatter.format(losAngelesNameProvider()).toString());
     }
     
+    @Test(expected=IllegalArgumentException.class) public void shouldNotCreateNameFormatterWithoutDelimiter() {
+	new ConcatenatingNameFormatter(null);
+    }
+    
 }
