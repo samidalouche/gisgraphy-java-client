@@ -3,6 +3,8 @@ package com.gisgraphy.client.gisfeature;
 import org.joda.time.DateTime;
 import org.junit.Assert;
 
+import static com.gisgraphy.client.gisfeature.GisFeatureObjectMother.franceGisFeature;
+import static com.gisgraphy.client.gisfeature.GisFeatureObjectMother.rambouilletAdm4GisFeature;
 import static com.gisgraphy.client.gisfeature.GisFeatureType.geonamesFeatureClass;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -28,6 +30,7 @@ public class GeonamesGisFeatureTest {
 	assertNotNull(france.getLastModificationDate());
     }
 
+    @Test
     public void shouldCreateGisFeature() {
 	GeonamesGisFeature.gisFeature()
             .geonamesId(1L)
@@ -37,6 +40,7 @@ public class GeonamesGisFeatureTest {
             .build();
     }
 
+    @Test
     public void shouldCreateGisFeatureWithModificationDate() {
 	GeonamesGisFeature.gisFeature()
             .geonamesId(1L)
@@ -47,6 +51,7 @@ public class GeonamesGisFeatureTest {
             .build();
     }
 
+    @Test
     public void shouldCreateGisFeatureWithNullParentEntity() {
 	GeonamesGisFeature.gisFeature()
             .geonamesId(1L)
@@ -58,6 +63,7 @@ public class GeonamesGisFeatureTest {
             .build();
     }
 
+    @Test
     public void shouldCreateGisFeatureWithNullModificationDate() {
 	final GeonamesGisFeature gisFeature = GeonamesGisFeature.gisFeature()
             .geonamesId(1L)
@@ -98,6 +104,14 @@ public class GeonamesGisFeatureTest {
             .names(GisFeatureNames.gisFeatureName("France"))
             .type(geonamesFeatureClass("A").geonamesFeatureCode("PLCI"))
             .build();
+    }
+    
+    @Test public void shouldReturnFullyQualifiedNamePartsForFeatureWithParentAdministrativeEntity() {
+	Assert.assertEquals("[France, Région Île-de-France, Département des Yvelines, Arrondissement de Rambouillet, Rambouillet]",rambouilletAdm4GisFeature().getFullyQualifiedNameParts().toString());
+    }
+    
+    @Test public void shouldReturnFullyQualifiedNamePartsForFeatureWithoutParentAdministrativeEntity() {
+	Assert.assertEquals("[France]",franceGisFeature().getFullyQualifiedNameParts().toString());
     }
     
 }

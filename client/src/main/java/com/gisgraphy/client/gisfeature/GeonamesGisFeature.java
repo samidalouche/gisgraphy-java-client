@@ -10,7 +10,9 @@ import org.springframework.util.Assert;
 
 import com.gisgraphy.client.commons.DistanceCalculator;
 import com.gisgraphy.client.language.Iso639Language;
+import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableSet;
+import com.google.common.collect.Iterables;
 import com.vividsolutions.jts.geom.GeometryFactory;
 import com.vividsolutions.jts.geom.Point;
 import com.vividsolutions.jts.geom.PrecisionModel;
@@ -239,7 +241,15 @@ public final class GeonamesGisFeature implements GisFeature, DistanceCalculator<
         return new ToStringBuilder(this, ToStringStyle.SHORT_PREFIX_STYLE).append("featureId", this.geonamesId).append("featureName", this.names).append("featureType", this.type).append("featureGeograhy", this.geography).append("lastModificationDate", this.lastModificationDate).append("parentEntity", this.parentAdministrativeEntity).toString();
     }
 
+    public ImmutableList<String> getFullyQualifiedNameParts() {
+	return ImmutableList.copyOf(
+		Iterables.concat(
+			getParentAdministrativeEntity() != null ? getParentAdministrativeEntity().getFullyQualifiedNameParts() : emptyStringList(), 
+			ImmutableList.of(getName())));
+    }
 
-
+    private ImmutableList<String> emptyStringList() {
+	return ImmutableList.of();
+    }
    
 }

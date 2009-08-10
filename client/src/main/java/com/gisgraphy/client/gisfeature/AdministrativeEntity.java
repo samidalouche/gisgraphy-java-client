@@ -10,7 +10,7 @@ import com.gisgraphy.client.administrativedivision.Country;
  * @author Sami Dalouche (sami.dalouche@gmail.com)
  *
  */
-public interface AdministrativeEntity {
+public interface AdministrativeEntity extends NameProvider {
     /**
      * ADM0 (Country), ADM1 (First Level ADM), ADM2, ...)
      * @return

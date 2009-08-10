@@ -186,4 +186,8 @@ public class CountryTest {
 	france().getAdministrativeEntity(1);
     }
     
+    @Test public void shouldReturnFullyQualifiedName() {
+	Assert.assertEquals("[France]",CountryObjectMother.france().getFullyQualifiedNameParts().toString());
+    }
+    
 }

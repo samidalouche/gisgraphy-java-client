@@ -290,6 +290,8 @@ public final class Country implements AdministrativeEntity,GisFeature,CurrencyPr
 	return geographicCountryInformation.getArea();
     }
 
-    
-    
+    public ImmutableList<String> getFullyQualifiedNameParts() {
+	return ImmutableList.of(name);
+    }
+
 }
