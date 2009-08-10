@@ -7,6 +7,8 @@ import org.apache.commons.lang.Validate;
 import org.joda.time.DateTime;
 
 import com.gisgraphy.client.commons.DistanceCalculator;
+import com.gisgraphy.client.commons.Formattable;
+import com.gisgraphy.client.commons.NameFormatter;
 import com.gisgraphy.client.commons.NamePart;
 import com.gisgraphy.client.gisfeature.AdministrativeEntity;
 import com.gisgraphy.client.gisfeature.AlternateGisFeatureName;
@@ -20,7 +22,7 @@ import com.google.common.collect.Iterables;
 import com.ibm.icu.util.Currency;
 import com.vividsolutions.jts.geom.Point;
 
-public final class City implements Comparable<City>, GisFeature, DistanceCalculator<City>, AdministrativeEntity, CurrencyProvider{
+public final class City implements Comparable<City>, GisFeature, DistanceCalculator<City>, AdministrativeEntity, CurrencyProvider, Formattable{
     private GisFeature gisFeature;
     private DistanceCalculator<GisFeature> gisFeatureDistanceCalculator;
 
@@ -174,6 +176,10 @@ public final class City implements Comparable<City>, GisFeature, DistanceCalcula
 
     public String getFriendlyCode() {
 	return null;
+    }
+
+    public String formatName(NameFormatter nameFormatter) {
+	return nameFormatter.format(this);
     }
 
 }
