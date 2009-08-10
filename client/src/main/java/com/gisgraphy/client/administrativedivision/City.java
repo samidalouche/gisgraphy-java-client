@@ -18,7 +18,6 @@ import com.gisgraphy.client.gisfeature.GisFeatureType;
 import com.gisgraphy.client.language.Iso639Language;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableSet;
-import com.google.common.collect.Iterables;
 import com.ibm.icu.util.Currency;
 import com.vividsolutions.jts.geom.Point;
 
