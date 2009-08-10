@@ -2,6 +2,7 @@ package com.gisgraphy.client.gisfeature;
 
 import org.joda.time.DateTime;
 
+import com.gisgraphy.client.commons.NameProvider;
 import com.gisgraphy.client.language.Iso639Language;
 import com.google.common.collect.ImmutableSet;
 import com.vividsolutions.jts.geom.Point;

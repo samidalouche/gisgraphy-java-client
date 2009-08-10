@@ -5,6 +5,7 @@ import org.apache.commons.lang.builder.ToStringBuilder;
 import org.apache.commons.lang.builder.ToStringStyle;
 import org.joda.time.DateTime;
 
+import com.gisgraphy.client.commons.NamePart;
 import com.gisgraphy.client.gisfeature.AdministrativeEntity;
 import com.gisgraphy.client.gisfeature.AlternateGisFeatureName;
 import com.gisgraphy.client.gisfeature.GisFeature;
@@ -219,11 +220,15 @@ public final class AdministrativeDivision implements AdministrativeEntity,GisFea
 	return getCountry().getCurrency();
     }
 
-    public ImmutableList<String> getFullyQualifiedNameParts() {
+    public ImmutableList<NamePart> getFullyQualifiedNameParts() {
 	return ImmutableList.copyOf(
 		Iterables.concat(
 			getParentAdministrativeEntity().getFullyQualifiedNameParts(), 
-			ImmutableList.of(name)));
+			ImmutableList.of(new NamePart(getName(), getFriendlyCode()))));
+    }
+
+    public String getFriendlyCode() {
+	return code;
     }
     
     

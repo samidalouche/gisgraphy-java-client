@@ -1,6 +1,7 @@
 package com.gisgraphy.client.gisfeature;
 
 import com.gisgraphy.client.administrativedivision.Country;
+import com.gisgraphy.client.commons.NameProvider;
 
 /**
  * FIXME: cyclic dependency between gisfeature and 

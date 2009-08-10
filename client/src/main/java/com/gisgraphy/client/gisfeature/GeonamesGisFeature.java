@@ -9,6 +9,7 @@ import org.joda.time.DateTime;
 import org.springframework.util.Assert;
 
 import com.gisgraphy.client.commons.DistanceCalculator;
+import com.gisgraphy.client.commons.NamePart;
 import com.gisgraphy.client.language.Iso639Language;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableSet;
@@ -241,15 +242,19 @@ public final class GeonamesGisFeature implements GisFeature, DistanceCalculator<
         return new ToStringBuilder(this, ToStringStyle.SHORT_PREFIX_STYLE).append("featureId", this.geonamesId).append("featureName", this.names).append("featureType", this.type).append("featureGeograhy", this.geography).append("lastModificationDate", this.lastModificationDate).append("parentEntity", this.parentAdministrativeEntity).toString();
     }
 
-    public ImmutableList<String> getFullyQualifiedNameParts() {
+    public ImmutableList<NamePart> getFullyQualifiedNameParts() {
 	return ImmutableList.copyOf(
 		Iterables.concat(
 			getParentAdministrativeEntity() != null ? getParentAdministrativeEntity().getFullyQualifiedNameParts() : emptyStringList(), 
-			ImmutableList.of(getName())));
+			ImmutableList.of(new NamePart(getName(), getFriendlyCode()))));
     }
 
-    private ImmutableList<String> emptyStringList() {
+    private ImmutableList<NamePart> emptyStringList() {
 	return ImmutableList.of();
+    }
+
+    public String getFriendlyCode() {
+	return null;
     }
    
 }

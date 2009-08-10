@@ -3,6 +3,7 @@ package com.gisgraphy.client.administrativedivision;
 import org.apache.commons.lang.Validate;
 import org.joda.time.DateTime;
 
+import com.gisgraphy.client.commons.NamePart;
 import com.gisgraphy.client.continent.Continent;
 import com.gisgraphy.client.gisfeature.AdministrativeEntity;
 import com.gisgraphy.client.gisfeature.AlternateGisFeatureName;
@@ -290,8 +291,12 @@ public final class Country implements AdministrativeEntity,GisFeature,CurrencyPr
 	return geographicCountryInformation.getArea();
     }
 
-    public ImmutableList<String> getFullyQualifiedNameParts() {
-	return ImmutableList.of(name);
+    public ImmutableList<NamePart> getFullyQualifiedNameParts() {
+	return ImmutableList.of(new NamePart(getName(), getFriendlyCode()));
+    }
+
+    public String getFriendlyCode() {
+	return isoCountryCode.getIso3166Alpha2Code();
     }
 
 }

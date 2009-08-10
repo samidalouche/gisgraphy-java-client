@@ -7,6 +7,7 @@ import org.apache.commons.lang.Validate;
 import org.joda.time.DateTime;
 
 import com.gisgraphy.client.commons.DistanceCalculator;
+import com.gisgraphy.client.commons.NamePart;
 import com.gisgraphy.client.gisfeature.AdministrativeEntity;
 import com.gisgraphy.client.gisfeature.AlternateGisFeatureName;
 import com.gisgraphy.client.gisfeature.GeonamesGisFeature;
@@ -167,8 +168,12 @@ public final class City implements Comparable<City>, GisFeature, DistanceCalcula
 	return getCountry().getCurrency();
     }
 
-    public ImmutableList<String> getFullyQualifiedNameParts() {
+    public ImmutableList<NamePart> getFullyQualifiedNameParts() {
 	return gisFeature.getFullyQualifiedNameParts();
+    }
+
+    public String getFriendlyCode() {
+	return null;
     }
 
 }
