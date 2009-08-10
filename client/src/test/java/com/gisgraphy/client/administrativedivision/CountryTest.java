@@ -187,7 +187,7 @@ public class CountryTest {
     }
     
     @Test public void shouldReturnFullyQualifiedName() {
-	Assert.assertEquals("[France]",CountryObjectMother.france().getFullyQualifiedNameParts().toString());
+	Assert.assertEquals("[NamePart[name=France,friendlyCode=FR]]",CountryObjectMother.france().getFullyQualifiedNameParts().toString());
     }
     
 }

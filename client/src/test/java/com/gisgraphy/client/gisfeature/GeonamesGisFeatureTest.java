@@ -107,11 +107,11 @@ public class GeonamesGisFeatureTest {
     }
     
     @Test public void shouldReturnFullyQualifiedNamePartsForFeatureWithParentAdministrativeEntity() {
-	Assert.assertEquals("[France, Région Île-de-France, Département des Yvelines, Arrondissement de Rambouillet, Rambouillet]",rambouilletAdm4GisFeature().getFullyQualifiedNameParts().toString());
+	Assert.assertEquals("[NamePart[name=France,friendlyCode=FR], NamePart[name=Région Île-de-France,friendlyCode=A8], NamePart[name=Département des Yvelines,friendlyCode=78], NamePart[name=Arrondissement de Rambouillet,friendlyCode=782], NamePart[name=Rambouillet,friendlyCode=<null>]]",rambouilletAdm4GisFeature().getFullyQualifiedNameParts().toString());
     }
     
     @Test public void shouldReturnFullyQualifiedNamePartsForFeatureWithoutParentAdministrativeEntity() {
-	Assert.assertEquals("[France]",franceGisFeature().getFullyQualifiedNameParts().toString());
+	Assert.assertEquals("[NamePart[name=France,friendlyCode=<null>]]",franceGisFeature().getFullyQualifiedNameParts().toString());
     }
     
 }

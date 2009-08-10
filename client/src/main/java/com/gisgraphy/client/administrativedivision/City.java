@@ -22,10 +22,15 @@ import com.ibm.icu.util.Currency;
 import com.vividsolutions.jts.geom.Point;
 
 public final class City implements Comparable<City>, GisFeature, DistanceCalculator<City>, AdministrativeEntity, CurrencyProvider, Formattable{
+    
+    public static City forFeature(GeonamesGisFeature gisFeature) {
+	return new City(gisFeature);
+    }
+    
     private GisFeature gisFeature;
     private DistanceCalculator<GisFeature> gisFeatureDistanceCalculator;
 
-    public City(GeonamesGisFeature gisFeature) {
+    private City(GeonamesGisFeature gisFeature) {
 	super();
 	Validate.notNull(gisFeature);
 	// only accept gisfeature with an administrative division (a city 

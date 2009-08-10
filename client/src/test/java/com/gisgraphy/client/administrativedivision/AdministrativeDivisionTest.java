@@ -117,7 +117,7 @@ public class AdministrativeDivisionTest {
     }
     
     @Test public void shouldReturnFullyQualifiedName() {
-	Assert.assertEquals("[France, Région Île-de-France, Département des Yvelines, Arrondissement de Rambouillet, Rambouillet]",AdministrativeDivisionObjectMother.rambouilletAdm4().getFullyQualifiedNameParts().toString());
+	Assert.assertEquals("[NamePart[name=France,friendlyCode=FR], NamePart[name=Région Île-de-France,friendlyCode=A8], NamePart[name=Département des Yvelines,friendlyCode=78], NamePart[name=Arrondissement de Rambouillet,friendlyCode=782], NamePart[name=Rambouillet,friendlyCode=78517]]",AdministrativeDivisionObjectMother.rambouilletAdm4().getFullyQualifiedNameParts().toString());
     }
     
 }
