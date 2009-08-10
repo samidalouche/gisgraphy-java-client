@@ -5,11 +5,11 @@ import static com.gisgraphy.client.commons.NameProviderObjectMother.losAngelesNa
 import org.junit.Assert;
 import org.junit.Test;
 
-public class AllNamesExtractorTest {
+public class FullyQualifiedNamesExtractorTest {
 
     @Test public void shouldExtractAllNames() {
 	Assert.assertEquals("[United States, California, Los Angeles county, Los Angeles]", 
-		new AllNamesExtractor().extractNames(
+		new FullyQualifiedNamesExtractor().extractNames(
 			losAngelesNameProvider().getFullyQualifiedNameParts()).toString());
     }
 }

@@ -17,7 +17,7 @@ public class ConcatenatingNameFormatter implements NameFormatter {
     private NamesExtractor namesExtractor;
 
     public ConcatenatingNameFormatter(String delimiter) {
-	this(delimiter, true, new AllNamesExtractor());
+	this(delimiter, true, new FullyQualifiedNamesExtractor());
     }
 
     public ConcatenatingNameFormatter(String delimiter, boolean reverse, NamesExtractor namesExtractor) {

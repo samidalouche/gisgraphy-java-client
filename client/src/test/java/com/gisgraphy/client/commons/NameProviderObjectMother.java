@@ -13,4 +13,17 @@ public class NameProviderObjectMother {
 			new NamePart("Los Angeles county", null),
 			new NamePart("Los Angeles", null)));
     }
+    
+    public static NameProvider twoPartsNameProvider() {
+	return new FakeFullyQualifiedNameProvider(
+		ImmutableList.of(
+			new NamePart("United States", "US"),
+			new NamePart("Los Angeles", null)));
+    }
+    
+    public static NameProvider onePartNameProvider() {
+	return new FakeFullyQualifiedNameProvider(
+		ImmutableList.of(
+			new NamePart("Los Angeles", null)));
+    }
 }
