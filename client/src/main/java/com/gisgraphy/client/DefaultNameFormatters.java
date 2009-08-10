@@ -5,7 +5,7 @@ import com.gisgraphy.client.nameformatters.ConcatenatingNameFormatter;
 
 public class DefaultNameFormatters {
 
-    public static NameFormatter fullConcatenatingNameFormatter(String delimiter) {
+    public static NameFormatter fullyQualifiedNameFormatter(String delimiter) {
 	return new ConcatenatingNameFormatter(delimiter);
     }
 }

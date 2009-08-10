@@ -16,7 +16,7 @@ public class ConcatenatingNameFormatterTest {
     @Before
     public void setup() {
 	reverseNameFormatter = new ConcatenatingNameFormatter(",");
-	forwardNameFormatter = new ConcatenatingNameFormatter(",", false);
+	forwardNameFormatter = new ConcatenatingNameFormatter(",", false, new AllNamesExtractor());
     }
     
     @Test public void shouldConcatenateAllNamesInReverseOrder() {

@@ -14,20 +14,22 @@ public class ConcatenatingNameFormatter implements NameFormatter {
 
     private String delimiter;
     private boolean reverse;
+    private NamesExtractor namesExtractor;
 
     public ConcatenatingNameFormatter(String delimiter) {
-	this(delimiter, true);
+	this(delimiter, true, new AllNamesExtractor());
     }
 
-    public ConcatenatingNameFormatter(String delimiter, boolean reverse) {
+    public ConcatenatingNameFormatter(String delimiter, boolean reverse, NamesExtractor namesExtractor) {
 	super();
 	Validate.notNull(delimiter);
 	this.delimiter = delimiter;
 	this.reverse = reverse;
+	this.namesExtractor = namesExtractor;
     }
 
     public String format(NameProvider nameProvider) {
-	return Join.join(delimiter,extractNames(reverse(nameProvider.getFullyQualifiedNameParts())));
+	return Join.join(delimiter,namesExtractor.extractNames(reverse(nameProvider.getFullyQualifiedNameParts())));
     }
 
     private ImmutableList<NamePart> reverse(ImmutableList<NamePart> parts) {
@@ -36,15 +38,6 @@ public class ConcatenatingNameFormatter implements NameFormatter {
 	} else {
 	    return parts;
 	}
-    }
- 
-    private ImmutableList<String> extractNames(final ImmutableList<NamePart> parts) {
-	return ImmutableList.copyOf(Iterables.transform(parts,
-		new Function<NamePart, String>() {
-		    public String apply(NamePart namePart) {
-			return namePart.getName();
-		    }
-		}));
     }
 
 }
