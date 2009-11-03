@@ -1,9 +1,6 @@
 package com.gisgraphy.client.administrativedivision;
 
-import com.gisgraphy.client.gisfeature.GisFeatureObjectMother;
-import static com.gisgraphy.client.gisfeature.GisFeatureObjectMother.franceGisFeature;
-import static com.gisgraphy.client.gisfeature.GisFeatureObjectMother.rambouilletAdm4GisFeature;
-import static com.gisgraphy.client.gisfeature.GisFeatureObjectMother.gazeranAdm4GisFeature;
+import static com.gisgraphy.client.gisfeature.GisFeatureObjectMother.*;
 import org.junit.Assert;
 import org.junit.Test;
 
