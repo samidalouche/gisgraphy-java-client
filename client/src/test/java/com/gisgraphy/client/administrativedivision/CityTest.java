@@ -1,5 +1,6 @@
 package com.gisgraphy.client.administrativedivision;
 
+import com.gisgraphy.client.gisfeature.GisFeature;
 import static com.gisgraphy.client.gisfeature.GisFeatureObjectMother.franceGisFeature;
 
 import org.junit.Assert;
@@ -18,15 +19,16 @@ public class CityTest {
     }
     
     @Test public void shouldCompareCitiesByName() {
-//	Assert.assertTrue(CityO)
+    Assert.assertTrue(City.forFeature(GisFeatureObjectMother.rambouilletAdm4GisFeature()).compareTo(City.forFeature(GisFeatureObjectMother.gazeranAdm4GisFeature())) > 0);
+    Assert.assertTrue(City.forFeature(GisFeatureObjectMother.gazeranAdm4GisFeature()).compareTo(City.forFeature(GisFeatureObjectMother.rambouilletAdm4GisFeature())) < 0);
     }
     
     @Test public void twoCitiesWithSameGisFeatureShouldBeEqual() {
-	
+	Assert.assertEquals(City.forFeature(GisFeatureObjectMother.rambouilletAdm4GisFeature()), City.forFeature(GisFeatureObjectMother.rambouilletAdm4GisFeature()));
     }
     
     @Test public void twoCitiesWithDifferentGisFeaturesShouldNotBeEqual() {
-	
+	Assert.assertNotSame(City.forFeature(GisFeatureObjectMother.rambouilletAdm4GisFeature()), City.forFeature(GisFeatureObjectMother.gazeranAdm4GisFeature()));
     }
     
     @Test public void getAdministrativeEntityShouldNotAcceptLevelHigherThanCurrentLevel() {
