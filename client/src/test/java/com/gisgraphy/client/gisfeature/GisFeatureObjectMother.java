@@ -104,7 +104,7 @@ public class GisFeatureObjectMother {
 	return gisFeature()
 		.geonamesId(3016456L)
 		.names(gisFeatureName("Gazeran").withAsciiName("Gazeran"))
-		.type(geonamesFeatureClass("A").geonamesFeatureCode("ADM4"))
+		.type(geonamesFeatureClass("P").geonamesFeatureCode("ADM4"))
 		.parentAdministrativeEntity(arrondissementDeRambouilletAdm3())
 		.geography(rambouilletAdm4GisFeatureGeography())
 		.build();
