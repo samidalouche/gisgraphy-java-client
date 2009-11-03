@@ -30,24 +30,34 @@ public class CityTest {
 	Assert.assertNotSame(City.forFeature(rambouilletAdm4GisFeature()), City.forFeature(gazeranAdm4GisFeature()));
     }
     
-    @Test public void getAdministrativeEntityShouldNotAcceptLevelHigherThanCurrentLevel() {
-	
+    @Test(expected=IllegalArgumentException.class) public void getAdministrativeEntityShouldNotAcceptLevelHigherThanCurrentLevel() {
+    City.forFeature(rambouilletAdm4GisFeature()).getAdministrativeEntity(5);
+    }
+
+    @Test(expected=IllegalArgumentException.class) public void getAdministrativeEntityShouldNotAcceptLevelLowerThan1() {
+    City.forFeature(rambouilletAdm4GisFeature()).getAdministrativeEntity(0);
+    }
+
+    @Test public void getAdministrativeEntityShouldAcceptLevelsLessThanOrEqualToCurrentLevel() {
+    for (int i = 1; i < 5; i++) {
+        City.forFeature(rambouilletAdm4GisFeature()).getAdministrativeEntity(i);
+    }
     }
     
     @Test public void getAdministrativeEntityShouldDelegateToParentAdministrativeEntity() {
-	
+	Assert.assertEquals(City.forFeature(rambouilletAdm4GisFeature()).getAdministrativeEntity(2), City.forFeature(rambouilletAdm4GisFeature()).getParentAdministrativeEntity().getAdministrativeEntity(2));
     }
     
     @Test public void shouldReturnAdministrativeDivisionLevel() {
-	
+	Assert.assertEquals(4, City.forFeature(rambouilletAdm4GisFeature()).getAdminitrativeDivisionLevel());
     }
     
     @Test public void shouldReturnCountry() {
-	
+	Assert.assertEquals(City.forFeature(rambouilletAdm4GisFeature()).getCountry(), CountryObjectMother.france());
     }
     
     @Test public void shouldReturnCurrency() {
-	
+	Assert.assertEquals("EUR", City.forFeature(rambouilletAdm4GisFeature()).getCurrency().getCurrencyCode());
     }
     
     @Test public void shouldFormatNameUsingSpecifiedFormatter() {
