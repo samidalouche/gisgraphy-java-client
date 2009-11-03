@@ -7,7 +7,6 @@ import org.apache.commons.lang.Validate;
 import org.joda.time.DateTime;
 
 import com.gisgraphy.client.commons.DistanceCalculator;
-import com.gisgraphy.client.commons.Formattable;
 import com.gisgraphy.client.commons.NameFormatter;
 import com.gisgraphy.client.commons.NamePart;
 import com.gisgraphy.client.gisfeature.AdministrativeEntity;
@@ -21,7 +20,7 @@ import com.google.common.collect.ImmutableSet;
 import com.ibm.icu.util.Currency;
 import com.vividsolutions.jts.geom.Point;
 
-public final class City implements Comparable<City>, GisFeature, DistanceCalculator<City>, AdministrativeEntity, CurrencyProvider, Formattable{
+public final class City implements Comparable<City>, GisFeature, DistanceCalculator<City>, AdministrativeEntity, CurrencyProvider {
     
     public static City forFeature(GeonamesGisFeature gisFeature) {
 	return new City(gisFeature);
