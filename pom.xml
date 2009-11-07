@@ -4,12 +4,13 @@
 	<groupId>com.sirika.gisgraphy</groupId>
 	<artifactId>gisgraphy-java-client-parent</artifactId>
 	<packaging>pom</packaging>
-	<name>Gisgraphy Java Client Parent</name>
+	<name>GISgraphy Java Client Parent</name>
+	<description>Java Client for GISgraphy service</description>
 	<version>0.1-SNAPSHOT</version>
-	<url>http://opensource.sirika.com/gisgraphy</url>
+	<url>http://developers.sirika.com/gisgraphy-java-client</url>
 	<inceptionYear>2009</inceptionYear>
 	<prerequisites>
-		<maven>2.1.0-M1</maven>
+		<maven>2.1.0</maven>
 	</prerequisites>
 	
 	<properties>	
@@ -19,47 +20,54 @@
 	
 	<scm>
 		<connection>
-			scm:svn:http://www.sirika.com/svn/funala/gisgraphy-java-client
+			git://github.com/samokk/gisgraphy-java-client.git
 		</connection>
 		<developerConnection>
-			scm:svn:http://www.sirika.com/svn/funala/gisgraphy-java-client
+			scm:git:git@github.com:samokk/gisgraphy-java-client.git
 		</developerConnection>
-		<url>http://www.sirika.com/svn/funala/gisgraphy-java-client</url>
+		<url>http://github.com/samokk/gisgraphy-java-client</url>
 	</scm>
 
 	<licenses>
 		<license>
-			<name>LGPLv3</name>
-			<url>http://www.gnu.org/copyleft/lesser.html</url>
+			<name>GNU LESSER GENERAL PUBLIC LICENSE</name>
+			<url>http://www.gnu.org/licenses/lgpl-3.0.txt</url>
+			<distribution>repo</distribution>
 		</license>
 	</licenses>
 
 	<issueManagement>
-		<system/>
-		<url/>
+		<system>Launchpad</system
+		<url>https://launchpad.net/gisgraphy-java-client</url>
 	</issueManagement>
 
 	<ciManagement>
-		<system>continuum</system>
+		<system>hudson</system>
 		<notifiers>
 			<notifier>
 				<type>mail</type>
-				<configuration>
-					<address>skoobi@free.fr</address>
-				</configuration>
 			</notifier>
 		</notifiers>
 	</ciManagement>
 
 	<developers>
 		<developer>
-			<id>samokk</id>
+			<id>sdalouche</id>
 			<name>Sami Dalouche</name>
 			<email>sami.dalouche@gmail.com</email>
 			<roles>
 				<role>Developer</role>
 			</roles>
 			<timezone>-5</timezone>
+		</developer>
+		<developer>
+			<id>cclapp</id>
+			<name>Christophe Clapp</name>
+			<email>christophe@christophe.cc</email>
+			<roles>
+				<role>Developer</role>
+			</roles>
+			<timezone>-8</timezone>
 		</developer>
 	</developers>
 	<modules>
@@ -183,7 +191,7 @@
 		<repository>
 			<id>sirika-releases</id>
 			<name>Sirika Releases Repository</name>
-			<url>http://www.sirika.com/maven2/releases</url>
+			<url>http://developers.sirika.com/nexus-public/content/repositories/releases</url>
 			<snapshots>
 				<enabled>false</enabled>
 			</snapshots>
@@ -192,7 +200,7 @@
 		<repository>
 			<id>sirika-snapshots</id>
 			<name>Sirika Snapshots Repository</name>
-			<url>http://www.sirika.com/maven2/snapshots</url>
+			<url>http://developers.sirika.com/nexus-public/content/repositories/snapshots</url>
 			<snapshots>
 				<enabled>true</enabled>
 			</snapshots>
