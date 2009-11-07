@@ -42,6 +42,7 @@
 	</issueManagement>
 
 	<ciManagement>
+		<url>http://developers.sirika.com:9191/</url>
 		<system>hudson</system>
 		<notifiers>
 			<notifier>
