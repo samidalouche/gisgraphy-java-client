@@ -20,7 +20,7 @@
 	
 	<scm>
 		<connection>
-			git://github.com/samokk/gisgraphy-java-client.git
+			scm:git:git://github.com/samokk/gisgraphy-java-client.git
 		</connection>
 		<developerConnection>
 			scm:git:git@github.com:samokk/gisgraphy-java-client.git
@@ -94,6 +94,9 @@
 		</profile>
 		<profile>
                         <id>release</id>
+                </profile>
+		<profile>
+                        <id>all</id>
                 </profile>
 	</profiles>
 
@@ -214,6 +217,24 @@
                 </repository>
 
 	</repositories>
+
+	<distributionManagement>
+		<repository>
+			<id>sirika-repo-releases</id>
+			<name>Sirika Releases Repository</name>
+			<url>scp://developers.sirika.com/srv/http/developers.sirika.com/maven2/releases</url>
+		</repository>
+		<snapshotRepository>
+			<id>sirika-repo-snapshots</id>
+			<name>Sirika Snapshots Repository</name>
+			<url>scp://developers.sirika.com/srv/http/developers.sirika.com/maven2/snapshots</url>
+		</snapshotRepository>
+		<site>
+			<id>sirika-site</id>
+			<url>scp://developers.sirika.com/srv/http/developers.sirika.com/gisgraphy-java-client</url>
+		</site>
+	</distributionManagement>
+
 
 	<pluginRepositories/>
 
