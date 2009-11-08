@@ -26,7 +26,6 @@ public class RestfulUrlGenerator implements UrlGenerator {
 						.getPlaceType());
 	}
 
-	@Override
 	public String generateUrl(GisgraphyQuery query) {
 		return query.accept(this);
 	}

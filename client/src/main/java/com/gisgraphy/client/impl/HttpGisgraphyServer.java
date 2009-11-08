@@ -61,17 +61,14 @@ public class HttpGisgraphyServer implements GisgraphyServer {
 		return url;
 	}
 
-	@Override
 	public String generateUrl(GisgraphyQuery query) {
 		return urlGenerator.generateUrl(query);
 	}
 
-	@Override
 	public String visit(FullTextQuery fullTextQuery) {
 		return fullTextQuery.accept(urlGenerator);
 	}
 
-	@Override
 	public String visit(GeolocalisationQuery geolocalisationQuery) {
 		return geolocalisationQuery.accept(urlGenerator);
 	}

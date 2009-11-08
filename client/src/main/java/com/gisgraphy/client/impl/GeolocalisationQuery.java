@@ -93,7 +93,6 @@ public class GeolocalisationQuery implements GisgraphyQuery {
 		return radius;
 	}
 
-	@Override
 	public String accept(UrlGenerator restfulUrlGenerator) {
 		return restfulUrlGenerator.visit(this);
 	}

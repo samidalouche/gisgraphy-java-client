@@ -106,7 +106,6 @@ public class FullTextQuery implements GisgraphyQuery {
 		return outputStyle;
 	}
 
-	@Override
 	public String accept(UrlGenerator restfulUrlGenerator) {
 		return restfulUrlGenerator.visit(this);
 	}
