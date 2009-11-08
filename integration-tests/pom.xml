@@ -22,13 +22,14 @@
 		<version>${project.version}</version>
 		<scope>compile</scope>
 	</dependency>
+	<!-- 
 	<dependency>
 		<groupId>com.sirika.gisgraphy</groupId>
 		<artifactId>gisgraphy-java-client</artifactId>
 		<version>${project.version}</version>
 		<classifier>tests</classifier>
 		<scope>test</scope>
-	</dependency>
+	</dependency>  -->
 	
 	<dependency>
 		<groupId>org.springframework</groupId>
@@ -90,4 +91,15 @@
 		<scope>test</scope>
 	</dependency>
   </dependencies>
+  <build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<configuration>
+					<skipTests>${skip-integration-tests}</skipTests>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
 </project>
