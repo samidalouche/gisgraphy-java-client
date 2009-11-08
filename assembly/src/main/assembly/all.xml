@@ -1,0 +1,90 @@
+<assembly>
+	<id>all</id>
+	<formats>
+		<format>zip</format>
+		<format>tar.gz</format>
+		<format>tar.bz2</format>
+	</formats>
+	<dependencySets>
+		<dependencySet>
+			<useStrictFiltering>false</useStrictFiltering>
+			<outputDirectory>lib</outputDirectory>
+			 <!-- 
+			<excludes>
+				<exclude>com.sirika.pymager:pymager-java-client:jar:tests</exclude>
+			</excludes>  -->
+		</dependencySet>
+		<!-- 
+		<dependencySet>
+			<useStrictFiltering>true</useStrictFiltering>
+			<outputDirectory>lib</outputDirectory>
+			<includes>
+				<include>com.sirika.pymager:pymager-java-client:jar:</include>
+			</includes>
+		</dependencySet> -->
+	</dependencySets>
+	<fileSets>
+		<fileSet>
+			<directory>src/main/resources</directory>
+			<outputDirectory></outputDirectory>
+			<includes>
+				<include>README*</include>
+				<include>CHANGELOG*</include>
+				<include>COPYING*</include>
+				<include>CREDITS*</include>
+			</includes>
+		</fileSet>
+
+		<!-- Include the website in the assembly -->
+		<fileSet>
+			<directory>../target/site</directory>
+			<outputDirectory>docs</outputDirectory>
+		</fileSet>
+		<fileSet>
+			<directory>../client/target/site</directory>
+			<outputDirectory>docs/gisgraphy-java-client</outputDirectory>
+		</fileSet>
+		<fileSet>
+			<directory>../assembly/target/site</directory>
+			<outputDirectory>docs/gisgraphy-java-client-assembly</outputDirectory>
+		</fileSet>
+		<fileSet>
+			<directory>../integration-tests/target/site</directory>
+			<outputDirectory>docs/gisgraphy-integration-tests</outputDirectory>
+		</fileSet>
+
+		<!-- Include the source code in the assembly -->
+		<fileSet>
+			<directory>../</directory>
+			<outputDirectory>src/</outputDirectory>
+			<includes>
+				<include>pom.xml</include>
+				<include>src/</include>
+			</includes>
+		</fileSet>
+		<fileSet>
+			<directory>../client</directory>
+			<outputDirectory>src/client</outputDirectory>
+			<includes>
+				<include>pom.xml</include>
+				<include>src/</include>
+			</includes>
+		</fileSet>
+		<fileSet>
+			<directory>../integration-tests</directory>
+			<outputDirectory>src/integration-tests</outputDirectory>
+			<includes>
+				<include>pom.xml</include>
+				<include>src/</include>
+			</includes>
+		</fileSet>
+		<fileSet>
+			<directory>../assembly</directory>
+			<outputDirectory>src/assembly</outputDirectory>
+			<includes>
+				<include>pom.xml</include>
+				<include>src/</include>
+			</includes>
+		</fileSet>
+	</fileSets>
+</assembly>

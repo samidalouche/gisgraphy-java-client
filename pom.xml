@@ -16,6 +16,8 @@
 	<properties>	
 		<springframework.version>2.5.6</springframework.version>
 		<slf4j.version>1.5.2</slf4j.version>
+		<skip-integration-tests>false</skip-integration-tests>
+		<compileSource>1.5</compileSource>
 	</properties>
 	
 	<scm>
@@ -73,7 +75,8 @@
 	</developers>
 	<modules>
 		<module>client</module>
-		<!-- integration-tests only available with integration profile -->
+		<module>integration-tests</module>
+		<module>assembly</module>
 	</modules>
 
 	<profiles>
@@ -82,27 +85,143 @@
 			<activation>
 				<activeByDefault>false</activeByDefault>
 			</activation>
+			<properties>
+				<skip-integration-tests>true</skip-integration-tests>
+			</properties>
+		</profile>
+		<profile>
+			<id>skip-integration-tests</id>
+			<activation>
+				<property>
+					<name>skip-integration-tests</name>
+					<value>true</value>
+				</property>
+			</activation>
+			<properties>
+				<skip-integration-tests>true</skip-integration-tests>
+			</properties>
 		</profile>
 		<profile>
 			<id>integration</id>
 			<activation>
 				<activeByDefault>true</activeByDefault>
 			</activation>
-			<modules>
-				<module>integration-tests</module>
-            </modules>
 		</profile>
 		<profile>
-                        <id>release</id>
-                </profile>
+			<id>all</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-source-plugin</artifactId>
+						<executions>
+							<execution>
+								<id>attach-sources</id>
+								<goals>
+									<goal>jar</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-javadoc-plugin</artifactId>
+						<executions>
+							<execution>
+								<id>attach-javadocs</id>
+								<goals>
+									<goal>jar</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+			<reporting>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-changes-plugin</artifactId>
+						<reportSets>
+							<reportSet>
+								<reports>
+									<report>changes-report</report>
+								</reports>
+							</reportSet>
+						</reportSets>
+					</plugin>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-javadoc-plugin</artifactId>
+						<configuration>
+							<encoding>UTF-8</encoding>
+							<aggregate>true</aggregate>
+						</configuration>
+					</plugin>
+
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-jxr-plugin</artifactId>
+						<configuration>
+							<aggregate>true</aggregate>
+
+						</configuration>
+					</plugin>
+
+					<plugin>
+						<artifactId>maven-surefire-report-plugin</artifactId>
+					</plugin>
+				</plugins>
+			</reporting>
+		</profile>
 		<profile>
-                        <id>all</id>
-                </profile>
+			<id>release</id>
+			<properties>
+				<skip-integration-tests>true</skip-integration-tests>
+			</properties>
+			<build>
+				<plugins>
+					<!--
+						Only activate at release time because only works when called from
+						top module, and slows things down
+					-->
+					<plugin>
+						<groupId>com.google.code.maven-license-plugin</groupId>
+						<artifactId>maven-license-plugin</artifactId>
+						<version>1.4.0</version>
+						<configuration>
+							<header>src/etc/header.txt</header>
+							<includes>
+								<include>**/src/**</include>
+							</includes>
+						</configuration>
+						<executions>
+							<execution>
+								<goals>
+									<goal>check</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
 	</profiles>
 
 	<build>
-		<defaultGoal>package</defaultGoal>
+		<defaultGoal>install</defaultGoal>
 		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-release-plugin</artifactId>
+				<version>2.0-beta-9</version>
+				<configuration>
+					<remoteTagging>true</remoteTagging>
+					<releaseProfiles>release</releaseProfiles>
+					<!-- See http://jira.codehaus.org/browse/MRELEASE-271 -->
+					<preparationGoals>clean install</preparationGoals>
+				</configuration>
+			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-surefire-plugin</artifactId>
@@ -115,8 +234,8 @@
 			<plugin>
 				<artifactId>maven-eclipse-plugin</artifactId>
 				<configuration>
-					<downloadSources>false</downloadSources>
-					<downloadJavadocs>false</downloadJavadocs>
+					<downloadSources>true</downloadSources>
+					<downloadJavadocs>true</downloadJavadocs>
 				</configuration>
 			</plugin>
 			<plugin>
@@ -131,26 +250,14 @@
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<configuration>
-					<source>1.6</source>
-					<target>1.6</target>
+					<source>${compileSource}</source>
+					<target>${compileSource}</target>
 				</configuration>
 			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-source-plugin</artifactId>
-				<executions>
-				    <execution>
-				        <id>attach-source</id>
-				        <goals>
-				            <goal>jar</goal>
-				        </goals>
-				    </execution>
-				</executions>
-            		</plugin>
+			
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-jar-plugin</artifactId>
-				<!-- <version>2.2</version>  -->
 				<executions>
 					<execution>
 						<goals>
@@ -159,36 +266,26 @@
 					</execution>
 				</executions>
 			</plugin>
-			 <plugin>
-		            <groupId>com.google.code.maven-license-plugin</groupId>
-		            <artifactId>maven-license-plugin</artifactId>
-			    <version>1.4.0</version>
-		            <configuration>
-		                <header>src/etc/header.txt</header>
-		            </configuration>
-		        </plugin>
+
 		</plugins>
 	</build>
-	<reporting>
-		<plugins>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-javadoc-plugin</artifactId>
-				<configuration>
-				   <encoding>UTF-8</encoding>
-				  <aggregate>false</aggregate>
-				</configuration>
-			</plugin>
 
-			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>jxr-maven-plugin</artifactId>
-			</plugin>
-			<plugin>
-                		<artifactId>maven-pmd-plugin</artifactId>
-            		</plugin>		
-		</plugins>
-	</reporting>
+	<distributionManagement>
+		<repository>
+			<id>sirika-repo-releases</id>
+			<name>Sirika Releases Repository</name>
+			<url>scp://developers.sirika.com/srv/http/developers.sirika.com/maven2/releases</url>
+		</repository>
+		<snapshotRepository>
+			<id>sirika-repo-snapshots</id>
+			<name>Sirika Snapshots Repository</name>
+			<url>scp://developers.sirika.com/srv/http/developers.sirika.com/maven2/snapshots</url>
+		</snapshotRepository>
+		<site>
+			<id>sirika-site</id>
+			<url>scp://developers.sirika.com/srv/http/developers.sirika.com/gisgraphy-java-client</url>
+		</site>
+	</distributionManagement>
 
 	<repositories>
 
@@ -218,22 +315,7 @@
 
 	</repositories>
 
-	<distributionManagement>
-		<repository>
-			<id>sirika-repo-releases</id>
-			<name>Sirika Releases Repository</name>
-			<url>scp://developers.sirika.com/srv/http/developers.sirika.com/maven2/releases</url>
-		</repository>
-		<snapshotRepository>
-			<id>sirika-repo-snapshots</id>
-			<name>Sirika Snapshots Repository</name>
-			<url>scp://developers.sirika.com/srv/http/developers.sirika.com/maven2/snapshots</url>
-		</snapshotRepository>
-		<site>
-			<id>sirika-site</id>
-			<url>scp://developers.sirika.com/srv/http/developers.sirika.com/gisgraphy-java-client</url>
-		</site>
-	</distributionManagement>
+	
 
 
 	<pluginRepositories/>
