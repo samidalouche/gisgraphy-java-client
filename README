@@ -1,0 +1,23 @@
+This is the developer's README. The distributed README is accessible from assembly/src/main/resources/README
+
+= Important URLs =
+* Launchpad (feature requests, bugs..) : https://launchpad.net/gisgraphy-java-client
+
+= Create a release =
+# git clone git@github.com:samokk/httpclienthelpers.git
+# add release entry to src/changes/changes.xml
+# make sure all files contain the license header : mvn -Prelease license:format
+# commit & push all the changes
+# delete everything in .m2/repository
+# mvn -Pall,release release:prepare -DautoVersionSubmodules=true
+# mvn release:perform
+
+= Available profiles =
+* all : adds superfluous items to the build (attach sources, javadoc various reports - changes, jxr -, build assembly, ..)
+* release : activate sanity checks (licenses, ..) and disable any potential integrated test
+
+= To import the project under eclipse =
+Either :
+* mvn eclipse:clean eclipse:eclipse
+* or use m2eclipse (dev version, the stable one does not work correctly) / Import maven project (recommended)
+ 
