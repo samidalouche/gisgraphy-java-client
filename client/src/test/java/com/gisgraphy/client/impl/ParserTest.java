@@ -7,24 +7,20 @@ import java.io.IOException;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-import junit.framework.Assert;
+import javax.xml.stream.XMLStreamException;
 
+import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.core.io.InputStreamSource;
 
-import com.gisgraphy.client.impl.FullTextQueryResult;
-import com.gisgraphy.client.impl.GeolocalisationResult;
-import com.gisgraphy.client.impl.StaxParser;
-
-import javax.xml.stream.XMLStreamException;
+import com.google.common.collect.Iterables;
 
 public class ParserTest {
     private StaxParser staxParser = new StaxParser();
-    
+
     @Test
-    public void shouldParseFullTextSearchForIrvineCorrectly() {
+    public void shouldParseFullTextSearchForIrvineCorrectly() throws IOException, XMLStreamException {
 	InputStreamSource iss = FullTextSearchResultsObjectMother.irvine();
-	try {
 	    Iterable<FullTextQueryResult> results = staxParser.parseFullTextSearchResult(iss);
 	    Iterator<FullTextQueryResult> iterator = results.iterator();
 	    assertThat(iterator.hasNext(), equalTo(true));
@@ -51,35 +47,26 @@ public class ParserTest {
 
 	    // skip through 8 results, then test the last
 	    for (int i = 0; i < 8; i++) {
-	    	iterator.next();
+		iterator.next();
 	    }
-	    
+
 	    FullTextQueryResult lastResult = iterator.next();
 	    assertThat(lastResult.getAsciiName(), equalTo("North Irvine"));
-	    
+
 	    try {
-	    	iterator.next();
-	    	Assert.fail();
+		iterator.next();
+		Assert.fail();
 	    }
 	    catch (NoSuchElementException e) {
-	    	
+
 	    }
-	    
-	
-	} catch (IOException e) {
-	    Assert.fail();
-	    e.printStackTrace();
-	} catch (XMLStreamException e) {
-            Assert.fail();
-            e.printStackTrace();
-        }
+
     }
-    
-    
+
+
     @Test
-    public void shouldParseParisCorrectly() {
+    public void shouldParseParisCorrectly() throws IOException, XMLStreamException {
 	InputStreamSource iss = FullTextSearchResultsObjectMother.paris();
-	try {
 	    Iterable<FullTextQueryResult> results = staxParser.parseFullTextSearchResult(iss);
 	    Iterator<FullTextQueryResult> iterator = results.iterator();
 	    assertThat(iterator.hasNext(), equalTo(true));
@@ -105,36 +92,25 @@ public class ParserTest {
 
 	    // skip through 8 results, then test the last
 	    for (int i = 0; i < 8; i++) {
-	    	iterator.next();
+		iterator.next();
 	    }
-	    
+
 	    FullTextQueryResult lastResult = iterator.next();
 	    assertThat(lastResult.getAsciiName(), equalTo("Paris"));
-	    
+
 	    try {
-	    	iterator.next();
-	    	Assert.fail();
+		iterator.next();
+		Assert.fail();
 	    }
 	    catch (NoSuchElementException e) {
-	    	
-	    }
-	    
-	
-	} catch (IOException e) {
-	    Assert.fail();
-	    e.printStackTrace();
-	} catch (XMLStreamException e) {
-            Assert.fail();
-            e.printStackTrace();
-        }
 
+	    }
 
     }
 
     @Test
-    public void shouldParseSeattleCorrectly() {
+    public void shouldParseSeattleCorrectly() throws IOException, XMLStreamException {
 	InputStreamSource iss = FullTextSearchResultsObjectMother.seattle();
-	try {
 	    Iterable<FullTextQueryResult> results = staxParser.parseFullTextSearchResult(iss);
 	    Iterator<FullTextQueryResult> iterator = results.iterator();
 	    assertThat(iterator.hasNext(), equalTo(true));
@@ -157,112 +133,96 @@ public class ParserTest {
 	    assertThat(firstResult.getPopulation(), equalTo(569369));
 	    assertThat(firstResult.getTimezone(), equalTo("America/Los_Angeles"));
 	    assertThat(firstResult.getYahooMapUrl(), equalTo("http://maps.yahoo.com/broadband?mag=6&amp;mvt=m&amp;lon=-122.33206939697266&amp;lat=47.60620880126953"));
-        
-	    assertThat(firstResult.getAdm1AlternateNames().size(), equalTo(3));
-        assertThat(firstResult.getAdm1AlternateNames().get("ES").get(0), equalTo("Estado de Washington"));
-        assertThat(firstResult.getAdm1AlternateNames().get("RU").get(0), equalTo("Вашингтон"));
 
-        assertThat(firstResult.getCountryAlternateNames().get("AZ").size(), equalTo(1));
+	    assertThat(firstResult.getAdm1AlternateNames().size(), equalTo(3));
+	    assertThat(firstResult.getAdm1AlternateNames().get("ES").get(0), equalTo("Estado de Washington"));
+	    assertThat(firstResult.getAdm1AlternateNames().get("RU").get(0), equalTo("Вашингтон"));
+
+	    assertThat(firstResult.getCountryAlternateNames().get("AZ").size(), equalTo(1));
 	    assertThat(firstResult.getCountryAlternateNames().get("AZ").get(0), equalTo("Amerika Birləşmiş Ştatları"));
-	    
+
 	    assertThat(firstResult.getCountryAlternateNames().get("BE").size(), equalTo(2));
 	    assertThat(firstResult.getCountryAlternateNames().get("BE").get(0), equalTo("Злучаныя Штаты"));
 	    assertThat(firstResult.getCountryAlternateNames().get("BE").get(1), equalTo("Злучаныя Штаты Амерыкі"));
-	    
+
 	    // skip through 8 results, then test the last
 	    for (int i = 0; i < 8; i++) {
-	    	iterator.next();
+		iterator.next();
 	    }
 
 	    FullTextQueryResult lastResult = iterator.next();
 	    assertThat(lastResult.getAsciiName(), equalTo("Seattle Bar Recreation Site"));
 
 	    try {
-	    	iterator.next();
-	    	Assert.fail();
+		iterator.next();
+		Assert.fail();
 	    }
 	    catch (NoSuchElementException e) {
 
 	    }
 
-
-	} catch (IOException e) {
-	    Assert.fail();
-	    e.printStackTrace();
-	}  catch (XMLStreamException e) {
-            Assert.fail();
-            e.printStackTrace();
-        }
-
-
     }
-    
-    
+
+
 
     @Test
-    public void shouldParseGeolocalisationQueryForParisCorrectly() {
+    public void shouldParseGeolocalisationQueryForParis() throws IOException, XMLStreamException {
 	InputStreamSource iss = GeolocalisationQueryResultsObjectMother.paris();
-	try {
-	    Iterable<GeolocalisationResult> results = staxParser.parseGeolocalisationResult(iss);
-	    Iterator<GeolocalisationResult> iterator = results.iterator();
-	    assertThat(iterator.hasNext(), equalTo(true));
-	    GeolocalisationResult firstResult = iterator.next();
-	    assertThat(firstResult.getDistance(), equalTo(45.3866297045854));
-	    assertThat(firstResult.getAdm1Code(), equalTo("A8"));
-	    assertThat(firstResult.getAdm2Code(), equalTo("75"));
-	    assertThat(firstResult.getAdm3Code(), equalTo("751"));
-	    assertThat(firstResult.getAdm4Code(), equalTo("75056"));
-	    assertThat(firstResult.getAdm1Name(), equalTo("Région Île-de-France"));
-	    assertThat(firstResult.getAdm2Name(), equalTo("Département de Ville-de-Paris"));
-	    assertThat(firstResult.getAdm3Name(), equalTo("Arrondissement de Paris"));
-	    assertThat(firstResult.getAdm4Name(), equalTo("Paris"));
-	    assertThat(firstResult.getAsciiName(), equalTo("Paris"));
-	    assertThat(firstResult.getName(), equalTo("Paris"));
-	    assertThat(firstResult.getCountryCode(), equalTo("FR"));
-	    assertThat(firstResult.getCountryFlagUrl(), equalTo("/images/flags/FR.png"));
-	    assertThat(firstResult.getFeatureClass(), equalTo("P"));
-	    assertThat(firstResult.getFeatureCode(), equalTo("PPLC"));
-	    assertThat(firstResult.getPlaceType(), equalTo("City"));
-	    assertThat(firstResult.getZipCode(), equalTo("75000"));
-	    assertThat(firstResult.getFeatureId(), equalTo(2988507L));
-	    assertThat(firstResult.getGoogleMapUrl(), equalTo("http://maps.google.com/maps?f=q&amp;ie=UTF-8&amp;iwloc=addr&amp;om=1&amp;z=12&amp;q=Paris&amp;ll=48.883408813476564,2.34879994392395"));
-	    assertThat(firstResult.getGTopo30(), equalTo(30));
-	    assertThat(firstResult.getLatitude(), equalTo(48.85340881347656));
-	    assertThat(firstResult.getLongitude(), equalTo(2.34879994392395));
-	    assertThat(firstResult.getPopulation(), equalTo(2138551));
-	    assertThat(firstResult.getTimezone(), equalTo("Europe/Paris"));
-	    assertThat(firstResult.getYahooMapUrl(), equalTo("http://maps.yahoo.com/broadband?mag=6&amp;mvt=m&amp;lon=2.34879994392395&amp;lat=48.85340881347656"));
+	Iterable<GeolocalisationResult> results = staxParser.parseGeolocalisationResult(iss);
+	GeolocalisationResult firstResult = Iterables.get(results, 0);
+	assertThat(firstResult.getDistance(), equalTo(0.0));
+	assertThat(firstResult.getAdm1Code(), equalTo("A8"));
+	assertThat(firstResult.getAdm2Code(), equalTo("75"));
+	assertThat(firstResult.getAdm3Code(), equalTo("751"));
+	assertThat(firstResult.getAdm4Code(), equalTo("75056"));
+	assertThat(firstResult.getAdm1Name(), equalTo("Région Île-de-France"));
+	assertThat(firstResult.getAdm2Name(), equalTo("Département de Ville-de-Paris"));
+	assertThat(firstResult.getAdm3Name(), equalTo("Arrondissement de Paris"));
+	assertThat(firstResult.getAdm4Name(), equalTo("Paris"));
+	assertThat(firstResult.getAsciiName(), equalTo("Paris"));
+	assertThat(firstResult.getName(), equalTo("Paris"));
+	assertThat(firstResult.getCountryCode(), equalTo("FR"));
+	assertThat(firstResult.getCountryFlagUrl(), equalTo("/images/flags/FR.png"));
+	assertThat(firstResult.getFeatureClass(), equalTo("P"));
+	assertThat(firstResult.getFeatureCode(), equalTo("PPLC"));
+	assertThat(firstResult.getPlaceType(), equalTo("City"));
+	assertThat(firstResult.getZipCode(), equalTo("75000"));
+	assertThat(firstResult.getFeatureId(), equalTo(2988507L));
+	assertThat(firstResult.getGoogleMapUrl(), equalTo("http://maps.google.com/maps?f=q&amp;ie=UTF-8&amp;iwloc=addr&amp;om=1&amp;z=12&amp;q=Paris&amp;ll=48.883408813476564,2.34879994392395"));
+	assertThat(firstResult.getGTopo30(), equalTo(30));
+	assertThat(firstResult.getLatitude(), equalTo(48.85340881347656));
+	assertThat(firstResult.getLongitude(), equalTo(2.34879994392395));
+	assertThat(firstResult.getPopulation(), equalTo(2138551));
+	assertThat(firstResult.getTimezone(), equalTo("Europe/Paris"));
+	assertThat(firstResult.getYahooMapUrl(), equalTo("http://maps.yahoo.com/broadband?mag=6&amp;mvt=m&amp;lon=2.34879994392395&amp;lat=48.85340881347656"));
 
-	    // skip through 8 results, then test the last
-	    for (int i = 0; i < 4; i++) {
-	    	iterator.next();
-	    }
-	    
-	    GeolocalisationResult lastResult = iterator.next();
-	    assertThat(lastResult.getAsciiName(), equalTo("Ivry-sur-Seine"));
-	    
-	    try {
-	    	iterator.next();
-	    	Assert.fail();
-	    }
-	    catch (NoSuchElementException e) {
-	    	
-	    }
-	    
-	
-	} catch (IOException e) {
-	    Assert.fail();
-	    e.printStackTrace();
-	} catch (XMLStreamException e) {
-            Assert.fail();
-            e.printStackTrace();
-        }
     }
 
     @Test
-    public void shouldParseFranceCorrectly() {
+    public void sixthResultShouldBeIvry() throws IOException, XMLStreamException {
+	InputStreamSource iss = GeolocalisationQueryResultsObjectMother.paris();
+	Iterable<GeolocalisationResult> results = staxParser.parseGeolocalisationResult(iss);
+	Iterator<GeolocalisationResult> iterator = results.iterator();
+	assertThat(iterator.hasNext(), equalTo(true));
+
+	for (int i = 0; i < 5; i++) {
+	    iterator.next();
+	}
+
+	GeolocalisationResult ivry = iterator.next();
+	assertThat(ivry.getAsciiName(), equalTo("Ivry-sur-Seine"));
+    }
+    
+    @Test
+    public void thereShouldBe10Results() throws IOException, XMLStreamException {
+	InputStreamSource iss = GeolocalisationQueryResultsObjectMother.paris();
+	Iterable<GeolocalisationResult> results = staxParser.parseGeolocalisationResult(iss);
+	Assert.assertEquals(10, Iterables.size(results));
+    }
+
+    @Test
+    public void shouldParseFranceCorrectly() throws IOException, XMLStreamException {
 	InputStreamSource iss = FullTextSearchResultsObjectMother.france();
-	try {
 	    Iterable<FullTextQueryResult> results = staxParser.parseFullTextSearchResult(iss);
 	    Iterator<FullTextQueryResult> iterator = results.iterator();
 	    assertThat(iterator.hasNext(), equalTo(true));
@@ -289,42 +249,32 @@ public class ParserTest {
 	    assertThat(firstResult.getAlternateNames().get("DE").get(0), equalTo("Frankreich"));
 
 	    assertThat(firstResult.getAlternateNames().get("EL").size(), equalTo(1));
-        assertThat(firstResult.getAlternateNames().get("EL").get(0), equalTo("Γαλλία"));
+	    assertThat(firstResult.getAlternateNames().get("EL").get(0), equalTo("Γαλλία"));
 
-        assertThat(firstResult.getCountryAlternateNames().get("EL").size(), equalTo(1));
+	    assertThat(firstResult.getCountryAlternateNames().get("EL").size(), equalTo(1));
 	    assertThat(firstResult.getCountryAlternateNames().get("EL").get(0), equalTo("Γαλλία"));
 
-        assertThat(firstResult.getAlternateNames().get("BE").size(), equalTo(1));
-        assertThat(firstResult.getAlternateNames().get("BE").get(0), equalTo("Францыя"));
+	    assertThat(firstResult.getAlternateNames().get("BE").size(), equalTo(1));
+	    assertThat(firstResult.getAlternateNames().get("BE").get(0), equalTo("Францыя"));
 
 	    assertThat(firstResult.getCountryAlternateNames().get("BE").get(0), equalTo("Францыя"));
-        assertThat(firstResult.getCountryAlternateNames().get("BE").get(0), equalTo("Францыя"));
+	    assertThat(firstResult.getCountryAlternateNames().get("BE").get(0), equalTo("Францыя"));
 
 	    // skip through 8 results, then test the last
 	    for (int i = 0; i < 8; i++) {
-	    	iterator.next();
+		iterator.next();
 	    }
 
 	    FullTextQueryResult lastResult = iterator.next();
 	    assertThat(lastResult.getAsciiName(), equalTo("Region Centre"));
 
 	    try {
-	    	iterator.next();
-	    	Assert.fail();
+		iterator.next();
+		Assert.fail();
 	    }
 	    catch (NoSuchElementException e) {
 
 	    }
-
-
-	} catch (IOException e) {
-	    Assert.fail();
-	    e.printStackTrace();
-	}  catch (XMLStreamException e) {
-            Assert.fail();
-            e.printStackTrace();
-        }
-
 
     }
 }

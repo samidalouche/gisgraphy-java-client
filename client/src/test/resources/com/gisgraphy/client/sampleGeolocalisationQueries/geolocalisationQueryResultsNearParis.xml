@@ -1,167 +1,288 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <results xmlns="http://gisgraphy.com">
-    <numFound>6</numFound>
-    <QTime>5</QTime>
-    <result>
-        <distance>45.3866297045854</distance>
-        <name>Paris</name>
-        <adm1Code>A8</adm1Code>
-        <adm2Code>75</adm2Code>
-        <adm3Code>751</adm3Code>
-        <adm4Code>75056</adm4Code>
-        <adm1Name>Région Île-de-France</adm1Name>
-        <adm2Name>Département de Ville-de-Paris</adm2Name>
-        <adm3Name>Arrondissement de Paris</adm3Name>
-        <adm4Name>Paris</adm4Name>
-        <asciiName>Paris</asciiName>
-        <countryCode>FR</countryCode>
-        <featureClass>P</featureClass>
-        <featureCode>PPLC</featureCode>
-        <featureId>2988507</featureId>
-        <gtopo30>30</gtopo30>
-        <population>2138551</population>
-        <timezone>Europe/Paris</timezone>
-        <lat>48.85340881347656</lat>
-        <lng>2.34879994392395</lng>
-        <placeType>City</placeType>
-        <zipCode>75000</zipCode>
-        <google_map_url>http://maps.google.com/maps?f=q&amp;amp;ie=UTF-8&amp;amp;iwloc=addr&amp;amp;om=1&amp;amp;z=12&amp;amp;q=Paris&amp;amp;ll=48.883408813476564,2.34879994392395</google_map_url>
-        <yahoo_map_url>http://maps.yahoo.com/broadband?mag=6&amp;amp;mvt=m&amp;amp;lon=2.34879994392395&amp;amp;lat=48.85340881347656</yahoo_map_url>
-        <country_flag_url>/images/flags/FR.png</country_flag_url>
-    </result>
-    <result>
-        <distance>4187.64902103011</distance>
-        <name>Vanves</name>
-        <adm1Code>A8</adm1Code>
-        <adm2Code>92</adm2Code>
-        <adm3Code>921</adm3Code>
-        <adm4Code>92075</adm4Code>
-        <adm1Name>Région Île-de-France</adm1Name>
-        <adm2Name>Département des Hauts-de-Seine</adm2Name>
-        <adm3Name>Arrondissement d'Antony</adm3Name>
-        <adm4Name>Vanves</adm4Name>
-        <asciiName>Vanves</asciiName>
-        <countryCode>FR</countryCode>
-        <featureClass>P</featureClass>
-        <featureCode>PPL</featureCode>
-        <featureId>2970761</featureId>
-        <gtopo30>62</gtopo30>
-        <population>26068</population>
-        <timezone>Europe/Paris</timezone>
-        <lat>48.83333206176758</lat>
-        <lng>2.299999952316284</lng>
-        <placeType>City</placeType>
-        <zipCode>92170</zipCode>
-        <google_map_url>http://maps.google.com/maps?f=q&amp;amp;ie=UTF-8&amp;amp;iwloc=addr&amp;amp;om=1&amp;amp;z=12&amp;amp;q=Vanves&amp;amp;ll=48.86333206176758,2.299999952316284</google_map_url>
-        <yahoo_map_url>http://maps.yahoo.com/broadband?mag=6&amp;amp;mvt=m&amp;amp;lon=2.299999952316284&amp;amp;lat=48.83333206176758</yahoo_map_url>
-        <country_flag_url>/images/flags/FR.png</country_flag_url>
-    </result>
-    <result>
-        <distance>4195.85439020969</distance>
-        <name>Gentilly</name>
-        <adm1Code>A8</adm1Code>
-        <adm2Code>94</adm2Code>
-        <adm3Code>943</adm3Code>
-        <adm4Code>94037</adm4Code>
-        <adm1Name>Région Île-de-France</adm1Name>
-        <adm2Name>Département du Val-de-Marne</adm2Name>
-        <adm3Name>Arrondissement de L'Haÿ-les-Roses</adm3Name>
-        <adm4Name>Gentilly</adm4Name>
-        <asciiName>Gentilly</asciiName>
-        <countryCode>FR</countryCode>
-        <featureClass>P</featureClass>
-        <featureCode>PPL</featureCode>
-        <featureId>3016292</featureId>
-        <gtopo30>73</gtopo30>
-        <population>15939</population>
-        <timezone>Europe/Paris</timezone>
-        <lat>48.81666564941406</lat>
-        <lng>2.3333332538604736</lng>
-        <placeType>City</placeType>
-        <zipCode>94250</zipCode>
-        <google_map_url>http://maps.google.com/maps?f=q&amp;amp;ie=UTF-8&amp;amp;iwloc=addr&amp;amp;om=1&amp;amp;z=12&amp;amp;q=Gentilly&amp;amp;ll=48.846665649414064,2.3333332538604736</google_map_url>
-        <yahoo_map_url>http://maps.yahoo.com/broadband?mag=6&amp;amp;mvt=m&amp;amp;lon=2.3333332538604736&amp;amp;lat=48.81666564941406</yahoo_map_url>
-        <country_flag_url>/images/flags/FR.png</country_flag_url>
-    </result>
-    <result>
-        <distance>4246.6209508246</distance>
-        <name>Le Kremlin-Bicêtre</name>
-        <adm1Code>A8</adm1Code>
-        <adm2Code>94</adm2Code>
-        <adm3Code>943</adm3Code>
-        <adm4Code>94043</adm4Code>
-        <adm1Name>Région Île-de-France</adm1Name>
-        <adm2Name>Département du Val-de-Marne</adm2Name>
-        <adm3Name>Arrondissement de L'Haÿ-les-Roses</adm3Name>
-        <adm4Name>Le Kremlin-Bicêtre</adm4Name>
-        <asciiName>Le Kremlin-Bicetre</asciiName>
-        <countryCode>FR</countryCode>
-        <featureClass>P</featureClass>
-        <featureCode>PPL</featureCode>
-        <featureId>3003737</featureId>
-        <gtopo30>35</gtopo30>
-        <population>27867</population>
-        <timezone>Europe/Paris</timezone>
-        <lat>48.81666564941406</lat>
-        <lng>2.366666793823242</lng>
-        <placeType>City</placeType>
-        <zipCode>94270</zipCode>
-        <google_map_url>http://maps.google.com/maps?f=q&amp;amp;ie=UTF-8&amp;amp;iwloc=addr&amp;amp;om=1&amp;amp;z=12&amp;amp;q=Le+Kremlin-Bic%C3%AAtre&amp;amp;ll=48.846665649414064,2.366666793823242</google_map_url>
-        <yahoo_map_url>http://maps.yahoo.com/broadband?mag=6&amp;amp;mvt=m&amp;amp;lon=2.366666793823242&amp;amp;lat=48.81666564941406</yahoo_map_url>
-        <country_flag_url>/images/flags/FR.png</country_flag_url>
-    </result>
-    <result>
-        <distance>4674.94614050574</distance>
-        <name>Montrouge</name>
-        <adm1Code>A8</adm1Code>
-        <adm2Code>92</adm2Code>
-        <adm3Code>921</adm3Code>
-        <adm4Code>92049</adm4Code>
-        <adm1Name>Région Île-de-France</adm1Name>
-        <adm2Name>Département des Hauts-de-Seine</adm2Name>
-        <adm3Name>Arrondissement d'Antony</adm3Name>
-        <adm4Name>Montrouge</adm4Name>
-        <asciiName>Montrouge</asciiName>
-        <countryCode>FR</countryCode>
-        <featureClass>P</featureClass>
-        <featureCode>PPL</featureCode>
-        <featureId>2992017</featureId>
-        <gtopo30>75</gtopo30>
-        <population>38708</population>
-        <timezone>Europe/Paris</timezone>
-        <lat>48.81666564941406</lat>
-        <lng>2.316666603088379</lng>
-        <placeType>City</placeType>
-        <zipCode>92120</zipCode>
-        <google_map_url>http://maps.google.com/maps?f=q&amp;amp;ie=UTF-8&amp;amp;iwloc=addr&amp;amp;om=1&amp;amp;z=12&amp;amp;q=Montrouge&amp;amp;ll=48.846665649414064,2.316666603088379</google_map_url>
-        <yahoo_map_url>http://maps.yahoo.com/broadband?mag=6&amp;amp;mvt=m&amp;amp;lon=2.316666603088379&amp;amp;lat=48.81666564941406</yahoo_map_url>
-        <country_flag_url>/images/flags/FR.png</country_flag_url>
-    </result>
-    <result>
-        <distance>4765.73404517165</distance>
-        <name>Ivry-sur-Seine</name>
-        <adm1Code>A8</adm1Code>
-        <adm2Code>94</adm2Code>
-        <adm3Code>941</adm3Code>
-        <adm4Code>94041</adm4Code>
-        <adm1Name>Région Île-de-France</adm1Name>
-        <adm2Name>Département du Val-de-Marne</adm2Name>
-        <adm3Name>Arrondissement de Créteil</adm3Name>
-        <adm4Name>Ivry-sur-Seine</adm4Name>
-        <asciiName>Ivry-sur-Seine</asciiName>
-        <countryCode>FR</countryCode>
-        <featureClass>P</featureClass>
-        <featureCode>PPL</featureCode>
-        <featureId>3012621</featureId>
-        <gtopo30>33</gtopo30>
-        <population>57897</population>
-        <timezone>Europe/Paris</timezone>
-        <lat>48.81666564941406</lat>
-        <lng>2.383333206176758</lng>
-        <placeType>City</placeType>
-        <zipCode>94200</zipCode>
-        <google_map_url>http://maps.google.com/maps?f=q&amp;amp;ie=UTF-8&amp;amp;iwloc=addr&amp;amp;om=1&amp;amp;z=12&amp;amp;q=Ivry-sur-Seine&amp;amp;ll=48.846665649414064,2.383333206176758</google_map_url>
-        <yahoo_map_url>http://maps.yahoo.com/broadband?mag=6&amp;amp;mvt=m&amp;amp;lon=2.383333206176758&amp;amp;lat=48.81666564941406</yahoo_map_url>
-        <country_flag_url>/images/flags/FR.png</country_flag_url>
-    </result>
+	<result>
+		<distance>0.0</distance>
+		<name>Paris</name>
+		<adm1Code>A8</adm1Code>
+		<adm2Code>75</adm2Code>
+		<adm3Code>751</adm3Code>
+		<adm4Code>75056</adm4Code>
+		<adm1Name>Région Île-de-France</adm1Name>
+		<adm2Name>Département de Ville-de-Paris</adm2Name>
+		<adm3Name>Arrondissement de Paris</adm3Name>
+		<adm4Name>Paris</adm4Name>
+		<asciiName>Paris</asciiName>
+		<countryCode>FR</countryCode>
+		<featureClass>P</featureClass>
+		<featureCode>PPLC</featureCode>
+		<featureId>2988507</featureId>
+		<gtopo30>30</gtopo30>
+		<population>2138551</population>
+		<timezone>Europe/Paris</timezone>
+		<lat>48.85340881347656</lat>
+		<lng>2.34879994392395</lng>
+		<placeType>City</placeType>
+		<zipCode>75000</zipCode>
+		<google_map_url>http://maps.google.com/maps?f=q&amp;amp;ie=UTF-8&amp;amp;iwloc=addr&amp;amp;om=1&amp;amp;z=12&amp;amp;q=Paris&amp;amp;ll=48.883408813476564,2.34879994392395</google_map_url>
+		<yahoo_map_url>http://maps.yahoo.com/broadband?mag=6&amp;amp;mvt=m&amp;amp;lon=2.34879994392395&amp;amp;lat=48.85340881347656</yahoo_map_url>
+		<country_flag_url>/images/flags/FR.png</country_flag_url>
+	</result>
+	<result>
+		<distance>4211.5181596202</distance>
+		<name>Vanves</name>
+		<adm1Code>A8</adm1Code>
+		<adm2Code>92</adm2Code>
+		<adm3Code>921</adm3Code>
+		<adm4Code>92075</adm4Code>
+		<adm1Name>Région Île-de-France</adm1Name>
+		<adm2Name>Département des Hauts-de-Seine</adm2Name>
+		<adm3Name>Arrondissement d'Antony</adm3Name>
+		<adm4Name>Vanves</adm4Name>
+		<asciiName>Vanves</asciiName>
+		<countryCode>FR</countryCode>
+		<featureClass>P</featureClass>
+		<featureCode>PPL</featureCode>
+		<featureId>2970761</featureId>
+		<gtopo30>62</gtopo30>
+		<population>26068</population>
+		<timezone>Europe/Paris</timezone>
+		<lat>48.83333206176758</lat>
+		<lng>2.299999952316284</lng>
+		<placeType>City</placeType>
+		<zipCode>92170</zipCode>
+		<google_map_url>http://maps.google.com/maps?f=q&amp;amp;ie=UTF-8&amp;amp;iwloc=addr&amp;amp;om=1&amp;amp;z=12&amp;amp;q=Vanves&amp;amp;ll=48.86333206176758,2.299999952316284
+		</google_map_url>
+		<yahoo_map_url>http://maps.yahoo.com/broadband?mag=6&amp;amp;mvt=m&amp;amp;lon=2.299999952316284&amp;amp;lat=48.83333206176758
+		</yahoo_map_url>
+		<country_flag_url>/images/flags/FR.png</country_flag_url>
+	</result>
+	<result>
+		<distance>4239.57438749248</distance>
+		<name>Gentilly</name>
+		<adm1Code>A8</adm1Code>
+		<adm2Code>94</adm2Code>
+		<adm3Code>943</adm3Code>
+		<adm4Code>94037</adm4Code>
+		<adm1Name>Région Île-de-France</adm1Name>
+		<adm2Name>Département du Val-de-Marne</adm2Name>
+		<adm3Name>Arrondissement de L'Haÿ-les-Roses</adm3Name>
+		<adm4Name>Gentilly</adm4Name>
+		<asciiName>Gentilly</asciiName>
+		<countryCode>FR</countryCode>
+		<featureClass>P</featureClass>
+		<featureCode>PPL</featureCode>
+		<featureId>3016292</featureId>
+		<gtopo30>73</gtopo30>
+		<population>15939</population>
+		<timezone>Europe/Paris</timezone>
+		<lat>48.81666564941406</lat>
+		<lng>2.3333332538604736</lng>
+		<placeType>City</placeType>
+		<zipCode>94250</zipCode>
+		<google_map_url>http://maps.google.com/maps?f=q&amp;amp;ie=UTF-8&amp;amp;iwloc=addr&amp;amp;om=1&amp;amp;z=12&amp;amp;q=Gentilly&amp;amp;ll=48.846665649414064,2.3333332538604736
+		</google_map_url>
+		<yahoo_map_url>http://maps.yahoo.com/broadband?mag=6&amp;amp;mvt=m&amp;amp;lon=2.3333332538604736&amp;amp;lat=48.81666564941406
+		</yahoo_map_url>
+		<country_flag_url>/images/flags/FR.png</country_flag_url>
+	</result>
+	<result>
+		<distance>4289.8231816234</distance>
+		<name>Le Kremlin-Bicêtre</name>
+		<adm1Code>A8</adm1Code>
+		<adm2Code>94</adm2Code>
+		<adm3Code>943</adm3Code>
+		<adm4Code>94043</adm4Code>
+		<adm1Name>Région Île-de-France</adm1Name>
+		<adm2Name>Département du Val-de-Marne</adm2Name>
+		<adm3Name>Arrondissement de L'Haÿ-les-Roses</adm3Name>
+		<adm4Name>Le Kremlin-Bicêtre</adm4Name>
+		<asciiName>Le Kremlin-Bicetre</asciiName>
+		<countryCode>FR</countryCode>
+		<featureClass>P</featureClass>
+		<featureCode>PPL</featureCode>
+		<featureId>3003737</featureId>
+		<gtopo30>35</gtopo30>
+		<population>27867</population>
+		<timezone>Europe/Paris</timezone>
+		<lat>48.81666564941406</lat>
+		<lng>2.366666793823242</lng>
+		<placeType>City</placeType>
+		<zipCode>94270</zipCode>
+		<google_map_url>http://maps.google.com/maps?f=q&amp;amp;ie=UTF-8&amp;amp;iwloc=addr&amp;amp;om=1&amp;amp;z=12&amp;amp;q=Le+Kremlin-Bic%C3%AAtre&amp;amp;ll=48.846665649414064,2.366666793823242
+		</google_map_url>
+		<yahoo_map_url>http://maps.yahoo.com/broadband?mag=6&amp;amp;mvt=m&amp;amp;lon=2.366666793823242&amp;amp;lat=48.81666564941406
+		</yahoo_map_url>
+		<country_flag_url>/images/flags/FR.png</country_flag_url>
+	</result>
+	<result>
+		<distance>4714.22143065483</distance>
+		<name>Montrouge</name>
+		<adm1Code>A8</adm1Code>
+		<adm2Code>92</adm2Code>
+		<adm3Code>921</adm3Code>
+		<adm4Code>92049</adm4Code>
+		<adm1Name>Région Île-de-France</adm1Name>
+		<adm2Name>Département des Hauts-de-Seine</adm2Name>
+		<adm3Name>Arrondissement d'Antony</adm3Name>
+		<adm4Name>Montrouge</adm4Name>
+		<asciiName>Montrouge</asciiName>
+		<countryCode>FR</countryCode>
+		<featureClass>P</featureClass>
+		<featureCode>PPL</featureCode>
+		<featureId>2992017</featureId>
+		<gtopo30>75</gtopo30>
+		<population>38708</population>
+		<timezone>Europe/Paris</timezone>
+		<lat>48.81666564941406</lat>
+		<lng>2.316666603088379</lng>
+		<placeType>City</placeType>
+		<zipCode>92120</zipCode>
+		<google_map_url>http://maps.google.com/maps?f=q&amp;amp;ie=UTF-8&amp;amp;iwloc=addr&amp;amp;om=1&amp;amp;z=12&amp;amp;q=Montrouge&amp;amp;ll=48.846665649414064,2.316666603088379
+		</google_map_url>
+		<yahoo_map_url>http://maps.yahoo.com/broadband?mag=6&amp;amp;mvt=m&amp;amp;lon=2.316666603088379&amp;amp;lat=48.81666564941406
+		</yahoo_map_url>
+		<country_flag_url>/images/flags/FR.png</country_flag_url>
+	</result>
+	<result>
+		<distance>4804.26646673659</distance>
+		<name>Ivry-sur-Seine</name>
+		<adm1Code>A8</adm1Code>
+		<adm2Code>94</adm2Code>
+		<adm3Code>941</adm3Code>
+		<adm4Code>94041</adm4Code>
+		<adm1Name>Région Île-de-France</adm1Name>
+		<adm2Name>Département du Val-de-Marne</adm2Name>
+		<adm3Name>Arrondissement de Créteil</adm3Name>
+		<adm4Name>Ivry-sur-Seine</adm4Name>
+		<asciiName>Ivry-sur-Seine</asciiName>
+		<countryCode>FR</countryCode>
+		<featureClass>P</featureClass>
+		<featureCode>PPL</featureCode>
+		<featureId>3012621</featureId>
+		<gtopo30>33</gtopo30>
+		<population>57897</population>
+		<timezone>Europe/Paris</timezone>
+		<lat>48.81666564941406</lat>
+		<lng>2.383333206176758</lng>
+		<placeType>City</placeType>
+		<zipCode>94200</zipCode>
+		<google_map_url>http://maps.google.com/maps?f=q&amp;amp;ie=UTF-8&amp;amp;iwloc=addr&amp;amp;om=1&amp;amp;z=12&amp;amp;q=Ivry-sur-Seine&amp;amp;ll=48.846665649414064,2.383333206176758
+		</google_map_url>
+		<yahoo_map_url>http://maps.yahoo.com/broadband?mag=6&amp;amp;mvt=m&amp;amp;lon=2.383333206176758&amp;amp;lat=48.81666564941406
+		</yahoo_map_url>
+		<country_flag_url>/images/flags/FR.png</country_flag_url>
+	</result>
+	<result>
+		<distance>5009.76064615279</distance>
+		<name>Le Pré-Saint-Gervais</name>
+		<adm1Code>A8</adm1Code>
+		<adm2Code>93</adm2Code>
+		<adm3Code>931</adm3Code>
+		<adm4Code>93061</adm4Code>
+		<adm1Name>Région Île-de-France</adm1Name>
+		<adm2Name>Département de Seine-Saint-Denis</adm2Name>
+		<adm3Name>Arrondissement de Bobigny</adm3Name>
+		<adm4Name>Le Pré-Saint-Gervais</adm4Name>
+		<asciiName>Le Pre-Saint-Gervais</asciiName>
+		<countryCode>FR</countryCode>
+		<featureClass>P</featureClass>
+		<featureCode>PPL</featureCode>
+		<featureId>3002499</featureId>
+		<gtopo30>115</gtopo30>
+		<population>17786</population>
+		<timezone>Europe/Paris</timezone>
+		<lat>48.88333511352539</lat>
+		<lng>2.4000000953674316</lng>
+		<placeType>City</placeType>
+		<zipCode>93310</zipCode>
+		<google_map_url>http://maps.google.com/maps?f=q&amp;amp;ie=UTF-8&amp;amp;iwloc=addr&amp;amp;om=1&amp;amp;z=12&amp;amp;q=Le+Pr%C3%A9-Saint-Gervais&amp;amp;ll=48.91333511352539,2.4000000953674316
+		</google_map_url>
+		<yahoo_map_url>http://maps.yahoo.com/broadband?mag=6&amp;amp;mvt=m&amp;amp;lon=2.4000000953674316&amp;amp;lat=48.88333511352539
+		</yahoo_map_url>
+		<country_flag_url>/images/flags/FR.png</country_flag_url>
+	</result>
+	<result>
+		<distance>5178.98957667888</distance>
+		<name>Bagnolet</name>
+		<adm1Code>A8</adm1Code>
+		<adm2Code>93</adm2Code>
+		<adm3Code>931</adm3Code>
+		<adm4Code>93006</adm4Code>
+		<adm1Name>Région Île-de-France</adm1Name>
+		<adm2Name>Département de Seine-Saint-Denis</adm2Name>
+		<adm3Name>Arrondissement de Bobigny</adm3Name>
+		<adm4Name>Bagnolet</adm4Name>
+		<asciiName>Bagnolet</asciiName>
+		<countryCode>FR</countryCode>
+		<featureClass>P</featureClass>
+		<featureCode>PPL</featureCode>
+		<featureId>3035403</featureId>
+		<gtopo30>111</gtopo30>
+		<population>33504</population>
+		<timezone>Europe/Paris</timezone>
+		<lat>48.86666488647461</lat>
+		<lng>2.4166667461395264</lng>
+		<placeType>City</placeType>
+		<zipCode>93170</zipCode>
+		<google_map_url>http://maps.google.com/maps?f=q&amp;amp;ie=UTF-8&amp;amp;iwloc=addr&amp;amp;om=1&amp;amp;z=12&amp;amp;q=Bagnolet&amp;amp;ll=48.89666488647461,2.4166667461395264
+		</google_map_url>
+		<yahoo_map_url>http://maps.yahoo.com/broadband?mag=6&amp;amp;mvt=m&amp;amp;lon=2.4166667461395264&amp;amp;lat=48.86666488647461
+		</yahoo_map_url>
+		<country_flag_url>/images/flags/FR.png</country_flag_url>
+	</result>
+	<result>
+		<distance>5302.89553437177</distance>
+		<name>Saint-Ouen</name>
+		<adm1Code>A8</adm1Code>
+		<adm2Code>93</adm2Code>
+		<adm3Code>933</adm3Code>
+		<adm4Code>93070</adm4Code>
+		<adm1Name>Région Île-de-France</adm1Name>
+		<adm2Name>Département de Seine-Saint-Denis</adm2Name>
+		<adm3Name>Arrondissement de Saint-Denis</adm3Name>
+		<adm4Name>Saint-Ouen</adm4Name>
+		<asciiName>Saint-Ouen</asciiName>
+		<countryCode>FR</countryCode>
+		<featureClass>P</featureClass>
+		<featureCode>PPL</featureCode>
+		<featureId>2977824</featureId>
+		<gtopo30>54</gtopo30>
+		<population>39353</population>
+		<timezone>Europe/Paris</timezone>
+		<lat>48.900001525878906</lat>
+		<lng>2.3333332538604736</lng>
+		<placeType>City</placeType>
+		<zipCode>93400</zipCode>
+		<google_map_url>http://maps.google.com/maps?f=q&amp;amp;ie=UTF-8&amp;amp;iwloc=addr&amp;amp;om=1&amp;amp;z=12&amp;amp;q=Saint-Ouen&amp;amp;ll=48.93000152587891,2.3333332538604736
+		</google_map_url>
+		<yahoo_map_url>http://maps.yahoo.com/broadband?mag=6&amp;amp;mvt=m&amp;amp;lon=2.3333332538604736&amp;amp;lat=48.900001525878906
+		</yahoo_map_url>
+		<country_flag_url>/images/flags/FR.png</country_flag_url>
+	</result>
+	<result>
+		<distance>5343.08712782835</distance>
+		<name>La Plaine-Saint-Denis</name>
+		<adm1Code>A8</adm1Code>
+		<adm2Code>93</adm2Code>
+		<adm1Name>Région Île-de-France</adm1Name>
+		<adm2Name>Département de Seine-Saint-Denis</adm2Name>
+		<asciiName>La Plaine-Saint-Denis</asciiName>
+		<countryCode>FR</countryCode>
+		<featureClass>P</featureClass>
+		<featureCode>PPL</featureCode>
+		<featureId>3007263</featureId>
+		<gtopo30>45</gtopo30>
+		<population>0</population>
+		<timezone>Europe/Paris</timezone>
+		<lat>48.900001525878906</lat>
+		<lng>2.366666793823242</lng>
+		<placeType>City</placeType>
+		<google_map_url>http://maps.google.com/maps?f=q&amp;amp;ie=UTF-8&amp;amp;iwloc=addr&amp;amp;om=1&amp;amp;z=12&amp;amp;q=La+Plaine-Saint-Denis&amp;amp;ll=48.93000152587891,2.366666793823242
+		</google_map_url>
+		<yahoo_map_url>http://maps.yahoo.com/broadband?mag=6&amp;amp;mvt=m&amp;amp;lon=2.366666793823242&amp;amp;lat=48.900001525878906
+		</yahoo_map_url>
+		<country_flag_url>/images/flags/FR.png</country_flag_url>
+	</result>
+	<numFound>10</numFound>
+	<QTime>9</QTime>
 </results>
