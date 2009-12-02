@@ -6,7 +6,7 @@ import com.gisgraphy.client.continent.Continent;
 import com.gisgraphy.client.continent.ContinentRepository;
 import com.google.common.collect.ImmutableMap;
 
-public class StaticContinentRepository implements ContinentRepository {
+public class InMemoryContinentRepository implements ContinentRepository {
 
     private static final ImmutableMap<String, Continent> CONTINENTS = 
 	new ImmutableMap.Builder<String,Continent>()

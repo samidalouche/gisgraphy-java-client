@@ -10,13 +10,13 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-public class Iso639LanguageLookupTest {
+public class InMemoryIso639LanguageRepositoryTest {
 
-	private Iso639LanguageLookup isoLookup;
+	private InMemoryIso639LanguageRepository isoLookup;
 
 	@Before
 	public void setUp() throws UnsupportedEncodingException, IOException {
-		isoLookup = new Iso639LanguageLookup();
+		isoLookup = new InMemoryIso639LanguageRepository();
 	}
 	
 	@Test

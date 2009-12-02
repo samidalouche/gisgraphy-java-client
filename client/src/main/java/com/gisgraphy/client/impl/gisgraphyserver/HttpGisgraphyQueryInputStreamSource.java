@@ -38,7 +38,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.io.InputStreamSource;
 
-import com.gisgraphy.client.impl.UrlGenerator;
 import com.google.common.collect.ImmutableList;
 import com.sirika.httpclienthelpers.template.AbstractHttpErrorHandler;
 import com.sirika.httpclienthelpers.template.HttpClientTemplate;

@@ -4,7 +4,6 @@ import org.apache.commons.lang.Validate;
 import org.apache.commons.lang.builder.ToStringBuilder;
 import org.apache.commons.lang.builder.ToStringStyle;
 
-import com.gisgraphy.client.impl.InMemoryAlternateNamesProvider;
 import com.gisgraphy.client.language.Iso639Language;
 import com.google.common.base.Predicate;
 import com.google.common.collect.ImmutableSet;

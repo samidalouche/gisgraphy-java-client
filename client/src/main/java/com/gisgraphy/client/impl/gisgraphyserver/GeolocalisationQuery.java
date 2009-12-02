@@ -1,9 +1,5 @@
 package com.gisgraphy.client.impl.gisgraphyserver;
 
-import com.gisgraphy.client.impl.OutputFormat;
-import com.gisgraphy.client.impl.Paginable;
-import com.gisgraphy.client.impl.Pagination;
-import com.gisgraphy.client.impl.UrlGenerator;
 
 
 public class GeolocalisationQuery implements GisgraphyQuery, Paginable  {

@@ -8,16 +8,16 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.gisgraphy.client.continent.ContinentRepository;
-import com.gisgraphy.client.impl.StaticContinentRepository;
+import com.gisgraphy.client.impl.InMemoryContinentRepository;
 import com.google.common.collect.Iterables;
 
-public class StaticContinentRepositoryTest {
+public class InMemoryContinentRepositoryTest {
 
     private ContinentRepository continentRepository;
     
     @Before
     public void setUp() {
-	this.continentRepository = new StaticContinentRepository();
+	this.continentRepository = new InMemoryContinentRepository();
     }
     
     @Test

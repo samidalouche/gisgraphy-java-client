@@ -1,8 +1,5 @@
-package com.gisgraphy.client.impl;
+package com.gisgraphy.client.impl.gisgraphyserver;
 
-import com.gisgraphy.client.impl.gisgraphyserver.FullTextQuery;
-import com.gisgraphy.client.impl.gisgraphyserver.GeolocalisationQuery;
-import com.gisgraphy.client.impl.gisgraphyserver.GisgraphyQuery;
 
 
 /**

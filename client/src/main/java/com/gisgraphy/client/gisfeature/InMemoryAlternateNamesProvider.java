@@ -1,7 +1,5 @@
-package com.gisgraphy.client.impl;
+package com.gisgraphy.client.gisfeature;
 
-import com.gisgraphy.client.gisfeature.AlternateGisFeatureName;
-import com.gisgraphy.client.gisfeature.AlternateNamesProvider;
 import com.google.common.collect.ImmutableSet;
 
 public class InMemoryAlternateNamesProvider implements AlternateNamesProvider {

@@ -1,4 +1,4 @@
-package com.gisgraphy.client.impl;
+package com.gisgraphy.client.impl.gisgraphyserver;
 
 public interface Paginable {
 

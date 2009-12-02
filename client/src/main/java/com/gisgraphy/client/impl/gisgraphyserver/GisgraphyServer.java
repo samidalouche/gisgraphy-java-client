@@ -2,7 +2,6 @@ package com.gisgraphy.client.impl.gisgraphyserver;
 
 import org.springframework.core.io.InputStreamSource;
 
-import com.gisgraphy.client.impl.UrlGenerator;
 
 
 public interface GisgraphyServer extends UrlGenerator{

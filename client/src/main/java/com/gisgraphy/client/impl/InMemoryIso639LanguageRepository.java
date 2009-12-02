@@ -9,12 +9,12 @@ import com.gisgraphy.client.language.Iso639Language;
 import com.gisgraphy.client.language.LanguageRepository;
 import com.google.common.collect.ImmutableMap;
 
-public class Iso639LanguageLookup implements LanguageRepository {
+public class InMemoryIso639LanguageRepository implements LanguageRepository {
 	
 	private final ImmutableMap<String, Iso639Language> ISO639ALPHA3MAP;
 	private final ImmutableMap<String, Iso639Language> ISO639ALPHA2MAP;
 
-	public Iso639LanguageLookup() throws UnsupportedEncodingException, IOException {
+	public InMemoryIso639LanguageRepository() throws UnsupportedEncodingException, IOException {
 		
 		BufferedReader in = null;
 		try {
@@ -66,7 +66,7 @@ public class Iso639LanguageLookup implements LanguageRepository {
 	 * @throws UnsupportedEncodingException 
 	 */
 	public static void main(String[] args) throws UnsupportedEncodingException, IOException {
-		Iso639LanguageLookup isoLookup = new Iso639LanguageLookup();
+		InMemoryIso639LanguageRepository isoLookup = new InMemoryIso639LanguageRepository();
 		System.out.println("abd is: " + isoLookup.findByAlpha3Code("abd"));
 
 	}

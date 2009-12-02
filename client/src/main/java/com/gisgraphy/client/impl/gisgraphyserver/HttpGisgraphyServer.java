@@ -9,8 +9,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.io.InputStreamSource;
 
-import com.gisgraphy.client.impl.RestfulUrlGenerator;
-import com.gisgraphy.client.impl.UrlGenerator;
 
 
 public class HttpGisgraphyServer implements GisgraphyServer {
