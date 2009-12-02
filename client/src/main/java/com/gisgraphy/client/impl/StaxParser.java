@@ -35,22 +35,16 @@ public class StaxParser {
                 if (event.isStartElement()) {
                     if (event.asStartElement().getName().getLocalPart().equals("doc")) {
                         double score = 0;
-                        String adm1Name = null;
                         String adm1Code = null;
-                        String adm2Name = null;
                         String adm2Code = null;
-                        String adm3Name = null;
                         String adm3Code = null;
-                        String adm4Name = null;
                         String adm4Code = null;
                         String countryCode = null;
                         String countryFlagUrl = null;
-                        String countryName = null;
                         int elevation = 0;
                         String featureClass = null;
                         String featureCode = null;
                         long featureId = 0;
-                        String fullyQualifiedName = null;
                         String googleMapUrl = null;
                         int gTopo30 = 0;
                         double latitude = 0;
@@ -64,12 +58,7 @@ public class StaxParser {
                         // This will map 2 or 3 letter language codes to their
                         // alternate country name
                         // We need an ImmutableMap.Builder while parsing
-                        ImmutableMap.Builder<String, List<String>> alternateCountryNamesBuilder = ImmutableMap.builder();
                         ImmutableMap.Builder<String, List<String>> alternateNamesBuilder = ImmutableMap.builder();
-                        ImmutableMap.Builder<String, List<String>> alternateAdm1NamesBuilder = ImmutableMap.builder();
-                        ImmutableMap.Builder<String, List<String>> alternateAdm2NamesBuilder = ImmutableMap.builder();
-                        ImmutableMap.Builder<String, List<String>> alternateAdm3NamesBuilder = ImmutableMap.builder();
-                        ImmutableMap.Builder<String, List<String>> alternateAdm4NamesBuilder = ImmutableMap.builder();
 
                         // We have a new CityResult
                         XMLEvent innerEvent = null;
@@ -78,24 +67,16 @@ public class StaxParser {
                             if (innerEvent.isStartElement()) {
                                 StartElement startElement = innerEvent.asStartElement();
                                 final String tagName = startElement.getName().getLocalPart();
-                                final String nameAttributeValue = startElement.getAttributeByName(new QName("name")).getValue();
                                 if (tagName.equals("str")) {
+                                    final String nameAttributeValue = nameAttributeValue(startElement);
                                     if ("name".equals(nameAttributeValue)) {
                                         name = eventReader.getElementText();
                                     } else if ("adm1_code".equals(nameAttributeValue)) {
                                         adm1Code = eventReader.getElementText();
-                                    } else if ("adm1_name".equals(nameAttributeValue)) {
-                                        adm1Name = eventReader.getElementText();
                                     } else if ("adm2_code".equals(nameAttributeValue)) {
                                         adm2Code = eventReader.getElementText();
-                                    } else if ("adm2_name".equals(nameAttributeValue)) {
-                                        adm2Name = eventReader.getElementText();
-                                    } else if ("adm3_name".equals(nameAttributeValue)) {
-                                        adm3Name = eventReader.getElementText();
                                     } else if ("adm3_code".equals(nameAttributeValue)) {
                                         adm3Code = eventReader.getElementText();
-                                    } else if ("adm4_name".equals(nameAttributeValue)) {
-                                        adm4Name = eventReader.getElementText();
                                     } else if ("adm4_code".equals(nameAttributeValue)) {
                                         adm4Code = eventReader.getElementText();
                                     } else if ("country_code".equals(nameAttributeValue)) {
@@ -104,14 +85,10 @@ public class StaxParser {
                                         placeType = eventReader.getElementText();
                                     } else if ("country_flag_url".equals(nameAttributeValue)) {
                                         countryFlagUrl = eventReader.getElementText();
-                                    } else if ("country_name".equals(nameAttributeValue)) {
-                                        countryName = eventReader.getElementText();
                                     } else if ("feature_class".equals(nameAttributeValue)) {
                                         featureClass = eventReader.getElementText();
                                     } else if ("feature_code".equals(nameAttributeValue)) {
                                         featureCode = eventReader.getElementText();
-                                    } else if ("fully_qualified_name".equals(nameAttributeValue)) {
-                                        fullyQualifiedName = eventReader.getElementText();
                                     } else if ("google_map_url".equals(nameAttributeValue)) {
                                         googleMapUrl = eventReader.getElementText();
                                     } else if ("name".equals(nameAttributeValue)) {
@@ -124,45 +101,31 @@ public class StaxParser {
                                         yahooMapUrl = eventReader.getElementText();
                                     }
                                 } else if (tagName.equals("arr")) {
-                                    if (nameAttributeValue.startsWith("country_name_alternate")) {
-                                        this.parseAlternateNameArray(nameAttributeValue.substring(nameAttributeValue.lastIndexOf("_") + 1)
-                                                , alternateCountryNamesBuilder, eventReader, innerEvent);
-                                    } else if (nameAttributeValue.startsWith("name_alternate")) {
-                                        this.parseAlternateNameArray(nameAttributeValue.substring(nameAttributeValue.lastIndexOf("_") + 1)
+                                    if (nameAttributeValue(startElement).startsWith("name_alternate")) {
+                                        this.parseAlternateNameArray(nameAttributeValue(startElement).substring(nameAttributeValue(startElement).lastIndexOf("_") + 1)
                                                 , alternateNamesBuilder, eventReader, innerEvent);
-                                    } else if (nameAttributeValue.startsWith("adm1_name_alternate")) {
-                                        this.parseAlternateNameArray(nameAttributeValue.substring(nameAttributeValue.lastIndexOf("_") + 1)
-                                                , alternateAdm1NamesBuilder, eventReader, innerEvent);
-                                    } else if (nameAttributeValue.startsWith("adm2_name_alternate")) {
-                                       this.parseAlternateNameArray(nameAttributeValue.substring(nameAttributeValue.lastIndexOf("_") + 1)
-                                                , alternateAdm2NamesBuilder, eventReader, innerEvent);
-                                    } else if (nameAttributeValue.startsWith("adm3_name_alternate")) {
-                                        this.parseAlternateNameArray(nameAttributeValue.substring(nameAttributeValue.lastIndexOf("_") + 1)
-                                                , alternateAdm3NamesBuilder, eventReader, innerEvent);
-                                    } else if (nameAttributeValue.startsWith("adm4_name_alternate")) {
-                                        this.parseAlternateNameArray(nameAttributeValue.substring(nameAttributeValue.lastIndexOf("_") + 1)
-                                                , alternateAdm4NamesBuilder, eventReader, innerEvent);
-                                    }
+                                    } 
                                 } else if (tagName.equals("float")) {
-                                    if ("score".equals(nameAttributeValue)) {
+                                    
+                                    if ("score".equals(nameAttributeValue(startElement))) {
                                         score = Double.parseDouble(eventReader.getElementText());
                                     }
                                 } else if (tagName.equals("long")) {
-                                    if ("feature_id".equals(nameAttributeValue)) {
+                                    if ("feature_id".equals(nameAttributeValue(startElement))) {
                                         featureId = Long.parseLong(eventReader.getElementText());
                                     }
                                 } else if (tagName.equals("int")) {
-                                    if ("elevation".equals(nameAttributeValue)) {
+                                    if ("elevation".equals(nameAttributeValue(startElement))) {
                                         elevation = Integer.parseInt(eventReader.getElementText());
-                                    } else if ("gtopo30".equals(nameAttributeValue)) {
+                                    } else if ("gtopo30".equals(nameAttributeValue(startElement))) {
                                         gTopo30 = Integer.parseInt(eventReader.getElementText());
-                                    } else if ("population".equals(nameAttributeValue)) {
+                                    } else if ("population".equals(nameAttributeValue(startElement))) {
                                         population = Integer.parseInt(eventReader.getElementText());
                                     }
                                 } else if (tagName.equals("double")) {
-                                    if ("lat".equals(nameAttributeValue)) {
+                                    if ("lat".equals(nameAttributeValue(startElement))) {
                                         latitude = Double.parseDouble(eventReader.getElementText());
-                                    } else if ("lng".equals(nameAttributeValue)) {
+                                    } else if ("lng".equals(nameAttributeValue(startElement))) {
                                         longitude = Double.parseDouble(eventReader.getElementText());
                                     }
                                 }
@@ -171,20 +134,14 @@ public class StaxParser {
                                     // Create a new CityResult and add it to the
                                     // output
                                     // output.add(cityResult);
-                                    final FullTextQueryResult cityResult = FullTextQueryResult.newFullTextQueryResult().withAsciiName(asciiName).withAdm1Code(adm1Code).withAdm1Name(adm1Name).withAdm2Code(adm2Code).withAdm2Name(adm2Name).withAdm3Code(adm3Code).withAdm3Name(adm3Name).withAdm4Code(adm4Code).withAdm4Name(adm4Name).withCountryCode(countryCode).withPlaceType(placeType).withCountryFlagUrl(
-                                            countryFlagUrl).withCountryName(countryName).withElevation(
+                                    final FullTextQueryResult cityResult = FullTextQueryResult.newFullTextQueryResult().withAsciiName(asciiName).withAdm1Code(adm1Code).withAdm2Code(adm2Code).withAdm3Code(adm3Code).withAdm4Code(adm4Code).withCountryCode(countryCode).withPlaceType(placeType).withCountryFlagUrl(
+                                            countryFlagUrl).withElevation(
                                             elevation).withFeatureClass(featureClass).withFeatureCode(
-                                            featureCode).withFeatureId(featureId).withFullyQualifiedName(
-                                            fullyQualifiedName).withGoogleMapUrl(googleMapUrl).withGTopo30(
+                                            featureCode).withFeatureId(featureId).withGoogleMapUrl(googleMapUrl).withGTopo30(
                                             gTopo30).withLatitude(latitude).withLongitude(longitude).withName(
                                             name).withPopulation(population).withScore(score).withTimezone(
                                             timezone).withYahooMapUrl(yahooMapUrl)
                                             .withAlternateNames(alternateNamesBuilder.build())
-                                            .withCountryAlternateNames(alternateCountryNamesBuilder.build())
-                                            .withAdm1AlternateNames(alternateAdm1NamesBuilder.build())
-                                            .withAdm2AlternateNames(alternateAdm2NamesBuilder.build())
-                                            .withAdm3AlternateNames(alternateAdm3NamesBuilder.build())
-                                            .withAdm4AlternateNames(alternateAdm4NamesBuilder.build())
                                             .build();
 
                                     searchResults.add(cityResult);
@@ -204,6 +161,10 @@ public class StaxParser {
         }
 
         return ImmutableList.copyOf(searchResults);
+    }
+
+    private String nameAttributeValue(StartElement startElement) {
+	return startElement.getAttributeByName(new QName("name")).getValue();
     }
 
     private void parseAlternateNameArray(String languageCode, ImmutableMap.Builder mapBuilder, XMLEventReader eventReader, XMLEvent arrEvent) throws XMLStreamException {

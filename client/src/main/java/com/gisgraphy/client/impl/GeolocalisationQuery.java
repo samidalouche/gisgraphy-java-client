@@ -1,19 +1,7 @@
 package com.gisgraphy.client.impl;
 
 
-public class GeolocalisationQuery implements GisgraphyQuery {
-    private Integer paginationStartIndex;
-    private Double latitude;
-    private Double longitude;
-    private Integer radius;
-    private Integer paginationEndIndex;
-    private OutputFormat outputFormat;
-    private String placeType;
-
-    public static GeolocalisationQueryBuilder newSearchQuery() {
-	return new GeolocalisationQueryBuilder();
-    }
-
+public class GeolocalisationQuery implements GisgraphyQuery, Paginable  {
     private static class GeolocalisationQueryBuilder {
 	private GeolocalisationQuery searchQuery;
 
@@ -21,14 +9,17 @@ public class GeolocalisationQuery implements GisgraphyQuery {
 	    searchQuery = new GeolocalisationQuery();
 	}
 
+	public GeolocalisationQuery build() {
+	    return searchQuery;
+	}
 
-	public GeolocalisationQueryBuilder withPaginationStartIndex(Integer startIndex) {
-	    searchQuery.paginationStartIndex = startIndex;
+	public GeolocalisationQueryBuilder withLatitude(Double latitude) {
+	    searchQuery.latitude = latitude;
 	    return this;
 	}
 
-	public GeolocalisationQueryBuilder withPaginationEndIndex(Integer endIndex) {
-	    searchQuery.paginationEndIndex = endIndex;
+	public GeolocalisationQueryBuilder withLongitude(Double longitude) {
+	    searchQuery.longitude = longitude;
 	    return this;
 	}
 
@@ -37,40 +28,41 @@ public class GeolocalisationQuery implements GisgraphyQuery {
 	    return this;
 	}
 
+	public GeolocalisationQueryBuilder withPagination(Pagination pagination) {
+	    searchQuery.pagination = pagination;
+	    return this;
+	}
+
 	public GeolocalisationQueryBuilder withPlaceType(String placeType) {
 	    searchQuery.placeType = placeType;
 	    return this;
 	}
-	
-	public GeolocalisationQueryBuilder withLatitude(Double latitude) {
-	    searchQuery.latitude = latitude;
-	    return this;
-	}
-	
-	public GeolocalisationQueryBuilder withLongitude(Double longitude) {
-	    searchQuery.longitude = longitude;
-	    return this;
-	}
-	
+
 	public GeolocalisationQueryBuilder withRadius(Integer radius) {
 	    searchQuery.radius = radius;
 	    return this;
 	}
+    }
+    public static GeolocalisationQueryBuilder newSearchQuery() {
+	return new GeolocalisationQueryBuilder();
+    }
+    private Double latitude;
+    private Double longitude;
+    private OutputFormat outputFormat;
+    private Pagination pagination;
+    private String placeType;
+    private Integer radius;
 
-	public GeolocalisationQuery build() {
-	    return searchQuery;
-	}
+    public String accept(UrlGenerator restfulUrlGenerator) {
+	return restfulUrlGenerator.geolocalizationQueryUrl(this);
     }
 
-
-
-
-    public Integer getPaginationStartIndex() {
-	return paginationStartIndex;
+    public Double getLatitude() {
+	return latitude;
     }
 
-    public Integer getPaginationEndIndex() {
-	return paginationEndIndex;
+    public Double getLongitude() {
+	return longitude;
     }
 
     public OutputFormat getOutputFormat() {
@@ -81,20 +73,12 @@ public class GeolocalisationQuery implements GisgraphyQuery {
 	return placeType;
     }
 
-	public Double getLatitude() {
-		return latitude;
-	}
+    public Integer getRadius() {
+	return radius;
+    }
 
-	public Double getLongitude() {
-		return longitude;
-	}
-
-	public Integer getRadius() {
-		return radius;
-	}
-
-	public String accept(UrlGenerator restfulUrlGenerator) {
-		return restfulUrlGenerator.visit(this);
-	}
+    public Pagination getPagination() {
+        return pagination;
+    }
 
 }

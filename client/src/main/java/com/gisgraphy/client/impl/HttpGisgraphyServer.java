@@ -65,11 +65,11 @@ public class HttpGisgraphyServer implements GisgraphyServer {
 		return urlGenerator.generateUrl(query);
 	}
 
-	public String visit(FullTextQuery fullTextQuery) {
+	public String fullTextQueryUrl(FullTextQuery fullTextQuery) {
 		return fullTextQuery.accept(urlGenerator);
 	}
 
-	public String visit(GeolocalisationQuery geolocalisationQuery) {
+	public String geolocalizationQueryUrl(GeolocalisationQuery geolocalisationQuery) {
 		return geolocalisationQuery.accept(urlGenerator);
 	}
 }
