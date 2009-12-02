@@ -1,4 +1,4 @@
-package com.gisgraphy.client.impl;
+package com.gisgraphy.client.impl.resultparser;
 
 public final class GeolocalisationResult {
 	public static class GeolocalisationResultBuilder {

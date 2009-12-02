@@ -14,8 +14,6 @@ import javax.xml.stream.events.XMLEvent;
 import org.apache.commons.io.IOUtils;
 import org.springframework.core.io.InputStreamSource;
 
-import com.gisgraphy.client.impl.FullTextQueryResult;
-import com.gisgraphy.client.impl.GeolocalisationResult;
 import com.google.common.collect.ImmutableList;
 
 public class StaxGeolocalizationQueryResultParser implements GeolocalizationQueryResultParser {

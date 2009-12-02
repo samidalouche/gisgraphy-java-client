@@ -14,11 +14,11 @@ import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.core.io.InputStreamSource;
 
-import com.gisgraphy.client.impl.FullTextQueryResult;
 import com.gisgraphy.client.impl.FullTextSearchResultsObjectMother;
 import com.gisgraphy.client.impl.GeolocalisationQueryResultsObjectMother;
-import com.gisgraphy.client.impl.GeolocalisationResult;
+import com.gisgraphy.client.impl.resultparser.FullTextQueryResult;
 import com.gisgraphy.client.impl.resultparser.FullTextQueryResultParser;
+import com.gisgraphy.client.impl.resultparser.GeolocalisationResult;
 import com.gisgraphy.client.impl.resultparser.GeolocalizationQueryResultParser;
 import com.gisgraphy.client.impl.resultparser.StaxFullTextQueryResultParser;
 import com.gisgraphy.client.impl.resultparser.StaxGeolocalizationQueryResultParser;

@@ -1,4 +1,4 @@
-package com.gisgraphy.client.impl;
+package com.gisgraphy.client.impl.resultparser;
 
 import java.util.List;
 import java.util.Map;

@@ -15,7 +15,6 @@ import javax.xml.stream.events.XMLEvent;
 import org.apache.commons.io.IOUtils;
 import org.springframework.core.io.InputStreamSource;
 
-import com.gisgraphy.client.impl.FullTextQueryResult;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 
