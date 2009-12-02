@@ -19,31 +19,18 @@
  */
 package com.gisgraphy.client;
 
-import java.io.IOException;
-import java.util.Iterator;
-
-import javax.xml.stream.XMLStreamException;
-import junit.framework.Assert;
-
 import org.junit.After;
 import org.junit.Before;
-import org.junit.Test;
-import org.springframework.core.io.InputStreamSource;
-
-import com.gisgraphy.client.impl.FullTextQuery;
-import com.gisgraphy.client.impl.FullTextQueryResult;
-import com.gisgraphy.client.impl.OutputStyle;
-import com.gisgraphy.client.impl.StaxParser;
 
 public class GisgraphyServerFullTextQueryIntegrationTest extends AbstractGisgraphyClientIntegrationTestCase {
-	private static final StaxParser parser = new StaxParser();
+//	private static final StaxParser parser = new StaxParser();
 
 	@Before
 	@After
 	public void clean() {
 
 	}
-
+/*
 	@Test
 	public void shouldExecuteFullTextSearchForParisWithoutPlaceTypeIncludesOtherTypes() throws IOException, XMLStreamException {
 		InputStreamSource iss = httpGisgraphyServer.executeSearch(FullTextQuery.newSearchQuery().withQueryString(
@@ -83,7 +70,7 @@ public class GisgraphyServerFullTextQueryIntegrationTest extends AbstractGisgrap
 
 		Assert.assertFalse(iterator.hasNext());
 	}
-
+*/
 	/*
 	 * @Test public void
 	 * shouldThrowResourceNotExistingExceptionWhenResourceNotFound() throws
