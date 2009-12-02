@@ -32,7 +32,7 @@
     <context:property-placeholder location="classpath:/com/gisgraphy/client/tests/integration/config.properties" />
 	<context:annotation-config/>
 	
-	<bean id="gisgraphyServer" class="com.gisgraphy.client.impl.HttpGisgraphyServer">
+	<bean id="gisgraphyServer" class="com.gisgraphy.client.impl.gisgraphyserver.HttpGisgraphyServer">
 		<constructor-arg><value>${gisgraphy.baseurl}</value></constructor-arg>
 		<constructor-arg><ref bean="httpClient" /></constructor-arg>
 	</bean>

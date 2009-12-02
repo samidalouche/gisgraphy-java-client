@@ -1,6 +1,12 @@
-package com.gisgraphy.client.impl;
+package com.gisgraphy.client.impl.gisgraphyserver;
 
 import org.springframework.util.Assert;
+
+import com.gisgraphy.client.impl.OutputFormat;
+import com.gisgraphy.client.impl.OutputStyle;
+import com.gisgraphy.client.impl.Paginable;
+import com.gisgraphy.client.impl.Pagination;
+import com.gisgraphy.client.impl.UrlGenerator;
 
 
 public class FullTextQuery implements GisgraphyQuery, Paginable {

@@ -17,12 +17,14 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with ImgServer.  If not, see <http://www.gnu.org/licenses/>.
  */
-package com.gisgraphy.client.impl;
+package com.gisgraphy.client.impl.gisgraphyserver;
 
 import org.apache.http.client.HttpClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.io.InputStreamSource;
+
+import com.gisgraphy.client.impl.UrlGenerator;
 
 
 public class GisgraphyQueryCommand {

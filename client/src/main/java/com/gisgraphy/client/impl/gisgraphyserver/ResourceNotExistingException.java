@@ -17,21 +17,21 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with ImgServer.  If not, see <http://www.gnu.org/licenses/>.
  */
-package com.gisgraphy.client.impl;
+package com.gisgraphy.client.impl.gisgraphyserver;
 
 
-public class UnknownGisgraphyQueryException extends GisgraphyClientException {
+
+public class ResourceNotExistingException extends GisgraphyClientException {
     private static final long serialVersionUID = 1L;
-
+    
     private GisgraphyQuery searchQuery;
-
-    public UnknownGisgraphyQueryException(GisgraphyQuery searchQuery, Exception e) {
-	super(e);
+    
+    public ResourceNotExistingException(GisgraphyQuery searchQuery) {
 	this.searchQuery = searchQuery;
     }
 
     public GisgraphyQuery getSearchQuery() {
-	return searchQuery;
+        return searchQuery;
     }
-
+    
 }

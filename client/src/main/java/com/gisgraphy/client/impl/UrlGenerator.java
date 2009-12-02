@@ -1,5 +1,9 @@
 package com.gisgraphy.client.impl;
 
+import com.gisgraphy.client.impl.gisgraphyserver.FullTextQuery;
+import com.gisgraphy.client.impl.gisgraphyserver.GeolocalisationQuery;
+import com.gisgraphy.client.impl.gisgraphyserver.GisgraphyQuery;
+
 
 public interface UrlGenerator {
 	
