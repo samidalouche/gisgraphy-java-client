@@ -53,7 +53,7 @@ public final class FullTextQueryResult {
             return this;
         }
 
-        public FullTextQueryResultBuilder withElevation(int elevation) {
+        public FullTextQueryResultBuilder withElevation(Long elevation) {
             fullTextQueryResult.elevation = elevation;
             return this;
         }
@@ -78,7 +78,7 @@ public final class FullTextQueryResult {
             return this;
         }
 
-        public FullTextQueryResultBuilder withGTopo30(int gTopo30) {
+        public FullTextQueryResultBuilder withGTopo30(Integer gTopo30) {
             fullTextQueryResult.gTopo30 = gTopo30;
             return this;
         }
@@ -103,7 +103,7 @@ public final class FullTextQueryResult {
             return this;
         }
 
-        public FullTextQueryResultBuilder withPopulation(int population) {
+        public FullTextQueryResultBuilder withPopulation(Integer population) {
             fullTextQueryResult.population = population;
             return this;
         }
@@ -134,17 +134,17 @@ public final class FullTextQueryResult {
     private String asciiName;
     private String countryCode;
     private String countryFlagUrl;
-    private int elevation;
+    private Long elevation;
     private String featureClass;
     private String featureCode;
     private long featureId;
     private String googleMapUrl;
-    private int gTopo30;
+    private Integer gTopo30;
     private double latitude;
     private double longitude;
     private String name;
     private String placeType;
-    private int population;
+    private Integer population;
     private double score;
 
     private String timezone;
@@ -185,7 +185,7 @@ public final class FullTextQueryResult {
         return countryFlagUrl;
     }
 
-    public int getElevation() {
+    public Long getElevation() {
         return elevation;
     }
 
@@ -205,7 +205,7 @@ public final class FullTextQueryResult {
         return googleMapUrl;
     }
 
-    public int getGTopo30() {
+    public Integer getGTopo30() {
         return gTopo30;
     }
 
@@ -225,7 +225,7 @@ public final class FullTextQueryResult {
         return placeType;
     }
 
-    public int getPopulation() {
+    public Integer getPopulation() {
         return population;
     }
 

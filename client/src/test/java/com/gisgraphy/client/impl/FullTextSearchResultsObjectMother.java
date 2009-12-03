@@ -9,8 +9,12 @@ public class FullTextSearchResultsObjectMother {
         return new ClassPathResource("/com/gisgraphy/client/sampleFullTextSearchResults/fullTextSearchForIrvine.xml");
     }
 
-    public static InputStreamSource paris() {
-        return new ClassPathResource("/com/gisgraphy/client/sampleFullTextSearchResults/fullTextSearchForParis.xml");
+    public static InputStreamSource tenFirstResultsMatchingParis() {
+        return new ClassPathResource("/com/gisgraphy/client/sampleFullTextSearchResults/fullTextSearchForParisWithFullStyle.xml");
+    }
+    
+    public static InputStreamSource parisUsingFeatureId() {
+        return new ClassPathResource("/com/gisgraphy/client/sampleFullTextSearchResults/fullTextSearchByParisFeatureIdFullStyle.xml");
     }
 
     public static InputStreamSource seattle() {

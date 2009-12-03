@@ -9,6 +9,7 @@ import javax.xml.namespace.QName;
 import javax.xml.stream.XMLEventReader;
 import javax.xml.stream.XMLInputFactory;
 import javax.xml.stream.XMLStreamException;
+import javax.xml.stream.events.Attribute;
 import javax.xml.stream.events.StartElement;
 import javax.xml.stream.events.XMLEvent;
 
@@ -51,17 +52,17 @@ public class StaxFullTextQueryResultParser implements FullTextQueryResultParser 
                         String adm4Code = null;
                         String countryCode = null;
                         String countryFlagUrl = null;
-                        int elevation = 0;
+                        Long elevation = null;
                         String featureClass = null;
                         String featureCode = null;
                         long featureId = 0;
                         String googleMapUrl = null;
-                        int gTopo30 = 0;
+                        Integer gTopo30 = null;
                         double latitude = 0;
                         double longitude = 0;
                         String name = null;
                         String asciiName = null;
-                        int population = 0;
+                        Integer population = null;
                         String timezone = null;
                         String yahooMapUrl = null;
                         String placeType = null;
@@ -126,7 +127,7 @@ public class StaxFullTextQueryResultParser implements FullTextQueryResultParser 
                                     }
                                 } else if (tagName.equals("int")) {
                                     if ("elevation".equals(nameAttributeValue(startElement))) {
-                                        elevation = Integer.parseInt(eventReader.getElementText());
+                                        elevation = Long.parseLong(eventReader.getElementText());
                                     } else if ("gtopo30".equals(nameAttributeValue(startElement))) {
                                         gTopo30 = Integer.parseInt(eventReader.getElementText());
                                     } else if ("population".equals(nameAttributeValue(startElement))) {
@@ -174,7 +175,12 @@ public class StaxFullTextQueryResultParser implements FullTextQueryResultParser 
     }
     
     private String nameAttributeValue(StartElement startElement) {
-	return startElement.getAttributeByName(new QName("name")).getValue();
+	Attribute att = startElement.getAttributeByName(new QName("name"));
+	if(att != null) {
+	    return att.getValue();
+	} else {
+	    return null;
+	}
     }
 
     private void parseAlternateNameArray(String languageCode, ImmutableMap.Builder mapBuilder, XMLEventReader eventReader, XMLEvent arrEvent) throws XMLStreamException {
