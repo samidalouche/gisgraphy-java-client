@@ -28,11 +28,11 @@ public class CityTest {
     }
     
     @Test(expected=IllegalArgumentException.class) public void getAdministrativeEntityShouldNotAcceptLevelHigherThanCurrentLevel() {
-    City.forFeature(rambouilletAdm4GisFeature()).getAdministrativeEntity(5);
+	City.forFeature(rambouilletAdm4GisFeature()).getAdministrativeEntity(5);
     }
 
     @Test(expected=IllegalArgumentException.class) public void getAdministrativeEntityShouldNotAcceptLevelLowerThan1() {
-    City.forFeature(rambouilletAdm4GisFeature()).getAdministrativeEntity(0);
+	City.forFeature(rambouilletAdm4GisFeature()).getAdministrativeEntity(0);
     }
 
     @Test public void getAdministrativeEntityShouldAcceptLevelsLessThanOrEqualToCurrentLevel() {
