@@ -12,45 +12,45 @@ import org.junit.Test;
 
 public class InMemoryIso639LanguageRepositoryTest {
 
-	private InMemoryIso639LanguageRepository isoLookup;
+    private InMemoryIso639LanguageRepository isoLookup;
 
-	@Before
-	public void setUp() throws UnsupportedEncodingException, IOException {
-		isoLookup = new InMemoryIso639LanguageRepository();
-	}
-	
-	@Test
-	public void lookupFrenchLanguageUsingAlpha3Code(){
-		assertEquals("Iso639Language[name=French,alpha2=fr,alpha3=fra]",
-			isoLookup.findByAlpha3Code("fra").toString());
-	}
-	
-	@Test
-	public void lookupFrenchLanguageUsingAlpha2Code(){
-		assertEquals("Iso639Language[name=French,alpha2=fr,alpha3=fra]",
-			isoLookup.findByAlpha2Code("fr").toString());
-	}
+    @Before
+    public void setUp() throws UnsupportedEncodingException, IOException {
+	isoLookup = new InMemoryIso639LanguageRepository();
+    }
 
-	@Test
-	public void lookupLanguageThatDoesNotHaveAnyAlpha2Code() {
-		assertEquals("Iso639Language[name=Ghotuo,alpha2=<null>,alpha3=aaa]",
-			isoLookup.findByAlpha3Code("aaa").toString());
-	}
-	
-	@Test
-	public void lookupLanguageThatHasAlpha2Code() {
-		assertEquals("Iso639Language[name=Bislama,alpha2=bi,alpha3=bis]",
-			isoLookup.findByAlpha3Code("bis").toString());
-	}
-	
-	@Test
-	public void lookupUnkownLanguageUsingAlpha2CodeShouldReturnNull() {
-		assertNull(isoLookup.findByAlpha2Code("yy"));
-	}
-	
-	@Test
-	public void lookupUnkownLanguageUsingAlpha3CodeShouldReturnNull() {
-		assertNull(isoLookup.findByAlpha3Code("yyy"));
-	}
+    @Test
+    public void lookupFrenchLanguageUsingAlpha3Code(){
+	assertEquals("Iso639Language[name=French,alpha2=fr,alpha3=fra]",
+		isoLookup.findByAlpha3Code("fra").toString());
+    }
+
+    @Test
+    public void lookupFrenchLanguageUsingAlpha2Code(){
+	assertEquals("Iso639Language[name=French,alpha2=fr,alpha3=fra]",
+		isoLookup.findByAlpha2Code("fr").toString());
+    }
+
+    @Test
+    public void lookupLanguageThatDoesNotHaveAnyAlpha2Code() {
+	assertEquals("Iso639Language[name=Ghotuo,alpha2=<null>,alpha3=aaa]",
+		isoLookup.findByAlpha3Code("aaa").toString());
+    }
+
+    @Test
+    public void lookupLanguageThatHasAlpha2Code() {
+	assertEquals("Iso639Language[name=Bislama,alpha2=bi,alpha3=bis]",
+		isoLookup.findByAlpha3Code("bis").toString());
+    }
+
+    @Test
+    public void lookupUnkownLanguageUsingAlpha2CodeShouldReturnNull() {
+	assertNull(isoLookup.findByAlpha2Code("yy"));
+    }
+
+    @Test
+    public void lookupUnkownLanguageUsingAlpha3CodeShouldReturnNull() {
+	assertNull(isoLookup.findByAlpha3Code("yyy"));
+    }
 
 }
