@@ -174,7 +174,6 @@ public class StaxFullTextQueryResultParserTest {
 	assertThat(result.getGTopo30(), equalTo(30));
 	assertThat(result.getLatitude(), equalTo(48.85340881347656));
 	assertThat(result.getLongitude(), equalTo(2.34879994392395));
-
 	Assert.assertEquals(parisAlternateNames(), result.getAlternateNames());
     }
 
