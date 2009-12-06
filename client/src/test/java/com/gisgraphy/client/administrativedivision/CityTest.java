@@ -4,6 +4,8 @@ import static com.gisgraphy.client.gisfeature.GisFeatureObjectMother.*;
 import org.junit.Assert;
 import org.junit.Test;
 
+import com.gisgraphy.client.gisfeature.GeonamesGisFeature;
+
 public class CityTest {
 
     @Test(expected=IllegalArgumentException.class) public void shouldNotCreateCityWithNullGisFeature() {
@@ -11,7 +13,11 @@ public class CityTest {
     }
     
     @Test(expected=IllegalArgumentException.class) public void shouldNotCreateCityWithGisFeatureThatHasNotParentEntity() {
-	City.forFeature(franceGisFeature());
+	City.forFeature(gisfeatureThatDoesNotHaveAnyParentEntity());
+    }
+
+    private GeonamesGisFeature gisfeatureThatDoesNotHaveAnyParentEntity() {
+	return franceGisFeature();
     }
     
     @Test public void shouldCompareCitiesByName() {
