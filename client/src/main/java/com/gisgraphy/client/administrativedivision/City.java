@@ -21,11 +21,11 @@ import com.ibm.icu.util.Currency;
 import com.vividsolutions.jts.geom.Point;
 
 public final class City implements Comparable<City>, GisFeature, DistanceCalculator<City>, AdministrativeEntity, CurrencyProvider {
-    
+
     public static City forFeature(GeonamesGisFeature gisFeature) {
 	return new City(gisFeature);
     }
-    
+
     private GisFeature gisFeature;
     private DistanceCalculator<GisFeature> gisFeatureDistanceCalculator;
 
@@ -51,7 +51,7 @@ public final class City implements Comparable<City>, GisFeature, DistanceCalcula
     private void shouldHaveParentAdministrativeEntity(GeonamesGisFeature gisFeature) {
 	Validate.notNull(gisFeature.getParentAdministrativeEntity());
     }
-    
+
     public int compareTo(City o) {
 	if (o == null) {
 	    return 1;
@@ -63,14 +63,14 @@ public final class City implements Comparable<City>, GisFeature, DistanceCalcula
     public String getName() {
 	return getGisFeatureDefaultName();
     }
-    
-    
+
+
     @Override
     public int hashCode() {
 	final int prime = 31;
 	int result = 1;
 	result = prime * result
-		+ ((gisFeature == null) ? 0 : gisFeature.hashCode());
+	+ ((gisFeature == null) ? 0 : gisFeature.hashCode());
 	return result;
     }
 
@@ -90,19 +90,19 @@ public final class City implements Comparable<City>, GisFeature, DistanceCalcula
 	    return false;
 	return true;
     }
-    
+
     //// GisFeatureAware implementation ////
     public ImmutableSet<AlternateGisFeatureName> getGisFeatureAlternateNames() {
 	return gisFeature.getGisFeatureAlternateNames();
     }
 
     public GisFeature getGisFeature() {
-        return gisFeature;
+	return gisFeature;
     }
     public Long getGeonamesId() {
 	return gisFeature.getGeonamesId();
     }
-    
+
     public String getGisFeatureDefaultName() {
 	return gisFeature.getGisFeatureDefaultName();
     }
@@ -155,8 +155,8 @@ public final class City implements Comparable<City>, GisFeature, DistanceCalcula
     public String getTimeZone() {
 	return gisFeature.getTimeZone();
     }
-    
-    
+
+
     //// DistanceAware ////
     public double distance(City o, Unit<Length> unit) {
 	return gisFeatureDistanceCalculator.distance(o.getGisFeature(), unit);
@@ -168,8 +168,8 @@ public final class City implements Comparable<City>, GisFeature, DistanceCalcula
 	if(level > currentLevel) {
 	    throw new IllegalArgumentException(String.format("Current Level (%s) is lower than requested Level (%s)", currentLevel, level));
 	} else if (level <= 0) {
-        throw new IllegalArgumentException(String.format("Invalid Level (%s)", level));        
-    } else if(level == currentLevel) {
+	    throw new IllegalArgumentException(String.format("Invalid Level (%s)", level));        
+	} else if(level == currentLevel) {
 	    return this;
 	} else {
 	    return getParentAdministrativeEntity().getAdministrativeEntity(level);
