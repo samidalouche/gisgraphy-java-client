@@ -32,11 +32,24 @@ public final class City implements Comparable<City>, GisFeature, DistanceCalcula
     private City(GeonamesGisFeature gisFeature) {
 	super();
 	Validate.notNull(gisFeature);
-	// only accept gisfeature with an administrative division (a city 
-	// cannot be in international waters ;-)
-	Validate.notNull(gisFeature.getParentAdministrativeEntity());
+	shouldHaveParentAdministrativeEntity(gisFeature);
 	this.gisFeature = gisFeature;
 	this.gisFeatureDistanceCalculator = gisFeature;
+    }
+
+
+    /**
+     * There are several cases where GISFeature's do not have any parent administrative entity :
+     * <ul>
+     * 	<li>Top-Level GISFeature (Country)</li>
+     * <li>Features in the middle of international waters</li>
+     * </ul>
+     * 
+     * In any case, it does not make sense to create a City out of these GIS Features
+     * @param gisFeature
+     */
+    private void shouldHaveParentAdministrativeEntity(GeonamesGisFeature gisFeature) {
+	Validate.notNull(gisFeature.getParentAdministrativeEntity());
     }
     
     public int compareTo(City o) {
