@@ -3,10 +3,12 @@ package com.gisgraphy.client.administrativedivision;
 import static com.gisgraphy.client.administrativedivision.CityObjectMother.gazeranCity;
 import static com.gisgraphy.client.administrativedivision.CityObjectMother.rambouilletCity;
 import static com.gisgraphy.client.gisfeature.GisFeatureObjectMother.*;
+
 import org.junit.Assert;
 import org.junit.Test;
 
 import com.gisgraphy.client.gisfeature.GeonamesGisFeature;
+import com.gisgraphy.client.gisfeature.GisFeatureObjectMother;
 
 public class CityTest {
 
@@ -70,6 +72,11 @@ public class CityTest {
 	Assert.assertEquals("EUR", rambouilletCity().getCurrency().getCurrencyCode());
     }
 
+    @Test public void shouldDelegateGetFullyQualifiedNamePartsToGisFeature() {
+	Assert.assertEquals(rambouilletPplGisFeature().getFullyQualifiedNameParts(), rambouilletCity().getFullyQualifiedNameParts());
+    }
+    
+    
     @Test public void shouldFormatNameUsingSpecifiedFormatter() {
 
     }
