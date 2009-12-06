@@ -1,7 +1,7 @@
 package com.gisgraphy.client.gisfeature;
 
-import static com.gisgraphy.client.gisfeature.GisFeatureGeographyObjectMother.losAngelesCityGisFeatureGeography;
-import static com.gisgraphy.client.gisfeature.GisFeatureGeographyObjectMother.marinaDelReyCityGisFeatureGeography;
+import static com.gisgraphy.client.gisfeature.GisFeatureGeographyObjectMother.losAngelesPplGisFeatureGeography;
+import static com.gisgraphy.client.gisfeature.GisFeatureGeographyObjectMother.marinaDelReyPplGisFeatureGeography;
 
 import javax.measure.unit.NonSI;
 import javax.measure.unit.SI;
@@ -79,30 +79,30 @@ public class GisFeatureGeographyTest {
 
     @Test
     public void shouldReturnLatitude() {
-	Assert.assertEquals(34.05222d, losAngelesCityGisFeatureGeography().getLatitude(), 0.0001); 
+	Assert.assertEquals(34.05222d, losAngelesPplGisFeatureGeography().getLatitude(), 0.0001); 
     }
     
     @Test
     public void shouldReturnLongitude() {
-	Assert.assertEquals(-118.24278d, losAngelesCityGisFeatureGeography().getLongitude(), 0.0001);
+	Assert.assertEquals(-118.24278d, losAngelesPplGisFeatureGeography().getLongitude(), 0.0001);
     }
     
     @Test
     public void shouldCalculateDistanceInMile() {
-	Assert.assertTrue(losAngelesCityGisFeatureGeography().distance(marinaDelReyCityGisFeatureGeography(), NonSI.MILE) > 12d 
-		&& marinaDelReyCityGisFeatureGeography().distance(losAngelesCityGisFeatureGeography(), NonSI.MILE) < 14d);
+	Assert.assertTrue(losAngelesPplGisFeatureGeography().distance(marinaDelReyPplGisFeatureGeography(), NonSI.MILE) > 12d 
+		&& marinaDelReyPplGisFeatureGeography().distance(losAngelesPplGisFeatureGeography(), NonSI.MILE) < 14d);
     }
 
     @Test
     public void shouldCalculateDistanceInDefaultUnit() {
-	Assert.assertTrue(losAngelesCityGisFeatureGeography().distance(marinaDelReyCityGisFeatureGeography(), null) > 20000d 
-		&& marinaDelReyCityGisFeatureGeography().distance(losAngelesCityGisFeatureGeography(), null) < 22000d);
+	Assert.assertTrue(losAngelesPplGisFeatureGeography().distance(marinaDelReyPplGisFeatureGeography(), null) > 20000d 
+		&& marinaDelReyPplGisFeatureGeography().distance(losAngelesPplGisFeatureGeography(), null) < 22000d);
     }
 
     @Test
     public void shouldCalculateDistanceInMeter() {
-	Assert.assertTrue(losAngelesCityGisFeatureGeography().distance(marinaDelReyCityGisFeatureGeography(), SI.METER) > 20000d 
-		&& marinaDelReyCityGisFeatureGeography().distance(losAngelesCityGisFeatureGeography(), SI.METER) < 22000d);
+	Assert.assertTrue(losAngelesPplGisFeatureGeography().distance(marinaDelReyPplGisFeatureGeography(), SI.METER) > 20000d 
+		&& marinaDelReyPplGisFeatureGeography().distance(losAngelesPplGisFeatureGeography(), SI.METER) < 22000d);
     }
 
 }

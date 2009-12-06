@@ -9,6 +9,12 @@ public class GisFeatureGeographyObjectMother {
 		.withPopulation(11341257L);
     }
     
+    public static GisFeatureGeography rambouilletPPlGisFeatureGeography() {
+	return gisFeatureGeography(new Double("1.8333332538604736"), new Double("48.650001525878906"))
+		.withPopulation(0L);
+    }
+   
+    
     public static GisFeatureGeography rambouilletAdm4GisFeatureGeography() {
 	return gisFeatureGeography(new Double("1.8333332538604736"), new Double("48.650001525878906"))
 		.withPopulation(0L);
@@ -25,19 +31,17 @@ public class GisFeatureGeographyObjectMother {
 		.withGtopo30AverageElevation(104L);
     }
     
-    public static GisFeatureGeography losAngelesCityGisFeatureGeography() {
+    public static GisFeatureGeography losAngelesPplGisFeatureGeography() {
 	return gisFeatureGeography(new Double("-118.24278"), new Double("34.05222"));
     }
     
-    public static GisFeatureGeography marinaDelReyCityGisFeatureGeography() {
+    public static GisFeatureGeography marinaDelReyPplGisFeatureGeography() {
 	return gisFeatureGeography(new Double("-118.452912"), new Double("33.979361"));
     }
     
-    public static GisFeatureGeography parisCityGisFeatureGeography() {
+    public static GisFeatureGeography parisPplGisFeatureGeography() {
 	return gisFeatureGeography(new Double("2.333056"), new Double("48.866667"));
     }
     
-    public static GisFeatureGeography rambouilletCityGisFeatureGeography() {
-	return gisFeatureGeography(new Double("1.8333333"), new Double("48.65"));
-    }
+
 }

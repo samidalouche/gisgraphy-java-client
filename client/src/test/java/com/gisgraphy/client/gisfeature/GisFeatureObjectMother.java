@@ -9,6 +9,7 @@ import static com.gisgraphy.client.gisfeature.GisFeatureGeography.gisFeatureGeog
 import static com.gisgraphy.client.gisfeature.GisFeatureGeographyObjectMother.arrondissementDeRambouilletAdm3GisFeatureGeography;
 import static com.gisgraphy.client.gisfeature.GisFeatureGeographyObjectMother.ileDeFranceAdm1GisFeatureGeography;
 import static com.gisgraphy.client.gisfeature.GisFeatureGeographyObjectMother.rambouilletAdm4GisFeatureGeography;
+import static com.gisgraphy.client.gisfeature.GisFeatureGeographyObjectMother.rambouilletPPlGisFeatureGeography;
 import static com.gisgraphy.client.gisfeature.GisFeatureGeographyObjectMother.yvelinesAdm2GisFeatureGeography;
 import static com.gisgraphy.client.gisfeature.GisFeatureNames.gisFeatureName;
 import static com.gisgraphy.client.gisfeature.GisFeatureType.geonamesFeatureClass;
@@ -88,6 +89,16 @@ public class GisFeatureObjectMother {
                     .withPopulation(US_OUTLYING_ISLANDS_POPULATION)
                     .withGtopo30AverageElevation(US_OUTLYING_ISLANDS_GTOPO30))
                 .build();
+    }
+    
+    public static GeonamesGisFeature rambouilletPplGisFeature() {
+	return gisFeature()
+		.geonamesId(2984513L)
+		.names(gisFeatureName("Rambouillet").withAsciiName("Rambouillet"))
+		.type(geonamesFeatureClass("P").geonamesFeatureCode("PPL"))
+		.parentAdministrativeEntity(AdministrativeDivisionObjectMother.rambouilletAdm4())
+		.geography(rambouilletPPlGisFeatureGeography())
+		.build();
     }
     
     public static GeonamesGisFeature rambouilletAdm4GisFeature() {

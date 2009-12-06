@@ -37,7 +37,7 @@ public class CityTest {
     }
 
     @Test(expected=IllegalArgumentException.class) public void getAdministrativeEntityShouldNotAcceptLevelHigherThanCurrentLevel() {
-	rambouilletCity().getAdministrativeEntity(5);
+	rambouilletCity().getAdministrativeEntity(typicalAdministrativeLevelOfACity()+1);
     }
 
     @Test(expected=IllegalArgumentException.class) public void getAdministrativeEntityShouldNotAcceptLevelLowerThan1() {
@@ -45,9 +45,13 @@ public class CityTest {
     }
 
     @Test public void getAdministrativeEntityShouldAcceptLevelsLessThanOrEqualToCurrentLevel() {
-	for (int i = 1; i < 5; i++) {
+	for (int i = 1; i <= typicalAdministrativeLevelOfACity(); i++) {
 	    rambouilletCity().getAdministrativeEntity(i);
 	}
+    }
+    
+    @Test public void getAdministrativeEntityShouldReturnCityItselfWhenRequestedLevelIsTheCityLevel() {
+	Assert.assertEquals(rambouilletCity(), rambouilletCity().getAdministrativeEntity(typicalAdministrativeLevelOfACity()));
     }
 
     @Test public void getAdministrativeEntityShouldDelegateToParentAdministrativeEntity() {
@@ -55,7 +59,7 @@ public class CityTest {
     }
 
     @Test public void shouldReturnAdministrativeDivisionLevel() {
-	Assert.assertEquals(4, rambouilletCity().getAdminitrativeDivisionLevel());
+	Assert.assertEquals(typicalAdministrativeLevelOfACity(), rambouilletCity().getAdminitrativeDivisionLevel());
     }
 
     @Test public void shouldReturnCountry() {
@@ -68,5 +72,9 @@ public class CityTest {
 
     @Test public void shouldFormatNameUsingSpecifiedFormatter() {
 
+    }
+    
+    private int typicalAdministrativeLevelOfACity() {
+	return 5;
     }
 }
