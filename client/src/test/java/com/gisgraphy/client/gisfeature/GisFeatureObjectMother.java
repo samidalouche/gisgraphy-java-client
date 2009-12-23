@@ -101,6 +101,16 @@ public class GisFeatureObjectMother {
 		.build();
     }
     
+    public static GeonamesGisFeature gazeranPplGisFeature() {
+	return gisFeature()
+		.geonamesId(3016456L)
+		.names(gisFeatureName("Gazeran").withAsciiName("Gazeran"))
+		.type(geonamesFeatureClass("P").geonamesFeatureCode("PPL"))
+		.parentAdministrativeEntity(AdministrativeDivisionObjectMother.rambouilletAdm4())
+		.geography(rambouilletPPlGisFeatureGeography())
+		.build();
+    }
+    
     public static GeonamesGisFeature rambouilletAdm4GisFeature() {
 	return gisFeature()
 		.geonamesId(6444057L)
@@ -115,7 +125,7 @@ public class GisFeatureObjectMother {
 	return gisFeature()
 		.geonamesId(3016456L)
 		.names(gisFeatureName("Gazeran").withAsciiName("Gazeran"))
-		.type(geonamesFeatureClass("P").geonamesFeatureCode("ADM4"))
+		.type(geonamesFeatureClass("A").geonamesFeatureCode("ADM4"))
 		.parentAdministrativeEntity(arrondissementDeRambouilletAdm3())
 		.geography(rambouilletAdm4GisFeatureGeography())
 		.build();

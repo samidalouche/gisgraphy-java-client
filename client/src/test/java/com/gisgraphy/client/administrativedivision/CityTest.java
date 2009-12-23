@@ -4,8 +4,12 @@ import static com.gisgraphy.client.administrativedivision.CityObjectMother.gazer
 import static com.gisgraphy.client.administrativedivision.CityObjectMother.rambouilletCity;
 import static com.gisgraphy.client.gisfeature.GisFeatureObjectMother.*;
 
+import javax.measure.unit.SI;
+import javax.measure.unit.Unit;
+
 import org.junit.Assert;
 import org.junit.Test;
+import org.mockito.Mockito;
 
 import com.gisgraphy.client.gisfeature.GeonamesGisFeature;
 import com.gisgraphy.client.gisfeature.GisFeatureObjectMother;
@@ -81,9 +85,22 @@ public class CityTest {
     }
     
     
-    @Test public void shouldFormatNameUsingSpecifiedFormatter() {
-
+    @Test public void shouldDelegateDistanceCalculationToGisFeature() {
+	Assert.assertEquals(distanceCalculatedUsingGisFeatures(), distanceCalculatedUsingCities(), 0);
     }
+
+    private double distanceCalculatedUsingCities() {
+	return rambouilletCity().distance(gazeranCity(), SI.METER);
+    }
+
+    private double distanceCalculatedUsingGisFeatures() {
+	return rambouilletPplGisFeature().distance(gazeranPplGisFeature(), SI.METER);
+    }
+    
+    @Test public void shouldFormatNameUsingSpecifiedFormatter() {
+	
+    }
+    
     
     private int typicalAdministrativeLevelOfACity() {
 	return 5;
