@@ -3,6 +3,9 @@ package com.gisgraphy.client.administrativedivision;
 import static com.gisgraphy.client.administrativedivision.CityObjectMother.gazeranCity;
 import static com.gisgraphy.client.administrativedivision.CityObjectMother.rambouilletCity;
 import static com.gisgraphy.client.gisfeature.GisFeatureObjectMother.*;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 import javax.measure.unit.SI;
 import javax.measure.unit.Unit;
@@ -11,6 +14,8 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.mockito.Mockito;
 
+import com.gisgraphy.client.commons.NameFormatter;
+import com.gisgraphy.client.commons.NameProvider;
 import com.gisgraphy.client.gisfeature.GeonamesGisFeature;
 import com.gisgraphy.client.gisfeature.GisFeatureObjectMother;
 
@@ -98,6 +103,13 @@ public class CityTest {
     }
     
     @Test public void shouldFormatNameUsingSpecifiedFormatter() {
+	City rambouillet = rambouilletCity();
+	
+	NameFormatter nameFormatter = mock(NameFormatter.class);
+	when(nameFormatter.format(rambouillet)).thenReturn("this formatted string");
+	
+	Assert.assertEquals("this formatted string", rambouillet.formatName(nameFormatter));
+	verify(nameFormatter).format(rambouillet);
 	
     }
     
