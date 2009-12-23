@@ -163,21 +163,26 @@ public final class City implements Comparable<City>, GisFeature, DistanceCalcula
     }
 
     //// AdministrativeEntity ////
+    
+    private AdministrativeEntityHierarchy administrativeEntityLevelProvider() {
+	return new AdministrativeEntityHierarchy(new AdministrativeEntityHierarchy.AdministrativeEntityProvider() {
+	    
+	    public AdministrativeEntity getParentAdministrativeEntity() {
+		return City.this.getParentAdministrativeEntity();
+	    }
+	    
+	    public AdministrativeEntity getCurrentAdministrativeEntity() {
+		return City.this;
+	    }
+	});
+    }
+    
     public AdministrativeEntity getAdministrativeEntity(int level) {
-	int currentLevel =  getAdminitrativeDivisionLevel();
-	if(level > currentLevel) {
-	    throw new IllegalArgumentException(String.format("Current Level (%s) is lower than requested Level (%s)", currentLevel, level));
-	} else if (level <= 0) {
-	    throw new IllegalArgumentException(String.format("Invalid Level (%s)", level));        
-	} else if(level == currentLevel) {
-	    return this;
-	} else {
-	    return getParentAdministrativeEntity().getAdministrativeEntity(level);
-	}
+	return administrativeEntityLevelProvider().getAdministrativeEntity(level);
     }
 
     public int getAdminitrativeDivisionLevel() {
-	return gisFeature.getParentAdministrativeEntity().getAdminitrativeDivisionLevel()+1;
+	return administrativeEntityLevelProvider().getAdminitrativeDivisionLevel();
     }
 
     public Country getCountry() {

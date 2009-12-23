@@ -2,8 +2,9 @@ package com.gisgraphy.client.administrativedivision;
 
 import static com.gisgraphy.client.administrativedivision.AdministrativeDivision.administrativeDivision;
 import static com.gisgraphy.client.administrativedivision.AdministrativeDivisionObjectMother.arrondissementDeRambouilletAdm3;
+import static com.gisgraphy.client.administrativedivision.AdministrativeDivisionObjectMother.ileDeFranceAdm1;
+import static com.gisgraphy.client.administrativedivision.AdministrativeDivisionObjectMother.rambouilletAdm4;
 import static com.gisgraphy.client.administrativedivision.AdministrativeDivisionObjectMother.yvelinesAdm2;
-import static com.gisgraphy.client.administrativedivision.CountryObjectMother.france;
 import static com.gisgraphy.client.gisfeature.GisFeatureObjectMother.arrondissementDeRambouilletAdm3GisFeature;
 import static com.gisgraphy.client.gisfeature.GisFeatureObjectMother.rambouilletAdm4GisFeature;
 import static org.junit.Assert.assertEquals;
@@ -112,8 +113,18 @@ public class AdministrativeDivisionTest {
 	arrondissementDeRambouilletAdm3().getAdministrativeEntity(4);
     }
     
+    @Test(expected=IllegalArgumentException.class) public void getAdministrativeEntityShouldNotAcceptLevelOfZero() {
+	arrondissementDeRambouilletAdm3().getAdministrativeEntity(0);
+    }
+    
+    @Test(expected=IllegalArgumentException.class) public void getAdministrativeEntityShouldNotAcceptLevelLowerThanZero() {
+	arrondissementDeRambouilletAdm3().getAdministrativeEntity(-1);
+    }
+    
     @Test public void getAdministrativeEntityShouldWorkRecursivelyWhenRequestedLevelIsLowerThancurrentLevel() {
-	Assert.assertEquals(yvelinesAdm2(), arrondissementDeRambouilletAdm3().getAdministrativeEntity(2));
+	Assert.assertEquals(ileDeFranceAdm1(), rambouilletAdm4().getAdministrativeEntity(1));
+	Assert.assertEquals(yvelinesAdm2(), rambouilletAdm4().getAdministrativeEntity(2));
+	Assert.assertEquals(arrondissementDeRambouilletAdm3(), rambouilletAdm4().getAdministrativeEntity(3));
     }
     
     @Test public void shouldReturnFullyQualifiedName() {

@@ -138,8 +138,21 @@ public final class AdministrativeDivision implements AdministrativeEntity,GisFea
 	return true;
     }
 
+    private AdministrativeEntityHierarchy administrativeEntityLevelProvider() {
+	return new AdministrativeEntityHierarchy(new AdministrativeEntityHierarchy.AdministrativeEntityProvider() {
+	    
+	    public AdministrativeEntity getParentAdministrativeEntity() {
+		return AdministrativeDivision.this.getParentAdministrativeEntity();
+	    }
+	    
+	    public AdministrativeEntity getCurrentAdministrativeEntity() {
+		return AdministrativeDivision.this;
+	    }
+	});
+    }
+    
     public int getAdminitrativeDivisionLevel() {
-	return getParentAdministrativeEntity().getAdminitrativeDivisionLevel()+1;
+	return administrativeEntityLevelProvider().getAdminitrativeDivisionLevel();
     }
 
     public AdministrativeEntity getParentAdministrativeEntity() {
@@ -147,14 +160,7 @@ public final class AdministrativeDivision implements AdministrativeEntity,GisFea
     }
     
     public AdministrativeEntity getAdministrativeEntity(int level) {
-	int currentLevel = getAdminitrativeDivisionLevel();
-	if(level > currentLevel) {
-	    throw new IllegalArgumentException(String.format("Current Level (%s) is lower than requested Level (%s)", currentLevel, level));
-	} else if(level == currentLevel) {
-	    return this;
-	} else {
-	    return getParentAdministrativeEntity().getAdministrativeEntity(level);
-	}
+	return administrativeEntityLevelProvider().getAdministrativeEntity(level);
     } 
     
     public Long getGeonamesId() {
