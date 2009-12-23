@@ -178,10 +178,6 @@ public class CountryTest {
 	Assert.assertTrue(country1.hashCode() != country2.hashCode());
     }
     
-    @Test public void getAdministrativeEntityShouldReturnItselfWhenRequestedLevelIsZero() {
-	Assert.assertEquals(france(), france().getAdministrativeEntity(0));
-    }
-    
     @Test(expected=IllegalArgumentException.class) public void getAdministrativeEntityShouldThrowExceptionWhenRequestedLevelIsHigherThanZero() {
 	france().getAdministrativeEntity(1);
     }

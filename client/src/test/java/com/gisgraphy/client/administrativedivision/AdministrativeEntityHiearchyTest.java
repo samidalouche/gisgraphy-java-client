@@ -7,6 +7,7 @@ import static org.mockito.Mockito.when;
 
 import org.junit.Assert;
 import org.junit.Test;
+import org.mockito.Mockito;
 
 import com.gisgraphy.client.gisfeature.AdministrativeEntity;
 
@@ -21,7 +22,7 @@ public class AdministrativeEntityHiearchyTest {
 	AdministrativeEntityHierarchy administrativeEntityHierarchy = new AdministrativeEntityHierarchy(administrativeEntityProvider);
 	
 	Assert.assertEquals(2+1, administrativeEntityHierarchy.getAdminitrativeDivisionLevel());
-	verify(administrativeEntityProvider).getParentAdministrativeEntity();
+	verify(administrativeEntityProvider, atLeastOnce()).getParentAdministrativeEntity();
     }
     
     private AdministrativeEntity administrativeEntityThatReturnsALevelOf(int level) {
@@ -65,9 +66,6 @@ public class AdministrativeEntityHiearchyTest {
 	administrativeEntityHierarchyBasedOnParentAdm2().getAdministrativeEntity(4);
     }
 
-    @Test(expected=IllegalArgumentException.class) public void getAdministrativeEntityShouldThrowExceptionWhenRequestedLevelIsZero() {
-	administrativeEntityHierarchyBasedOnParentAdm2().getAdministrativeEntity(0);
-    }
     
     @Test(expected=IllegalArgumentException.class) public void getAdministrativeEntityShouldThrowExceptionWhenRequestedLevelIsLowerThanZero() {
 	administrativeEntityHierarchyBasedOnParentAdm2().getAdministrativeEntity(-1);

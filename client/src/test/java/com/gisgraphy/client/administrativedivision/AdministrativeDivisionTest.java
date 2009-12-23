@@ -113,10 +113,6 @@ public class AdministrativeDivisionTest {
 	arrondissementDeRambouilletAdm3().getAdministrativeEntity(4);
     }
     
-    @Test(expected=IllegalArgumentException.class) public void getAdministrativeEntityShouldNotAcceptLevelOfZero() {
-	arrondissementDeRambouilletAdm3().getAdministrativeEntity(0);
-    }
-    
     @Test(expected=IllegalArgumentException.class) public void getAdministrativeEntityShouldNotAcceptLevelLowerThanZero() {
 	arrondissementDeRambouilletAdm3().getAdministrativeEntity(-1);
     }

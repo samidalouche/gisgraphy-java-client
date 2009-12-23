@@ -17,14 +17,14 @@ public class AdministrativeEntityHierarchy {
     }
 
     public int getAdminitrativeDivisionLevel() {
-	return administrativeEntityProvider.getParentAdministrativeEntity().getAdminitrativeDivisionLevel()+1;
+	return administrativeEntityProvider.getParentAdministrativeEntity() != null ? administrativeEntityProvider.getParentAdministrativeEntity().getAdminitrativeDivisionLevel()+1 : 0;
     }
     
     public AdministrativeEntity getAdministrativeEntity(int level) {
 	int currentLevel = getAdminitrativeDivisionLevel();
 	if(level > currentLevel) {
 	    throw new IllegalArgumentException(String.format("Current Level (%s) is lower than requested Level (%s)", currentLevel, level));
-	} else if (level <= 0) {
+	} else if (level < 0) {
 	    throw new IllegalArgumentException(String.format("Invalid Level (%s)", level));        
 	} else if(level == currentLevel) {
 	    return administrativeEntityProvider.getCurrentAdministrativeEntity();

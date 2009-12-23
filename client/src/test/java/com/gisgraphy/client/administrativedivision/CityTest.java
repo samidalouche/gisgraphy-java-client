@@ -50,10 +50,6 @@ public class CityTest {
     @Test(expected=IllegalArgumentException.class) public void getAdministrativeEntityShouldNotAcceptLevelHigherThanCurrentLevel() {
 	rambouilletCity().getAdministrativeEntity(typicalAdministrativeLevelOfACity()+1);
     }
-
-    @Test(expected=IllegalArgumentException.class) public void getAdministrativeEntityShouldNotAcceptLevelOfZero() {
-	rambouilletCity().getAdministrativeEntity(0);
-    }
     
     @Test(expected=IllegalArgumentException.class) public void getAdministrativeEntityShouldNotAcceptLevelLowerThanZero() {
 	rambouilletCity().getAdministrativeEntity(-1);

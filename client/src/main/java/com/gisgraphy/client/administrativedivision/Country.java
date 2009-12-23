@@ -165,18 +165,23 @@ public final class Country implements AdministrativeEntity,GisFeature,CurrencyPr
 	return null;
     }
     
-    /**
-     * FIXME: there is some duplication between {@link #getAdministrativeEntity(int)} and 
-     * {@link AdministrativeDivision#getAdministrativeEntity(int)}
-     */
+    
+    private AdministrativeEntityHierarchy administrativeEntityLevelProvider() {
+	return new AdministrativeEntityHierarchy(new AdministrativeEntityHierarchy.AdministrativeEntityProvider() {
+	    
+	    public AdministrativeEntity getParentAdministrativeEntity() {
+		return Country.this.getParentAdministrativeEntity();
+	    }
+	    
+	    public AdministrativeEntity getCurrentAdministrativeEntity() {
+		return Country.this;
+	    }
+	});
+    }
+    
     public AdministrativeEntity getAdministrativeEntity(int level) {
-	int currentLevel = getAdminitrativeDivisionLevel();
-	if(level > currentLevel) {
-	    throw new IllegalArgumentException(String.format("Current Level (%s) is lower than requested Level (%s)", currentLevel, level));
-	} else {
-	    return this;
-	} 
-    } 
+	return administrativeEntityLevelProvider().getAdministrativeEntity(level);
+    }
 
     public Long getGeonamesId() {
 	return gisFeature.getGeonamesId();
