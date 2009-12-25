@@ -20,13 +20,13 @@ public class GeonamesGisFeatureTest {
     @Test
     public void shouldCreateFranceGisFeature() {
 	GeonamesGisFeature france = GisFeatureObjectMother.franceGisFeature();
-	assertEquals(france.getGeonamesFeatureClass(), GisFeatureObjectMother.FRANCE_FEATURE_CLASS);
-	assertEquals(france.getGeonamesFeatureCode(), GisFeatureObjectMother.ANTARCTICA_FEATURE_CODE);
-	assertEquals(france.getGeonamesId().longValue(), GisFeatureObjectMother.FRANCE_FEATURE_ID);
-	assertEquals(france.getNames().getName(), GisFeatureObjectMother.FRANCE_FEATURE_NAME);
+	assertEquals(france.getGeonamesFeatureClass(), "A");
+	assertEquals(france.getGeonamesFeatureCode(), "PCLI");
+	assertEquals(france.getGeonamesId().longValue(), 3017382L);
+	assertEquals(france.getNames().getName(), "France");
 	assertNotNull(france.getGeography());
-	assertEquals(france.getGeography().getLocation().getCoordinate().x, GisFeatureObjectMother.FRANCE_LONGITUDE, 0.0001);
-	assertEquals(france.getGeography().getLocation().getCoordinate().y, GisFeatureObjectMother.FRANCE_LATITUDE, 0.0001);
+	assertEquals(france.getGeography().getLocation().getCoordinate().x, 2.0, 0.0001);
+	assertEquals(france.getGeography().getLocation().getCoordinate().y, 46.0, 0.0001);
 	assertNotNull(france.getLastModificationDate());
     }
 
@@ -36,7 +36,7 @@ public class GeonamesGisFeatureTest {
             .geonamesId(1L)
             .names(GisFeatureNames.gisFeatureName("France"))
             .type(geonamesFeatureClass("A").geonamesFeatureCode("PLCI"))
-            .geography(GisFeatureGeography.gisFeatureGeography(GisFeatureObjectMother.FRANCE_LONGITUDE, GisFeatureObjectMother.FRANCE_LATITUDE))
+            .geography(GisFeatureGeography.gisFeatureGeography(2.0, 46.0))
             .build();
     }
 
@@ -46,7 +46,7 @@ public class GeonamesGisFeatureTest {
             .geonamesId(1L)
             .names(GisFeatureNames.gisFeatureName("France"))
             .type(geonamesFeatureClass("A").geonamesFeatureCode("PLCI"))
-            .geography(GisFeatureGeography.gisFeatureGeography(GisFeatureObjectMother.FRANCE_LONGITUDE, GisFeatureObjectMother.FRANCE_LATITUDE))
+            .geography(GisFeatureGeography.gisFeatureGeography(2.0, 46.0))
             .lastModificationDate(new DateTime())
             .build();
     }
@@ -57,7 +57,7 @@ public class GeonamesGisFeatureTest {
             .geonamesId(1L)
             .names(GisFeatureNames.gisFeatureName("France"))
             .type(geonamesFeatureClass("A").geonamesFeatureCode("PLCI"))
-            .geography(GisFeatureGeography.gisFeatureGeography(GisFeatureObjectMother.FRANCE_LONGITUDE, GisFeatureObjectMother.FRANCE_LATITUDE))
+            .geography(GisFeatureGeography.gisFeatureGeography(2.0, 46.0))
             .lastModificationDate(new DateTime())
             .parentAdministrativeEntity(null)
             .build();
@@ -69,7 +69,7 @@ public class GeonamesGisFeatureTest {
             .geonamesId(1L)
             .names(GisFeatureNames.gisFeatureName("France"))
             .type(geonamesFeatureClass("A").geonamesFeatureCode("PLCI"))
-            .geography(GisFeatureGeography.gisFeatureGeography(GisFeatureObjectMother.FRANCE_LONGITUDE, GisFeatureObjectMother.FRANCE_LATITUDE))
+            .geography(GisFeatureGeography.gisFeatureGeography(2.0, 46.0))
             .lastModificationDate(null)
             .build();
     Assert.assertNotNull(gisFeature.getLastModificationDate());
@@ -81,7 +81,7 @@ public class GeonamesGisFeatureTest {
             .geonamesId(null)
             .names(GisFeatureNames.gisFeatureName("France"))
             .type(geonamesFeatureClass("A").geonamesFeatureCode("PLCI"))
-            .geography(GisFeatureGeography.gisFeatureGeography(GisFeatureObjectMother.FRANCE_LONGITUDE, GisFeatureObjectMother.FRANCE_LATITUDE))
+            .geography(GisFeatureGeography.gisFeatureGeography(2.0, 46.0))
             .build();
     }
     
@@ -93,7 +93,7 @@ public class GeonamesGisFeatureTest {
             .geonamesId(1L)
             .names(GisFeatureNames.gisFeatureName("France"))
             .type(null)
-            .geography(GisFeatureGeography.gisFeatureGeography(GisFeatureObjectMother.FRANCE_LONGITUDE, GisFeatureObjectMother.FRANCE_LATITUDE))
+            .geography(GisFeatureGeography.gisFeatureGeography(2.0, 46.0))
             .build();
     }
 

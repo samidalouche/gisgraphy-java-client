@@ -1,11 +1,11 @@
 package com.gisgraphy.client.administrativedivision;
 
 import static com.gisgraphy.client.administrativedivision.AdministrativeDivision.administrativeDivision;
-import static com.gisgraphy.client.administrativedivision.AdministrativeDivisionObjectMother.arrondissementDeRambouilletAdm3;
+import static com.gisgraphy.client.administrativedivision.AdministrativeDivisionObjectMother.rambouilletAdm3;
 import static com.gisgraphy.client.administrativedivision.AdministrativeDivisionObjectMother.ileDeFranceAdm1;
 import static com.gisgraphy.client.administrativedivision.AdministrativeDivisionObjectMother.rambouilletAdm4;
 import static com.gisgraphy.client.administrativedivision.AdministrativeDivisionObjectMother.yvelinesAdm2;
-import static com.gisgraphy.client.gisfeature.GisFeatureObjectMother.arrondissementDeRambouilletAdm3GisFeature;
+import static com.gisgraphy.client.gisfeature.GisFeatureObjectMother.rambouilletAdm3GisFeature;
 import static com.gisgraphy.client.gisfeature.GisFeatureObjectMother.rambouilletAdm4GisFeature;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -22,7 +22,7 @@ public class AdministrativeDivisionTest {
 	assertEquals("78517", rambouilletAdm4.getCode());
 	assertEquals("Rambouillet", rambouilletAdm4.getName());
 	assertEquals(rambouilletAdm4GisFeature(), rambouilletAdm4.getGisFeature());
-	assertEquals(arrondissementDeRambouilletAdm3(), rambouilletAdm4.getParentEntity());
+	assertEquals(rambouilletAdm3(), rambouilletAdm4.getParentEntity());
     }
     
     @Test(expected=IllegalArgumentException.class)
@@ -83,7 +83,7 @@ public class AdministrativeDivisionTest {
 	
 	AdministrativeDivision rambouillet2 = administrativeDivision("Rambouillet")
 		.withCode("78517")
-		.andGisFeature(arrondissementDeRambouilletAdm3GisFeature());
+		.andGisFeature(rambouilletAdm3GisFeature());
 	
 	assertFalse(rambouillet1.equals(rambouillet2));
 	assertTrue(rambouillet1.hashCode() != rambouillet2.hashCode());
@@ -98,7 +98,7 @@ public class AdministrativeDivisionTest {
     }
     
     @Test public void administrativeDivisionLevelShouldBe3ForAdm3() {
-	Assert.assertEquals(3,arrondissementDeRambouilletAdm3().getAdminitrativeDivisionLevel());
+	Assert.assertEquals(3,rambouilletAdm3().getAdminitrativeDivisionLevel());
     }
     
     @Test public void administrativeDivisionLevelShouldBe4ForAdm4() {
@@ -106,21 +106,21 @@ public class AdministrativeDivisionTest {
     }
     
     @Test public void getAdministrativeEntityShouldReturnItselfWhenRequestedLevelIsCurrentLevel() {
-	Assert.assertEquals(arrondissementDeRambouilletAdm3(), arrondissementDeRambouilletAdm3().getAdministrativeEntity(3));
+	Assert.assertEquals(rambouilletAdm3(), rambouilletAdm3().getAdministrativeEntity(3));
     }
     
     @Test(expected=IllegalArgumentException.class) public void getAdministrativeEntityShouldThrowExceptionWhenRequestedLevelIsHigherThanCurrentLevel() {
-	arrondissementDeRambouilletAdm3().getAdministrativeEntity(4);
+	rambouilletAdm3().getAdministrativeEntity(4);
     }
     
     @Test(expected=IllegalArgumentException.class) public void getAdministrativeEntityShouldNotAcceptLevelLowerThanZero() {
-	arrondissementDeRambouilletAdm3().getAdministrativeEntity(-1);
+	rambouilletAdm3().getAdministrativeEntity(-1);
     }
     
     @Test public void getAdministrativeEntityShouldWorkRecursivelyWhenRequestedLevelIsLowerThancurrentLevel() {
 	Assert.assertEquals(ileDeFranceAdm1(), rambouilletAdm4().getAdministrativeEntity(1));
 	Assert.assertEquals(yvelinesAdm2(), rambouilletAdm4().getAdministrativeEntity(2));
-	Assert.assertEquals(arrondissementDeRambouilletAdm3(), rambouilletAdm4().getAdministrativeEntity(3));
+	Assert.assertEquals(rambouilletAdm3(), rambouilletAdm4().getAdministrativeEntity(3));
     }
     
     @Test public void shouldReturnFullyQualifiedName() {

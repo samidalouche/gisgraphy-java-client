@@ -1,13 +1,18 @@
 package com.gisgraphy.client.gisfeature;
 
-import static com.gisgraphy.client.administrativedivision.AdministrativeDivisionObjectMother.arrondissementDeRambouilletAdm3;
 import static com.gisgraphy.client.administrativedivision.AdministrativeDivisionObjectMother.ileDeFranceAdm1;
+import static com.gisgraphy.client.administrativedivision.AdministrativeDivisionObjectMother.parisAdm2;
+import static com.gisgraphy.client.administrativedivision.AdministrativeDivisionObjectMother.parisAdm3;
+import static com.gisgraphy.client.administrativedivision.AdministrativeDivisionObjectMother.parisAdm4;
+import static com.gisgraphy.client.administrativedivision.AdministrativeDivisionObjectMother.rambouilletAdm3;
 import static com.gisgraphy.client.administrativedivision.AdministrativeDivisionObjectMother.yvelinesAdm2;
 import static com.gisgraphy.client.administrativedivision.CountryObjectMother.france;
 import static com.gisgraphy.client.gisfeature.GeonamesGisFeature.gisFeature;
-import static com.gisgraphy.client.gisfeature.GisFeatureGeography.gisFeatureGeography;
-import static com.gisgraphy.client.gisfeature.GisFeatureGeographyObjectMother.arrondissementDeRambouilletAdm3GisFeatureGeography;
 import static com.gisgraphy.client.gisfeature.GisFeatureGeographyObjectMother.ileDeFranceAdm1GisFeatureGeography;
+import static com.gisgraphy.client.gisfeature.GisFeatureGeographyObjectMother.parisAdm2GisFeatureGeography;
+import static com.gisgraphy.client.gisfeature.GisFeatureGeographyObjectMother.parisAdm3GisFeatureGeography;
+import static com.gisgraphy.client.gisfeature.GisFeatureGeographyObjectMother.parisPplcGisFeatureGeography;
+import static com.gisgraphy.client.gisfeature.GisFeatureGeographyObjectMother.rambouilletAdm3GisFeatureGeography;
 import static com.gisgraphy.client.gisfeature.GisFeatureGeographyObjectMother.rambouilletAdm4GisFeatureGeography;
 import static com.gisgraphy.client.gisfeature.GisFeatureGeographyObjectMother.rambouilletPPlGisFeatureGeography;
 import static com.gisgraphy.client.gisfeature.GisFeatureGeographyObjectMother.yvelinesAdm2GisFeatureGeography;
@@ -15,79 +20,44 @@ import static com.gisgraphy.client.gisfeature.GisFeatureNames.gisFeatureName;
 import static com.gisgraphy.client.gisfeature.GisFeatureType.geonamesFeatureClass;
 
 import com.gisgraphy.client.administrativedivision.AdministrativeDivisionObjectMother;
-import com.gisgraphy.client.administrativedivision.CountryObjectMother;
-import com.gisgraphy.client.gisfeature.GeonamesGisFeature;
-import com.gisgraphy.client.gisfeature.GisFeatureGeography;
 
 /**
  *
  * @author christophe
  */
 public class GisFeatureObjectMother {
-    public static final String ANTARCTICA_FEATURE_CLASS = "A";
-    public static final String ANTARCTICA_FEATURE_CODE = "PCLI";
-    public static final long ANTARCTICA_FEATURE_ID = 661485L;
-    public static final String ANTARCTICA_FEATURE_NAME = "Antarctica";
-    public static final double ANTARCTICA_LATITUDE = 0.0;
-    public static final double ANTARCTICA_LONGITUDE = 0.0;
-    public static final long ANTARCTICA_POPULATION = 0L;
-    
-    public static final String FRANCE_FEATURE_CODE = "PCLI";
-    public static final long FRANCE_FEATURE_ID = 3017382L;
-    public static final String FRANCE_FEATURE_NAME = "France";
-    public static final String FRANCE_FEATURE_CLASS = "A";
-    public static final double FRANCE_LONGITUDE = 2.0;
-    public static final double FRANCE_LATITUDE = 46.0;
-    public static final long FRANCE_POPULATION = 64094000L;
 
-    public static final String US_OUTLYING_ISLANDS_FEATURE_CLASS = "A";
-    public static final String US_OUTLYING_ISLANDS_FEATURE_CODE = "ADMD";
-    public static final long US_OUTLYING_ISLANDS_FEATURE_ID = 5854968L;
-    public static final String US_OUTLYING_ISLANDS_FEATURE_NAME = "United States Minor Outlying Islands";
-    public static final long US_OUTLYING_ISLANDS_GTOPO30 = -9999L;
-    public static final double US_OUTLYING_ISLANDS_LONGITUDE = -162.072494506836;
-    public static final double US_OUTLYING_ISLANDS_LATITUDE = 5.88111019134521;
-    public static final long US_OUTLYING_ISLANDS_POPULATION = 0L;
-
-    /**
-     *
-     * @return
-     */
     public static GeonamesGisFeature franceGisFeature() {
         return gisFeature()
-                .geonamesId(FRANCE_FEATURE_ID)
-                .names(gisFeatureName(FRANCE_FEATURE_NAME))
-                .type(geonamesFeatureClass(FRANCE_FEATURE_CLASS).geonamesFeatureCode(FRANCE_FEATURE_CODE))
+                .geonamesId(3017382L)
+                .names(gisFeatureName("France"))
+                .type(geonamesFeatureClass("A").geonamesFeatureCode("PCLI"))
                 .geography(
-                    GisFeatureGeography.gisFeatureGeography(FRANCE_LONGITUDE, FRANCE_LATITUDE)
-                    .withPopulation(FRANCE_POPULATION))
+                    GisFeatureGeography.gisFeatureGeography(2.0, 46.0)
+                    .withPopulation(64094000L))
                 .build();
     }
 
     public static GeonamesGisFeature antarcticaGisFeature() {
         return gisFeature()
-                .geonamesId(ANTARCTICA_FEATURE_ID)
-                .names(gisFeatureName(ANTARCTICA_FEATURE_NAME))
-                .type(geonamesFeatureClass(ANTARCTICA_FEATURE_CLASS).geonamesFeatureCode(ANTARCTICA_FEATURE_CODE))
+                .geonamesId(661485L)
+                .names(gisFeatureName("Antarctica"))
+                .type(geonamesFeatureClass("A").geonamesFeatureCode("PCLI"))
                 .geography(
-                    GisFeatureGeography.gisFeatureGeography(ANTARCTICA_LONGITUDE,ANTARCTICA_LATITUDE)
-                    .withPopulation(ANTARCTICA_POPULATION))
+                    GisFeatureGeography.gisFeatureGeography(0.0,0.0)
+                    .withPopulation(0L))
                 .build();
     }
 
-    /**
-     *
-     * @return
-     */
     public static GeonamesGisFeature usOutlyingIslandsGisFeature() {
         return gisFeature()
-                .geonamesId(US_OUTLYING_ISLANDS_FEATURE_ID)
-                .names(gisFeatureName(US_OUTLYING_ISLANDS_FEATURE_NAME))
-                .type(geonamesFeatureClass(US_OUTLYING_ISLANDS_FEATURE_CLASS).geonamesFeatureCode(US_OUTLYING_ISLANDS_FEATURE_CODE))
+                .geonamesId(5854968L)
+                .names(gisFeatureName("United States Minor Outlying Islands"))
+                .type(geonamesFeatureClass("A").geonamesFeatureCode("ADMD"))
                 .geography(
-                    GisFeatureGeography.gisFeatureGeography(US_OUTLYING_ISLANDS_LONGITUDE, US_OUTLYING_ISLANDS_LATITUDE)
-                    .withPopulation(US_OUTLYING_ISLANDS_POPULATION)
-                    .withGtopo30AverageElevation(US_OUTLYING_ISLANDS_GTOPO30))
+                    GisFeatureGeography.gisFeatureGeography(-162.072494506836, 5.88111019134521)
+                    .withPopulation(0L)
+                    .withGtopo30AverageElevation(-9999L))
                 .build();
     }
     
@@ -98,6 +68,16 @@ public class GisFeatureObjectMother {
 		.type(geonamesFeatureClass("P").geonamesFeatureCode("PPL"))
 		.parentAdministrativeEntity(AdministrativeDivisionObjectMother.rambouilletAdm4())
 		.geography(rambouilletPPlGisFeatureGeography())
+		.build();
+    }
+    
+    public static GeonamesGisFeature parisPplcGisFeature() {
+	return gisFeature()
+		.geonamesId(2988507L)
+		.names(gisFeatureName("Paris").withAsciiName("Paris"))
+		.type(geonamesFeatureClass("P").geonamesFeatureCode("PPLC"))
+		.parentAdministrativeEntity(parisAdm4())
+		.geography(parisPplcGisFeatureGeography())
 		.build();
     }
     
@@ -116,7 +96,7 @@ public class GisFeatureObjectMother {
 		.geonamesId(6444057L)
 		.names(gisFeatureName("Rambouillet").withAsciiName("Rambouillet"))
 		.type(geonamesFeatureClass("A").geonamesFeatureCode("ADM4"))
-		.parentAdministrativeEntity(arrondissementDeRambouilletAdm3())
+		.parentAdministrativeEntity(rambouilletAdm3())
 		.geography(rambouilletAdm4GisFeatureGeography())
 		.build();
     }
@@ -126,18 +106,18 @@ public class GisFeatureObjectMother {
 		.geonamesId(3016456L)
 		.names(gisFeatureName("Gazeran").withAsciiName("Gazeran"))
 		.type(geonamesFeatureClass("A").geonamesFeatureCode("ADM4"))
-		.parentAdministrativeEntity(arrondissementDeRambouilletAdm3())
+		.parentAdministrativeEntity(rambouilletAdm3())
 		.geography(rambouilletAdm4GisFeatureGeography())
 		.build();
     }
     
-    public static GeonamesGisFeature arrondissementDeRambouilletAdm3GisFeature() {
+    public static GeonamesGisFeature rambouilletAdm3GisFeature() {
 	return gisFeature()
 		.geonamesId(2984512L)
 		.names(gisFeatureName("Rambouillet").withAsciiName("Rambouillet"))
 		.type(geonamesFeatureClass("A").geonamesFeatureCode("ADM3"))
 		.parentAdministrativeEntity(yvelinesAdm2())
-		.geography(arrondissementDeRambouilletAdm3GisFeatureGeography())
+		.geography(rambouilletAdm3GisFeatureGeography())
 		.build();
     }
     
@@ -148,6 +128,36 @@ public class GisFeatureObjectMother {
 		.type(geonamesFeatureClass("A").geonamesFeatureCode("ADM2"))
 		.parentAdministrativeEntity(ileDeFranceAdm1())
 		.geography(yvelinesAdm2GisFeatureGeography())
+		.build();
+    }
+    
+    public static GeonamesGisFeature parisAdm4GisFeature() {
+	return gisFeature()
+		.geonamesId(6455259L)
+		.names(gisFeatureName("Paris").withAsciiName("Paris"))
+		.type(geonamesFeatureClass("A").geonamesFeatureCode("ADM4"))
+		.parentAdministrativeEntity(parisAdm3())
+		.geography(parisAdm3GisFeatureGeography())
+		.build();
+    }
+    
+    public static GeonamesGisFeature parisAdm3GisFeature() {
+	return gisFeature()
+		.geonamesId(2988506L)
+		.names(gisFeatureName("Arrondissement de Paris").withAsciiName("Arrondissement de Paris"))
+		.type(geonamesFeatureClass("A").geonamesFeatureCode("ADM3"))
+		.parentAdministrativeEntity(parisAdm2())
+		.geography(parisAdm3GisFeatureGeography())
+		.build();
+    }
+    
+    public static GeonamesGisFeature parisAdm2GisFeature() {
+	return gisFeature()
+		.geonamesId(2968815L)
+		.names(gisFeatureName("Département de Ville-de-Paris").withAsciiName("Departement de Ville-de-Paris"))
+		.type(geonamesFeatureClass("A").geonamesFeatureCode("ADM2"))
+		.parentAdministrativeEntity(ileDeFranceAdm1())
+		.geography(parisAdm2GisFeatureGeography())
 		.build();
     }
     
