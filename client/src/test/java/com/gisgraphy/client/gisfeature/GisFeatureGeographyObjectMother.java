@@ -98,6 +98,7 @@ public class GisFeatureGeographyObjectMother {
 		.withGtopo30AverageElevation(35L);
     }
     
+
     public static GisFeatureGeography losAngelesAdm2GisFeatureGeography() {
 	return gisFeatureGeography(new Double("-118.2009048461914"), new Double("34.36666488647461"))
 		.withPopulation(8863164L)
@@ -107,7 +108,7 @@ public class GisFeatureGeographyObjectMother {
     }
     
     public static GisFeatureGeography losAngelesPplGisFeatureGeography() {
-	return gisFeatureGeography(new Double("-118.24278"), new Double("34.05222"))
+	return gisFeatureGeography(new Double("-118.24368286132812"), new Double("34.0522346496582"))
 		.withPopulation(3694820L)
 		.withTimeZone("America/Los_Angeles")
 		.withGtopo30AverageElevation(115L)

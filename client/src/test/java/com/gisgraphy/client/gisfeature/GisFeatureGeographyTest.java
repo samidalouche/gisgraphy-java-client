@@ -84,7 +84,7 @@ public class GisFeatureGeographyTest {
     
     @Test
     public void shouldReturnLongitude() {
-	Assert.assertEquals(-118.24278d, losAngelesPplGisFeatureGeography().getLongitude(), 0.0001);
+	Assert.assertEquals(-118.24368286132812d, losAngelesPplGisFeatureGeography().getLongitude(), 0.0001);
     }
     
     @Test

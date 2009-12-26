@@ -16,13 +16,19 @@ public class AdministrativeDivisionObjectMother {
 	return administrativeDivision("California")
 		.withCode("CA")
 		.andGisFeature(californiaAdm1GisFeature());
-	}
+    }
+    
+    public static AdministrativeDivision losAngelesAdm2() {
+	return administrativeDivision("Los Angeles County")
+		.withCode("037")
+		.andGisFeature(californiaAdm1GisFeature());
+    }
     
     public static AdministrativeDivision rambouilletAdm4() {
 	return administrativeDivision("Rambouillet")
 		.withCode("78517")
 		.andGisFeature(rambouilletAdm4GisFeature());
-	}
+    }
     
     public static AdministrativeDivision rambouilletAdm3() {
 	return administrativeDivision("Arrondissement de Rambouillet")

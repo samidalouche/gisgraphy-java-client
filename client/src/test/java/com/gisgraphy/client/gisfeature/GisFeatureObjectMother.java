@@ -1,6 +1,8 @@
 package com.gisgraphy.client.gisfeature;
 
+import static com.gisgraphy.client.administrativedivision.AdministrativeDivisionObjectMother.californiaAdm1;
 import static com.gisgraphy.client.administrativedivision.AdministrativeDivisionObjectMother.ileDeFranceAdm1;
+import static com.gisgraphy.client.administrativedivision.AdministrativeDivisionObjectMother.losAngelesAdm2;
 import static com.gisgraphy.client.administrativedivision.AdministrativeDivisionObjectMother.parisAdm2;
 import static com.gisgraphy.client.administrativedivision.AdministrativeDivisionObjectMother.parisAdm3;
 import static com.gisgraphy.client.administrativedivision.AdministrativeDivisionObjectMother.parisAdm4;
@@ -13,6 +15,8 @@ import static com.gisgraphy.client.gisfeature.GisFeatureGeographyObjectMother.an
 import static com.gisgraphy.client.gisfeature.GisFeatureGeographyObjectMother.californiaAdm1GisFeatureGeography;
 import static com.gisgraphy.client.gisfeature.GisFeatureGeographyObjectMother.franceCountryGisFeatureGeography;
 import static com.gisgraphy.client.gisfeature.GisFeatureGeographyObjectMother.ileDeFranceAdm1GisFeatureGeography;
+import static com.gisgraphy.client.gisfeature.GisFeatureGeographyObjectMother.losAngelesAdm2GisFeatureGeography;
+import static com.gisgraphy.client.gisfeature.GisFeatureGeographyObjectMother.losAngelesPplGisFeatureGeography;
 import static com.gisgraphy.client.gisfeature.GisFeatureGeographyObjectMother.parisAdm2GisFeatureGeography;
 import static com.gisgraphy.client.gisfeature.GisFeatureGeographyObjectMother.parisAdm3GisFeatureGeography;
 import static com.gisgraphy.client.gisfeature.GisFeatureGeographyObjectMother.parisPplcGisFeatureGeography;
@@ -50,6 +54,26 @@ public class GisFeatureObjectMother {
                 .type(geonamesFeatureClass("A").geonamesFeatureCode("ADM1"))
                 .geography(californiaAdm1GisFeatureGeography())
                 .parentAdministrativeEntity(unitedStatesCountry())
+                .build();
+    }
+    
+    public static GeonamesGisFeature losAngelesPplGisFeature() {
+        return gisFeature()
+                .geonamesId(5368361L)
+                .names(gisFeatureName("Los Angeles"))
+                .type(geonamesFeatureClass("P").geonamesFeatureCode("PPL"))
+                .geography(losAngelesPplGisFeatureGeography())
+                .parentAdministrativeEntity(losAngelesAdm2())
+                .build();
+    }
+    
+    public static GeonamesGisFeature losAngelesAdm2GisFeature() {
+        return gisFeature()
+                .geonamesId(5332921L)
+                .names(gisFeatureName("Los Angeles County"))
+                .type(geonamesFeatureClass("A").geonamesFeatureCode("ADM2"))
+                .geography(losAngelesAdm2GisFeatureGeography())
+                .parentAdministrativeEntity(californiaAdm1())
                 .build();
     }
     
