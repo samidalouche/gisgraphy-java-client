@@ -8,6 +8,8 @@ import static com.gisgraphy.client.administrativedivision.AdministrativeDivision
 import static com.gisgraphy.client.administrativedivision.AdministrativeDivisionObjectMother.yvelinesAdm2;
 import static com.gisgraphy.client.administrativedivision.CountryObjectMother.france;
 import static com.gisgraphy.client.gisfeature.GeonamesGisFeature.gisFeature;
+import static com.gisgraphy.client.gisfeature.GisFeatureGeographyObjectMother.antarcticaCountryGisFeatureGeography;
+import static com.gisgraphy.client.gisfeature.GisFeatureGeographyObjectMother.franceCountryGisFeatureGeography;
 import static com.gisgraphy.client.gisfeature.GisFeatureGeographyObjectMother.ileDeFranceAdm1GisFeatureGeography;
 import static com.gisgraphy.client.gisfeature.GisFeatureGeographyObjectMother.parisAdm2GisFeatureGeography;
 import static com.gisgraphy.client.gisfeature.GisFeatureGeographyObjectMother.parisAdm3GisFeatureGeography;
@@ -15,6 +17,8 @@ import static com.gisgraphy.client.gisfeature.GisFeatureGeographyObjectMother.pa
 import static com.gisgraphy.client.gisfeature.GisFeatureGeographyObjectMother.rambouilletAdm3GisFeatureGeography;
 import static com.gisgraphy.client.gisfeature.GisFeatureGeographyObjectMother.rambouilletAdm4GisFeatureGeography;
 import static com.gisgraphy.client.gisfeature.GisFeatureGeographyObjectMother.rambouilletPPlGisFeatureGeography;
+import static com.gisgraphy.client.gisfeature.GisFeatureGeographyObjectMother.unitedStatesCountryGisFeatureGeography;
+import static com.gisgraphy.client.gisfeature.GisFeatureGeographyObjectMother.usOutlyingIslandsCountryGisFeatureGeography;
 import static com.gisgraphy.client.gisfeature.GisFeatureGeographyObjectMother.yvelinesAdm2GisFeatureGeography;
 import static com.gisgraphy.client.gisfeature.GisFeatureNames.gisFeatureName;
 import static com.gisgraphy.client.gisfeature.GisFeatureType.geonamesFeatureClass;
@@ -27,25 +31,31 @@ import com.gisgraphy.client.administrativedivision.AdministrativeDivisionObjectM
  */
 public class GisFeatureObjectMother {
 
+    public static GeonamesGisFeature unitedStatesGisFeature() {
+        return gisFeature()
+                .geonamesId(6252001L)
+                .names(gisFeatureName("United States"))
+                .type(geonamesFeatureClass("A").geonamesFeatureCode("PCLI"))
+                .geography(unitedStatesCountryGisFeatureGeography())
+                .build();
+    }
+
+    
     public static GeonamesGisFeature franceGisFeature() {
         return gisFeature()
                 .geonamesId(3017382L)
                 .names(gisFeatureName("France"))
                 .type(geonamesFeatureClass("A").geonamesFeatureCode("PCLI"))
-                .geography(
-                    GisFeatureGeography.gisFeatureGeography(2.0, 46.0)
-                    .withPopulation(64094000L))
+                .geography(franceCountryGisFeatureGeography())
                 .build();
     }
 
     public static GeonamesGisFeature antarcticaGisFeature() {
         return gisFeature()
-                .geonamesId(661485L)
+                .geonamesId(6697173L)
                 .names(gisFeatureName("Antarctica"))
                 .type(geonamesFeatureClass("A").geonamesFeatureCode("PCLI"))
-                .geography(
-                    GisFeatureGeography.gisFeatureGeography(0.0,0.0)
-                    .withPopulation(0L))
+                .geography(antarcticaCountryGisFeatureGeography())
                 .build();
     }
 
@@ -54,10 +64,7 @@ public class GisFeatureObjectMother {
                 .geonamesId(5854968L)
                 .names(gisFeatureName("United States Minor Outlying Islands"))
                 .type(geonamesFeatureClass("A").geonamesFeatureCode("ADMD"))
-                .geography(
-                    GisFeatureGeography.gisFeatureGeography(-162.072494506836, 5.88111019134521)
-                    .withPopulation(0L)
-                    .withGtopo30AverageElevation(-9999L))
+                .geography(usOutlyingIslandsCountryGisFeatureGeography())
                 .build();
     }
     

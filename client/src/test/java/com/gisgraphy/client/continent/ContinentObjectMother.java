@@ -9,6 +9,10 @@ public class ContinentObjectMother {
 	return continent("EU").withName("Europe");
     }
     
+    public static Continent northAmericaContinent() {
+	return continent("NA").withName("North America");
+    }
+    
     public static Continent antarcticaContinent() {
 	return continent("AN").withName("Antarctica");
     }

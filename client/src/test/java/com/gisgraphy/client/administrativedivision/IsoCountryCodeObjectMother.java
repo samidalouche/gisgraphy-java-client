@@ -9,6 +9,10 @@ public class IsoCountryCodeObjectMother {
 	return alpha2Code("FR").alpha3Code("FRA").andNumericCode(250);
     }
     
+    public static IsoCountryCode unitedStatesCountryCode() {
+	return alpha2Code("US").alpha3Code("USA").andNumericCode(840);
+    }
+    
     public static IsoCountryCode antarcticaCountryCode() {
 	return alpha2Code("AQ").alpha3Code("ATA").andNumericCode(10);
     }

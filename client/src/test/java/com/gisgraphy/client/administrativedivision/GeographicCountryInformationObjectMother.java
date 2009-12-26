@@ -5,6 +5,10 @@ import static com.gisgraphy.client.administrativedivision.GeonamesGeographicCoun
 
 public class GeographicCountryInformationObjectMother {
 
+    public static GeographicCountryInformation unitedStatesGeographicCountryInformation() {
+	return geographicCountryInformation().withPopulation(303824000L).withArea(new Double("9629091"));
+    }
+    
     public static GeographicCountryInformation franceGeographicCountryInformation() {
 	return geographicCountryInformation().withPopulation(64094000L).withArea(new Double("547030"));
     }

@@ -12,6 +12,14 @@ public class IsoLanguageObjectMother {
 	return Iso639Language.isoLanguage("English").withAlpha3("eng").withAlpha2Code("en");
     }
     
+    public static Iso639Language spanishIsoLanguage() {
+	return Iso639Language.isoLanguage("Spanish").withAlpha3("spa").withAlpha2Code("es");
+    }
+    
+    public static Iso639Language hawaiianIsoLanguage() {
+	return Iso639Language.isoLanguage("Hawaiian").withAlpha3("haw");
+    }
+    
     public static Iso639Language ghotuo() {
 	return Iso639Language.isoLanguage("Ghotuo").withAlpha3("aaa");
     }

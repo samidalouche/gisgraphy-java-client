@@ -4,6 +4,10 @@ import com.gisgraphy.client.administrativedivision.FipsCountryCode;
 
 public class FipsCountryCodeObjectMother {
 
+    public static FipsCountryCode unitedStatesFipsCountryCode() {
+	return FipsCountryCode.fipsCountryCode("US");
+    }
+    
     public static FipsCountryCode franceFipsCountryCode() {
 	return FipsCountryCode.fipsCountryCode("FR");
     }

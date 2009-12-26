@@ -4,6 +4,34 @@ import static com.gisgraphy.client.gisfeature.GisFeatureGeography.gisFeatureGeog
 
 public class GisFeatureGeographyObjectMother {
 
+    public static GisFeatureGeography unitedStatesCountryGisFeatureGeography() {
+	return GisFeatureGeography.gisFeatureGeography(-98.5, 39.7599983215332)
+		.withPopulation(303824000L)
+		.withTimeZone("America/North_Dakota/New_Salem")
+		.withGtopo30AverageElevation(537l);
+    }
+    
+    public static GisFeatureGeography franceCountryGisFeatureGeography() {
+	return GisFeatureGeography.gisFeatureGeography(2.0, 46.0)
+		.withPopulation(64094000L)
+		.withTimeZone("Europe/Paris")
+		.withGtopo30AverageElevation(560L);
+    }
+    
+    public static GisFeatureGeography antarcticaCountryGisFeatureGeography() {
+	return GisFeatureGeography.gisFeatureGeography(0.0,0.0)
+		.withPopulation(0L)
+		.withTimeZone("Antarctica/South_Pole")
+		.withGtopo30AverageElevation(2481L);
+    }
+    
+    public static GisFeatureGeography usOutlyingIslandsCountryGisFeatureGeography() {
+	return GisFeatureGeography.gisFeatureGeography(-162.072494506836, 5.88111019134521)
+		.withPopulation(0L)
+		.withTimeZone("Pacific/Johnston")
+		.withGtopo30AverageElevation(-9999L);
+    }
+    
     public static GisFeatureGeography ileDeFranceAdm1GisFeatureGeography() {
 	return gisFeatureGeography(new Double("2.5"), new Double("48.5"))
 		.withPopulation(11341257L)

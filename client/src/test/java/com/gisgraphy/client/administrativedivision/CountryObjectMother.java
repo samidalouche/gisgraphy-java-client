@@ -2,27 +2,47 @@ package com.gisgraphy.client.administrativedivision;
 
 import static com.gisgraphy.client.administrativedivision.AdministrativeCountryInformationObjectMother.antarcticaAdministrativeCountryInformation;
 import static com.gisgraphy.client.administrativedivision.AdministrativeCountryInformationObjectMother.franceAdministrativeCountryInformation;
+import static com.gisgraphy.client.administrativedivision.AdministrativeCountryInformationObjectMother.unitedStatesAdministrativeCountryInformation;
 import static com.gisgraphy.client.administrativedivision.AdministrativeCountryInformationObjectMother.usOutlyingIslandsAdministrativeCountryInformation;
 import static com.gisgraphy.client.administrativedivision.FipsCountryCodeObjectMother.antarcticaFipsCountryCode;
 import static com.gisgraphy.client.administrativedivision.FipsCountryCodeObjectMother.franceFipsCountryCode;
+import static com.gisgraphy.client.administrativedivision.FipsCountryCodeObjectMother.unitedStatesFipsCountryCode;
 import static com.gisgraphy.client.administrativedivision.GeographicCountryInformationObjectMother.antarcticaGeographicCountryInformation;
 import static com.gisgraphy.client.administrativedivision.GeographicCountryInformationObjectMother.franceGeographicCountryInformation;
+import static com.gisgraphy.client.administrativedivision.GeographicCountryInformationObjectMother.unitedStatesGeographicCountryInformation;
 import static com.gisgraphy.client.administrativedivision.GeographicCountryInformationObjectMother.usOutlyingIslandsGeographicCountryInformation;
 import static com.gisgraphy.client.administrativedivision.IsoCountryCodeObjectMother.antarcticaCountryCode;
 import static com.gisgraphy.client.administrativedivision.IsoCountryCodeObjectMother.franceCountryCode;
+import static com.gisgraphy.client.administrativedivision.IsoCountryCodeObjectMother.unitedStatesCountryCode;
 import static com.gisgraphy.client.administrativedivision.IsoCountryCodeObjectMother.usOutlyingIslandsCountryCode;
 import static com.gisgraphy.client.continent.ContinentObjectMother.antarcticaContinent;
 import static com.gisgraphy.client.continent.ContinentObjectMother.europe;
+import static com.gisgraphy.client.continent.ContinentObjectMother.northAmericaContinent;
 import static com.gisgraphy.client.continent.ContinentObjectMother.oceania;
 import static com.gisgraphy.client.gisfeature.GisFeatureObjectMother.antarcticaGisFeature;
 import static com.gisgraphy.client.gisfeature.GisFeatureObjectMother.franceGisFeature;
+import static com.gisgraphy.client.gisfeature.GisFeatureObjectMother.unitedStatesGisFeature;
 import static com.gisgraphy.client.gisfeature.GisFeatureObjectMother.usOutlyingIslandsGisFeature;
 
 import com.gisgraphy.client.administrativedivision.Country;
+import com.gisgraphy.client.continent.ContinentObjectMother;
+import com.gisgraphy.client.gisfeature.GisFeatureGeographyObjectMother;
+import com.gisgraphy.client.gisfeature.GisFeatureObjectMother;
 import com.ibm.icu.util.Currency;
 
 public class CountryObjectMother {
 
+    public static Country unitedStated() {
+	return Country.countryName("United States")
+		.withIsoCountryCode(unitedStatesCountryCode())
+		.withContinent(northAmericaContinent())
+		.andGisFeature(unitedStatesGisFeature())
+		.withCurrency(Currency.getInstance("USD"))
+		.withFipsCountryCode(unitedStatesFipsCountryCode())
+		.withAdministrativeCountryInformation(unitedStatesAdministrativeCountryInformation())
+		.withGeographicCountryInformation(unitedStatesGeographicCountryInformation());
+    }
+    
     public static Country france() {
 	return Country.countryName("France")
 		.withIsoCountryCode(franceCountryCode())
