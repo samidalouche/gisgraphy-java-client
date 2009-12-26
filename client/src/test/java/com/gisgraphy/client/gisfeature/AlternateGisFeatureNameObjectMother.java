@@ -7,9 +7,15 @@ import static com.gisgraphy.client.gisfeature.AlternateGisFeatureNameObjectMothe
 import static com.gisgraphy.client.gisfeature.AlternateGisFeatureNameObjectMother.parisShortNameInFrench;
 import static com.gisgraphy.client.language.IsoLanguageObjectMother.frenchIsoLanguage;
 
+import java.util.List;
+
 import com.gisgraphy.client.gisfeature.AlternateGisFeatureName;
 import com.gisgraphy.client.language.IsoLanguageObjectMother;
+import com.google.common.base.Function;
+import com.google.common.collect.ImmutableList;
+import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSet;
+import com.google.common.collect.Maps;
 
 public class AlternateGisFeatureNameObjectMother {
 
@@ -36,4 +42,5 @@ public class AlternateGisFeatureNameObjectMother {
 		parisInEnglish(),
 		parisShortNameInFrench());
     }
+
 }

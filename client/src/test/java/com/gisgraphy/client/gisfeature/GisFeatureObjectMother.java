@@ -7,8 +7,10 @@ import static com.gisgraphy.client.administrativedivision.AdministrativeDivision
 import static com.gisgraphy.client.administrativedivision.AdministrativeDivisionObjectMother.rambouilletAdm3;
 import static com.gisgraphy.client.administrativedivision.AdministrativeDivisionObjectMother.yvelinesAdm2;
 import static com.gisgraphy.client.administrativedivision.CountryObjectMother.france;
+import static com.gisgraphy.client.administrativedivision.CountryObjectMother.unitedStatesCountry;
 import static com.gisgraphy.client.gisfeature.GeonamesGisFeature.gisFeature;
 import static com.gisgraphy.client.gisfeature.GisFeatureGeographyObjectMother.antarcticaCountryGisFeatureGeography;
+import static com.gisgraphy.client.gisfeature.GisFeatureGeographyObjectMother.californiaAdm1GisFeatureGeography;
 import static com.gisgraphy.client.gisfeature.GisFeatureGeographyObjectMother.franceCountryGisFeatureGeography;
 import static com.gisgraphy.client.gisfeature.GisFeatureGeographyObjectMother.ileDeFranceAdm1GisFeatureGeography;
 import static com.gisgraphy.client.gisfeature.GisFeatureGeographyObjectMother.parisAdm2GisFeatureGeography;
@@ -24,6 +26,7 @@ import static com.gisgraphy.client.gisfeature.GisFeatureNames.gisFeatureName;
 import static com.gisgraphy.client.gisfeature.GisFeatureType.geonamesFeatureClass;
 
 import com.gisgraphy.client.administrativedivision.AdministrativeDivisionObjectMother;
+import com.gisgraphy.client.administrativedivision.CountryObjectMother;
 
 /**
  *
@@ -40,6 +43,15 @@ public class GisFeatureObjectMother {
                 .build();
     }
 
+    public static GeonamesGisFeature californiaAdm1GisFeature() {
+        return gisFeature()
+                .geonamesId(5332921L)
+                .names(gisFeatureName("California"))
+                .type(geonamesFeatureClass("A").geonamesFeatureCode("ADM1"))
+                .geography(californiaAdm1GisFeatureGeography())
+                .parentAdministrativeEntity(unitedStatesCountry())
+                .build();
+    }
     
     public static GeonamesGisFeature franceGisFeature() {
         return gisFeature()

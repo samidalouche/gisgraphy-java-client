@@ -4,6 +4,15 @@ import static com.gisgraphy.client.gisfeature.GisFeatureGeography.gisFeatureGeog
 
 public class GisFeatureGeographyObjectMother {
 
+    
+    public static GisFeatureGeography californiaAdm1GisFeatureGeography() {
+	return GisFeatureGeography.gisFeatureGeography(-119.75126647949219, 37.25022506713867)
+		.withPopulation(36354327L)
+		.withTimeZone("America/Los_Angeles")
+		.withGtopo30AverageElevation(427l)
+		.withElevation(469L);
+    }
+    
     public static GisFeatureGeography unitedStatesCountryGisFeatureGeography() {
 	return GisFeatureGeography.gisFeatureGeography(-98.5, 39.7599983215332)
 		.withPopulation(303824000L)

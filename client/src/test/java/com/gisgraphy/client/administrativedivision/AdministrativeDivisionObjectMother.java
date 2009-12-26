@@ -1,6 +1,7 @@
 package com.gisgraphy.client.administrativedivision;
 
 import static com.gisgraphy.client.administrativedivision.AdministrativeDivision.administrativeDivision;
+import static com.gisgraphy.client.gisfeature.GisFeatureObjectMother.californiaAdm1GisFeature;
 import static com.gisgraphy.client.gisfeature.GisFeatureObjectMother.parisAdm3GisFeature;
 import static com.gisgraphy.client.gisfeature.GisFeatureObjectMother.parisAdm4GisFeature;
 import static com.gisgraphy.client.gisfeature.GisFeatureObjectMother.rambouilletAdm3GisFeature;
@@ -13,6 +14,12 @@ import com.gisgraphy.client.gisfeature.GisFeatureObjectMother;
 
 public class AdministrativeDivisionObjectMother {
 
+    public static AdministrativeDivision californiaAdm1() {
+	return administrativeDivision("California")
+		.withCode("CA")
+		.andGisFeature(californiaAdm1GisFeature());
+	}
+    
     public static AdministrativeDivision rambouilletAdm4() {
 	return administrativeDivision("Rambouillet")
 		.withCode("78517")

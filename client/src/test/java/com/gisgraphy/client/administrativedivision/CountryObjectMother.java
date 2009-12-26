@@ -32,7 +32,7 @@ import com.ibm.icu.util.Currency;
 
 public class CountryObjectMother {
 
-    public static Country unitedStated() {
+    public static Country unitedStatesCountry() {
 	return Country.countryName("United States")
 		.withIsoCountryCode(unitedStatesCountryCode())
 		.withContinent(northAmericaContinent())
