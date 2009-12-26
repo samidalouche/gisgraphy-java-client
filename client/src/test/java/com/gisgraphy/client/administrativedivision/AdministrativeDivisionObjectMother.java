@@ -2,15 +2,13 @@ package com.gisgraphy.client.administrativedivision;
 
 import static com.gisgraphy.client.administrativedivision.AdministrativeDivision.administrativeDivision;
 import static com.gisgraphy.client.gisfeature.GisFeatureObjectMother.californiaAdm1GisFeature;
+import static com.gisgraphy.client.gisfeature.GisFeatureObjectMother.ileDeFranceAdm1GisFeature;
+import static com.gisgraphy.client.gisfeature.GisFeatureObjectMother.parisAdm2GisFeature;
 import static com.gisgraphy.client.gisfeature.GisFeatureObjectMother.parisAdm3GisFeature;
 import static com.gisgraphy.client.gisfeature.GisFeatureObjectMother.parisAdm4GisFeature;
 import static com.gisgraphy.client.gisfeature.GisFeatureObjectMother.rambouilletAdm3GisFeature;
-import static com.gisgraphy.client.gisfeature.GisFeatureObjectMother.ileDeFranceAdm1GisFeature;
-import static com.gisgraphy.client.gisfeature.GisFeatureObjectMother.parisAdm2GisFeature;
 import static com.gisgraphy.client.gisfeature.GisFeatureObjectMother.rambouilletAdm4GisFeature;
 import static com.gisgraphy.client.gisfeature.GisFeatureObjectMother.yvelinesAdm2GisFeature;
-
-import com.gisgraphy.client.gisfeature.GisFeatureObjectMother;
 
 public class AdministrativeDivisionObjectMother {
 
