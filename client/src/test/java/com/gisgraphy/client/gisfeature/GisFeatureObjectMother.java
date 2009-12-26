@@ -17,6 +17,7 @@ import static com.gisgraphy.client.gisfeature.GisFeatureGeographyObjectMother.fr
 import static com.gisgraphy.client.gisfeature.GisFeatureGeographyObjectMother.ileDeFranceAdm1GisFeatureGeography;
 import static com.gisgraphy.client.gisfeature.GisFeatureGeographyObjectMother.losAngelesAdm2GisFeatureGeography;
 import static com.gisgraphy.client.gisfeature.GisFeatureGeographyObjectMother.losAngelesPplGisFeatureGeography;
+import static com.gisgraphy.client.gisfeature.GisFeatureGeographyObjectMother.marinaDelReyPplGisFeatureGeography;
 import static com.gisgraphy.client.gisfeature.GisFeatureGeographyObjectMother.parisAdm2GisFeatureGeography;
 import static com.gisgraphy.client.gisfeature.GisFeatureGeographyObjectMother.parisAdm3GisFeatureGeography;
 import static com.gisgraphy.client.gisfeature.GisFeatureGeographyObjectMother.parisPplcGisFeatureGeography;
@@ -30,7 +31,6 @@ import static com.gisgraphy.client.gisfeature.GisFeatureNames.gisFeatureName;
 import static com.gisgraphy.client.gisfeature.GisFeatureType.geonamesFeatureClass;
 
 import com.gisgraphy.client.administrativedivision.AdministrativeDivisionObjectMother;
-import com.gisgraphy.client.administrativedivision.CountryObjectMother;
 
 /**
  *
@@ -63,6 +63,16 @@ public class GisFeatureObjectMother {
                 .names(gisFeatureName("Los Angeles"))
                 .type(geonamesFeatureClass("P").geonamesFeatureCode("PPL"))
                 .geography(losAngelesPplGisFeatureGeography())
+                .parentAdministrativeEntity(losAngelesAdm2())
+                .build();
+    }
+    
+    public static GeonamesGisFeature marinaDelReyPplGisFeature() {
+        return gisFeature()
+                .geonamesId(5370542L)
+                .names(gisFeatureName("Marina Del Rey"))
+                .type(geonamesFeatureClass("P").geonamesFeatureCode("PPL"))
+                .geography(marinaDelReyPplGisFeatureGeography())
                 .parentAdministrativeEntity(losAngelesAdm2())
                 .build();
     }

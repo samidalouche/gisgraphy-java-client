@@ -2,10 +2,9 @@ package com.gisgraphy.client.administrativedivision;
 
 import static com.gisgraphy.client.gisfeature.GisFeatureObjectMother.gazeranPplGisFeature;
 import static com.gisgraphy.client.gisfeature.GisFeatureObjectMother.losAngelesPplGisFeature;
+import static com.gisgraphy.client.gisfeature.GisFeatureObjectMother.marinaDelReyPplGisFeature;
 import static com.gisgraphy.client.gisfeature.GisFeatureObjectMother.parisPplcGisFeature;
 import static com.gisgraphy.client.gisfeature.GisFeatureObjectMother.rambouilletPplGisFeature;
-
-import com.gisgraphy.client.gisfeature.GisFeatureObjectMother;
 
 public class CityObjectMother {
     public static City gazeranCity() {
@@ -21,7 +20,7 @@ public class CityObjectMother {
     }
     
     public static City marinaDelReyCity() {
-	return null;
+	return City.forFeature(marinaDelReyPplGisFeature());
     }
     
     public static City parisCity() {
