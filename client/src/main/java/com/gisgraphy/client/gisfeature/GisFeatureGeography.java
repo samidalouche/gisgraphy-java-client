@@ -15,6 +15,7 @@ import org.apache.commons.lang.builder.ToStringBuilder;
 import org.apache.commons.lang.builder.ToStringStyle;
 import org.geotools.geometry.jts.JTS;
 import org.geotools.referencing.crs.DefaultGeographicCRS;
+import org.joda.time.DateTimeZone;
 import org.opengis.referencing.operation.TransformException;
 
 /**
@@ -80,7 +81,7 @@ public final class GisFeatureGeography implements DistanceCalculator<GisFeatureG
             return this;
         }
 
-        public GisFeatureGeographyBuilder timeZone(final String timeZone) {
+        public GisFeatureGeographyBuilder timeZone(final DateTimeZone timeZone) {
             geography.timeZone = timeZone;
             return this;
         }
@@ -95,7 +96,7 @@ public final class GisFeatureGeography implements DistanceCalculator<GisFeatureG
     private Long gtopo30AverageElevation;
     private Point location;
     private Long population;
-    private String timeZone;
+    private DateTimeZone timeZone;
 
     private GisFeatureGeography() {
     }
@@ -116,7 +117,7 @@ public final class GisFeatureGeography implements DistanceCalculator<GisFeatureG
 	return new GisFeatureGeographyBuilder(this).population(population).build();
     }
 
-    public GisFeatureGeography withTimeZone(final String timeZone) {
+    public GisFeatureGeography withTimeZone(final DateTimeZone timeZone) {
 	return new GisFeatureGeographyBuilder(this).timeZone(timeZone).build();
     }
     
@@ -171,7 +172,7 @@ public final class GisFeatureGeography implements DistanceCalculator<GisFeatureG
         return population;
     }
 
-    public String getTimeZone() {
+    public DateTimeZone getTimeZone() {
         return timeZone;
     }
 

@@ -2,6 +2,7 @@ package com.gisgraphy.client.administrativedivision;
 
 import org.apache.commons.lang.Validate;
 import org.joda.time.DateTime;
+import org.joda.time.DateTimeZone;
 
 import com.gisgraphy.client.commons.NamePart;
 import com.gisgraphy.client.continent.Continent;
@@ -237,7 +238,7 @@ public final class Country implements AdministrativeEntity,GisFeature,CurrencyPr
 	return geographicCountryInformation.getPopulation();
     }
 
-    public String getTimeZone() {
+    public DateTimeZone getTimeZone() {
 	return gisFeature.getTimeZone();
     }
     

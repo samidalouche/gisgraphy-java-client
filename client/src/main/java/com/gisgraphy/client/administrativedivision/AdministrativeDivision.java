@@ -4,6 +4,7 @@ import org.apache.commons.lang.Validate;
 import org.apache.commons.lang.builder.ToStringBuilder;
 import org.apache.commons.lang.builder.ToStringStyle;
 import org.joda.time.DateTime;
+import org.joda.time.DateTimeZone;
 
 import com.gisgraphy.client.commons.NamePart;
 import com.gisgraphy.client.gisfeature.AdministrativeEntity;
@@ -218,7 +219,7 @@ public final class AdministrativeDivision implements AdministrativeEntity,GisFea
 	return gisFeature.getPopulation();
     }
 
-    public String getTimeZone() {
+    public DateTimeZone getTimeZone() {
 	return gisFeature.getTimeZone();
     }
 

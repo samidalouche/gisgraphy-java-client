@@ -1,6 +1,7 @@
 package com.gisgraphy.client.gisfeature;
 
 import org.joda.time.DateTime;
+import org.joda.time.DateTimeZone;
 
 import com.gisgraphy.client.commons.NameProvider;
 import com.gisgraphy.client.language.Iso639Language;
@@ -25,7 +26,7 @@ public interface GisFeature extends NameProvider {
     double getLatitude();
     double getLongitude();
     Long getPopulation();
-    String getTimeZone();
+    DateTimeZone getTimeZone();
     DateTime getLastModificationDate();
     
     GisFeatureType getGisFeatureType();

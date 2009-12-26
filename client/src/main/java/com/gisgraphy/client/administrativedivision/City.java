@@ -5,6 +5,7 @@ import javax.measure.unit.Unit;
 
 import org.apache.commons.lang.Validate;
 import org.joda.time.DateTime;
+import org.joda.time.DateTimeZone;
 
 import com.gisgraphy.client.commons.DistanceCalculator;
 import com.gisgraphy.client.commons.NameFormatter;
@@ -152,7 +153,7 @@ public final class City implements Comparable<City>, GisFeature, DistanceCalcula
 	return gisFeature.getPopulation();
     }
 
-    public String getTimeZone() {
+    public DateTimeZone getTimeZone() {
 	return gisFeature.getTimeZone();
     }
 

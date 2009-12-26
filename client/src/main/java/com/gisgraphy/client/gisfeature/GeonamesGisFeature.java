@@ -6,6 +6,7 @@ import javax.measure.unit.Unit;
 import org.apache.commons.lang.builder.ToStringBuilder;
 import org.apache.commons.lang.builder.ToStringStyle;
 import org.joda.time.DateTime;
+import org.joda.time.DateTimeZone;
 import org.springframework.util.Assert;
 
 import com.gisgraphy.client.commons.DistanceCalculator;
@@ -195,7 +196,7 @@ public final class GeonamesGisFeature implements GisFeature, DistanceCalculator<
 	return names.getShortName(language);
     }
 
-    public String getTimeZone() {
+    public DateTimeZone getTimeZone() {
 	return geography.getTimeZone();
     }
 
