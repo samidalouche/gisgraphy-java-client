@@ -21,6 +21,7 @@ package com.gisgraphy.client;
 
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Test;
 
 public class GisgraphyServerFullTextQueryIntegrationTest extends AbstractGisgraphyClientIntegrationTestCase {
 //	private static final StaxParser parser = new StaxParser();
@@ -29,6 +30,9 @@ public class GisgraphyServerFullTextQueryIntegrationTest extends AbstractGisgrap
 	@After
 	public void clean() {
 
+	}
+	@Test public void towrite(){
+	    
 	}
 /*
 	@Test

@@ -8,10 +8,10 @@ import com.gisgraphy.client.impl.gisgraphyserver.HttpGisgraphyServer;
 
 import org.junit.Ignore;
 
-@ContextConfiguration(locations = { "classpath:/com/gisgraphy/client/tests/integration/appcontext.xml"})
+//@ContextConfiguration(locations = { "classpath:/com/gisgraphy/client/tests/integration/appcontext.xml"})
 @Ignore
-public class AbstractGisgraphyClientIntegrationTestCase extends AbstractJUnit4SpringContextTests {
-	@Autowired
+public class AbstractGisgraphyClientIntegrationTestCase {// extends AbstractJUnit4SpringContextTests {
+	//@Autowired
 	protected HttpGisgraphyServer httpGisgraphyServer;
 	
 	public AbstractGisgraphyClientIntegrationTestCase() {
