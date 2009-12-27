@@ -4,6 +4,8 @@ import javax.measure.quantity.Length;
 import javax.measure.unit.Unit;
 
 import org.apache.commons.lang.Validate;
+import org.apache.commons.lang.builder.EqualsBuilder;
+import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.joda.time.DateTime;
 import org.joda.time.DateTimeZone;
 
@@ -68,11 +70,9 @@ public final class City implements Comparable<City>, GisFeature, DistanceCalcula
 
     @Override
     public int hashCode() {
-	final int prime = 31;
-	int result = 1;
-	result = prime * result
-	+ ((gisFeature == null) ? 0 : gisFeature.hashCode());
-	return result;
+	return new HashCodeBuilder()
+		.append(gisFeature)
+		.toHashCode();
     }
 
     @Override
@@ -84,12 +84,10 @@ public final class City implements Comparable<City>, GisFeature, DistanceCalcula
 	if (getClass() != obj.getClass())
 	    return false;
 	City other = (City) obj;
-	if (gisFeature == null) {
-	    if (other.gisFeature != null)
-		return false;
-	} else if (!gisFeature.equals(other.gisFeature))
-	    return false;
-	return true;
+	
+	return new EqualsBuilder()
+		.append(gisFeature, other.getGisFeature())
+		.isEquals();
     }
 
     //// GisFeatureAware implementation ////

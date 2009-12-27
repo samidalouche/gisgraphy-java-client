@@ -1,5 +1,7 @@
 package com.gisgraphy.client.administrativedivision;
 
+import org.apache.commons.lang.builder.EqualsBuilder;
+import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ToStringBuilder;
 import org.apache.commons.lang.builder.ToStringStyle;
 
@@ -48,15 +50,10 @@ public final class FipsCountryCode {
 
     @Override
     public int hashCode() {
-	final int prime = 31;
-	int result = 1;
-	result = prime
-		* result
-		+ ((equivalentFipsCode == null) ? 0 : equivalentFipsCode
-			.hashCode());
-	result = prime * result
-		+ ((fipsCode == null) ? 0 : fipsCode.hashCode());
-	return result;
+	return new HashCodeBuilder()
+		.append(equivalentFipsCode)
+		.append(fipsCode)
+		.toHashCode();
     }
 
     @Override
@@ -68,17 +65,11 @@ public final class FipsCountryCode {
 	if (getClass() != obj.getClass())
 	    return false;
 	FipsCountryCode other = (FipsCountryCode) obj;
-	if (equivalentFipsCode == null) {
-	    if (other.equivalentFipsCode != null)
-		return false;
-	} else if (!equivalentFipsCode.equals(other.equivalentFipsCode))
-	    return false;
-	if (fipsCode == null) {
-	    if (other.fipsCode != null)
-		return false;
-	} else if (!fipsCode.equals(other.fipsCode))
-	    return false;
-	return true;
+	
+	return new EqualsBuilder()
+		.append(equivalentFipsCode, other.getEquivalentFipsCode())
+		.append(fipsCode, other.getFipsCode())
+		.isEquals();
     }
     
     @Override

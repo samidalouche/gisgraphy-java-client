@@ -1,6 +1,8 @@
 package com.gisgraphy.client.commons;
 
 import org.apache.commons.lang.Validate;
+import org.apache.commons.lang.builder.EqualsBuilder;
+import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ToStringBuilder;
 import org.apache.commons.lang.builder.ToStringStyle;
 
@@ -27,12 +29,10 @@ public final class NamePart {
     
     @Override
     public int hashCode() {
-	final int prime = 31;
-	int result = 1;
-	result = prime * result
-		+ ((friendlyCode == null) ? 0 : friendlyCode.hashCode());
-	result = prime * result + ((name == null) ? 0 : name.hashCode());
-	return result;
+	return new HashCodeBuilder()
+		.append(friendlyCode)
+		.append(name)
+		.toHashCode();
     }
 
     @Override
@@ -44,17 +44,11 @@ public final class NamePart {
 	if (getClass() != obj.getClass())
 	    return false;
 	NamePart other = (NamePart) obj;
-	if (friendlyCode == null) {
-	    if (other.friendlyCode != null)
-		return false;
-	} else if (!friendlyCode.equals(other.friendlyCode))
-	    return false;
-	if (name == null) {
-	    if (other.name != null)
-		return false;
-	} else if (!name.equals(other.name))
-	    return false;
-	return true;
+	
+	return new EqualsBuilder()
+		.append(friendlyCode, other.getFriendlyCode())
+		.append(name, other.getName())
+		.isEquals();
     }
 
     @Override

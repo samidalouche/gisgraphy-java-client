@@ -1,6 +1,8 @@
 package com.gisgraphy.client.gisfeature;
 
 import org.apache.commons.lang.Validate;
+import org.apache.commons.lang.builder.EqualsBuilder;
+import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ToStringBuilder;
 import org.apache.commons.lang.builder.ToStringStyle;
 
@@ -87,12 +89,10 @@ public final class AlternateGisFeatureName implements Comparable<AlternateGisFea
 
     @Override
     public int hashCode() {
-	final int prime = 31;
-	int result = 1;
-	result = prime * result
-		+ ((language == null) ? 0 : language.hashCode());
-	result = prime * result + ((name == null) ? 0 : name.hashCode());
-	return result;
+	return new HashCodeBuilder()
+		.append(language)
+		.append(name)
+		.toHashCode();
     }
 
     @Override
@@ -104,17 +104,11 @@ public final class AlternateGisFeatureName implements Comparable<AlternateGisFea
 	if (getClass() != obj.getClass())
 	    return false;
 	AlternateGisFeatureName other = (AlternateGisFeatureName) obj;
-	if (language == null) {
-	    if (other.language != null)
-		return false;
-	} else if (!language.equals(other.language))
-	    return false;
-	if (name == null) {
-	    if (other.name != null)
-		return false;
-	} else if (!name.equals(other.name))
-	    return false;
-	return true;
+	
+	return new EqualsBuilder()
+		.append(language, other.getLanguage())
+		.append(name, other.getName())
+		.isEquals();
     }
     
 }

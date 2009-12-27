@@ -3,6 +3,8 @@ package com.gisgraphy.client.gisfeature;
 import javax.measure.quantity.Length;
 import javax.measure.unit.Unit;
 
+import org.apache.commons.lang.builder.EqualsBuilder;
+import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ToStringBuilder;
 import org.apache.commons.lang.builder.ToStringStyle;
 import org.joda.time.DateTime;
@@ -104,6 +106,14 @@ public final class GeonamesGisFeature implements GisFeature, DistanceCalculator<
 	return this.geography.distance(((GeonamesGisFeature)o).geography, unit);
     }
 
+
+    @Override
+    public int hashCode() {
+	return new HashCodeBuilder()
+		.append(geonamesId)
+		.toHashCode();
+    }
+
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
@@ -116,14 +126,10 @@ public final class GeonamesGisFeature implements GisFeature, DistanceCalculator<
             return false;
         }
         GeonamesGisFeature other = (GeonamesGisFeature) obj;
-        if (geonamesId == null) {
-            if (other.geonamesId != null) {
-                return false;
-            }
-        } else if (!geonamesId.equals(other.geonamesId)) {
-            return false;
-        }
-        return true;
+        
+        return new EqualsBuilder()
+		.append(geonamesId, other.getGeonamesId())
+		.isEquals();
     }
 
     public GisFeatureGeography getGeography() {
@@ -228,13 +234,6 @@ public final class GeonamesGisFeature implements GisFeature, DistanceCalculator<
         return type;
     }
 
-    @Override
-    public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + ((geonamesId == null) ? 0 : geonamesId.hashCode());
-        return result;
-    }
     
     // //
     

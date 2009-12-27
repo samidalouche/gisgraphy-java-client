@@ -1,6 +1,8 @@
 package com.gisgraphy.client.administrativedivision;
 
 import org.apache.commons.lang.Validate;
+import org.apache.commons.lang.builder.EqualsBuilder;
+import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ToStringBuilder;
 import org.apache.commons.lang.builder.ToStringStyle;
 
@@ -67,18 +69,11 @@ public final class IsoCountryCode {
     
     @Override
     public int hashCode() {
-	final int prime = 31;
-	int result = 1;
-	result = prime
-		* result
-		+ ((iso3166Alpha2Code == null) ? 0 : iso3166Alpha2Code
-			.hashCode());
-	result = prime
-		* result
-		+ ((iso3166Alpha3Code == null) ? 0 : iso3166Alpha3Code
-			.hashCode());
-	result = prime * result + iso3166NumericCode;
-	return result;
+	return new HashCodeBuilder()
+		.append(iso3166Alpha2Code)
+		.append(iso3166Alpha3Code)
+		.append(iso3166NumericCode)
+		.toHashCode();
     }
 
     @Override
@@ -90,19 +85,13 @@ public final class IsoCountryCode {
 	if (getClass() != obj.getClass())
 	    return false;
 	IsoCountryCode other = (IsoCountryCode) obj;
-	if (iso3166Alpha2Code == null) {
-	    if (other.iso3166Alpha2Code != null)
-		return false;
-	} else if (!iso3166Alpha2Code.equals(other.iso3166Alpha2Code))
-	    return false;
-	if (iso3166Alpha3Code == null) {
-	    if (other.iso3166Alpha3Code != null)
-		return false;
-	} else if (!iso3166Alpha3Code.equals(other.iso3166Alpha3Code))
-	    return false;
-	if (iso3166NumericCode != other.iso3166NumericCode)
-	    return false;
-	return true;
+	
+	return new EqualsBuilder()
+		.append(iso3166Alpha2Code, other.getIso3166Alpha2Code())
+		.append(iso3166Alpha3Code, other.getIso3166Alpha3Code())
+		.append(iso3166NumericCode, other.getIso3166NumericCode())
+		.isEquals();
+	
     }
 
 }

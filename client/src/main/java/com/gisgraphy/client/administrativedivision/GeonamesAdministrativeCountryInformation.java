@@ -1,5 +1,7 @@
 package com.gisgraphy.client.administrativedivision;
 
+import org.apache.commons.lang.builder.EqualsBuilder;
+import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ToStringBuilder;
 import org.apache.commons.lang.builder.ToStringStyle;
 
@@ -85,19 +87,13 @@ public final class GeonamesAdministrativeCountryInformation implements Administr
 
     @Override
     public int hashCode() {
-	final int prime = 31;
-	int result = 1;
-	result = prime * result
-		+ ((phonePrefix == null) ? 0 : phonePrefix.hashCode());
-	result = prime * result
-		+ ((postalCodeMask == null) ? 0 : postalCodeMask.hashCode());
-	result = prime * result
-		+ ((postalCodeRegex == null) ? 0 : postalCodeRegex.hashCode());
-	result = prime * result
-		+ ((spokenLanguages == null) ? 0 : spokenLanguages.hashCode());
-	result = prime * result
-		+ ((topLevelDomain == null) ? 0 : topLevelDomain.hashCode());
-	return result;
+	return new HashCodeBuilder()
+		.append(phonePrefix)
+		.append(postalCodeMask)
+		.append(postalCodeRegex)
+		.append(spokenLanguages)
+		.append(topLevelDomain)
+		.toHashCode();
     }
 
     @Override
@@ -109,32 +105,14 @@ public final class GeonamesAdministrativeCountryInformation implements Administr
 	if (getClass() != obj.getClass())
 	    return false;
 	GeonamesAdministrativeCountryInformation other = (GeonamesAdministrativeCountryInformation) obj;
-	if (phonePrefix == null) {
-	    if (other.phonePrefix != null)
-		return false;
-	} else if (!phonePrefix.equals(other.phonePrefix))
-	    return false;
-	if (postalCodeMask == null) {
-	    if (other.postalCodeMask != null)
-		return false;
-	} else if (!postalCodeMask.equals(other.postalCodeMask))
-	    return false;
-	if (postalCodeRegex == null) {
-	    if (other.postalCodeRegex != null)
-		return false;
-	} else if (!postalCodeRegex.equals(other.postalCodeRegex))
-	    return false;
-	if (spokenLanguages == null) {
-	    if (other.spokenLanguages != null)
-		return false;
-	} else if (!spokenLanguages.equals(other.spokenLanguages))
-	    return false;
-	if (topLevelDomain == null) {
-	    if (other.topLevelDomain != null)
-		return false;
-	} else if (!topLevelDomain.equals(other.topLevelDomain))
-	    return false;
-	return true;
+	
+	return new EqualsBuilder()
+		.append(phonePrefix, other.getPhonePrefix())
+		.append(postalCodeMask, other.getPostalCodeMask())
+		.append(postalCodeRegex, other.getPostalCodeRegex())
+		.append(spokenLanguages, other.getSpokenLanguages())
+		.append(topLevelDomain, other.getTopLevelDomain())
+		.isEquals();
     }
     
     @Override

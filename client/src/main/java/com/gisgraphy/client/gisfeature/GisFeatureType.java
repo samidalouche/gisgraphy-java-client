@@ -1,6 +1,8 @@
 package com.gisgraphy.client.gisfeature;
 
 import org.apache.commons.lang.Validate;
+import org.apache.commons.lang.builder.EqualsBuilder;
+import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ToStringBuilder;
 import org.apache.commons.lang.builder.ToStringStyle;
 
@@ -53,21 +55,18 @@ public final class GisFeatureType {
             return false;
         }
         final GisFeatureType other = (GisFeatureType) obj;
-        if ((this.geonamesFeatureClass == null) ? (other.geonamesFeatureClass != null) : !this.geonamesFeatureClass.equals(other.geonamesFeatureClass)) {
-            return false;
-        }
-        if ((this.geonamesFeatureCode == null) ? (other.geonamesFeatureCode != null) : !this.geonamesFeatureCode.equals(other.geonamesFeatureCode)) {
-            return false;
-        }
-        return true;
+        return new EqualsBuilder()
+		.append(geonamesFeatureClass, other.getGeonamesFeatureClass())
+		.append(geonamesFeatureCode, other.getGeonamesFeatureCode())
+		.isEquals();
     }
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 37 * hash + (this.geonamesFeatureClass != null ? this.geonamesFeatureClass.hashCode() : 0);
-        hash = 37 * hash + (this.geonamesFeatureCode != null ? this.geonamesFeatureCode.hashCode() : 0);
-        return hash;
+        return new HashCodeBuilder()
+		.append(geonamesFeatureClass)
+		.append(geonamesFeatureCode)
+		.toHashCode();
     }
 
     @Override

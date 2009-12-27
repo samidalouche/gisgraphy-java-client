@@ -1,5 +1,7 @@
 package com.gisgraphy.client.administrativedivision;
 
+import org.apache.commons.lang.builder.EqualsBuilder;
+import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ToStringBuilder;
 import org.apache.commons.lang.builder.ToStringStyle;
 
@@ -27,12 +29,10 @@ public final class GeonamesGeographicCountryInformation implements GeographicCou
 
     @Override
     public int hashCode() {
-	final int prime = 31;
-	int result = 1;
-	result = prime * result + ((area == null) ? 0 : area.hashCode());
-	result = prime * result
-		+ ((population == null) ? 0 : population.hashCode());
-	return result;
+	return new HashCodeBuilder()
+		.append(area)
+		.append(population)
+		.toHashCode();
     }
 
     @Override
@@ -44,17 +44,10 @@ public final class GeonamesGeographicCountryInformation implements GeographicCou
 	if (getClass() != obj.getClass())
 	    return false;
 	GeonamesGeographicCountryInformation other = (GeonamesGeographicCountryInformation) obj;
-	if (area == null) {
-	    if (other.area != null)
-		return false;
-	} else if (!area.equals(other.area))
-	    return false;
-	if (population == null) {
-	    if (other.population != null)
-		return false;
-	} else if (!population.equals(other.population))
-	    return false;
-	return true;
+	return new EqualsBuilder()
+		.append(area, other.getArea())
+		.append(population, other.getPopulation())
+		.isEquals();
     }
     
     @Override

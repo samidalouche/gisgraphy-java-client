@@ -1,6 +1,8 @@
 package com.gisgraphy.client.administrativedivision;
 
 import org.apache.commons.lang.Validate;
+import org.apache.commons.lang.builder.EqualsBuilder;
+import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.joda.time.DateTime;
 import org.joda.time.DateTimeZone;
 
@@ -249,11 +251,9 @@ public final class Country implements AdministrativeEntity,GisFeature,CurrencyPr
 
     @Override
     public int hashCode() {
-	final int prime = 31;
-	int result = 1;
-	result = prime * result
-		+ ((gisFeature == null) ? 0 : gisFeature.hashCode());
-	return result;
+	return new HashCodeBuilder()
+		.append(gisFeature)
+		.toHashCode();
     }
 
     @Override
@@ -265,12 +265,9 @@ public final class Country implements AdministrativeEntity,GisFeature,CurrencyPr
 	if (getClass() != obj.getClass())
 	    return false;
 	Country other = (Country) obj;
-	if (gisFeature == null) {
-	    if (other.gisFeature != null)
-		return false;
-	} else if (!gisFeature.equals(other.gisFeature))
-	    return false;
-	return true;
+	return new EqualsBuilder()
+		.append(gisFeature, other.getGisFeature())
+		.isEquals();
     }
 
     public String getPhonePrefix() {

@@ -3,6 +3,8 @@ package com.gisgraphy.client.continent;
 import java.io.Serializable;
 
 import org.apache.commons.lang.Validate;
+import org.apache.commons.lang.builder.EqualsBuilder;
+import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ToStringBuilder;
 import org.apache.commons.lang.builder.ToStringStyle;
 
@@ -60,11 +62,9 @@ public final class Continent implements Serializable {
     
     @Override
     public int hashCode() {
-	final int PRIME = 31;
-	int result = 1;
-	result = PRIME * result
-		+ ((geonamesCode == null) ? 0 : geonamesCode.hashCode());
-	return result;
+	return new HashCodeBuilder()
+		.append(geonamesCode)
+		.toHashCode();
     }
 
     @Override
@@ -76,12 +76,10 @@ public final class Continent implements Serializable {
 	if (getClass() != obj.getClass())
 	    return false;
 	final Continent other = (Continent) obj;
-	if (geonamesCode == null) {
-	    if (other.geonamesCode != null)
-		return false;
-	} else if (!geonamesCode.equals(other.geonamesCode))
-	    return false;
-	return true;
+	
+	return new EqualsBuilder()
+		.append(geonamesCode, other.getGeonamesCode())
+		.isEquals();
     }
     
     @Override

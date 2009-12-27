@@ -4,6 +4,8 @@
 package com.gisgraphy.client.language;
 
 import org.apache.commons.lang.Validate;
+import org.apache.commons.lang.builder.EqualsBuilder;
+import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ToStringBuilder;
 import org.apache.commons.lang.builder.ToStringStyle;
 
@@ -104,13 +106,9 @@ public final class Iso639Language {
 
     @Override
     public int hashCode() {
-	final int prime = 31;
-	int result = 1;
-	result = prime
-		* result
-		+ ((alpha3Code == null) ? 0 : alpha3Code
-			.hashCode());
-	return result;
+	return new HashCodeBuilder()
+		.append(alpha3Code)
+		.toHashCode();
     }
 
     @Override
@@ -122,12 +120,9 @@ public final class Iso639Language {
 	if (getClass() != obj.getClass())
 	    return false;
 	Iso639Language other = (Iso639Language) obj;
-	if (alpha3Code == null) {
-	    if (other.alpha3Code != null)
-		return false;
-	} else if (!alpha3Code.equals(other.alpha3Code))
-	    return false;
-	return true;
+	return new EqualsBuilder()
+		.append(alpha3Code, other.getAlpha3Code())
+		.isEquals();
     }
    
     @Override
