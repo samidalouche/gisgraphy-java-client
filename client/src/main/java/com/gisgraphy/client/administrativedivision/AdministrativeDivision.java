@@ -11,8 +11,11 @@ import org.joda.time.DateTimeZone;
 import com.gisgraphy.client.commons.NamePart;
 import com.gisgraphy.client.gisfeature.AdministrativeEntity;
 import com.gisgraphy.client.gisfeature.AlternateGisFeatureName;
+import com.gisgraphy.client.gisfeature.GeonamesGisFeature;
 import com.gisgraphy.client.gisfeature.GisFeature;
+import com.gisgraphy.client.gisfeature.GisFeatureProvider;
 import com.gisgraphy.client.gisfeature.GisFeatureType;
+import com.gisgraphy.client.gisfeature.InMemoryGeonamesGisFeatureProvider;
 import com.gisgraphy.client.language.Iso639Language;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableSet;
@@ -46,7 +49,7 @@ public final class AdministrativeDivision implements AdministrativeEntity,GisFea
     public static class AdministrativeDivisionBuilder {
 	private String name;
 	private String code;
-	private GisFeature gisFeature;
+	private GisFeatureProvider gisFeatureProvider;
 	public AdministrativeDivisionBuilder(String name) {
 	    this.name = name;
 	}
@@ -56,9 +59,18 @@ public final class AdministrativeDivision implements AdministrativeEntity,GisFea
 	    return this;
 	}
 	
-	public AdministrativeDivision andGisFeature(GisFeature gisFeature) {
-	    this.gisFeature = gisFeature;
-	    return new AdministrativeDivision(this.name, this.code, this.gisFeature);
+	public AdministrativeDivision andGisFeature(GeonamesGisFeature gisFeature) {
+	    this.gisFeatureProvider = new InMemoryGeonamesGisFeatureProvider(gisFeature);
+	    return build();
+	}
+	
+	public AdministrativeDivision andGisFeatureProvider(GisFeatureProvider gisFeatureProvider) {
+	    this.gisFeatureProvider = gisFeatureProvider;
+	    return build();
+	}
+
+	private AdministrativeDivision build() {
+	    return new AdministrativeDivision(this.name, this.code, this.gisFeatureProvider);
 	}
 	
     }
@@ -69,19 +81,19 @@ public final class AdministrativeDivision implements AdministrativeEntity,GisFea
     
     private String name;
     private String code;
-    private GisFeature gisFeature;
+    private GisFeatureProvider gisFeatureProvider;
     
     
-    private AdministrativeDivision(String name, String code, GisFeature gisFeature) {
+    private AdministrativeDivision(String name, String code, GisFeatureProvider gisFeatureProvider) {
 	super();
 	Validate.notEmpty(name);
 	Validate.notEmpty(code);
-	Validate.notNull(gisFeature);
-	Validate.notNull(gisFeature.getParentAdministrativeEntity());
+	Validate.notNull(gisFeatureProvider.getGisFeature());
+	Validate.notNull(gisFeatureProvider.getGisFeature().getParentAdministrativeEntity());
 	
 	this.name = name;
 	this.code = code;
-	this.gisFeature = gisFeature;
+	this.gisFeatureProvider = gisFeatureProvider;
     }
 
     public String getName() {
@@ -100,10 +112,14 @@ public final class AdministrativeDivision implements AdministrativeEntity,GisFea
         return code;
     }
     public GisFeature getGisFeature() {
-        return gisFeature;
+        return gisFeature();
+    }
+
+    private GisFeature gisFeature() {
+	return gisFeatureProvider.getGisFeature();
     }
     public AdministrativeEntity getParentEntity() {
-        return gisFeature.getParentAdministrativeEntity();
+        return gisFeature().getParentAdministrativeEntity();
     }
 
     @Override
@@ -111,14 +127,14 @@ public final class AdministrativeDivision implements AdministrativeEntity,GisFea
 	return new ToStringBuilder(this, ToStringStyle.SHORT_PREFIX_STYLE)
 		.append("code", code)
 		.append("name", name)
-		.append("gisFeature", gisFeature)
+		.append("gisFeature", gisFeatureProvider)
 		.toString();
     }
 
     @Override
     public int hashCode() {
 	return new HashCodeBuilder()
-		.append(gisFeature)
+		.append(gisFeature())
 		.toHashCode();
     }
 
@@ -133,7 +149,7 @@ public final class AdministrativeDivision implements AdministrativeEntity,GisFea
 	AdministrativeDivision other = (AdministrativeDivision) obj;
 	
 	return new EqualsBuilder()
-		.append(gisFeature, other.getGisFeature())
+		.append(gisFeature(), other.getGisFeature())
 		.isEquals();
     }
 
@@ -155,7 +171,7 @@ public final class AdministrativeDivision implements AdministrativeEntity,GisFea
     }
 
     public AdministrativeEntity getParentAdministrativeEntity() {
-	return gisFeature.getParentAdministrativeEntity();
+	return gisFeature().getParentAdministrativeEntity();
     }
     
     public AdministrativeEntity getAdministrativeEntity(int level) {
@@ -163,62 +179,62 @@ public final class AdministrativeDivision implements AdministrativeEntity,GisFea
     } 
     
     public Long getGeonamesId() {
-	return gisFeature.getGeonamesId();
+	return gisFeature().getGeonamesId();
     }
     
     public ImmutableSet<AlternateGisFeatureName> getGisFeatureAlternateNames() {
-	return gisFeature.getGisFeatureAlternateNames();
+	return gisFeature().getGisFeatureAlternateNames();
     }
 
     public String getGisFeatureDefaultName() {
-	return gisFeature.getGisFeatureDefaultName();
+	return gisFeature().getGisFeatureDefaultName();
     }
 
     public String getGisFeaturePreferredName(Iso639Language language) {
-	return gisFeature.getGisFeaturePreferredName(language);
+	return gisFeature().getGisFeaturePreferredName(language);
     }
 
     public String getGisFeatureShortName(Iso639Language language) {
-	return gisFeature.getGisFeatureShortName(language);
+	return gisFeature().getGisFeatureShortName(language);
     }
 
     public Country getCountry() {
 	return getParentAdministrativeEntity().getCountry();
     }
     public Long getElevation() {
-	return gisFeature.getElevation();
+	return gisFeature().getElevation();
     }
 
     public GisFeatureType getGisFeatureType() {
-	return gisFeature.getGisFeatureType();
+	return gisFeature().getGisFeatureType();
     }
 
     public Long getGtopo30AverageElevation() {
-	return gisFeature.getGtopo30AverageElevation();
+	return gisFeature().getGtopo30AverageElevation();
     }
 
     public DateTime getLastModificationDate() {
-	return gisFeature.getLastModificationDate();
+	return gisFeature().getLastModificationDate();
     }
 
     public double getLatitude() {
-	return gisFeature.getLatitude();
+	return gisFeature().getLatitude();
     }
 
     public Point getLocation() {
-	return gisFeature.getLocation();
+	return gisFeature().getLocation();
     }
 
     public double getLongitude() {
-	return gisFeature.getLongitude();
+	return gisFeature().getLongitude();
     }
 
     public Long getPopulation() {
-	return gisFeature.getPopulation();
+	return gisFeature().getPopulation();
     }
 
     public DateTimeZone getTimeZone() {
-	return gisFeature.getTimeZone();
+	return gisFeature().getTimeZone();
     }
 
     public Currency getCurrency() {

@@ -18,6 +18,7 @@ import com.gisgraphy.client.commons.NameFormatter;
 import com.gisgraphy.client.commons.NameProvider;
 import com.gisgraphy.client.gisfeature.GeonamesGisFeature;
 import com.gisgraphy.client.gisfeature.GisFeatureObjectMother;
+import com.gisgraphy.client.gisfeature.InMemoryGeonamesGisFeatureProvider;
 
 public class CityTest {
 
@@ -73,6 +74,10 @@ public class CityTest {
 	Assert.assertEquals(typicalAdministrativeLevelOfACity(), rambouilletCity().getAdminitrativeDivisionLevel());
     }
 
+    @Test public void citiesCreatedUsingGisFeatureProviderAndGisFeatureShouldBeEqual() {
+	Assert.assertEquals(City.forFeature(rambouilletPplGisFeature()), City.forGisFeatureProvider(new InMemoryGeonamesGisFeatureProvider(rambouilletPplGisFeature())));
+    }
+    
     @Test public void shouldReturnCountry() {
 	Assert.assertEquals(rambouilletCity().getCountry(), CountryObjectMother.france());
     }

@@ -16,7 +16,9 @@ import com.gisgraphy.client.gisfeature.AdministrativeEntity;
 import com.gisgraphy.client.gisfeature.AlternateGisFeatureName;
 import com.gisgraphy.client.gisfeature.GeonamesGisFeature;
 import com.gisgraphy.client.gisfeature.GisFeature;
+import com.gisgraphy.client.gisfeature.GisFeatureProvider;
 import com.gisgraphy.client.gisfeature.GisFeatureType;
+import com.gisgraphy.client.gisfeature.InMemoryGeonamesGisFeatureProvider;
 import com.gisgraphy.client.language.Iso639Language;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableSet;
@@ -26,18 +28,21 @@ import com.vividsolutions.jts.geom.Point;
 public final class City implements Comparable<City>, GisFeature, DistanceCalculator<City>, AdministrativeEntity, CurrencyProvider {
 
     public static City forFeature(GeonamesGisFeature gisFeature) {
-	return new City(gisFeature);
+	return new City(new InMemoryGeonamesGisFeatureProvider(gisFeature));
+    }
+    
+    public static City forGisFeatureProvider(GisFeatureProvider gisFeatureProvider) {
+	return new City(gisFeatureProvider);
     }
 
-    private GisFeature gisFeature;
-    private DistanceCalculator<GisFeature> gisFeatureDistanceCalculator;
+    private GisFeatureProvider gisFeatureProvider;
 
-    private City(GeonamesGisFeature gisFeature) {
+    private City(GisFeatureProvider gisFeatureProvider) {
 	super();
-	Validate.notNull(gisFeature);
-	shouldHaveParentAdministrativeEntity(gisFeature);
-	this.gisFeature = gisFeature;
-	this.gisFeatureDistanceCalculator = gisFeature;
+	Validate.notNull(gisFeatureProvider.getGisFeature());
+	Validate.notNull(gisFeatureProvider.getGisFeatureDistanceCalculator());
+	shouldHaveParentAdministrativeEntity(gisFeatureProvider.getGisFeature());
+	this.gisFeatureProvider = gisFeatureProvider;
     }
 
 
@@ -51,7 +56,7 @@ public final class City implements Comparable<City>, GisFeature, DistanceCalcula
      * In any case, it does not make sense to create a City out of these GIS Features
      * @param gisFeature
      */
-    private void shouldHaveParentAdministrativeEntity(GeonamesGisFeature gisFeature) {
+    private void shouldHaveParentAdministrativeEntity(GisFeature gisFeature) {
 	Validate.notNull(gisFeature.getParentAdministrativeEntity());
     }
 
@@ -71,7 +76,7 @@ public final class City implements Comparable<City>, GisFeature, DistanceCalcula
     @Override
     public int hashCode() {
 	return new HashCodeBuilder()
-		.append(gisFeature)
+		.append(gisFeature())
 		.toHashCode();
     }
 
@@ -86,80 +91,85 @@ public final class City implements Comparable<City>, GisFeature, DistanceCalcula
 	City other = (City) obj;
 	
 	return new EqualsBuilder()
-		.append(gisFeature, other.getGisFeature())
+		.append(gisFeature(), other.getGisFeature())
 		.isEquals();
     }
 
     //// GisFeatureAware implementation ////
     public ImmutableSet<AlternateGisFeatureName> getGisFeatureAlternateNames() {
-	return gisFeature.getGisFeatureAlternateNames();
+	return gisFeature().getGisFeatureAlternateNames();
     }
 
     public GisFeature getGisFeature() {
-	return gisFeature;
+	return gisFeature();
     }
     public Long getGeonamesId() {
-	return gisFeature.getGeonamesId();
+	return gisFeature().getGeonamesId();
     }
 
     public String getGisFeatureDefaultName() {
-	return gisFeature.getGisFeatureDefaultName();
+	return gisFeature().getGisFeatureDefaultName();
     }
 
     public String getGisFeaturePreferredName(Iso639Language language) {
-	return gisFeature.getGisFeaturePreferredName(language);
+	return gisFeature().getGisFeaturePreferredName(language);
     }
 
     public String getGisFeatureShortName(Iso639Language language) {
-	return gisFeature.getGisFeatureShortName(language);
+	return gisFeature().getGisFeatureShortName(language);
     }
 
     public AdministrativeEntity getParentAdministrativeEntity() {
-	return gisFeature.getParentAdministrativeEntity();
+	return gisFeature().getParentAdministrativeEntity();
     }
 
 
     public Long getElevation() {
-	return gisFeature.getElevation();
+	return gisFeature().getElevation();
     }
 
     public GisFeatureType getGisFeatureType() {
-	return gisFeature.getGisFeatureType();
+	return gisFeature().getGisFeatureType();
     }
 
     public Long getGtopo30AverageElevation() {
-	return gisFeature.getGtopo30AverageElevation();
+	return gisFeature().getGtopo30AverageElevation();
     }
 
     public DateTime getLastModificationDate() {
-	return gisFeature.getLastModificationDate();
+	return gisFeature().getLastModificationDate();
     }
 
     public double getLatitude() {
-	return gisFeature.getLatitude();
+	return gisFeature().getLatitude();
     }
 
     public Point getLocation() {
-	return gisFeature.getLocation();
+	return gisFeature().getLocation();
     }
 
     public double getLongitude() {
-	return gisFeature.getLongitude();
+	return gisFeature().getLongitude();
     }
 
     public Long getPopulation() {
-	return gisFeature.getPopulation();
+	return gisFeature().getPopulation();
     }
 
     public DateTimeZone getTimeZone() {
-	return gisFeature.getTimeZone();
+	return gisFeature().getTimeZone();
     }
 
 
     //// DistanceAware ////
     public double distance(City o, Unit<Length> unit) {
-	return gisFeatureDistanceCalculator.distance(o.getGisFeature(), unit);
+	return gisFeatureDistanceCalculator().distance(o.getGisFeature(), unit);
     }
+
+    private DistanceCalculator<GisFeature> gisFeatureDistanceCalculator() {
+	return this.gisFeatureProvider.getGisFeatureDistanceCalculator();
+    }
+
 
     //// AdministrativeEntity ////
     
@@ -185,7 +195,7 @@ public final class City implements Comparable<City>, GisFeature, DistanceCalcula
     }
 
     public Country getCountry() {
-	return gisFeature.getParentAdministrativeEntity().getCountry();
+	return gisFeature().getParentAdministrativeEntity().getCountry();
     }
 
     public Currency getCurrency() {
@@ -193,7 +203,7 @@ public final class City implements Comparable<City>, GisFeature, DistanceCalcula
     }
 
     public ImmutableList<NamePart> getFullyQualifiedNameParts() {
-	return gisFeature.getFullyQualifiedNameParts();
+	return gisFeature().getFullyQualifiedNameParts();
     }
 
     public String getFriendlyCode() {
@@ -204,4 +214,7 @@ public final class City implements Comparable<City>, GisFeature, DistanceCalcula
 	return nameFormatter.format(this);
     }
 
+    private GisFeature gisFeature() {
+	return this.gisFeatureProvider.getGisFeature();
+    }
 }

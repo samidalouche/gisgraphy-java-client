@@ -12,7 +12,9 @@ import com.gisgraphy.client.gisfeature.AdministrativeEntity;
 import com.gisgraphy.client.gisfeature.AlternateGisFeatureName;
 import com.gisgraphy.client.gisfeature.GeonamesGisFeature;
 import com.gisgraphy.client.gisfeature.GisFeature;
+import com.gisgraphy.client.gisfeature.GisFeatureProvider;
 import com.gisgraphy.client.gisfeature.GisFeatureType;
+import com.gisgraphy.client.gisfeature.InMemoryGeonamesGisFeatureProvider;
 import com.gisgraphy.client.language.Iso639Language;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableSet;
@@ -33,7 +35,7 @@ import com.vividsolutions.jts.geom.Point;
 public final class Country implements AdministrativeEntity,GisFeature,CurrencyProvider, AdministrativeCountryInformation, GeographicCountryInformation {
     public static class CountryBuilder {
 	private Continent continent;
-	private GisFeature gisFeature;
+	private GisFeatureProvider gisFeatureProvider;
 	private IsoCountryCode isoCountryCode;
 	private String name;
 	
@@ -41,9 +43,18 @@ public final class Country implements AdministrativeEntity,GisFeature,CurrencyPr
 	    this.name = name;
 	}
 	
-	public Country andGisFeature(GisFeature gisFeature) {
-	    this.gisFeature = gisFeature;
-	    return new Country(this.isoCountryCode, this.name, this.continent, this.gisFeature);
+	public Country andGisFeature(GeonamesGisFeature gisFeature) {
+	    this.gisFeatureProvider = new InMemoryGeonamesGisFeatureProvider(gisFeature);
+	    return buildCountry();
+	}
+	
+	public Country andGisFeatureProvider(GisFeatureProvider gisFeatureProvider) {
+	    this.gisFeatureProvider = gisFeatureProvider;
+	    return buildCountry();
+	}
+
+	private Country buildCountry() {
+	    return new Country(this.isoCountryCode, this.name, this.continent, this.gisFeatureProvider);
 	}
 	
 	public CountryBuilder withContinent(Continent continent) {
@@ -67,27 +78,27 @@ public final class Country implements AdministrativeEntity,GisFeature,CurrencyPr
     
     private FipsCountryCode fipsCountryCode;
     private GeographicCountryInformation geographicCountryInformation = GeonamesGeographicCountryInformation.geographicCountryInformation();
-    private GisFeature gisFeature;
+    private GisFeatureProvider gisFeatureProvider;
     private IsoCountryCode isoCountryCode;
     
     private String name;
     
-    private Country(IsoCountryCode isoCountryCode, String name, Continent continent, GisFeature gisFeature) {
+    private Country(IsoCountryCode isoCountryCode, String name, Continent continent, GisFeatureProvider gisFeatureProvider) {
 	super();
 	
 	Validate.notNull(isoCountryCode);
 	Validate.notEmpty(name);
 	Validate.notNull(continent);
-	Validate.notNull(gisFeature);
+	Validate.notNull(gisFeatureProvider.getGisFeature());
 	
 	this.isoCountryCode = isoCountryCode;
 	this.name = name;
-	this.gisFeature = gisFeature;
+	this.gisFeatureProvider = gisFeatureProvider;
 	this.continent = continent;
     }
     
-    private Country(IsoCountryCode isoCountryCode, String name, Continent continent, GisFeature gisFeature, Currency currency, FipsCountryCode fipsCountryCode, AdministrativeCountryInformation administrativeCountryInformation, GeographicCountryInformation geographicCountryInformation) {
-	this(isoCountryCode, name, continent, gisFeature);
+    private Country(IsoCountryCode isoCountryCode, String name, Continent continent, GisFeatureProvider gisFeatureProvider, Currency currency, FipsCountryCode fipsCountryCode, AdministrativeCountryInformation administrativeCountryInformation, GeographicCountryInformation geographicCountryInformation) {
+	this(isoCountryCode, name, continent, gisFeatureProvider);
 	this.currency = currency;
 	this.fipsCountryCode = fipsCountryCode;
 	this.administrativeCountryInformation = administrativeCountryInformation;
@@ -115,7 +126,7 @@ public final class Country implements AdministrativeEntity,GisFeature,CurrencyPr
     }
 
     public GisFeature getGisFeature() {
-        return gisFeature;
+        return gisFeature();
     }
 
     public IsoCountryCode getIsoCountryCode() {
@@ -127,37 +138,37 @@ public final class Country implements AdministrativeEntity,GisFeature,CurrencyPr
     }
 
     public Country withIsoCountryCode(IsoCountryCode isoCountryCode) {
-	return new Country(isoCountryCode, this.name, this.continent, this.gisFeature, this.currency, this.fipsCountryCode, this.administrativeCountryInformation, this.geographicCountryInformation);
+	return new Country(isoCountryCode, this.name, this.continent, this.gisFeatureProvider, this.currency, this.fipsCountryCode, this.administrativeCountryInformation, this.geographicCountryInformation);
     }
     
     public Country withName(String name) {
-	return new Country(this.isoCountryCode, name, this.continent, this.gisFeature, this.currency, this.fipsCountryCode, this.administrativeCountryInformation, this.geographicCountryInformation);
+	return new Country(this.isoCountryCode, name, this.continent, this.gisFeatureProvider, this.currency, this.fipsCountryCode, this.administrativeCountryInformation, this.geographicCountryInformation);
     }
     
     public Country withContinent(Continent continent) {
-	return new Country(this.isoCountryCode, this.name, continent, this.gisFeature, this.currency, this.fipsCountryCode, this.administrativeCountryInformation, this.geographicCountryInformation);
+	return new Country(this.isoCountryCode, this.name, continent, this.gisFeatureProvider, this.currency, this.fipsCountryCode, this.administrativeCountryInformation, this.geographicCountryInformation);
     }
     
-    public Country withGisFeature(GeonamesGisFeature gisFeature) {
-	return new Country(this.isoCountryCode, this.name, this.continent, gisFeature, this.currency, this.fipsCountryCode, this.administrativeCountryInformation, this.geographicCountryInformation);
+    public Country withGisFeature(GisFeatureProvider gisFeatureProvider) {
+	return new Country(this.isoCountryCode, this.name, this.continent, gisFeatureProvider, this.currency, this.fipsCountryCode, this.administrativeCountryInformation, this.geographicCountryInformation);
     }
     
     public Country withAdministrativeCountryInformation(AdministrativeCountryInformation administrativeCountryInformation) {
 	Validate.notNull(administrativeCountryInformation);
-	return new Country(this.isoCountryCode, this.name, this.continent, this.gisFeature, this.currency, this.fipsCountryCode, administrativeCountryInformation, this.geographicCountryInformation);
+	return new Country(this.isoCountryCode, this.name, this.continent, this.gisFeatureProvider, this.currency, this.fipsCountryCode, administrativeCountryInformation, this.geographicCountryInformation);
     }
 
     public Country withCurrency(Currency currency) {
-	return new Country(this.isoCountryCode, this.name, this.continent, this.gisFeature, currency, this.fipsCountryCode, this.administrativeCountryInformation, this.geographicCountryInformation);
+	return new Country(this.isoCountryCode, this.name, this.continent, this.gisFeatureProvider, currency, this.fipsCountryCode, this.administrativeCountryInformation, this.geographicCountryInformation);
     }
 
     public Country withFipsCountryCode(FipsCountryCode fipsCountryCode) {
-	return new Country(this.isoCountryCode, this.name, this.continent, this.gisFeature, this.currency, fipsCountryCode, this.administrativeCountryInformation, this.geographicCountryInformation);
+	return new Country(this.isoCountryCode, this.name, this.continent, this.gisFeatureProvider, this.currency, fipsCountryCode, this.administrativeCountryInformation, this.geographicCountryInformation);
     }
 
     public Country withGeographicCountryInformation(GeographicCountryInformation geographicCountryInformation) {
 	Validate.notNull(geographicCountryInformation);
-	return new Country(this.isoCountryCode, this.name, this.continent, this.gisFeature, this.currency, this.fipsCountryCode, this.administrativeCountryInformation, geographicCountryInformation);
+	return new Country(this.isoCountryCode, this.name, this.continent, this.gisFeatureProvider, this.currency, this.fipsCountryCode, this.administrativeCountryInformation, geographicCountryInformation);
     }
 
     public int getAdminitrativeDivisionLevel() {
@@ -187,51 +198,51 @@ public final class Country implements AdministrativeEntity,GisFeature,CurrencyPr
     }
 
     public Long getGeonamesId() {
-	return gisFeature.getGeonamesId();
+	return gisFeature().getGeonamesId();
     }
     
     public ImmutableSet<AlternateGisFeatureName> getGisFeatureAlternateNames() {
-	return gisFeature.getGisFeatureAlternateNames();
+	return gisFeature().getGisFeatureAlternateNames();
     }
 
     public String getGisFeatureDefaultName() {
-	return gisFeature.getGisFeatureDefaultName();
+	return gisFeature().getGisFeatureDefaultName();
     }
 
     public String getGisFeaturePreferredName(Iso639Language language) {
-	return gisFeature.getGisFeaturePreferredName(language);
+	return gisFeature().getGisFeaturePreferredName(language);
     }
 
     public String getGisFeatureShortName(Iso639Language language) {
-	return gisFeature.getGisFeatureShortName(language);
+	return gisFeature().getGisFeatureShortName(language);
     }
 
     public Long getElevation() {
-	return gisFeature.getElevation();
+	return gisFeature().getElevation();
     }
 
     public GisFeatureType getGisFeatureType() {
-	return gisFeature.getGisFeatureType();
+	return gisFeature().getGisFeatureType();
     }
 
     public Long getGtopo30AverageElevation() {
-	return gisFeature.getGtopo30AverageElevation();
+	return gisFeature().getGtopo30AverageElevation();
     }
 
     public DateTime getLastModificationDate() {
-	return gisFeature.getLastModificationDate();
+	return gisFeature().getLastModificationDate();
     }
 
     public double getLatitude() {
-	return gisFeature.getLatitude();
+	return gisFeature().getLatitude();
     }
 
     public Point getLocation() {
-	return gisFeature.getLocation();
+	return gisFeature().getLocation();
     }
 
     public double getLongitude() {
-	return gisFeature.getLongitude();
+	return gisFeature().getLongitude();
     }
 
     public Long getPopulation() {
@@ -241,7 +252,7 @@ public final class Country implements AdministrativeEntity,GisFeature,CurrencyPr
     }
 
     public DateTimeZone getTimeZone() {
-	return gisFeature.getTimeZone();
+	return gisFeature().getTimeZone();
     }
     
     
@@ -252,7 +263,7 @@ public final class Country implements AdministrativeEntity,GisFeature,CurrencyPr
     @Override
     public int hashCode() {
 	return new HashCodeBuilder()
-		.append(gisFeature)
+		.append(gisFeature())
 		.toHashCode();
     }
 
@@ -266,7 +277,7 @@ public final class Country implements AdministrativeEntity,GisFeature,CurrencyPr
 	    return false;
 	Country other = (Country) obj;
 	return new EqualsBuilder()
-		.append(gisFeature, other.getGisFeature())
+		.append(gisFeature(), other.getGisFeature())
 		.isEquals();
     }
 
@@ -302,4 +313,7 @@ public final class Country implements AdministrativeEntity,GisFeature,CurrencyPr
 	return isoCountryCode.getIso3166Alpha2Code();
     }
 
+    private GisFeature gisFeature() {
+	return this.gisFeatureProvider.getGisFeature();
+    }
 }

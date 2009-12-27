@@ -14,15 +14,29 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Assert;
 import org.junit.Test;
 
+import com.gisgraphy.client.gisfeature.InMemoryGeonamesGisFeatureProvider;
+
 public class AdministrativeDivisionTest {
 
     @Test
     public void shouldCreateAdministrativeDivision() {
 	AdministrativeDivision rambouilletAdm4 = AdministrativeDivisionObjectMother.rambouilletAdm4();
+	assertRambouilletAdm4(rambouilletAdm4);
+    }
+
+    private void assertRambouilletAdm4(AdministrativeDivision rambouilletAdm4) {
 	assertEquals("78517", rambouilletAdm4.getCode());
 	assertEquals("Rambouillet", rambouilletAdm4.getName());
 	assertEquals(rambouilletAdm4GisFeature(), rambouilletAdm4.getGisFeature());
 	assertEquals(rambouilletAdm3(), rambouilletAdm4.getParentEntity());
+    }
+    
+    @Test
+    public void shouldCreateAdministrativeDivisionUsingGisFeatureProvider() {
+	AdministrativeDivision rambouilletAdm4 = administrativeDivision("Rambouillet")
+		.withCode("78517")
+		.andGisFeatureProvider(new InMemoryGeonamesGisFeatureProvider(rambouilletAdm4GisFeature()));
+	assertRambouilletAdm4(rambouilletAdm4);
     }
     
     @Test(expected=IllegalArgumentException.class)

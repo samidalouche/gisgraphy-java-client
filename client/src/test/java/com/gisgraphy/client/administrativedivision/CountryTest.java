@@ -20,6 +20,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import com.gisgraphy.client.administrativedivision.Country;
+import com.gisgraphy.client.gisfeature.InMemoryGeonamesGisFeatureProvider;
 import com.ibm.icu.util.Currency;
 
 public class CountryTest {
@@ -27,6 +28,10 @@ public class CountryTest {
     @Test
     public void shouldCreateFrance() {
 	Country france = france();
+	assertFrance(france);
+    }
+
+    private void assertFrance(Country france) {
 	assertEquals("France", france.getName());
 	assertEquals(franceCountryCode(), france.getIsoCountryCode());
 	assertEquals(europe(), france.getContinent());
@@ -35,6 +40,18 @@ public class CountryTest {
 	assertEquals(franceFipsCountryCode(), france.getFipsCountryCode());
 	assertEquals(franceAdministrativeCountryInformation(), france.getAdministrativeCountryInformation());
 	assertEquals(franceGeographicCountryInformation(), france.getGeographicCountryInformation());
+    }
+    
+    @Test public void shouldCreateFranceUsingGisFeatureProvider() {
+	Country france =  Country.countryName("France")
+	.withIsoCountryCode(franceCountryCode())
+	.withContinent(europe())
+	.andGisFeatureProvider(new InMemoryGeonamesGisFeatureProvider(franceGisFeature()))
+	.withCurrency(Currency.getInstance("EUR"))
+	.withFipsCountryCode(franceFipsCountryCode())
+	.withAdministrativeCountryInformation(franceAdministrativeCountryInformation())
+	.withGeographicCountryInformation(franceGeographicCountryInformation());
+	assertFrance(france);
     }
     
     @Test
