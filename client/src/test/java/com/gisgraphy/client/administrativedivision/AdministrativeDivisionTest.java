@@ -10,10 +10,14 @@ import static com.gisgraphy.client.gisfeature.GisFeatureObjectMother.rambouillet
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+import static org.mockito.Mockito.when;
 
 import org.junit.Assert;
 import org.junit.Test;
+import org.mockito.Mockito;
 
+import com.gisgraphy.client.gisfeature.GisFeatureId;
+import com.gisgraphy.client.gisfeature.GisFeatureProvider;
 import com.gisgraphy.client.gisfeature.InMemoryGeonamesGisFeatureProvider;
 
 public class AdministrativeDivisionTest {
@@ -139,6 +143,32 @@ public class AdministrativeDivisionTest {
     
     @Test public void shouldReturnFullyQualifiedName() {
 	Assert.assertEquals("[NamePart[name=France,friendlyCode=FR], NamePart[name=Région Île-de-France,friendlyCode=A8], NamePart[name=Département des Yvelines,friendlyCode=78], NamePart[name=Arrondissement de Rambouillet,friendlyCode=782], NamePart[name=Rambouillet,friendlyCode=78517]]",AdministrativeDivisionObjectMother.rambouilletAdm4().getFullyQualifiedNameParts().toString());
+    }
+    
+    @Test public void equalsShouldNotRetrieveCompleteGisFeatureFromProviderForEfficiencyReasons() {
+	GisFeatureProvider gisFeatureProvider = Mockito.mock(GisFeatureProvider.class);
+	when(gisFeatureProvider.gisFeatureEquals((GisFeatureProvider) Mockito.anyObject())).thenReturn(true);
+	when(gisFeatureProvider.getGisFeatureId()).thenReturn(new GisFeatureId(6444057L));
+	
+	assertEquals(createRambouilletAdm4WithMockGisFeatureProvider(gisFeatureProvider), createRambouilletAdm4WithMockGisFeatureProvider(gisFeatureProvider));
+	
+	Mockito.verify(gisFeatureProvider).gisFeatureEquals((GisFeatureProvider) Mockito.anyObject());
+    }
+    
+    @Test public void hashCodeShouldNotRetrieveCompleteGisFeatureFromProviderForEfficiencyReasons() {
+	GisFeatureProvider gisFeatureProvider = Mockito.mock(GisFeatureProvider.class);
+	when(gisFeatureProvider.gisFeatureHashCode()).thenReturn(1);
+	when(gisFeatureProvider.getGisFeatureId()).thenReturn(new GisFeatureId(6444057L));
+	
+	assertEquals(1, createRambouilletAdm4WithMockGisFeatureProvider(gisFeatureProvider).hashCode());
+	
+	Mockito.verify(gisFeatureProvider).gisFeatureHashCode();
+    }
+    
+    private AdministrativeDivision createRambouilletAdm4WithMockGisFeatureProvider(GisFeatureProvider gisFeatureProvider) {
+	return administrativeDivision("Rambouillet")
+	.withCode("78517")
+	.andGisFeatureProvider(gisFeatureProvider);
     }
     
 }

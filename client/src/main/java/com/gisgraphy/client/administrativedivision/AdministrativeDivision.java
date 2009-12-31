@@ -11,6 +11,7 @@ import org.joda.time.DateTimeZone;
 import com.gisgraphy.client.commons.NamePart;
 import com.gisgraphy.client.gisfeature.AdministrativeEntity;
 import com.gisgraphy.client.gisfeature.AlternateGisFeatureName;
+import com.gisgraphy.client.gisfeature.EfficientGisFeatureProvider;
 import com.gisgraphy.client.gisfeature.GeonamesGisFeature;
 import com.gisgraphy.client.gisfeature.GisFeature;
 import com.gisgraphy.client.gisfeature.GisFeatureProvider;
@@ -88,8 +89,10 @@ public final class AdministrativeDivision implements AdministrativeEntity,GisFea
 	super();
 	Validate.notEmpty(name);
 	Validate.notEmpty(code);
-	Validate.notNull(gisFeatureProvider.getGisFeature());
-	Validate.notNull(gisFeatureProvider.getGisFeature().getParentAdministrativeEntity());
+	Validate.notNull(gisFeatureProvider.getGisFeatureId());
+	if(EfficientGisFeatureProvider.class.isAssignableFrom(gisFeatureProvider.getClass())) {
+	    Validate.notNull(gisFeatureProvider.getGisFeature().getParentAdministrativeEntity());
+	}
 	
 	this.name = name;
 	this.code = code;
@@ -133,9 +136,7 @@ public final class AdministrativeDivision implements AdministrativeEntity,GisFea
 
     @Override
     public int hashCode() {
-	return new HashCodeBuilder()
-		.append(gisFeature())
-		.toHashCode();
+	return gisFeatureProvider.gisFeatureHashCode();
     }
 
     @Override
@@ -148,9 +149,7 @@ public final class AdministrativeDivision implements AdministrativeEntity,GisFea
 	    return false;
 	AdministrativeDivision other = (AdministrativeDivision) obj;
 	
-	return new EqualsBuilder()
-		.append(gisFeature(), other.getGisFeature())
-		.isEquals();
+	return gisFeatureProvider.gisFeatureEquals(other.gisFeatureProvider);
     }
 
     private AdministrativeEntityHierarchy administrativeEntityLevelProvider() {
