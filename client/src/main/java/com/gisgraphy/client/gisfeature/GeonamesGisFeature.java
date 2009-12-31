@@ -256,5 +256,9 @@ public final class GeonamesGisFeature implements GisFeature, DistanceCalculator<
     public String getFriendlyCode() {
 	return null;
     }
+
+    public GisFeatureId getGisFeatureId() {
+        return gisFeatureId;
+    }
    
 }

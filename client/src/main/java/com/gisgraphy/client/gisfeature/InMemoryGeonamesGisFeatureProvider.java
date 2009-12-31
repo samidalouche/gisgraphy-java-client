@@ -4,7 +4,7 @@ import org.springframework.util.Assert;
 
 import com.gisgraphy.client.commons.DistanceCalculator;
 
-public class InMemoryGeonamesGisFeatureProvider implements GisFeatureProvider {
+public class InMemoryGeonamesGisFeatureProvider implements GisFeatureProvider, EfficientGisFeatureProvider {
 
     private GeonamesGisFeature geonamesGisFeature;
     
@@ -20,6 +20,18 @@ public class InMemoryGeonamesGisFeatureProvider implements GisFeatureProvider {
 
     public DistanceCalculator<GisFeature> getGisFeatureDistanceCalculator() {
 	return geonamesGisFeature;
+    }
+
+    public GisFeatureId getGisFeatureId() {
+	return geonamesGisFeature.getGisFeatureId();
+    }
+
+    public boolean gisFeatureEquals(GisFeatureProvider gisFeatureProvider) {
+	return this.geonamesGisFeature.getGisFeatureId().equals(gisFeatureProvider.getGisFeatureId());
+    }
+
+    public int gisFeatureHashCode() {
+	return this.geonamesGisFeature.getGisFeatureId().hashCode();
     }
 
 }
