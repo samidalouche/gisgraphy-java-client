@@ -3,6 +3,7 @@ package com.gisgraphy.client.administrativedivision;
 import static com.gisgraphy.client.administrativedivision.CityObjectMother.gazeranCity;
 import static com.gisgraphy.client.administrativedivision.CityObjectMother.rambouilletCity;
 import static com.gisgraphy.client.gisfeature.GisFeatureObjectMother.*;
+import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -11,13 +12,16 @@ import javax.measure.unit.SI;
 import javax.measure.unit.Unit;
 
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.mockito.Mockito;
 
 import com.gisgraphy.client.commons.NameFormatter;
 import com.gisgraphy.client.commons.NameProvider;
 import com.gisgraphy.client.gisfeature.GeonamesGisFeature;
+import com.gisgraphy.client.gisfeature.GisFeatureId;
 import com.gisgraphy.client.gisfeature.GisFeatureObjectMother;
+import com.gisgraphy.client.gisfeature.GisFeatureProvider;
 import com.gisgraphy.client.gisfeature.InMemoryGeonamesGisFeatureProvider;
 
 public class CityTest {
@@ -114,6 +118,26 @@ public class CityTest {
 	
     }
     
+    
+    @Test @Ignore("Because of additional integrity checks, it is not really possible to enforce this behavior") public void equalsShouldNotRetrieveCompleteGisFeatureFromProviderForEfficiencyReasons() {
+	GisFeatureProvider gisFeatureProvider = Mockito.mock(GisFeatureProvider.class);
+	when(gisFeatureProvider.gisFeatureEquals((GisFeatureProvider) Mockito.anyObject())).thenReturn(true);
+	when(gisFeatureProvider.getGisFeatureId()).thenReturn(new GisFeatureId(1L));
+	
+	assertEquals(City.forGisFeatureProvider(gisFeatureProvider), City.forGisFeatureProvider(gisFeatureProvider));
+	
+	Mockito.verify(gisFeatureProvider).gisFeatureEquals((GisFeatureProvider) Mockito.anyObject());
+    }
+    
+    @Test @Ignore("Because of additional integrity checks, it is not really possible to enforce this behavior") public void hashCodeShouldNotRetrieveCompleteGisFeatureFromProviderForEfficiencyReasons() {
+	GisFeatureProvider gisFeatureProvider = Mockito.mock(GisFeatureProvider.class);
+	when(gisFeatureProvider.gisFeatureHashCode()).thenReturn(1);
+	when(gisFeatureProvider.getGisFeatureId()).thenReturn(new GisFeatureId(3017382L));
+	
+	assertEquals(1, City.forGisFeatureProvider(gisFeatureProvider).hashCode());
+	
+	Mockito.verify(gisFeatureProvider).gisFeatureHashCode();
+    }
     
     private int typicalAdministrativeLevelOfACity() {
 	return 5;

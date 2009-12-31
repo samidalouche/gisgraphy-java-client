@@ -75,9 +75,7 @@ public final class City implements Comparable<City>, GisFeature, DistanceCalcula
 
     @Override
     public int hashCode() {
-	return new HashCodeBuilder()
-		.append(gisFeature())
-		.toHashCode();
+	return gisFeatureProvider.gisFeatureHashCode();
     }
 
     @Override
@@ -90,9 +88,7 @@ public final class City implements Comparable<City>, GisFeature, DistanceCalcula
 	    return false;
 	City other = (City) obj;
 	
-	return new EqualsBuilder()
-		.append(gisFeature(), other.getGisFeature())
-		.isEquals();
+	return gisFeatureProvider.gisFeatureEquals(other.gisFeatureProvider);
     }
 
     //// GisFeatureAware implementation ////
