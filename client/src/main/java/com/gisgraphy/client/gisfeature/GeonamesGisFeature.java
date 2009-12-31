@@ -40,7 +40,7 @@ public final class GeonamesGisFeature implements GisFeature, DistanceCalculator<
         }
 
         private void check() {
-            Assert.notNull(gisFeature.geonamesId);
+            Assert.notNull(gisFeature.gisFeatureId);
             Assert.notNull(gisFeature.geography);
             Assert.notNull(gisFeature.names);
             Assert.notNull(gisFeature.type);
@@ -52,7 +52,7 @@ public final class GeonamesGisFeature implements GisFeature, DistanceCalculator<
         }
 
         public GisFeatureBuilder geonamesId(Long featureId) {
-            gisFeature.geonamesId = featureId;
+            gisFeature.gisFeatureId = new GisFeatureId(featureId);
             return this;
         }
 
@@ -91,7 +91,7 @@ public final class GeonamesGisFeature implements GisFeature, DistanceCalculator<
         return new GisFeatureBuilder();
     }
     private GisFeatureGeography geography;
-    private Long geonamesId;
+    private GisFeatureId gisFeatureId;
     private DateTime lastModificationDate;
     private GisFeatureNames names;
 
@@ -110,7 +110,7 @@ public final class GeonamesGisFeature implements GisFeature, DistanceCalculator<
     @Override
     public int hashCode() {
 	return new HashCodeBuilder()
-		.append(geonamesId)
+		.append(gisFeatureId)
 		.toHashCode();
     }
 
@@ -128,7 +128,7 @@ public final class GeonamesGisFeature implements GisFeature, DistanceCalculator<
         GeonamesGisFeature other = (GeonamesGisFeature) obj;
         
         return new EqualsBuilder()
-		.append(geonamesId, other.getGeonamesId())
+		.append(gisFeatureId, other.gisFeatureId)
 		.isEquals();
     }
 
@@ -149,7 +149,7 @@ public final class GeonamesGisFeature implements GisFeature, DistanceCalculator<
      * @return
      */
     public Long getGeonamesId() {
-        return geonamesId;
+        return gisFeatureId.getGeonamesId();
     }
 
     public GeonamesGisFeature getGisFeature() {
@@ -239,7 +239,7 @@ public final class GeonamesGisFeature implements GisFeature, DistanceCalculator<
     
     @Override
     public String toString() {
-        return new ToStringBuilder(this, ToStringStyle.SHORT_PREFIX_STYLE).append("featureId", this.geonamesId).append("featureName", this.names).append("featureType", this.type).append("featureGeograhy", this.geography).append("lastModificationDate", this.lastModificationDate).append("parentEntity", this.parentAdministrativeEntity).toString();
+        return new ToStringBuilder(this, ToStringStyle.SHORT_PREFIX_STYLE).append("featureId", this.gisFeatureId).append("featureName", this.names).append("featureType", this.type).append("featureGeograhy", this.geography).append("lastModificationDate", this.lastModificationDate).append("parentEntity", this.parentAdministrativeEntity).toString();
     }
 
     public ImmutableList<NamePart> getFullyQualifiedNameParts() {
