@@ -89,7 +89,7 @@ public final class Country implements AdministrativeEntity,GisFeature,CurrencyPr
 	Validate.notNull(isoCountryCode);
 	Validate.notEmpty(name);
 	Validate.notNull(continent);
-	Validate.notNull(gisFeatureProvider.getGisFeature());
+	Validate.notNull(gisFeatureProvider.getGisFeatureId());
 	
 	this.isoCountryCode = isoCountryCode;
 	this.name = name;
@@ -262,9 +262,7 @@ public final class Country implements AdministrativeEntity,GisFeature,CurrencyPr
 
     @Override
     public int hashCode() {
-	return new HashCodeBuilder()
-		.append(gisFeature())
-		.toHashCode();
+	return gisFeatureProvider.gisFeatureHashCode();
     }
 
     @Override
@@ -276,9 +274,8 @@ public final class Country implements AdministrativeEntity,GisFeature,CurrencyPr
 	if (getClass() != obj.getClass())
 	    return false;
 	Country other = (Country) obj;
-	return new EqualsBuilder()
-		.append(gisFeature(), other.getGisFeature())
-		.isEquals();
+	
+	return gisFeatureProvider.gisFeatureEquals(other.gisFeatureProvider);
     }
 
     public String getPhonePrefix() {

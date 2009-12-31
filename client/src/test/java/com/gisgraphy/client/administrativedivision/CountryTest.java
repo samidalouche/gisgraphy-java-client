@@ -15,11 +15,15 @@ import static com.gisgraphy.client.continent.ContinentObjectMother.europe;
 import static com.gisgraphy.client.gisfeature.GisFeatureObjectMother.antarcticaGisFeature;
 import static com.gisgraphy.client.gisfeature.GisFeatureObjectMother.franceGisFeature;
 import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.when;
 
 import org.junit.Assert;
 import org.junit.Test;
+import org.mockito.Mockito;
 
 import com.gisgraphy.client.administrativedivision.Country;
+import com.gisgraphy.client.gisfeature.GisFeatureId;
+import com.gisgraphy.client.gisfeature.GisFeatureProvider;
 import com.gisgraphy.client.gisfeature.InMemoryGeonamesGisFeatureProvider;
 import com.ibm.icu.util.Currency;
 
@@ -201,6 +205,37 @@ public class CountryTest {
     
     @Test public void shouldReturnFullyQualifiedName() {
 	Assert.assertEquals("[NamePart[name=France,friendlyCode=FR]]",CountryObjectMother.france().getFullyQualifiedNameParts().toString());
+    }
+    
+    @Test public void equalsShouldNotRetrieveCompleteGisFeatureFromProviderForEfficiencyReasons() {
+	GisFeatureProvider gisFeatureProvider = Mockito.mock(GisFeatureProvider.class);
+	when(gisFeatureProvider.gisFeatureEquals((GisFeatureProvider) Mockito.anyObject())).thenReturn(true);
+	when(gisFeatureProvider.getGisFeatureId()).thenReturn(new GisFeatureId(3017382L));
+	
+	assertEquals(createFranceWithMockGisFeatureProvider(gisFeatureProvider), createFranceWithMockGisFeatureProvider(gisFeatureProvider));
+	
+	Mockito.verify(gisFeatureProvider).gisFeatureEquals((GisFeatureProvider) Mockito.anyObject());
+    }
+    
+    @Test public void hashCodeShouldNotRetrieveCompleteGisFeatureFromProviderForEfficiencyReasons() {
+	GisFeatureProvider gisFeatureProvider = Mockito.mock(GisFeatureProvider.class);
+	when(gisFeatureProvider.gisFeatureHashCode()).thenReturn(1);
+	when(gisFeatureProvider.getGisFeatureId()).thenReturn(new GisFeatureId(3017382L));
+	
+	assertEquals(1, createFranceWithMockGisFeatureProvider(gisFeatureProvider).hashCode());
+	
+	Mockito.verify(gisFeatureProvider).gisFeatureHashCode();
+    }
+
+    private Country createFranceWithMockGisFeatureProvider(GisFeatureProvider gisFeatureProvider) {
+	return Country.countryName("France")
+	.withIsoCountryCode(franceCountryCode())
+	.withContinent(europe())
+	.andGisFeatureProvider(gisFeatureProvider)
+	.withCurrency(Currency.getInstance("EUR"))
+	.withFipsCountryCode(franceFipsCountryCode())
+	.withAdministrativeCountryInformation(franceAdministrativeCountryInformation())
+	.withGeographicCountryInformation(franceGeographicCountryInformation());
     }
     
 }
