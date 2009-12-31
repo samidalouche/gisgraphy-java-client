@@ -113,6 +113,6 @@ public final class GisFeatureNames {
 
     @Override
     public String toString() {
-        return new ToStringBuilder(this, ToStringStyle.SHORT_PREFIX_STYLE).append("name", this.name).append("asciiName", this.asciiName).append("alternateNames", this.alternateNamesProvider).toString();
+        return new ToStringBuilder(this, ToStringStyle.SHORT_PREFIX_STYLE).append("name", this.name).append("asciiName", this.asciiName).append("alternateNames", this.alternateNamesProvider.getAlternateNames()).toString();
     }
 }
